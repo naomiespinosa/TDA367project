@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.sherter.google-java-format' version '0.8'
+}
+
+mainClassName = 'Main'
+
+dependencies {
+}
+
+repositories {
+    jcenter()
+}
+
+test.dependsOn verifyGoogleJavaFormat
