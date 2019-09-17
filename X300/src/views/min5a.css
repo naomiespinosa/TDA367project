@@ -1,0 +1,71 @@
+/* Colors */
+.root{black: #020300}
+.root{light-purple: #6C657D}
+.root{purple: #544E61}
+.root{dark-purple: #3C3745}
+.root{grey_blue: #6D9293}
+.root{dark-grey-blue: #577576}
+.root{light-grey-blue: #8AA8A9}
+.root{green_strong: #85BAA1}
+.root{green_light: #CEEDDB}
+
+/* Backgrounds */
+.menu-background{
+    -fx-background-color: white;
+}
+
+.panel-background1{
+    -fx-background-color: grey_blue;
+}
+
+.panel-background2{
+    -fx-background-color: green_strong;
+}
+
+.panel-background3{
+    -fx-background-color: green_light;
+}
+
+/* Text */
+.header{
+    -fx-text-fill: purple;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 35px;
+}
+
+.sub-header{
+    -fx-text-fill: purple;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 24px;
+}
+
+.text{
+    -fx-text-fill: black;
+    -fx-font-family: "System";
+    -fx-font-size: 12px
+}
+
+.panel-font{
+    -fx-text-fill: green_light;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 16px;
+}
+
+/* Panel buttons */
+.panel-button{
+    -fx-background-color: grey-blue;
+    -fx-background-radius: 0em;
+}
+
+.panel-button:pressed{
+    -fx-backround-color: light-grey-blue;
+}
+
+.panel-button:hover{
+    -fx-background-color: dark-grey-blue;
+}
+
+/* Makes the divider for a Splitpane transparent */
+.split-pane:horizontal > .split-pane-divider{
+    -fx-background-color: transparent;
+}
