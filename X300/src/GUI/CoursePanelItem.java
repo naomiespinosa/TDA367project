@@ -1,13 +1,18 @@
 package GUI;
 
+import Controller.Controller;
+import Model.Course;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class CoursePanelItem extends AnchorPane {
-   // private Controller parentController;
-   // private Course course;
+    private Controller parentController;
+    private Course course;
 
     @FXML
     private ImageView courseImageView;
@@ -16,8 +21,9 @@ public class CoursePanelItem extends AnchorPane {
     private Text courseNameLabel;
 
 
+
 //CONSTRUCTOR FOR COURSE PANEL ITEM
-/* public CoursePanelItem(Course course, Controller controller) {
+ public CoursePanelItem(Course course, Controller controller) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CoursePanelItem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -29,13 +35,12 @@ public class CoursePanelItem extends AnchorPane {
         }
 
         this.course = course;
-        this.parentController = recipeSearchController;
+        this.parentController = controller;
 
-        CourseNameLabel.setText(course.getName());
-        CourseImageView.setImage(course.getFXImage());
+        courseNameLabel.setText(course.getCourseName());
+        //courseImageView.setImage(course.getCoursePicPath());
 
-
-    }*/
+    }
 
 }
 
