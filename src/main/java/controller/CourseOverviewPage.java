@@ -1,4 +1,3 @@
 package controller;
 
-public class CourseOverviewPage {
-}
+public class CourseOverviewPage {}
