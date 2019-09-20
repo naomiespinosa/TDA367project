@@ -17,7 +17,7 @@
                             <graphic>
                                 <ImageView fitHeight="80.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="5.0">
                                     <image>
-                                        <Image url="@../Images/logo.png" />
+                                        <Image url="@../images/logo.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -28,12 +28,12 @@
                         <Label alignment="CENTER" layoutX="-1.0" layoutY="235.0" prefHeight="25.0" prefWidth="84.0" styleClass="panel-font" text="Statistik" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
                         <ImageView fitHeight="66.0" fitWidth="61.0" layoutX="14.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/CoursesWhite.png" />
+                                <Image url="@../images/CoursesWhite.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="61.0" fitWidth="69.0" layoutX="14.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/statistik.png" />
+                                <Image url="@../images/statistik.png" />
                             </image>
                         </ImageView>
                     </children></AnchorPane>
