@@ -16,6 +16,10 @@ public class ToDo {
     private void setActive() {
         this.isDone = false;
     }
+
+    private void setInaktive(){
+        this.isDone=true;
+    }
     private String getText(String text){
         return text;
     }
