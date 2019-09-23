@@ -13,7 +13,7 @@ public class StudySession {
     }
 
     // TODO
-    // Method that calculates the time och one session
+    // Method that calculates the time and one session
 
     // Method that calculates the time of multiple sessions
 

@@ -1,5 +1,26 @@
 package model;
 
+
 public class ToDo {
-    // TODO EVERYTHING
+   private boolean isDone;
+   private String text;
+
+    ToDo(String text, boolean isDone){ //Constuktor, a todoItem is not done when created
+        this.text=text;
+        this.isDone=false;
+    }
+
+    private boolean getIsDone(boolean isDone){
+        return isDone;
+}
+    private void setActive() {
+        this.isDone = false;
+    }
+    private String getText(String text){
+        return text;
+    }
+   private void setString(){
+        this.text=text;
+   }
+
 }
