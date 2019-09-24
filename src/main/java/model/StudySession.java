@@ -3,12 +3,10 @@ package model;
 import java.util.Date;
 import java.util.HashMap;
 
-public class StudySession {
+// This class is a specific time where we use a timer and want the result to be shown.
+class StudySession {
   private Date date;
   private HashMap<Date, Date> time; // <start, finish> for all the time periods
-
-  // TODO
-  public StudySession() {}
 
   // TODO
   // Method that calculates the time and one session

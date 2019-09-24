@@ -2,6 +2,9 @@ package model;
 
 import java.util.List;
 
+// Suposedly Good for OPC since if we want to add the feature of having multiple user this clas will
+// be open for extension
+// Users have their own classes that are not shared between users.
 public class User {
   private String username;
   private String name;
@@ -17,15 +20,19 @@ public class User {
     courses.add(new Course(name, courseCode, year, studyPeriod));
   }
 
+  // Returns specific course
   private Course getCourse(int index) {
     return courses.get(index);
   }
 
+  // TODO - Without
+  private void startStudySession(int index) {}
+
+  // Getters och Setters
   private List<Course> getCourses() {
     return courses;
   }
 
-  // Getters och Setters
   private String getUsername() {
     return username;
   }

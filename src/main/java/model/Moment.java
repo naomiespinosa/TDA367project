@@ -2,12 +2,13 @@ package model;
 
 import java.util.Date;
 
-public class Moment {
+// A moment is something that has a deadline in the course such as exams and hand-ins.
+class Moment {
   private String name;
   private Date deadline;
   private boolean isPastDeadline;
 
-  Moment(String name, Date deadline, boolean isPastDeadline) {
+  Moment(String name, Date deadline) {
     this.name = name;
     this.deadline = deadline;
     this.isPastDeadline = false;
