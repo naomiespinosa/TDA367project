@@ -15,8 +15,8 @@ public class MainController extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Side_Panel.fxml"));
-    Scene scene = new Scene(root, 300, 275);
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/.CoursePanelItem.fxml"));
+    Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");
     stage.setScene(scene);
     stage.show();
