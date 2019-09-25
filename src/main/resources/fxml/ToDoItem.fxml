@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="159.0" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ToDoItemController">
+   <children>
+      <Label fx:id="ToDoDateLabel" layoutY="17.0" text="Datum" textAlignment="CENTER" />
+      <TextArea fx:id="ToDoDescriptionTextArea" layoutX="57.0" prefHeight="50.0" prefWidth="102.0" />
+   </children>
+</AnchorPane>

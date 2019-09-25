@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 // A course hold information about the specific course and is user specific.
-class Course {
+public class Course {
   private String name;
   private String courseCode;
   private List<Moment> momentItems;
@@ -14,7 +14,7 @@ class Course {
   private int studyPeriod;
   private boolean isActive;
 
-  public Course(String name, String courseCode, int year, int studyPeriod) {
+   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
     this.year = year;
@@ -67,8 +67,8 @@ class Course {
     momentItems.clear();
   }
 
-  private void newTodo(String description) {
-    toDoList.add(new ToDo(description));
+  private void newTodo(String date, String description) {
+    toDoList.add(new ToDo(date, description));
   }
 
   private void deleteTodo(int index) {
