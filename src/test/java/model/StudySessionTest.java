@@ -24,8 +24,8 @@ public class StudySessionTest {
 
   @Test
   public void testStartDateIsSet() {
-      final Course course = mock(Course.class);
-      final Date startDate = new Date(2000, 1, 1, 0, 0, 0);
+    final Course course = mock(Course.class);
+    final Date startDate = new Date(2000, 1, 1, 0, 0, 0);
     StudySession studySession = new StudySession(startDate, new Date(2000, 1, 1, 0, 1, 0), course);
 
     assertSame(startDate, studySession.getStart());
