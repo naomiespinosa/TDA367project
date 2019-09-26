@@ -1,11 +1,10 @@
 package model;
 
-// This class represent a normal checklist for the user and will either be done or not
-class ToDo {
+public class ToDo {
   private boolean isDone;
   private String description;
 
-  ToDo(String description) { // Constructor, a todoItem is not done when created
+  ToDo(String description, boolean isDone) { // Constructor, a todoItem is not done when created
     this.description = description;
     this.isDone = false;
   }
@@ -22,7 +21,7 @@ class ToDo {
     this.isDone = true;
   }
 
-  private String getDescription() {
+  private String getDiscription() {
     return description;
   }
 
