@@ -4,13 +4,19 @@ plugins {
     id 'com.github.sherter.google-java-format' version '0.8'
 }
 
+sourceCompatibility = 8
+targetCompatibility = 8
 mainClassName = 'controller.MainController'
 
 dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
+    testCompile 'org.mockito:mockito-core:2.+'
 }
 
 repositories {
     jcenter()
 }
 
-test.dependsOn verifyGoogleJavaFormat
+test {
+    useJUnitPlatform()
+}
