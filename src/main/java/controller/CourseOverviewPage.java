@@ -6,27 +6,22 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class CourseOverviewPage extends AnchorPane {
+
   private SidePanel sidePanel;
 
-  public CourseOverviewPage(SidePanel sidePanel){
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CourseOverviewPage.fxml"));
+  public CourseOverviewPage(SidePanel sidePanel) {
+    FXMLLoader fxmlLoader = new FXMLLoader(CourseOverviewPage.class.getClassLoader().getResource("fxml/CourseOverviewPage.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 
+
+    // TODO fix this stuff
     try {
       fxmlLoader.load();
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
+    } catch (IOException exception){
+      throw new RuntimeException();
     }
 
     this.sidePanel = sidePanel;
-    //set size 100%
-    setBottomAnchor(this,0.0);
-    setTopAnchor(this,0.0);
-    setRightAnchor(this, 0.0);
-    setLeftAnchor(this, 0.0);
-
   }
-
-
 }
