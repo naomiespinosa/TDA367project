@@ -4,5 +4,6 @@ import model.timer.TimerManager;
 public class DependencyInjectionModule extends AbstractModule {
   @Override
   protected void configure() {
+    bind(TimerManager.class);
   }
 }
