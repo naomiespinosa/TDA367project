@@ -35,13 +35,9 @@ class Course {
 
   // Lists
 
-  private void newStudySession() {
-    studySessions.add(new StudySession());
-  }
+  private void newStudySession() {}
 
-  private void deleteStudySession(int index) {
-    studySessions.remove(index);
-  }
+  private void deleteStudySession(int index) {}
 
   private List<StudySession> getStudySessions() {
     return studySessions;
