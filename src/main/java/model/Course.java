@@ -14,9 +14,19 @@ public class Course {
   private int studyPeriod;
   private boolean isActive;
 
-   public Course(String name, String courseCode, int year, int studyPeriod) {
+  public Course(
+      String name,
+      String courseCode,
+      List<Moment> momentItems,
+      List<StudySession> studySessions,
+      List<ToDo> toDoList,
+      int year,
+      int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
+    this.momentItems = momentItems;
+    this.studySessions = studySessions;
+    this.toDoList = toDoList;
     this.year = year;
     this.studyPeriod = studyPeriod;
     this.isActive = true;
@@ -28,12 +38,14 @@ public class Course {
   }
 
   // TODO - This method deletes the course and eventually deletes the information? or stores it
-  // somewhere
+  //  somewhere
   private void deleteCourse() {
     // Code
   }
 
-  // Lists
+  // List Methods
+
+  // StudySession
 
   private void newStudySession() {
     studySessions.add(new StudySession());
@@ -43,13 +55,11 @@ public class Course {
     studySessions.remove(index);
   }
 
-  private List<StudySession> getStudySessions() {
-    return studySessions;
-  }
-
   private void clearStudySessions() {
     studySessions.clear();
   }
+
+  // Moment
 
   private void newMoment(String name, Date deadline) {
     momentItems.add(new Moment(name, deadline));
@@ -59,27 +69,21 @@ public class Course {
     momentItems.remove(index);
   }
 
-  private List<Moment> getMomentItems() {
-    return momentItems;
-  }
-
   private void clearMomentItems() {
     momentItems.clear();
   }
 
-  private void newTodo(String date, String description) {
-    toDoList.add(new ToDo(date, description));
+  // To-Do
+
+  public void newTodo(String description) {
+    toDoList.add(new ToDo(description));
   }
 
-  private void deleteTodo(int index) {
+  public void deleteTodo(int index) {
     toDoList.remove(index);
   }
 
-  private List<ToDo> getToDoList() {
-    return toDoList;
-  }
-
-  private void clearToDoList() {
+  public void clearToDoList() {
     toDoList.clear();
   }
 
@@ -102,6 +106,30 @@ public class Course {
 
   private int getYear() {
     return year;
+  }
+
+  public List<Moment> getMomentItems() {
+    return momentItems;
+  }
+
+  public void setMomentItems(List<Moment> momentItems) {
+    this.momentItems = momentItems;
+  }
+
+  public List<StudySession> getStudySessions() {
+    return studySessions;
+  }
+
+  public void setStudySessions(List<StudySession> studySessions) {
+    this.studySessions = studySessions;
+  }
+
+  public List<ToDo> getToDoList() {
+    return toDoList;
+  }
+
+  public void setToDoList(List<ToDo> toDoList) {
+    this.toDoList = toDoList;
   }
 
   private void setYear(int year) {
