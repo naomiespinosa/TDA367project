@@ -6,11 +6,16 @@ public class ToDo {
   private String description;
 
   // Constructor, a todoItem is not done when created
-  ToDo(String description) {
+  public ToDo(String description) {
     this.description = description;
     this.isDone = false;
   }
 
+  // Makes the ToDos show up as strings in the CourseMainPage ListView
+  @Override
+  public String toString() {
+    return this.getDescription();
+  }
 
   // Getters and Setters
   private boolean getIsDone() {
@@ -32,5 +37,4 @@ public class ToDo {
   private void setDescription(String description) {
     this.description = description;
   }
-
 }

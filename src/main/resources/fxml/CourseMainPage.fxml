@@ -7,53 +7,52 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="510.0" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CourseMainPage">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CourseMainPage">
    <children>
       <TextArea fx:id="CourseName" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="322.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="15.0" />
-      <SplitPane dividerPositions="0.5" layoutX="15.0" layoutY="74.0" prefHeight="235.0" prefWidth="325.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="170.0">
+      <SplitPane dividerPositions="0.5" layoutX="15.0" layoutY="146.0" prefHeight="465.0" prefWidth="643.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <FlowPane fx:id="toDoListFlowPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="toDoListView" prefHeight="233.6" prefWidth="159.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <FlowPane fx:id="deadlineListFlowPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="deadlineListView" prefHeight="308.0" prefWidth="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <Label layoutX="15.0" layoutY="78.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="ToDoList">
+      <Label layoutX="14.0" layoutY="91.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="ToDoList">
          <font>
             <Font name="Century Gothic" size="10.0" />
          </font>
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Label>
-      <Label layoutX="180.0" layoutY="78.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Deadlines" AnchorPane.topAnchor="78.0">
+      <Label layoutX="359.0" layoutY="91.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Deadlines" AnchorPane.topAnchor="91.0">
          <font>
             <Font size="5.0" />
          </font></Label>
-      <Button fx:id="newToDoButton" layoutX="15.0" layoutY="361.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <TextArea fx:id="newToDo" layoutX="53.0" layoutY="358.0" prefHeight="26.0" prefWidth="123.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="360.0">
+      <Button fx:id="newToDoButton" layoutX="7.0" layoutY="646.0" mnemonicParsing="false" onAction="#addToDo" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="7.0" />
+      <TextArea fx:id="newToDo" layoutX="47.0" layoutY="636.0" prefHeight="48.0" prefWidth="274.0" promptText="Lägg till To-Do's här..." AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="636.0">
          <font>
             <Font size="8.0" />
          </font>
       </TextArea>
-      <Button fx:id="newDeadlineButton" layoutX="180.0" layoutY="358.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="180.0" />
-      <TextArea fx:id="newDeadline" layoutX="216.0" layoutY="358.0" prefHeight="28.0" prefWidth="123.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="214.0" AnchorPane.topAnchor="360.0">
+      <Button fx:id="newDeadlineButton" layoutX="336.0" layoutY="642.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="336.0" />
+      <TextArea fx:id="newDeadline" layoutX="382.0" layoutY="632.0" prefHeight="48.0" prefWidth="274.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="382.0" AnchorPane.topAnchor="632.0">
          <font>
             <Font size="8.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="courseTimer" editable="false" layoutX="350.0" layoutY="78.0" prefHeight="66.0" prefWidth="142.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="78.0" />
-      <Button fx:id="courseStartTimerButton" layoutX="395.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Starta" />
-      <ListView fx:id="activityList" layoutX="353.0" layoutY="224.0" prefHeight="162.0" prefWidth="142.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="353.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="224.0" />
-      <Label layoutX="353.0" layoutY="183.0" prefHeight="34.0" prefWidth="144.0" styleClass="sub-header" text="Senaste Aktivitet">
+      <TextArea fx:id="courseTimer" editable="false" layoutX="960.0" layoutY="103.0" prefHeight="66.0" prefWidth="142.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="103.0" />
+      <Button fx:id="courseStartTimerButton" layoutX="1006.0" layoutY="177.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Starta" />
+      <ListView fx:id="activityList" layoutX="833.0" layoutY="310.0" prefHeight="376.0" prefWidth="352.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="833.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="310.0" />
+      <Label layoutX="835.0" layoutY="253.0" prefHeight="34.0" prefWidth="144.0" styleClass="sub-header" text="Senaste Aktivitet">
          <font>
             <Font size="5.0" />
          </font>
