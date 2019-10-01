@@ -1,5 +1,6 @@
 import com.cathive.fx.guice.GuiceApplication;
 import com.cathive.fx.guice.GuiceFXMLLoader;
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import java.io.IOException;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 public class Min5aApplication extends GuiceApplication {
   @Inject private GuiceFXMLLoader fxmlLoader;
 
+  @Inject private EventBus eventBus;
+
   @Override
   public void init(final List<Module> modules) throws Exception {
     modules.add(new DependencyInjectionModule());
@@ -20,7 +23,7 @@ public class Min5aApplication extends GuiceApplication {
   public void start(Stage stage) throws IOException {
     Parent root =
         fxmlLoader
-            .load(getClass().getClassLoader().getResource("fxml/Side_Panel.fxml"))
+            .load(getClass().getClassLoader().getResource("fxml/FullPageTimer.fxml"))
             .getRoot();
     Scene scene = new Scene(root);
     stage.setTitle("Min5a");

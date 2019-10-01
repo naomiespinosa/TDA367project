@@ -1,27 +1,19 @@
 package model.timer;
 
 import model.Course;
+import model.timer.event.StudyTimerStartedEvent;
 
-public class StudyTimer implements Timer {
-  private java.util.Timer timer;
-
-  private Course course;
-
+public class StudyTimer extends Timer {
   public StudyTimer(final Course course) {
-    this.course = course;
-    this.timer = new java.util.Timer();
+    super(course);
   }
 
   public void start() {
-    this.timer.schedule(new StudyTask(), StudyTask.INTERVAL_IN_MILLISECONDS);
+    super.start();
+    this.eventBus.post(new StudyTimerStartedEvent(this.course));
   }
 
   public void stop() {
-    this.course = null;
-    this.timer.cancel();
-  }
-
-  public Course getcourse() {
-    return this.course;
+    super.stop();
   }
 }
