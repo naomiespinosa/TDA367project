@@ -1,0 +1,13 @@
+language: java
+dist: xenial
+jdk:
+  - openjdk8
+
+install:
+  - sudo apt update
+  - sudo apt install -y openjfx
+
+script:
+  - ./gradlew build
+  - ./gradlew verifyGoogleJavaFormat --info
+  - ./gradlew test --info

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.PageFactory;
 
 public class MainController extends Application {
 
@@ -15,8 +16,19 @@ public class MainController extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Side_Panel.fxml"));
-    Scene scene = new Scene(root, 300, 275);
+    FXMLLoader sidePanelLoader =
+        new FXMLLoader(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
+    Parent root = sidePanelLoader.load(); // Loads the FXML for the SidePanel
+    SidePanel sidePanelCtrl =
+        sidePanelLoader.getController(); // Fetches the Controller for the fxml
+
+    // Insert pages into side panel
+    sidePanelCtrl.setHomePage(PageFactory.createHomePage());
+    sidePanelCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage());
+    sidePanelCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
+    sidePanelCtrl.init();
+
+    Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");
     stage.setScene(scene);
     stage.show();
