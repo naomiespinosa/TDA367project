@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.*;
 import javafx.fxml.FXML;
-import javax.swing.*;
 import javax.swing.text.html.ListView;
 
 public class CourseMainPage {
