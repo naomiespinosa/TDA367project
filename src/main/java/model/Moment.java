@@ -7,11 +7,12 @@ public class Moment {
   private Date deadline;
   private boolean isPastDeadline;
 
-  Moment(String name, Date deadline, boolean isPastDeadline) {
+  Moment(String name, Date deadline) {
     this.name = name;
     this.deadline = deadline;
-    this.isPastDeadline = false;
+   this.isPastDeadline = false;
   }
+
 
   private Date getDeadline() {
     return deadline;

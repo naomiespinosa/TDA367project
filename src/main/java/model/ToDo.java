@@ -4,7 +4,7 @@ public class ToDo {
   private boolean isDone;
   private String description;
 
-  ToDo(String description, boolean isDone) { // Constructor, a todoItem is not done when created
+  ToDo(String description) { // Constructor, a todoItem is not done when created
     this.description = description;
     this.isDone = false;
   }

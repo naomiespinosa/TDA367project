@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 // A course hold information about the specific course and is user specific.
-class Course {
+ public class Course {
   private String name;
   private String courseCode;
   private List<Moment> momentItems;
@@ -13,7 +13,6 @@ class Course {
   private int year;
   private int studyPeriod;
   private boolean isActive;
-
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
@@ -80,7 +79,7 @@ class Course {
   }
 
   // Setters and Getters
-  private String getName() {
+  public String getName() {
     return name;
   }
 
