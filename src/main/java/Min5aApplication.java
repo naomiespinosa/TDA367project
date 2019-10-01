@@ -33,7 +33,7 @@ public class Min5aApplication extends GuiceApplication {
     sidePanelCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
     sidePanelCtrl.init();
 
-    Scene scene = new Scene(root);
+    Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");
     stage.setScene(scene);
     stage.show();
