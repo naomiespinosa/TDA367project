@@ -1,34 +1,32 @@
 package model;
 
+import java.time.Duration;
 import java.util.Date;
-import java.util.HashMap;
 
-public class StudySession {
-  private Date date;
-  private HashMap<Date, Date> time; // <start, finish> for all the time periods
+class StudySession {
+  private Date start;
+  private Date stop;
+  private Course course;
 
-  // TODO
-  public StudySession() {}
-
-  // TODO
-  // Method that calculates the time and one session
-
-  // Method that calculates the time of multiple sessions
-
-  // Getters and Setter
-  public Date getDate() {
-    return date;
+  public StudySession(final Date start, final Date stop, final Course course) {
+    this.start = start;
+    this.stop = stop;
+    this.course = course;
   }
 
-  public void setDate(Date date) {
-    this.date = date;
+  public Date getStart() {
+    return this.start;
   }
 
-  public HashMap<Date, Date> getTime() {
-    return time;
+  public Date getStop() {
+    return this.stop;
   }
 
-  public void setTime(HashMap<Date, Date> time) {
-    this.time = time;
+  public Duration getDuration() {
+    return Duration.between(this.start.toInstant(), this.stop.toInstant());
+  }
+
+  public Course getCourse() {
+    return this.course;
   }
 }

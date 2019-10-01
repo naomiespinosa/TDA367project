@@ -7,11 +7,6 @@ public class User {
   private String name;
   private List<Course> courses;
 
-  public User(String username, String name) {
-    this.username = username;
-    this.name = name;
-  }
-
   // Used to add a new course
   private void addCourse(String name, String courseCode, int year, int studyPeriod) {
     courses.add(new Course(name, courseCode, year, studyPeriod));
