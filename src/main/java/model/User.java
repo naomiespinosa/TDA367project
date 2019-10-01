@@ -6,13 +6,11 @@ import java.util.List;
 // be open for extension
 // Users have their own classes that are not shared between users.
 public class User {
-  private String username;
-  private String name;
+  private String username = null;
+  private String name = null;
   private List<Course> courses;
 
-  public User(String username, String name) {
-    this.username = username;
-    this.name = name;
+  public User() {
   }
 
   // Used to add a new course
@@ -27,6 +25,8 @@ public class User {
 
   // TODO - Without
   private void startStudySession(int index) {}
+
+
 
   // Getters och Setters
   private List<Course> getCourses() {
