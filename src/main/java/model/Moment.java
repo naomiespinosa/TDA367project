@@ -10,9 +10,8 @@ public class Moment {
   Moment(String name, Date deadline) {
     this.name = name;
     this.deadline = deadline;
-   this.isPastDeadline = false;
+    this.isPastDeadline = false;
   }
-
 
   private Date getDeadline() {
     return deadline;

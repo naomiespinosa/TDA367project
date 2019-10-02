@@ -1,14 +1,13 @@
 package model;
 
-import javafx.scene.image.Image;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
- public class Course {
+public class Course {
   private String name;
   private String courseCode;
   private List<Moment> momentItems = new ArrayList<>();
@@ -18,6 +17,7 @@ import java.util.List;
   private int studyPeriod;
   private boolean isActive;
   private Image image = null;
+
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
@@ -88,7 +88,7 @@ import java.util.List;
     return name;
   }
 
-  public javafx.scene.image.Image getImage(){
+  public javafx.scene.image.Image getImage() {
     return image;
   }
 

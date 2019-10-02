@@ -7,7 +7,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import model.Course;
 
-
 public class CourseMainPage {
   @FXML private TextArea CourseName;
 

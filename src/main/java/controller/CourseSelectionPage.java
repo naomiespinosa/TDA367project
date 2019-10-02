@@ -120,4 +120,13 @@ public class CourseSelectionPage implements Initializable{
         coursePage.toBack();
     }
 
-}
+    public void sortCourses(){
+        for (int i = 0; i < user.getCourses().size();i++){
+            if (user.getCourse(i).isActive()){
+                activeCourses.add(user.getCourse(i));
+            }
+            else{
+                inactiveCourses.add(user.getCourse(i));
+            }
+
+}}}

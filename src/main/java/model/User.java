@@ -8,9 +8,7 @@ public class User {
   private String name;
   private List<Course> courses = new ArrayList<>();
 
-  public User() {
-  }
-
+  public User() {}
 
   // Used to add a new course
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {

@@ -42,7 +42,7 @@ public class SidePanel implements Initializable {
     showPage(homePage);
   }
 
-  public void setCourseSelectionController(CourseSelectionPage courseSelectionCtrl){
+  public void setCourseSelectionController(CourseSelectionPage courseSelectionCtrl) {
     this.courseSelectionCtrl = courseSelectionCtrl;
   }
 
@@ -63,5 +63,4 @@ public class SidePanel implements Initializable {
     mainPage.getChildren().add(page);
     mainPage.toFront();
   }
-
 }

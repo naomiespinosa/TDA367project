@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Course;
 import model.PageFactory;
 
 public class Min5aApplication extends GuiceApplication {
