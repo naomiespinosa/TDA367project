@@ -15,6 +15,7 @@ public class SidePanel implements Initializable {
   private AnchorPane homePage;
   private AnchorPane courseSelectionPage;
   private AnchorPane statisticsPage;
+  private CourseSelectionPage courseSelectionCtrl;
 
   // Other FXML setters
   public void setHomePage(AnchorPane homePage) {
@@ -41,9 +42,14 @@ public class SidePanel implements Initializable {
     showPage(homePage);
   }
 
+  public void setCourseSelectionController(CourseSelectionPage courseSelectionCtrl){
+    this.courseSelectionCtrl = courseSelectionCtrl;
+  }
+
   @FXML
   void showCourseSelectionPage(ActionEvent event) {
     showPage(courseSelectionPage);
+    courseSelectionCtrl.resetPage();
   }
 
   @FXML
@@ -57,4 +63,5 @@ public class SidePanel implements Initializable {
     mainPage.getChildren().add(page);
     mainPage.toFront();
   }
+
 }

@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -31,48 +32,63 @@ public class CourseSelectionPage implements Initializable{
     private FlowPane inactiveCoursesFlowpane;
 
     @FXML
-    private AnchorPane smallCoursePanelItem;
+    private AnchorPane coursePage;
+    @FXML
+    private AnchorPane main;
 
-    @Inject private User user;
+
+    @Inject private User user; // temporary
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Temporary
+        testClass();
+        resetPage();
+
+
+        try {
+            showActiveCourses();
+            showInactiveCourses();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // Only used now when we want to test our class
+    private void testClass(){
         user = new User();
-        user.addCourse("prog", "TDA333", 1, 2);
-        // TODO show active
-        showActiveCourses();
-        // TODO show inactive
-        showInactiveCourses();
+        user.addCourse("prog1", "TDA333", 1, 2);
+        user.addCourse("prog2", "TDA333", 1, 2);
+        user.addCourse("prog3", "TDA333", 1, 2);
+        user.getCourse(2).endCourse();
+        user.addCourse("prog4", "TDA333", 1, 2);
+        user.addCourse("prog4", "TDA333", 1, 2);
     }
 
-    // only used for the test
-    public void init(){
-        // Temporary
-        user = new User();
-        user.addCourse("prog", "TDA333", 1, 2);
-        user.addCourse("prog", "TDA333", 1, 2);
-        user.addCourse("prog", "TDA333", 1, 2);
-        user.getCourse(0).endCourse();
-        // TODO show active
-        showActiveCourses();
-        // TODO show inactive
-        showInactiveCourses();
+    // Method used to display all Courses
+    private void showActiveCourses() throws IOException {
+        activeCourses = getActiveCourses(); // might not need this method. unless we want to update them separately
+        activeCoursesFlowpane.getChildren().clear();
+
+        for (int i = 0; i < activeCourses.size(); i++){ // Runs through all the courses to only show the correct ones
+            AnchorPane courseItem = PageFactory.createCoursePanelItem(activeCourses.get(i),this);
+            activeCoursesFlowpane.getChildren().add(courseItem);
+        }
     }
 
-    public User getUser(){
-        return user;
-    }
-
-    private void showActiveCourses() {
-        activeCourses = getActiveCourses();
-    }
-
-    private void showInactiveCourses() {
+    // Method that displays all inactive courses
+    private void showInactiveCourses() throws IOException {
         inactiveCourses = getInactiveCourses();
+        inactiveCoursesFlowpane.getChildren().clear();
 
+        for (int i = 0; i < inactiveCourses.size(); i++){// Runs through all the courses to only show the correct ones
+            AnchorPane courseItem = PageFactory.createCoursePanelItem(inactiveCourses.get(i),this);
+            inactiveCoursesFlowpane.getChildren().add(courseItem);
+        }
     }
 
+    // the three methods below will be needed to change to look more neat
     private List<Course> getActiveCourses() {
         return sortCourses(true);
     }
@@ -91,66 +107,17 @@ public class CourseSelectionPage implements Initializable{
         return tempCourses;
     }
 
-
-
-   /* public void showCourseItem() throws IOException {
-        FXMLLoader courseSelectionLoader =
-                new FXMLLoader(getClass().getClassLoader().getResource("fxml/CoursePanelItem.fxml"));Parent root2 = courseSelectionLoader.load(); // Loads the FXML for the Panel
-        CourseSelectionPage courseSelectionCtrl =
-                courseSelectionLoader.getController(); // Fetches the Controller for the fxml
-
-        Course testCourse1 = new Course("testtes3t", "TEST1323",2019,4);
-
-        Course testCourse = new Course("testtest", "TEST123",2019,4);
-        CoursePanelItem item = new CoursePanelItem(testCourse, courseSelectionCtrl);
-        CoursePanelItem item2 = new CoursePanelItem(testCourse1, courseSelectionCtrl);
-       // activeCoursesFlowpane.getChildren().add(item);
-       // activeCoursesFlowpane.getChildren().add(item2);
-
-
-    }*/
-
-
-
-    public void setActiveCoursePanelItem(FlowPane activeCoursesFlowpane) {
-        this.activeCoursesFlowpane = activeCoursesFlowpane;
+    void pressed(Course course) throws IOException {
+        coursePage.getChildren().clear();
+        coursePage.getChildren().add(PageFactory.createCourseMainPage(course,this));
+        coursePage.toFront();
+        main.toBack();
     }
 
-    public void setinactiveCoursePanelItem(FlowPane inactiveCoursesFlowpane) {
-        this.inactiveCoursesFlowpane = inactiveCoursesFlowpane;
-    }
-    public void setCoursePanelItem(AnchorPane smallCoursePanelItem )
-    { this.smallCoursePanelItem = smallCoursePanelItem; }
-
-
-   public void updateSelectedCourses(List<Course> activeCourses) throws IOException {
-       activeCoursesFlowpane.getChildren().clear();
-       int i;
-       for (i = 0; i <= activeCourses.size() - 1; i++){
-        FXMLLoader coursePanelItemLoader =
-               new FXMLLoader(getClass().getClassLoader().getResource("fxml/CoursePanelItem.fxml"));
-       Parent root = coursePanelItemLoader.load();
-       CourseSelectionPage coursePanelItemCtrl = coursePanelItemLoader.getController();
-           setCoursePanelItem(PageFactory.createCoursePanelItem());
-             // activeCoursesFlowpane.getChildren().add(activeCourses.get(i));
-
-           }
-       }
-
-
-
-
-
-
-    /*
-     @FXML
-    void showCourseSelectionPage(ActionEvent event) {
-        showPage(CourseMainPage);
+    public void resetPage(){
+        main.toFront();
+        coursePage.getChildren().clear();
+        coursePage.toBack();
     }
 
-    private void showPage(FlowPane page) {
-        mainPage.getChildren().clear();
-        mainPage.getChildren().add(page);
-        mainPage.toFront();
-    }*/
 }
