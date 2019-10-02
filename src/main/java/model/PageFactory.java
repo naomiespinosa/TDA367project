@@ -16,7 +16,8 @@ public class PageFactory {
   }
 
   public static AnchorPane createStatisticsPage() throws IOException {
-    return FXMLLoader.load(PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
+    return FXMLLoader.load(
+        PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
   }
 
   public static AnchorPane createCourseMainPage() throws IOException {

@@ -3,6 +3,7 @@ package model;
 import javafx.scene.image.Image;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,13 +11,13 @@ import java.util.List;
  public class Course {
   private String name;
   private String courseCode;
-  private List<Moment> momentItems;
-  private List<StudySession> studySessions;
-  private List<ToDo> toDoList;
+  private List<Moment> momentItems = new ArrayList<>();
+  private List<StudySession> studySessions = new ArrayList<>();
+  private List<ToDo> toDoList = new ArrayList<>();
   private int year;
   private int studyPeriod;
   private boolean isActive;
-  private Image image;
+  private Image image = null;
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
@@ -26,7 +27,7 @@ import java.util.List;
   }
 
   // TODO - This method is used to end a course and keep the information
-  private void endCourse() {
+  public void endCourse() {
     this.isActive = false;
   }
 

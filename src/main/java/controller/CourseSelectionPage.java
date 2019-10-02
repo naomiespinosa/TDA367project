@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.event.ActionEvent;
+import com.google.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,14 +9,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.Course;
 import model.PageFactory;
+import model.User;
 //import sun.plugin.javascript.navig.Anchor;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CourseSelectionPage {
+public class CourseSelectionPage implements Initializable{
     private List<Course> activeCourses;
     private List<Course> inactiveCourses;
     private List<Course> allCourses;
@@ -30,14 +32,66 @@ public class CourseSelectionPage {
 
     @FXML
     private AnchorPane smallCoursePanelItem;
-/*    @Override
+
+    @Inject private User user;
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int i;
-        for (i = 0; i <= allCourses.size() - 1; i++){
+        // Temporary
+        user = new User();
+        user.addCourse("prog", "TDA333", 1, 2);
+        // TODO show active
+        showActiveCourses();
+        // TODO show inactive
+        showInactiveCourses();
+    }
 
+    // only used for the test
+    public void init(){
+        // Temporary
+        user = new User();
+        user.addCourse("prog", "TDA333", 1, 2);
+        user.addCourse("prog", "TDA333", 1, 2);
+        user.addCourse("prog", "TDA333", 1, 2);
+        user.getCourse(0).endCourse();
+        // TODO show active
+        showActiveCourses();
+        // TODO show inactive
+        showInactiveCourses();
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    private void showActiveCourses() {
+        activeCourses = getActiveCourses();
+    }
+
+    private void showInactiveCourses() {
+        inactiveCourses = getInactiveCourses();
+
+    }
+
+    private List<Course> getActiveCourses() {
+        return sortCourses(true);
+    }
+
+    private List<Course> getInactiveCourses(){
+        return sortCourses(false);
+    }
+
+    public List<Course> sortCourses(Boolean status){
+        List<Course> tempCourses = new ArrayList<>();
+        for (int i = 0; i < user.getCourses().size();i++){
+            if (user.getCourse(i).isActive() == status){
+                tempCourses.add(user.getCourse(i));
+            }
         }
+        return tempCourses;
+    }
 
-    }*/
+
 
    /* public void showCourseItem() throws IOException {
         FXMLLoader courseSelectionLoader =
@@ -56,14 +110,7 @@ public class CourseSelectionPage {
 
     }*/
 
-    private void SortCourses(List<Course> activeCourses, List<Course> inactiveCourses, List<Course> allCourses) {
-        int i;
-        for (i = 0; i <= allCourses.size() - 1; i++) {
-            if (allCourses.get(i).isActive()) {
-                activeCourses.add(allCourses.get(i));
-            } else inactiveCourses.add(allCourses.get(i));
-        }
-    }
+
 
     public void setActiveCoursePanelItem(FlowPane activeCoursesFlowpane) {
         this.activeCoursesFlowpane = activeCoursesFlowpane;
@@ -89,6 +136,8 @@ public class CourseSelectionPage {
 
            }
        }
+
+
 
 
 
