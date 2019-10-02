@@ -1,7 +1,10 @@
-package controller;
-
+import com.cathive.fx.guice.GuiceApplication;
+import com.cathive.fx.guice.GuiceFXMLLoader;
+import com.google.inject.Inject;
+import com.google.inject.Module;
+import controller.SidePanel;
 import java.io.IOException;
-import javafx.application.Application;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,10 +12,12 @@ import javafx.stage.Stage;
 import model.Course;
 import model.PageFactory;
 
-public class MainController extends Application {
+public class Min5aApplication extends GuiceApplication {
+  @Inject private GuiceFXMLLoader fxmlLoader;
 
-  public static void main(String[] args) {
-    launch(args);
+  @Override
+  public void init(final List<Module> modules) throws Exception {
+    modules.add(new DependencyInjectionModule());
   }
 
   @Override
