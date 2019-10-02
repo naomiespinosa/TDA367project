@@ -16,9 +16,14 @@ public class User {
   }
 
   // Used to add a new course
-  private void addCourse(String name, String courseCode, List<Moment> moments,
-                         List<StudySession> studySessions, List<ToDo> toDoList,
-                         int year, int studyPeriod) {
+  private void addCourse(
+      String name,
+      String courseCode,
+      List<Moment> moments,
+      List<StudySession> studySessions,
+      List<ToDo> toDoList,
+      int year,
+      int studyPeriod) {
     courses.add(new Course(name, courseCode, moments, studySessions, toDoList, year, studyPeriod));
   }
 

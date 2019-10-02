@@ -9,11 +9,11 @@ import model.ToDo;
 
 public class ToDoItemController extends AnchorPane {
 
-    private CourseMainPage parentController;
-    private ToDo toDo;
+  private CourseMainPage parentController;
+  private ToDo toDo;
 
-    // FXML declarations
-    @FXML private TextArea ToDoDescriptionTextArea;
+  // FXML declarations
+  @FXML private TextArea ToDoDescriptionTextArea;
 
   // Constructor for Controller
   public ToDoItemController() {
@@ -26,6 +26,5 @@ public class ToDoItemController extends AnchorPane {
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }
-
   }
 }

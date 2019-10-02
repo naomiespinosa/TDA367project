@@ -37,14 +37,14 @@
          <font>
             <Font size="5.0" />
          </font></Label>
-      <Button fx:id="newToDoButton" layoutX="7.0" layoutY="646.0" mnemonicParsing="false" onAction="#addToDo" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="7.0" />
-      <TextArea fx:id="newToDo" layoutX="47.0" layoutY="636.0" prefHeight="48.0" prefWidth="274.0" promptText="Lägg till To-Do's här..." AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="636.0">
+      <Button fx:id="newToDoButton" layoutX="7.0" layoutY="628.0" mnemonicParsing="false" onAction="#addToDo" prefHeight="26.0" prefWidth="28.0" text="+" />
+      <TextArea fx:id="newToDo" layoutX="47.0" layoutY="636.0" prefHeight="48.0" prefWidth="274.0" promptText="Skriv i textfältet och tryck på plusknappen för att lägga till en ToDo..." AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="636.0">
          <font>
             <Font size="8.0" />
          </font>
       </TextArea>
-      <Button fx:id="newDeadlineButton" layoutX="336.0" layoutY="642.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="336.0" />
-      <TextArea fx:id="newDeadline" layoutX="382.0" layoutY="632.0" prefHeight="48.0" prefWidth="274.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="382.0" AnchorPane.topAnchor="632.0">
+      <Button fx:id="newDeadlineButton" layoutX="333.0" layoutY="626.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="333.0" />
+      <TextArea fx:id="newDeadline" layoutX="382.0" layoutY="636.0" prefHeight="39.0" prefWidth="274.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="382.0" AnchorPane.topAnchor="636.0">
          <font>
             <Font size="8.0" />
          </font>
@@ -57,5 +57,6 @@
             <Font size="5.0" />
          </font>
       </Label>
+      <Button fx:id="removeToDoButton" layoutX="7.0" layoutY="660.0" mnemonicParsing="false" onAction="#removeToDo" prefHeight="26.0" prefWidth="28.0" text="-" />
    </children>
 </AnchorPane>
