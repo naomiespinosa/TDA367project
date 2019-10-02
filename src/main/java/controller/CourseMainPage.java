@@ -2,7 +2,11 @@ package controller;
 
 import java.awt.*;
 import javafx.fxml.FXML;
-import javax.swing.text.html.ListView;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import model.Course;
+
 
 public class CourseMainPage {
   @FXML private TextArea CourseName;
@@ -23,4 +27,12 @@ public class CourseMainPage {
   // Timer in Course
   @FXML private Button courseStartTimerButton;
   @FXML private TextArea courseTimer;
+
+  private Course course;
+  private CourseSelectionPage parentController;
+
+  public void init(Course course, CourseSelectionPage courseSelectionPage) {
+    this.course = course;
+    this.parentController = courseSelectionPage;
+  }
 }

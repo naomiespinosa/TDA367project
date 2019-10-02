@@ -30,7 +30,7 @@ public class Min5aApplication extends GuiceApplication {
 
     // Insert pages into side panel
     sidePanelCtrl.setHomePage(PageFactory.createHomePage());
-    sidePanelCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage());
+    sidePanelCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(sidePanelCtrl));
     sidePanelCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
     sidePanelCtrl.init();
 

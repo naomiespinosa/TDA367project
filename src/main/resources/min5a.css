@@ -65,6 +65,12 @@
     -fx-background-color: dark-grey-blue;
 }
 
+/* CoursePanel */
+
+.course-panel-button{
+    -fx-background-radius 5px;
+}
+
 /* Makes the divider for a Splitpane transparent */
 .split-pane:horizontal > .split-pane-divider{
     -fx-background-color: transparent;

@@ -1,41 +1,32 @@
 package controller;
 
+import com.google.inject.Inject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
+import javafx.scene.input.MouseEvent;
 import model.Course;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
+
 public class CoursePanelItem {
 
-  @FXML private ImageView courseImageView;
+  @FXML private Label courseName;
 
-  @FXML private Text courseNameLabel;
+  @Inject private SidePanel sidePanel;
 
-  private Course courseTest;
+  private Course course;
   private CourseSelectionPage parentController;
 
-  public CoursePanelItem(Course course, CourseSelectionPage ctr){
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CoursePanelItem.fxml"));
-    fxmlLoader.setRoot(this);
-    fxmlLoader.setController(this);
-
-    try {
-      fxmlLoader.load();
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
-
-    this.courseTest = course;
-    this.parentController = ctr;
-
-    this.courseNameLabel.setText(course.getName());
-    //this.courseImageView.setImage(course.getImage());
-
-
+  public void init(Course course, CourseSelectionPage parentController){
+    this.courseName.setText(course.getName());
+    this.parentController = parentController;
   }
+
+  @FXML
+  void goToPage(MouseEvent event) throws IOException {
+    parentController.pressed(course);
+  }
+
 }
