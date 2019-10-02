@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CourseSelectionPage implements Initializable{
-    private List<Course> activeCourses;
-    private List<Course> inactiveCourses;
+    private List<Course> activeCourses = new ArrayList<>();
+    private List<Course> inactiveCourses = new ArrayList<>();
     private List<Course> allCourses;
     public CourseSelectionPage coursePanelItemCtrl;
 
@@ -44,7 +44,7 @@ public class CourseSelectionPage implements Initializable{
         // Temporary
         testClass();
         resetPage();
-
+        sortCourses();
 
         try {
             showActiveCourses();
@@ -68,7 +68,6 @@ public class CourseSelectionPage implements Initializable{
 
     // Method used to display all Courses
     private void showActiveCourses() throws IOException {
-        activeCourses = getActiveCourses(); // might not need this method. unless we want to update them separately
         activeCoursesFlowpane.getChildren().clear();
 
         for (int i = 0; i < activeCourses.size(); i++){ // Runs through all the courses to only show the correct ones
@@ -79,7 +78,6 @@ public class CourseSelectionPage implements Initializable{
 
     // Method that displays all inactive courses
     private void showInactiveCourses() throws IOException {
-        inactiveCourses = getInactiveCourses();
         inactiveCoursesFlowpane.getChildren().clear();
 
         for (int i = 0; i < inactiveCourses.size(); i++){// Runs through all the courses to only show the correct ones
@@ -88,24 +86,7 @@ public class CourseSelectionPage implements Initializable{
         }
     }
 
-    // the three methods below will be needed to change to look more neat
-    private List<Course> getActiveCourses() {
-        return sortCourses(true);
-    }
 
-    private List<Course> getInactiveCourses(){
-        return sortCourses(false);
-    }
-
-    public List<Course> sortCourses(Boolean status){
-        List<Course> tempCourses = new ArrayList<>();
-        for (int i = 0; i < user.getCourses().size();i++){
-            if (user.getCourse(i).isActive() == status){
-                tempCourses.add(user.getCourse(i));
-            }
-        }
-        return tempCourses;
-    }
 
     void pressed(Course course) throws IOException {
         coursePage.getChildren().clear();
