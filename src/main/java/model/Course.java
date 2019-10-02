@@ -1,5 +1,8 @@
 package model;
 
+import javafx.scene.image.Image;
+
+import java.awt.*;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import java.util.List;
   private int year;
   private int studyPeriod;
   private boolean isActive;
+  private Image image;
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
@@ -81,6 +85,10 @@ import java.util.List;
   // Setters and Getters
   public String getName() {
     return name;
+  }
+
+  public javafx.scene.image.Image getImage(){
+    return image;
   }
 
   private void setName(String name) {

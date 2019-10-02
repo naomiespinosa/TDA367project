@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -11,12 +12,15 @@ import model.PageFactory;
 //import sun.plugin.javascript.navig.Anchor;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class CourseSelectionPage {
     private List<Course> activeCourses;
     private List<Course> inactiveCourses;
     private List<Course> allCourses;
+    public CourseSelectionPage coursePanelItemCtrl;
 
     @FXML
     private FlowPane activeCoursesFlowpane;
@@ -26,6 +30,31 @@ public class CourseSelectionPage {
 
     @FXML
     private AnchorPane smallCoursePanelItem;
+/*    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        int i;
+        for (i = 0; i <= allCourses.size() - 1; i++){
+
+        }
+
+    }*/
+
+   /* public void showCourseItem() throws IOException {
+        FXMLLoader courseSelectionLoader =
+                new FXMLLoader(getClass().getClassLoader().getResource("fxml/CoursePanelItem.fxml"));Parent root2 = courseSelectionLoader.load(); // Loads the FXML for the Panel
+        CourseSelectionPage courseSelectionCtrl =
+                courseSelectionLoader.getController(); // Fetches the Controller for the fxml
+
+        Course testCourse1 = new Course("testtes3t", "TEST1323",2019,4);
+
+        Course testCourse = new Course("testtest", "TEST123",2019,4);
+        CoursePanelItem item = new CoursePanelItem(testCourse, courseSelectionCtrl);
+        CoursePanelItem item2 = new CoursePanelItem(testCourse1, courseSelectionCtrl);
+       // activeCoursesFlowpane.getChildren().add(item);
+       // activeCoursesFlowpane.getChildren().add(item2);
+
+
+    }*/
 
     private void SortCourses(List<Course> activeCourses, List<Course> inactiveCourses, List<Course> allCourses) {
         int i;
@@ -54,9 +83,9 @@ public class CourseSelectionPage {
         FXMLLoader coursePanelItemLoader =
                new FXMLLoader(getClass().getClassLoader().getResource("fxml/CoursePanelItem.fxml"));
        Parent root = coursePanelItemLoader.load();
-       SidePanel coursePanelItemCtrl = coursePanelItemLoader.getController();
+       CourseSelectionPage coursePanelItemCtrl = coursePanelItemLoader.getController();
            setCoursePanelItem(PageFactory.createCoursePanelItem());
-              // activeCoursesFlowpane.getChildren().add();
+             // activeCoursesFlowpane.getChildren().add(activeCourses.get(i));
 
            }
        }
