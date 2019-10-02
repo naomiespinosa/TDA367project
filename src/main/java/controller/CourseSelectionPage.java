@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import model.Course;
 import model.PageFactory;
 import model.User;
@@ -58,12 +60,12 @@ public class CourseSelectionPage implements Initializable{
     // Only used now when we want to test our class
     private void testClass(){
         user = new User();
-        user.addCourse("prog1", "TDA333", 1, 2);
-        user.addCourse("prog2", "TDA333", 1, 2);
-        user.addCourse("prog3", "TDA333", 1, 2);
+        user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
+        user.addCourse("Programmering", "TDA333", 1, 2);
+        user.addCourse("Mattematisk Analys", "TDA333", 1, 2);
         user.getCourse(2).endCourse();
-        user.addCourse("prog4", "TDA333", 1, 2);
-        user.addCourse("prog4", "TDA333", 1, 2);
+        user.addCourse("Kommunikation och ingejörskunskap", "TDA333", 1, 2);
+        user.addCourse("Hej", "TDA333", 1, 2);
     }
 
     // Method used to display all Courses
@@ -72,8 +74,19 @@ public class CourseSelectionPage implements Initializable{
 
         for (int i = 0; i < activeCourses.size(); i++){ // Runs through all the courses to only show the correct ones
             AnchorPane courseItem = PageFactory.createCoursePanelItem(activeCourses.get(i),this);
+            setShadow(courseItem);
             activeCoursesFlowpane.getChildren().add(courseItem);
         }
+    }
+
+    private void setShadow(AnchorPane courseItem) {
+        DropShadow dropShadow = new DropShadow();
+
+        dropShadow.setColor(Color.DARKGRAY);
+        dropShadow.setOffsetX(3);
+        dropShadow.setOffsetY(3);
+
+        courseItem.setEffect(dropShadow);
     }
 
     // Method that displays all inactive courses
@@ -82,6 +95,7 @@ public class CourseSelectionPage implements Initializable{
 
         for (int i = 0; i < inactiveCourses.size(); i++){// Runs through all the courses to only show the correct ones
             AnchorPane courseItem = PageFactory.createCoursePanelItem(inactiveCourses.get(i),this);
+            setShadow(courseItem);
             inactiveCoursesFlowpane.getChildren().add(courseItem);
         }
     }

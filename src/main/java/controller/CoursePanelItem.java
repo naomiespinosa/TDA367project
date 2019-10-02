@@ -10,14 +10,14 @@ import model.Course;
 public class CoursePanelItem {
 
   @FXML private Label courseName;
-
-  @Inject private SidePanel sidePanel;
+  @FXML private Label courseCode;
 
   private Course course;
   private CourseSelectionPage parentController;
 
   public void init(Course course, CourseSelectionPage parentController) {
     this.courseName.setText(course.getName());
+    this.courseCode.setText(course.getCourseCode());
     this.parentController = parentController;
   }
 

@@ -96,7 +96,7 @@ public class Course {
     this.name = name;
   }
 
-  private String getCourseCode() {
+  public String getCourseCode() {
     return courseCode;
   }
 
