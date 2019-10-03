@@ -1,20 +1,23 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
-class Course {
+public class Course {
   private String name;
   private String courseCode;
-  private List<Moment> momentItems;
-  private List<StudySession> studySessions;
-  private List<ToDo> toDoList;
+  private List<Moment> momentItems = new ArrayList<>();
+  private List<StudySession> studySessions = new ArrayList<>();
+  private List<ToDo> toDoList = new ArrayList<>();
   private int year;
   private int studyPeriod;
   private boolean isActive;
+  private Image image = null;
 
-  public Course(String name, String courseCode, int year, int studyPeriod) {
+  Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
     this.year = year;
@@ -23,7 +26,7 @@ class Course {
   }
 
   // TODO - This method is used to end a course and keep the information
-  private void endCourse() {
+  public void endCourse() {
     this.isActive = false;
   }
 
@@ -80,15 +83,19 @@ class Course {
   }
 
   // Setters and Getters
-  private String getName() {
+  public String getName() {
     return name;
+  }
+
+  public javafx.scene.image.Image getImage() {
+    return image;
   }
 
   private void setName(String name) {
     this.name = name;
   }
 
-  private String getCourseCode() {
+  public String getCourseCode() {
     return courseCode;
   }
 

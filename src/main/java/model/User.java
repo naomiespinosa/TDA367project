@@ -1,33 +1,29 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-// Suposedly Good for OPC since if we want to add the feature of having multiple user this clas will
-// be open for extension
-// Users have their own classes that are not shared between users.
 public class User {
   private String username;
   private String name;
-  private List<Course> courses;
+  private List<Course> courses = new ArrayList<>();
+
+  public User() {}
 
   // Used to add a new course
-  private void addCourse(String name, String courseCode, int year, int studyPeriod) {
+  public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     courses.add(new Course(name, courseCode, year, studyPeriod));
   }
 
-  // Returns specific course
-  private Course getCourse(int index) {
+  public Course getCourse(int index) {
     return courses.get(index);
   }
 
-  // TODO - Without
-  private void startStudySession(int index) {}
-
-  // Getters och Setters
-  private List<Course> getCourses() {
+  public List<Course> getCourses() {
     return courses;
   }
 
+  // Getters och Setters
   private String getUsername() {
     return username;
   }

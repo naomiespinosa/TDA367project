@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.ImageView?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="142.0" style="-fx-background-radius: 6; -fx-border-width: .5; -fx-border-radius: 6; -fx-border-color: #999999;" styleClass="panel-background3" stylesheets="@../min5a.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CoursePanelItem">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#goToPage" prefHeight="180.0" prefWidth="260.0" style="-fx-background-radius: 6; -fx-border-radius: 5; -fx-border-width: 3;" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.CoursePanelItem">
    <children>
-      <ImageView fx:id="courseImage" fitHeight="75.0" fitWidth="128.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="courseNameLabel" layoutX="6.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sub-header" text="TDA542" wrappingWidth="204.57656860351562">
+      <Label fx:id="courseName" alignment="TOP_LEFT" layoutX="15.0" layoutY="81.0" prefHeight="34.0" prefWidth="230.0" style="-fx-font-size: 12;" styleClass="course-item-header" text="Namn" wrapText="true">
          <font>
-            <Font name="Century Gothic" size="24.0" />
+            <Font size="35.0" />
          </font>
-      </Text>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Label>
+      <Label fx:id="courseCode" layoutX="14.0" layoutY="8.0" prefHeight="89.0" prefWidth="237.0" style="-fx-font-size: 60;" text="kod" />
    </children>
-</fx:root>
+   <styleClass>
+      <String fx:value="panel-background3" />
+      <String fx:value="course-panel-button" />
+   </styleClass>
+</AnchorPane>
