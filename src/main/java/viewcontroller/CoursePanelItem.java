@@ -1,4 +1,4 @@
-package controller;
+package viewcontroller;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -12,9 +12,9 @@ public class CoursePanelItem {
   @FXML private Label courseCode;
 
   private Course course;
-  private CourseSelectionPage parentController;
+  private MainPage parentController;
 
-  public void init(Course course, CourseSelectionPage parentController) {
+  void init(Course course, MainPage parentController) {
     this.courseName.setText(course.getName());
     this.courseCode.setText(course.getCourseCode());
     this.parentController = parentController;
@@ -22,6 +22,6 @@ public class CoursePanelItem {
 
   @FXML
   void goToPage(MouseEvent event) throws IOException {
-    parentController.pressed(course);
+    parentController.pressedCourseItem(course);
   }
 }

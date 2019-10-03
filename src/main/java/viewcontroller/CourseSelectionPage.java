@@ -1,17 +1,16 @@
-package controller;
+package viewcontroller;
 
 import com.google.inject.Inject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import model.Course;
-import model.PageFactory;
 import model.User;
 //import sun.plugin.javascript.navig.Anchor;
 
@@ -24,30 +23,37 @@ import java.util.ResourceBundle;
 public class CourseSelectionPage implements Initializable{
     private List<Course> activeCourses = new ArrayList<>();
     private List<Course> inactiveCourses = new ArrayList<>();
-    private List<Course> allCourses;
-    public CourseSelectionPage coursePanelItemCtrl;
 
     @FXML
     private FlowPane activeCoursesFlowpane;
-
     @FXML
     private FlowPane inactiveCoursesFlowpane;
-
-    @FXML
-    private AnchorPane coursePage;
     @FXML
     private AnchorPane main;
-
+    @FXML
+    private AnchorPane addCoursePane;
+    @FXML
+    private TextField courseNameTextArea;
+    @FXML
+    private TextField CourseCodeTextArea;
+    @FXML
+    private Spinner<?> semesterSpinner;
+    @FXML
+    private TextField yearTexArea;
 
     @Inject private User user; // temporary
+    private MainPage parent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // empty
+    }
+
+    void init(){
         // Temporary
         testClass();
         resetPage();
         sortCourses();
-
         try {
             showActiveCourses();
             showInactiveCourses();
@@ -68,14 +74,32 @@ public class CourseSelectionPage implements Initializable{
         user.addCourse("Hej", "TDA333", 1, 2);
     }
 
+    void resetPage(){
+        main.toFront();
+        addCoursePane.toBack();
+    }
+
+    // List functionality
+
     // Method used to display all Courses
     private void showActiveCourses() throws IOException {
         activeCoursesFlowpane.getChildren().clear();
 
-        for (int i = 0; i < activeCourses.size(); i++){ // Runs through all the courses to only show the correct ones
-            AnchorPane courseItem = PageFactory.createCoursePanelItem(activeCourses.get(i),this);
+        for (Course course : activeCourses) { // Runs through all the courses to only show the correct ones
+            AnchorPane courseItem = PageFactory.createCoursePanelItem(course, parent);
             setShadow(courseItem);
             activeCoursesFlowpane.getChildren().add(courseItem);
+        }
+    }
+
+    // Method that displays all inactive courses
+    private void showInactiveCourses() throws IOException {
+        inactiveCoursesFlowpane.getChildren().clear();
+
+        for (Course course : inactiveCourses) {// Runs through all the courses to only show the correct ones
+            AnchorPane courseItem = PageFactory.createCoursePanelItem(course, parent);
+            setShadow(courseItem);
+            inactiveCoursesFlowpane.getChildren().add(courseItem);
         }
     }
 
@@ -89,33 +113,7 @@ public class CourseSelectionPage implements Initializable{
         courseItem.setEffect(dropShadow);
     }
 
-    // Method that displays all inactive courses
-    private void showInactiveCourses() throws IOException {
-        inactiveCoursesFlowpane.getChildren().clear();
-
-        for (int i = 0; i < inactiveCourses.size(); i++){// Runs through all the courses to only show the correct ones
-            AnchorPane courseItem = PageFactory.createCoursePanelItem(inactiveCourses.get(i),this);
-            setShadow(courseItem);
-            inactiveCoursesFlowpane.getChildren().add(courseItem);
-        }
-    }
-
-
-
-    void pressed(Course course) throws IOException {
-        coursePage.getChildren().clear();
-        coursePage.getChildren().add(PageFactory.createCourseMainPage(course,this));
-        coursePage.toFront();
-        main.toBack();
-    }
-
-    public void resetPage(){
-        main.toFront();
-        coursePage.getChildren().clear();
-        coursePage.toBack();
-    }
-
-    public void sortCourses(){
+    void sortCourses(){
         for (int i = 0; i < user.getCourses().size();i++){
             if (user.getCourse(i).isActive()){
                 activeCourses.add(user.getCourse(i));
@@ -124,4 +122,26 @@ public class CourseSelectionPage implements Initializable{
                 inactiveCourses.add(user.getCourse(i));
             }
 
-}}}
+        }
+    }
+
+    // Add course functionality
+
+
+    @FXML
+    void addCourse(ActionEvent event) {
+        main.toBack();
+        addCoursePane.toFront();
+    }
+
+    @FXML
+    void closeTab(ActionEvent event){
+        resetPage();
+    }
+
+
+    // Setters And Getters
+    void setParent(MainPage parent) {
+        this.parent = parent;
+    }
+}

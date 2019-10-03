@@ -1,13 +1,15 @@
-package controller;
+package viewcontroller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import model.Course;
 
-public class SidePanel implements Initializable {
+public class MainPage implements Initializable {
 
   @FXML private AnchorPane mainPage;
 
@@ -42,10 +44,6 @@ public class SidePanel implements Initializable {
     showPage(homePage);
   }
 
-  public void setCourseSelectionController(CourseSelectionPage courseSelectionCtrl) {
-    this.courseSelectionCtrl = courseSelectionCtrl;
-  }
-
   @FXML
   void showCourseSelectionPage(ActionEvent event) {
     showPage(courseSelectionPage);
@@ -55,6 +53,12 @@ public class SidePanel implements Initializable {
   @FXML
   void showStatisticPage(ActionEvent event) {
     showPage(statisticsPage);
+  }
+
+  void pressedCourseItem(Course course) throws IOException {
+    AnchorPane courseHomePage = PageFactory.createCourseMainPage(course);
+    showPage(courseHomePage);
+
   }
 
   // Shows selected page on the right side of the screen

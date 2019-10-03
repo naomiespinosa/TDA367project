@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#goToPage" prefHeight="180.0" prefWidth="260.0" style="-fx-background-radius: 6; -fx-border-radius: 5; -fx-border-width: 3;" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CoursePanelItem">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#goToPage" prefHeight="180.0" prefWidth="260.0" style="-fx-background-radius: 6; -fx-border-radius: 5; -fx-border-width: 3;" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.CoursePanelItem">
    <children>
       <Label fx:id="courseName" alignment="TOP_LEFT" layoutX="15.0" layoutY="81.0" prefHeight="34.0" prefWidth="230.0" style="-fx-font-size: 12;" styleClass="course-item-header" text="Namn" wrapText="true">
          <font>

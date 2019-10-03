@@ -1,6 +1,5 @@
-package controller;
+package viewcontroller;
 
-import java.awt.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -30,29 +29,11 @@ public class CourseMainPage {
   @FXML private TextArea courseTimer;
 
 
-  @FXML
-  private Button addCourse;
-
-  @FXML
-  private AnchorPane transparentAnchorPane;
-
-  @FXML
-  private TextField courseNameTextArea;
-
-  @FXML
-  private TextField CourseCodeTextArea;
-
-  @FXML
-  private Spinner<?> semesterSpinner;
-
-  @FXML
-  private TextField yearTexArea;
-
   private Course course;
   private CourseSelectionPage parentController;
 
-  public void init(Course course, CourseSelectionPage courseSelectionPage) {
+  void init(Course course) {
     this.course = course;
-    this.parentController = courseSelectionPage;
   }
+
 }
