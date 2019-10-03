@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class Course {
   private String courseCode;
   private List<Moment> momentItems;
   private List<StudySession> studySessions;
-  private List<ToDo> toDoList;
+  private ArrayList<ToDo> toDoList = new ArrayList<ToDo>();
   private int year;
   private int studyPeriod;
   private boolean isActive;
@@ -19,7 +20,7 @@ public class Course {
       String courseCode,
       List<Moment> momentItems,
       List<StudySession> studySessions,
-      List<ToDo> toDoList,
+      ArrayList<ToDo> toDoList,
       int year,
       int studyPeriod) {
     this.name = name;
@@ -124,11 +125,11 @@ public class Course {
     this.studySessions = studySessions;
   }
 
-  public List<ToDo> getToDoList() {
+  public ArrayList<ToDo> getToDoList() {
     return toDoList;
   }
 
-  public void setToDoList(List<ToDo> toDoList) {
+  public void setToDoList(ArrayList<ToDo> toDoList) {
     this.toDoList = toDoList;
   }
 
