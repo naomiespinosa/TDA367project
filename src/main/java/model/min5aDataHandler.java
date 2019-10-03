@@ -25,7 +25,9 @@ public class min5aDataHandler {
         //this.loadUser();
     }
 
-
+//TODO Use injection principle to connect all clases to Datahandler/storage class
+//TODO Have one Restore information method, to reset all,
+//TODO Have one load method that loads back saved data into variables in storage class.
 
     // Used to load the previous User
 /*    private void loadUser() {
