@@ -1,6 +1,5 @@
 package controller;
 
-import com.google.inject.Inject;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -4,7 +4,9 @@ import java.awt.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import model.Course;
 
 public class CourseMainPage {
@@ -26,6 +28,25 @@ public class CourseMainPage {
   // Timer in Course
   @FXML private Button courseStartTimerButton;
   @FXML private TextArea courseTimer;
+
+
+  @FXML
+  private Button addCourse;
+
+  @FXML
+  private AnchorPane transparentAnchorPane;
+
+  @FXML
+  private TextField courseNameTextArea;
+
+  @FXML
+  private TextField CourseCodeTextArea;
+
+  @FXML
+  private Spinner<?> semesterSpinner;
+
+  @FXML
+  private TextField yearTexArea;
 
   private Course course;
   private CourseSelectionPage parentController;

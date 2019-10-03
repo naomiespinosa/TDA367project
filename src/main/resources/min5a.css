@@ -76,9 +76,15 @@
 
 .course-panel-button:hover{
     -fx-border-color: green_strong;
+
 }
 
 /* Makes the divider for a Splitpane transparent */
 .split-pane:horizontal > .split-pane-divider{
     -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-insets: 5;
+    -fx-padding: 5;
 }
