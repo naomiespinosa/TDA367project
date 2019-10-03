@@ -36,7 +36,7 @@ public class MainPage implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {}
 
   public void init() {
-    showPage(courseSelectionPage);
+    showPage(homePage);
   }
 
   @FXML
