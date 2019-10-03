@@ -1,29 +1,96 @@
 package model.timer;
 
-import com.google.common.base.Stopwatch;
-import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
-import java.util.concurrent.TimeUnit;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import model.Course;
-import model.timer.event.StudyTimerStartedEvent;
-import model.timer.event.StudyTimerStoppedEvent;
 
 abstract class Timer {
-  private Stopwatch stopWatch = new Stopwatch();
+  private java.util.Timer timer = new java.util.Timer();
 
-  @Inject protected EventBus eventBus;
+  private Course course;
 
-  protected Course course;
+  private Callback onStart;
+  private Callback onCancel;
+  private Callback onCompleted;
+  private Callback onTick;
+  private LocalDateTime startedAt;
+  private LocalDateTime stoppedAt;
+
+  private State state = State.INACTIVE;
 
   public Timer(final Course course) {
     this.course = course;
   }
 
-  public void start() {
-    this.stopWatch.start();
+  public Course getCourse() {
+    return this.course;
   }
 
-  public void stop() {
-    this.stopWatch.stop();
+  public void start() {
+    if (this.state == State.ACTIVE) {
+      return;
+    }
+
+    this.startedAt = LocalDateTime.now();
+    this.state = State.ACTIVE;
+    this.timer.schedule(new CallableTask(this.onCompleted), 10000);
+    this.timer.schedule(new CallableTask(this.onTick), 1000, 1000);
+
+    if (this.onStart != null) {
+      this.onStart.callback();
+    }
+  }
+
+  public void cancel() {
+    if (this.state == State.CANCELED) {
+      return;
+    }
+
+    this.stoppedAt = LocalDateTime.now();
+    this.timer.cancel();
+    this.timer.purge();
+
+    if (this.onCancel != null) {
+      this.onCancel.callback();
+    }
+  }
+
+  public void onStart(final Callback callback) {
+    this.onStart = callback;
+  }
+
+  public void onCancel(final Callback callback) {
+    this.onCancel = callback;
+  }
+
+  public void onCompleted(final Callback callback) {
+    this.onCompleted = callback;
+  }
+
+  public void onTick(final Callback callback) {
+    this.onTick = callback;
+  }
+
+  public interface Callback {
+    void callback();
+  }
+
+  public Long getElapsedSeconds() {
+    if (this.startedAt == null) {
+      throw new IllegalStateException();
+    }
+
+    if (this.state == State.ACTIVE) {
+      return ChronoUnit.SECONDS.between(this.startedAt, LocalDateTime.now());
+    }
+
+    return ChronoUnit.SECONDS.between(this.startedAt, this.stoppedAt);
+  }
+
+  public enum State {
+    ACTIVE,
+    INACTIVE,
+    CANCELED,
+    COMPLETED
   }
 }
