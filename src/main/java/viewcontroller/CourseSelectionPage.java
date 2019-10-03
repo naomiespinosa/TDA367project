@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
@@ -139,6 +140,10 @@ public class CourseSelectionPage implements Initializable{
         resetPage();
     }
 
+    @FXML
+    void closeTab(MouseEvent event){
+        resetPage();
+    }
 
     // Setters And Getters
     void setParent(MainPage parent) {

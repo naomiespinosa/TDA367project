@@ -47,7 +47,6 @@ public class MainPage implements Initializable {
   @FXML
   void showCourseSelectionPage(ActionEvent event) {
     showPage(courseSelectionPage);
-    courseSelectionCtrl.resetPage();
   }
 
   @FXML
