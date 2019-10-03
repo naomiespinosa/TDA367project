@@ -1,12 +1,12 @@
 package viewcontroller;
 
 import com.google.inject.Inject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +42,8 @@ public class CourseSelectionPage implements Initializable{
     private Spinner<?> yearSpinner;
 
     @FXML
+    private ToggleGroup periodToggleGroup;
+    @FXML
     private RadioButton period1RadioButton;
 
     @FXML
@@ -58,8 +60,12 @@ public class CourseSelectionPage implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // empty
+
+        initToggleGroup();
+
     }
+
+
 
     void init(){
         // Temporary
@@ -158,6 +164,7 @@ public class CourseSelectionPage implements Initializable{
     void createNewCourse(ActionEvent event){
         String name = courseNameTextArea.getText();
         String code = courseCodeTextArea.getText();
+        int period = getPeriod();
         //int year = Integer.valueOf(yearTexArea.getText());
         //int period = ;
         //user.addCourse(name,code,year,period);
@@ -167,7 +174,48 @@ public class CourseSelectionPage implements Initializable{
     private void clearCourseInput() {
         courseNameTextArea.clear();
         courseCodeTextArea.clear();
+        period1RadioButton.setSelected(true);
     }
+
+    // Togglegroup
+
+    private void initToggleGroup() {
+        periodToggleGroup = new ToggleGroup();
+        period1RadioButton.setToggleGroup(periodToggleGroup);
+        period2RadioButton.setToggleGroup(periodToggleGroup);
+        period3RadioButton.setToggleGroup(periodToggleGroup);
+        period4RadioButton.setToggleGroup(periodToggleGroup);
+
+        period1RadioButton.setSelected(true);
+    }
+
+
+    int getPeriod(){
+        if (periodToggleGroup.getSelectedToggle() != null){
+            if (periodToggleGroup.getSelectedToggle()==period1RadioButton){
+                return 1;
+            } else if (periodToggleGroup.getSelectedToggle()==period2RadioButton) {
+                return 2;
+            } else if(periodToggleGroup.getSelectedToggle()==period3RadioButton){
+                return 3;
+            } else if (periodToggleGroup.getSelectedToggle()==period1RadioButton){
+                return 4;
+            }
+        }
+        return 0;
+    }
+/* periodToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+    @Override
+     public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+
+        if (periodToggleGroup.getSelectedToggle() != null) { //If a radioButton is pressed set this period to studyperiod
+            RadioButton selected = (RadioButton) periodToggleGroup.getSelectedToggle();
+            recipeBackendController.setStudyPeriod(selected.getText());
+            updateRecipeList();
+
+
+        }
+    }}*/
 
     // Setters And Getters
     void setParent(MainPage parent) {
