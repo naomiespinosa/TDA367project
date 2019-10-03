@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -15,6 +17,7 @@ import model.PageFactory;
 import model.User;
 //import sun.plugin.javascript.navig.Anchor;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,6 +40,23 @@ public class CourseSelectionPage implements Initializable{
     private AnchorPane coursePage;
     @FXML
     private AnchorPane main;
+    @FXML
+    private Button addCourse;
+
+    @FXML
+    private AnchorPane transparentAnchorPane;
+
+    @FXML
+    private TextField courseNameTextArea;
+
+    @FXML
+    private TextField CourseCodeTextArea;
+
+    @FXML
+    private Spinner<?> semesterSpinner;
+
+    @FXML
+    private TextField yearTexArea;
 
 
     @Inject private User user; // temporary

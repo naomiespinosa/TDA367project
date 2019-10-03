@@ -30,23 +30,7 @@ public class CourseMainPage {
   @FXML private TextArea courseTimer;
 
 
-  @FXML
-  private Button addCourse;
 
-  @FXML
-  private AnchorPane transparentAnchorPane;
-
-  @FXML
-  private TextField courseNameTextArea;
-
-  @FXML
-  private TextField CourseCodeTextArea;
-
-  @FXML
-  private Spinner<?> semesterSpinner;
-
-  @FXML
-  private TextField yearTexArea;
 
   private Course course;
   private CourseSelectionPage parentController;
