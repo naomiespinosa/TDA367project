@@ -1,9 +1,9 @@
-package controller;
+package viewcontroller;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class StaticsPage {
+public class StatisticsPage {
 
   @FXML private Text totalHoursText;
 

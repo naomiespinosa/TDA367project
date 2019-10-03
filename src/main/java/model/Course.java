@@ -3,43 +3,35 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
 public class Course {
   private String name;
   private String courseCode;
-  private List<Moment> momentItems;
-  private List<StudySession> studySessions;
-  private ArrayList<ToDo> toDoList = new ArrayList<ToDo>();
+  private List<Moment> momentItems = new ArrayList<>();
+  private List<StudySession> studySessions = new ArrayList<>();
+  private List<ToDo> toDoList = new ArrayList<>();
   private int year;
   private int studyPeriod;
   private boolean isActive;
+  private Image image = null;
 
-  public Course(
-      String name,
-      String courseCode,
-      List<Moment> momentItems,
-      List<StudySession> studySessions,
-      ArrayList<ToDo> toDoList,
-      int year,
-      int studyPeriod) {
+  Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
-    this.momentItems = momentItems;
-    this.studySessions = studySessions;
-    this.toDoList = toDoList;
     this.year = year;
     this.studyPeriod = studyPeriod;
     this.isActive = true;
   }
 
   // TODO - This method is used to end a course and keep the information
-  private void endCourse() {
+  public void endCourse() {
     this.isActive = false;
   }
 
   // TODO - This method deletes the course and eventually deletes the information? or stores it
-  //  somewhere
+  // somewhere
   private void deleteCourse() {
     // Code
   }
@@ -48,12 +40,12 @@ public class Course {
 
   // StudySession
 
-  private void newStudySession() {
-    studySessions.add(new StudySession());
-  }
+  private void newStudySession() {}
 
-  private void deleteStudySession(int index) {
-    studySessions.remove(index);
+  private void deleteStudySession(int index) {}
+
+  private List<StudySession> getStudySessions() {
+    return studySessions;
   }
 
   private void clearStudySessions() {
@@ -68,6 +60,10 @@ public class Course {
 
   private void deleteMoment(int index) {
     momentItems.remove(index);
+  }
+
+  private List<Moment> getMomentItems() {
+    return momentItems;
   }
 
   private void clearMomentItems() {
@@ -89,15 +85,19 @@ public class Course {
   }
 
   // Setters and Getters
-  private String getName() {
+  public String getName() {
     return name;
+  }
+
+  public javafx.scene.image.Image getImage() {
+    return image;
   }
 
   private void setName(String name) {
     this.name = name;
   }
 
-  private String getCourseCode() {
+  public String getCourseCode() {
     return courseCode;
   }
 
@@ -107,30 +107,6 @@ public class Course {
 
   private int getYear() {
     return year;
-  }
-
-  public List<Moment> getMomentItems() {
-    return momentItems;
-  }
-
-  public void setMomentItems(List<Moment> momentItems) {
-    this.momentItems = momentItems;
-  }
-
-  public List<StudySession> getStudySessions() {
-    return studySessions;
-  }
-
-  public void setStudySessions(List<StudySession> studySessions) {
-    this.studySessions = studySessions;
-  }
-
-  public ArrayList<ToDo> getToDoList() {
-    return toDoList;
-  }
-
-  public void setToDoList(ArrayList<ToDo> toDoList) {
-    this.toDoList = toDoList;
   }
 
   private void setYear(int year) {
