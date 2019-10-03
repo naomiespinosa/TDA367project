@@ -37,11 +37,9 @@ public class CourseSelectionPage implements Initializable{
     @FXML
     private TextField courseNameTextArea;
     @FXML
-    private TextField CourseCodeTextArea;
+    private TextField courseCodeTextArea;
     @FXML
-    private Spinner<?> semesterSpinner;
-    @FXML
-    private TextField yearTexArea;
+    private Spinner<?> yearSpinner;
 
     @FXML
     private RadioButton period1RadioButton;
@@ -147,13 +145,28 @@ public class CourseSelectionPage implements Initializable{
     }
 
     @FXML
-    void closeTab(ActionEvent event){
+    void closeTabButton(ActionEvent event){
         resetPage();
     }
 
     @FXML
-    void closeTab(MouseEvent event){
+    void closeTabMouse(MouseEvent event){
         resetPage();
+    }
+
+    @FXML
+    void createNewCourse(ActionEvent event){
+        String name = courseNameTextArea.getText();
+        String code = courseCodeTextArea.getText();
+        //int year = Integer.valueOf(yearTexArea.getText());
+        //int period = ;
+        //user.addCourse(name,code,year,period);
+        clearCourseInput();
+    }
+
+    private void clearCourseInput() {
+        courseNameTextArea.clear();
+        courseCodeTextArea.clear();
     }
 
     // Setters And Getters

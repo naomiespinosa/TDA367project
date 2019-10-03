@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -41,7 +42,7 @@
       </AnchorPane>
       <AnchorPane fx:id="addCoursePane" prefHeight="699.0" prefWidth="1079.0">
          <children>
-            <AnchorPane onMouseClicked="#closeTab" opacity="0.75" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane onMouseClicked="#closeTabMouse" opacity="0.75" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane layoutX="168.0" layoutY="110.0" prefHeight="500.0" prefWidth="880.0" styleClass="panel-background3" stylesheets="@../min5a.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0">
                <children>
                   <Text layoutX="313.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lägg till kurs">
@@ -58,18 +59,18 @@
                   <Label alignment="CENTER_RIGHT" layoutX="101.0" layoutY="275.0" prefHeight="51.0" prefWidth="159.0" style="-fx-font-size: 35;" text="Läsperiod" />
                   <Label alignment="CENTER_RIGHT" layoutX="138.0" layoutY="332.0" prefHeight="51.0" prefWidth="118.0" style="-fx-font-size: 35;" text="Läsår" />
                   <TextField fx:id="courseNameTextArea" layoutX="274.0" layoutY="175.0" prefHeight="25.0" prefWidth="468.0" />
-                  <TextField fx:id="CourseCodeTextArea" layoutX="275.0" layoutY="229.0" prefHeight="25.0" prefWidth="176.0" />
-                  <TextField fx:id="yearTexArea" layoutX="282.0" layoutY="345.0" prefHeight="25.0" prefWidth="166.0" />
-                  <Button layoutX="620.0" layoutY="427.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="Skapa kurs" />
-                  <Button layoutX="806.0" layoutY="16.0" mnemonicParsing="false" onAction="#closeTab" prefHeight="19.0" prefWidth="52.0" style="-fx-font-size: 20;">
+                  <TextField fx:id="courseCodeTextArea" layoutX="275.0" layoutY="229.0" prefHeight="25.0" prefWidth="176.0" />
+                  <RadioButton fx:id="period1RadioButton" layoutX="309.0" layoutY="292.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="1" />
+                  <RadioButton fx:id="period2RadioButton" layoutX="378.0" layoutY="292.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="2" />
+                  <RadioButton fx:id="period3RadioButton" layoutX="444.0" layoutY="291.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="3" />
+                  <RadioButton fx:id="period4RadioButton" layoutX="512.0" layoutY="291.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="4" />
+                  <Spinner fx:id="yearSpinner" layoutX="270.0" layoutY="345.0" />
+                  <Button layoutX="620.0" layoutY="427.0" mnemonicParsing="false" onAction="#createNewCourse" prefHeight="25.0" prefWidth="195.0" text="Skapa kurs" />
+                  <Button layoutX="806.0" layoutY="16.0" mnemonicParsing="false" onAction="#closeTabButton" prefHeight="19.0" prefWidth="52.0" style="-fx-font-size: 20;">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <RadioButton layoutX="309.0" layoutY="292.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="1" />
-                  <RadioButton layoutX="378.0" layoutY="292.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="2" />
-                  <RadioButton layoutX="444.0" layoutY="291.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="3" />
-                  <RadioButton layoutX="512.0" layoutY="291.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="4" />
                </children>
             </AnchorPane>
          </children>
