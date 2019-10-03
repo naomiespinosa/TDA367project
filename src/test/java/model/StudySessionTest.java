@@ -48,9 +48,6 @@ public class StudySessionTest {
 
     Course testCourse = studySession.getCourse();
 
-    assertEquals(testCourse,course);
+    assertEquals(testCourse, course);
   }
 }
-
-
-

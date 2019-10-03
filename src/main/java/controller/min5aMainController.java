@@ -1,5 +1,4 @@
 package controller;
 
 // temporary mainController
-public class min5aMainController {
-}
+public class min5aMainController {}

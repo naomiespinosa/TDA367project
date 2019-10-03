@@ -17,7 +17,9 @@ public class SidePanel implements Initializable {
   private AnchorPane statisticsPage;
 
   // Other FXML setters
-  public void setHomePage(AnchorPane homePage) { this.homePage = homePage; }
+  public void setHomePage(AnchorPane homePage) {
+    this.homePage = homePage;
+  }
 
   public void setCourseSelectionPage(AnchorPane courseSelectionPage) {
     this.courseSelectionPage = courseSelectionPage;
@@ -28,12 +30,10 @@ public class SidePanel implements Initializable {
   }
 
   @Override
-  public void initialize(URL location, ResourceBundle resources) {
+  public void initialize(URL location, ResourceBundle resources) {}
 
-  }
-
-  public void init(){
-    showPage(courseSelectionPage);
+  public void init() {
+    showPage(statisticsPage);
   }
 
   @FXML

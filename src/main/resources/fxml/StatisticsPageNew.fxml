@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1020.0" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1020.0" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatisticsPage">
    <children>
       <GridPane layoutX="7.0" layoutY="5.0" prefHeight="700.0" prefWidth="1020.0">
         <columnConstraints>
@@ -67,6 +67,22 @@
                   <Font size="20.0" />
                </font>
             </Text>
+            <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" opacity="0.99" prefHeight="66.0" prefWidth="258.0" text="Lägg till studietid för kurs" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets bottom="15.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="switchGraphPaneButton" mnemonicParsing="false" onAction="#switchListGraphAction" opacity="0.99" prefHeight="46.0" prefWidth="255.0" text="Byt till listvy" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="75.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
       <Text layoutX="381.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistik" wrappingWidth="285.6033630371094">
@@ -90,7 +106,7 @@
       <StackPane layoutX="300.0" layoutY="150.0" prefHeight="352.0" prefWidth="427.0">
          <children>
             <AnchorPane fx:id="statisticsTimeListPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6D9293;" />
-            <AnchorPane fx:id="statisticsTimeBarhraphPane" prefHeight="348.0" prefWidth="385.0" style="-fx-background-color: #8D4293;">
+            <AnchorPane fx:id="statisticsTimeBarGraphPane" prefHeight="348.0" prefWidth="385.0" style="-fx-background-color: #8D4293;">
                <children>
                   <BarChart categoryGap="1.0" prefHeight="361.0" prefWidth="405.0">
                     <xAxis>
@@ -104,11 +120,6 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <Button fx:id="switchGraphPaneButton" layoutX="411.0" layoutY="524.0" mnemonicParsing="false" opacity="0.99" prefHeight="50.0" prefWidth="203.0" text="Byt till listvy" wrapText="true">
-         <font>
-            <Font size="45.0" />
-         </font>
-      </Button>
       <Text layoutX="-56.0" layoutY="-37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U:" x="800.0" y="250.0">
          <font>
             <Font size="29.0" />
@@ -169,10 +180,5 @@
             <Font size="29.0" />
          </font>
       </Text>
-      <Button fx:id="addCourseStudyTimeButton" layoutX="412.0" layoutY="631.0" mnemonicParsing="false" opacity="0.99" prefHeight="50.0" prefWidth="203.0" text="Lägg till studietid för kurs" wrapText="true">
-         <font>
-            <Font size="45.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

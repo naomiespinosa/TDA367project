@@ -10,8 +10,7 @@ public class User {
   private String name = null;
   private List<Course> courses;
 
-  public User() {
-  }
+  public User() {}
 
   // Used to add a new course
   private void addCourse(String name, String courseCode, int year, int studyPeriod) {
@@ -25,8 +24,6 @@ public class User {
 
   // TODO - Without
   private void startStudySession(int index) {}
-
-
 
   // Getters och Setters
   private List<Course> getCourses() {

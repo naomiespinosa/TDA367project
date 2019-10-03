@@ -1,5 +1,3 @@
 package controller;
 
-public class CourseSelectionPage {
-
-}
+public class CourseSelectionPage {}
