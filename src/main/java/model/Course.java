@@ -36,7 +36,9 @@ public class Course {
     // Code
   }
 
-  // Lists
+  // List Methods
+
+  // StudySession
 
   private void newStudySession() {}
 
@@ -49,6 +51,8 @@ public class Course {
   private void clearStudySessions() {
     studySessions.clear();
   }
+
+  // Moment
 
   private void newMoment(String name, Date deadline) {
     momentItems.add(new Moment(name, deadline));
@@ -66,19 +70,17 @@ public class Course {
     momentItems.clear();
   }
 
-  private void newTodo(String description) {
+  // To-Do
+
+  public void newTodo(String description) {
     toDoList.add(new ToDo(description));
   }
 
-  private void deleteTodo(int index) {
+  public void deleteTodo(int index) {
     toDoList.remove(index);
   }
 
-  private List<ToDo> getToDoList() {
-    return toDoList;
-  }
-
-  private void clearToDoList() {
+  public void clearToDoList() {
     toDoList.clear();
   }
 
