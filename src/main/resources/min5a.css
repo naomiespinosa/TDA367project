@@ -29,7 +29,6 @@
 /* Text */
 .header{
     -fx-text-fill: purple;
-    -fx-font-family: "Century Gothic";
     -fx-font-size: 35px;
 }
 
@@ -51,6 +50,10 @@
     -fx-font-size: 16px;
 }
 
+.course-item-header{
+    -fx-font-size: 35px;
+}
+
 /* Panel buttons */
 .panel-button{
     -fx-background-color: grey-blue;
@@ -65,7 +68,23 @@
     -fx-background-color: dark-grey-blue;
 }
 
+/* CoursePanel */
+
+.course-panel-button{
+    -fx-background-color: green_light;
+}
+
+.course-panel-button:hover{
+    -fx-border-color: green_strong;
+
+}
+
 /* Makes the divider for a Splitpane transparent */
 .split-pane:horizontal > .split-pane-divider{
     -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-insets: 5;
+    -fx-padding: 5;
 }

@@ -1,7 +1,6 @@
 package model;
 
-// This class represent a normal checklist for the user and will either be done or not
-class ToDo {
+public class ToDo {
   private boolean isDone;
   private String description;
 
@@ -22,7 +21,7 @@ class ToDo {
     this.isDone = true;
   }
 
-  private String getDescription() {
+  private String getDiscription() {
     return description;
   }
 
