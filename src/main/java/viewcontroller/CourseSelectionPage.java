@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -41,6 +42,18 @@ public class CourseSelectionPage implements Initializable{
     private Spinner<?> semesterSpinner;
     @FXML
     private TextField yearTexArea;
+
+    @FXML
+    private RadioButton period1RadioButton;
+
+    @FXML
+    private RadioButton period2RadioButton;
+
+    @FXML
+    private RadioButton period3RadioButton;
+
+    @FXML
+    private RadioButton period4RadioButton;
 
     @Inject private User user; // temporary
     private MainPage parent;
@@ -104,13 +117,11 @@ public class CourseSelectionPage implements Initializable{
         }
     }
 
-    private void setShadow(AnchorPane courseItem) {
+    private void setShadow(AnchorPane courseItem) {   //Make the CourseListItems to have a shadow around them
         DropShadow dropShadow = new DropShadow();
-
         dropShadow.setColor(Color.DARKGRAY);
         dropShadow.setOffsetX(3);
         dropShadow.setOffsetY(3);
-
         courseItem.setEffect(dropShadow);
     }
 
