@@ -39,8 +39,8 @@ public class CourseSelectionPage implements Initializable{
     @FXML
     private TextField courseCodeTextArea;
     @FXML
-    private Spinner<?> yearSpinner;
-
+    private Spinner yearSpinner;
+    private int initialYear = 2019;
     @FXML
     private ToggleGroup periodToggleGroup;
     @FXML
@@ -62,6 +62,7 @@ public class CourseSelectionPage implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         initToggleGroup();
+        resetSpinner();
 
     }
 
@@ -71,14 +72,7 @@ public class CourseSelectionPage implements Initializable{
         // Temporary
         testClass();
         resetPage();
-        sortCourses();
-        try {
-            showActiveCourses();
-            showInactiveCourses();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        updateLists();
     }
 
     // Only used now when we want to test our class
@@ -97,12 +91,21 @@ public class CourseSelectionPage implements Initializable{
         addCoursePane.toBack();
     }
 
+
+    void updateLists(){
+        sortCourses();
+        try {
+            showActiveCourses();
+            showInactiveCourses();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     // List functionality
 
     // Method used to display all Courses
     private void showActiveCourses() throws IOException {
         activeCoursesFlowpane.getChildren().clear();
-
         for (Course course : activeCourses) { // Runs through all the courses to only show the correct ones
             AnchorPane courseItem = PageFactory.createCoursePanelItem(course, parent);
             setShadow(courseItem);
@@ -130,6 +133,8 @@ public class CourseSelectionPage implements Initializable{
     }
 
     void sortCourses(){
+        activeCourses.clear();
+        inactiveCourses.clear();
         for (int i = 0; i < user.getCourses().size();i++){
             if (user.getCourse(i).isActive()){
                 activeCourses.add(user.getCourse(i));
@@ -164,10 +169,17 @@ public class CourseSelectionPage implements Initializable{
     void createNewCourse(ActionEvent event){
         String name = courseNameTextArea.getText();
         String code = courseCodeTextArea.getText();
+        int year = (int) yearSpinner.getValue();
         int period = getPeriod();
-        //int year = Integer.valueOf(yearTexArea.getText());
-        //int period = ;
-        //user.addCourse(name,code,year,period);
+        user.addCourse(name,code,year,period);
+
+        updateLists();
+        clearCourseInput();
+        resetPage();
+    }
+
+    @FXML
+    void deleteInputs(ActionEvent event){
         clearCourseInput();
     }
 
@@ -175,6 +187,16 @@ public class CourseSelectionPage implements Initializable{
         courseNameTextArea.clear();
         courseCodeTextArea.clear();
         period1RadioButton.setSelected(true);
+        resetSpinner();
+    }
+
+
+
+    // Spinner
+    void resetSpinner(){
+        SpinnerValueFactory<Integer> valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, initialYear, 1);
+        yearSpinner.setValueFactory(valueFactory);
     }
 
     // Togglegroup
@@ -204,18 +226,6 @@ public class CourseSelectionPage implements Initializable{
         }
         return 0;
     }
-/* periodToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-    @Override
-     public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-        if (periodToggleGroup.getSelectedToggle() != null) { //If a radioButton is pressed set this period to studyperiod
-            RadioButton selected = (RadioButton) periodToggleGroup.getSelectedToggle();
-            recipeBackendController.setStudyPeriod(selected.getText());
-            updateRecipeList();
-
-
-        }
-    }}*/
 
     // Setters And Getters
     void setParent(MainPage parent) {

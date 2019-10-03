@@ -15,31 +15,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: white;" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.CourseSelectionPage">
    <children>
-      <AnchorPane fx:id="main" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0" style="-fx-background-color: white;" stylesheets="@../min5a.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Text layoutX="401.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Pågående Kurser" AnchorPane.leftAnchor="401.0" />
-            <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: white;" stylesheets="@../min5a.css" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
-               <content>
-                  <FlowPane fx:id="activeCoursesFlowpane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="889.0" style="-fx-background-color: white;" vgap="30.0">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </FlowPane>
-               </content>
-            </ScrollPane>
-            <Text layoutX="412.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Avslutade Kurser" AnchorPane.leftAnchor="412.0" AnchorPane.topAnchor="344.2314453125" />
-            <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="400.0">
-               <content>
-                  <FlowPane fx:id="inactiveCoursesFlowpane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="888.0" style="-fx-background-color: white;" vgap="30.0">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </FlowPane>
-               </content>
-            </ScrollPane>
-            <Button layoutX="860.0" layoutY="24.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="41.0" prefWidth="176.0" text="Lägg Till Kurs" />
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="addCoursePane" prefHeight="699.0" prefWidth="1079.0">
          <children>
             <AnchorPane onMouseClicked="#closeTabMouse" opacity="0.75" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -71,8 +46,34 @@
                         <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
+                  <Button layoutX="543.0" layoutY="427.0" mnemonicParsing="false" onAction="#deleteInputs" text="Skrota Kurs" />
                </children>
             </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="main" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0" style="-fx-background-color: white;" stylesheets="@../min5a.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="401.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Pågående Kurser" AnchorPane.leftAnchor="401.0" />
+            <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: white;" stylesheets="@../min5a.css" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
+               <content>
+                  <FlowPane fx:id="activeCoursesFlowpane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="889.0" style="-fx-background-color: white;" vgap="30.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+            <Text layoutX="412.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Avslutade Kurser" AnchorPane.leftAnchor="412.0" AnchorPane.topAnchor="344.2314453125" />
+            <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="400.0">
+               <content>
+                  <FlowPane fx:id="inactiveCoursesFlowpane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="888.0" style="-fx-background-color: white;" vgap="30.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+            <Button layoutX="860.0" layoutY="24.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="41.0" prefWidth="176.0" text="Lägg Till Kurs" />
          </children>
       </AnchorPane>
    </children>
