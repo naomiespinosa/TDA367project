@@ -1,4 +1,4 @@
-package controller;
+package viewcontroller;
 
 import java.awt.*;
 import java.io.IOException;
@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class CourseMainPage implements Initializable {
 
   private Course course;
 
-  @FXML private TextArea CourseName;
+  @FXML private Label courseName;
 
   // ToDoList
   @FXML private ListView<ToDo> toDoListView = new ListView<>();
@@ -87,4 +88,8 @@ public class CourseMainPage implements Initializable {
   }
 
 
+  void init(Course course) {
+    this.course = course;
+    this.courseName.setText(course.getName());
+  }
 }

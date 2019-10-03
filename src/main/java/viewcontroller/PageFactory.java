@@ -39,7 +39,7 @@ public class PageFactory {
       throws IOException {
     FXMLLoader courseMainPageLoader =
         new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
-    AnchorPane root = courseMainPageLoader.load(); // Loads the FXML for the SidePanel
+    AnchorPane root = courseMainPageLoader.load(); // Loads the FXML
     CourseMainPage ctr =
         courseMainPageLoader.getController(); // Fetches the Controller for the fxml
     ctr.init(course);
