@@ -1,7 +1,5 @@
 package viewcontroller;
 
-public class HomePage {
-
 import javafx.fxml.FXML;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
@@ -14,7 +12,8 @@ import java.util.List;
 
 public class HomePage {
 
-    @FXML private FlowPane activeCoursesFlowpane;
+    @FXML
+    private FlowPane activeCoursesFlowpane;
 
 
     // Shared with CourseSelectionPage Will need to remake
