@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class UserTest {
+class UserTest {
     @Test
     void courseFunctions(){
-        User user = new User();
+        User user = User.getInstance();
+        user.clearCourses();
         user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
         user.addCourse("Programmering", "TDA333", 1, 2);
         user.addCourse("Mattematisk Analys", "TDA333", 1, 2);
@@ -23,13 +24,28 @@ public class UserTest {
 
     @Test
     void setGetFunctions(){
-        User user = new User();
+        User user = User.getInstance();
 
         user.setUsername("Rolf1337");
         assertSame("Rolf1337",user.getUsername());
 
         user.setName("Rolf");
         assertSame("Rolf",user.getName());
+    }
+
+    @Test
+    void testSingleton(){
+        User user = User.getInstance();
+        user.clearCourses();
+        user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
+        user.addCourse("Programmering", "TDA333", 1, 2);
+        user.getCourse(1).endCourse();
+        user.setName("Rolf");
+
+        User user2 = User.getInstance();
+        assertSame(user.getCourse(1),user2.getCourse(1));
+        assertSame(user.getName(),user2.getName());
+        assertSame(user2.getCourse(1).isActive(),user.getCourse(1).isActive());
     }
 
 

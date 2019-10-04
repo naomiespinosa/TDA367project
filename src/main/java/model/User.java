@@ -43,6 +43,10 @@ public class User {
     return courses;
   }
 
+  public void clearCourses(){
+      courses.clear();
+  }
+
   // Getters och Setters
   public String getUsername() {
     return username;
