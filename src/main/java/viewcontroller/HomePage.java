@@ -1,5 +1,7 @@
 package viewcontroller;
 
+public class HomePage {
+
 import javafx.fxml.FXML;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
@@ -32,5 +34,4 @@ public class HomePage {
         dropShadow.setOffsetY(3);
         courseItem.setEffect(dropShadow);
     }
-
 }
