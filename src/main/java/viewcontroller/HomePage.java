@@ -1,7 +1,5 @@
 package viewcontroller;
 
-public class HomePage {
-
 import javafx.fxml.FXML;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
