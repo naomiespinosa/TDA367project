@@ -6,8 +6,15 @@ import javafx.scene.layout.AnchorPane;
 import model.Course;
 
 public class PageFactory {
-  public static AnchorPane createHomePage() throws IOException {
-    return FXMLLoader.load(PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml")); // Don't have one yet
+  public static AnchorPane createHomePage(MainPage parent) throws IOException {
+    FXMLLoader homePageLoader =
+            new FXMLLoader(
+                    PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml"));
+    AnchorPane root = homePageLoader.load(); // Loads the FXML
+    HomePage ctr = homePageLoader.getController(); // Fetches the Controller for the fxml
+    ctr.setParent(parent);
+    ctr.init();
+    return root;
   }
 
   public static AnchorPane createCourseSelectionPage(MainPage parent) throws IOException {

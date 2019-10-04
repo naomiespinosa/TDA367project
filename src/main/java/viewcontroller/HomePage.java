@@ -8,29 +8,32 @@ import javafx.scene.paint.Color;
 import model.Course;
 
 import java.io.IOException;
-import java.util.List;
 
-public class HomePage {
+public class HomePage extends Observer{
+    private MainPage parent;
 
     @FXML
     private FlowPane activeCoursesFlowpane;
 
+    void init(){
+        updateLists();
+        CourseManager.attach(this);
+    }
 
-    // Shared with CourseSelectionPage Will need to remake
-    private void showActiveCourses(List<Course> courses, MainPage parent) throws IOException {
-        activeCoursesFlowpane.getChildren().clear();
-        for (Course course : courses) { // Runs through all the courses to only show the correct ones
-            AnchorPane courseItem = PageFactory.createCoursePanelItem(course, parent);
-            setShadow(courseItem);
-            activeCoursesFlowpane.getChildren().add(courseItem);
+    void updateLists(){
+        try {
+            PanelItemManager.showActiveCourses(activeCoursesFlowpane, parent);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private void setShadow(AnchorPane courseItem) {   //Make the CourseListItems to have a shadow around them
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.DARKGRAY);
-        dropShadow.setOffsetX(3);
-        dropShadow.setOffsetY(3);
-        courseItem.setEffect(dropShadow);
+    void setParent(MainPage parent) {
+        this.parent=parent;
+    }
+
+    @Override
+    public void update() {
+        updateLists();
     }
 }

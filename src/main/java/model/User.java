@@ -7,8 +7,28 @@ public class User {
   private String username;
   private String name;
   private List<Course> courses = new ArrayList<>();
+  private static User instance = null;
 
-  public User() {}
+  private User() {
+
+  }
+
+  // TEMPORARY FOR TESTING ONLY
+  public void testing() {
+    addCourse("Funktionell Programmering", "TDA333", 1, 2);
+    addCourse("Programmering", "TDA333", 1, 2);
+    addCourse("Mattematisk Analys", "TDA333", 1, 2);
+    getCourse(2).endCourse();
+    addCourse("Kommunikation och ingejörskunskap", "TDA333", 1, 2);
+    addCourse("Hej", "TDA333", 1, 2);
+  }
+
+  public static User getInstance() {
+    if(instance == null) {
+      instance = new User();
+    }
+    return instance;
+  }
 
   // Used to add a new course
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {

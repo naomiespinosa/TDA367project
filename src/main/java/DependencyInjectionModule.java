@@ -5,7 +5,6 @@ import model.User;
 public class DependencyInjectionModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(User.class);
-    bind(MainPage.class);
+    //bind(User.class);
   }
 }
