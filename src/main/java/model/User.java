@@ -24,19 +24,19 @@ public class User {
   }
 
   // Getters och Setters
-  private String getUsername() {
+  public String getUsername() {
     return username;
   }
 
-  private void setUsername(String username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
-  private String getName() {
+  public String getName() {
     return name;
   }
 
-  private void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 }

@@ -17,6 +17,7 @@ public class CoursePanelItem {
   void init(Course course, MainPage parentController) {
     this.courseName.setText(course.getName());
     this.courseCode.setText(course.getCourseCode());
+    this.course = course;
     this.parentController = parentController;
   }
 
