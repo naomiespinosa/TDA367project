@@ -212,7 +212,7 @@ public class CourseSelectionPage implements Initializable{
     }
 
 
-    int getPeriod(){
+    int getPeriod(){ // TODO
         if (periodToggleGroup.getSelectedToggle() != null){
             if (periodToggleGroup.getSelectedToggle()==period1RadioButton){
                 return 1;
