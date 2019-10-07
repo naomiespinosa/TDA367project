@@ -33,7 +33,11 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setHomePage(PageFactory.createHomePage());
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
-    mainPageCtrl.init();
+    mainPageCtrl.setTimerPage(
+            fxmlLoader.load(getClass().getClassLoader().getResource("fxml/FullPageTimer.fxml")).getRoot()
+    );
+
+      mainPageCtrl.init();
 
     Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");

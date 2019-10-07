@@ -5,7 +5,5 @@ import org.junit.jupiter.api.Test;
 public class CourseSelectionPageTest {
 
   @Test
-  public void sortingLists() {
-
-  }
+  public void sortingLists() {}
 }

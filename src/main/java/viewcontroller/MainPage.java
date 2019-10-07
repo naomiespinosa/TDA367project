@@ -17,6 +17,7 @@ public class MainPage implements Initializable {
   private AnchorPane homePage;
   private AnchorPane courseSelectionPage;
   private AnchorPane statisticsPage;
+  private AnchorPane timerPage;
   private CourseSelectionPage courseSelectionCtrl;
 
   // Other FXML setters
@@ -30,6 +31,10 @@ public class MainPage implements Initializable {
 
   public void setStatisticsPage(AnchorPane statisticsPage) {
     this.statisticsPage = statisticsPage;
+  }
+
+  public void setTimerPage(AnchorPane timerPage) {
+    this.timerPage = timerPage;
   }
 
   @Override
@@ -54,8 +59,12 @@ public class MainPage implements Initializable {
     showPage(statisticsPage);
   }
 
-  void pressedCourseItem(Course course) throws IOException {
-    AnchorPane courseHomePage = PageFactory.createCourseMainPage(course);
+  void showTimerPage() {
+    showPage(timerPage);
+  };
+
+  void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
+    AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
   }
 
