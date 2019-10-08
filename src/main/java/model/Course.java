@@ -30,11 +30,12 @@ public class Course {
     this.isActive = false;
   }
 
+  public void reactivateCourse() {
+    this.isActive = true;
+  }
+
   // TODO - This method deletes the course and eventually deletes the information? or stores it
   // somewhere
-  private void deleteCourse() {
-    // Code
-  }
 
   // List Methods
 
@@ -93,7 +94,7 @@ public class Course {
     return image;
   }
 
-  private void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -101,7 +102,7 @@ public class Course {
     return courseCode;
   }
 
-  private void setCourseCode(String courseCode) {
+  public void setCourseCode(String courseCode) {
     this.courseCode = courseCode;
   }
 
@@ -109,7 +110,7 @@ public class Course {
     return year;
   }
 
-  private void setYear(int year) {
+  public void setYear(int year) {
     this.year = year;
   }
 
@@ -117,7 +118,7 @@ public class Course {
     return studyPeriod;
   }
 
-  private void setStudyPeriod(int studyPeriod) {
+  public void setStudyPeriod(int studyPeriod) {
     this.studyPeriod = studyPeriod;
   }
 
