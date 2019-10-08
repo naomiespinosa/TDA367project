@@ -8,8 +8,7 @@ import model.Course;
 public class PageFactory {
   public static AnchorPane createHomePage(MainPage parent) throws IOException {
     FXMLLoader homePageLoader =
-            new FXMLLoader(
-                    PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml"));
+        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml"));
     AnchorPane root = homePageLoader.load(); // Loads the FXML
     HomePage ctr = homePageLoader.getController(); // Fetches the Controller for the fxml
     ctr.setParent(parent);

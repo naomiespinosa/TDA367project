@@ -3,17 +3,14 @@ import com.cathive.fx.guice.GuiceFXMLLoader;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Module;
-import model.User;
-import viewcontroller.MainPage;
 import java.io.IOException;
 import java.util.List;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.User;
 import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
-import viewcontroller.PanelItemManager;
 
 public class Min5aApplication extends GuiceApplication {
   @Inject private GuiceFXMLLoader fxmlLoader;
@@ -43,10 +40,9 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
     mainPageCtrl.setTimerPage(
-            fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot()
-    );
+        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
 
-      mainPageCtrl.init();
+    mainPageCtrl.init();
 
     Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");

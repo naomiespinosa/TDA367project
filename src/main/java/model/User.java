@@ -9,10 +9,6 @@ public class User {
   private List<Course> courses = new ArrayList<>();
   private static User instance = null;
 
-  private User() {
-
-  }
-
   // TEMPORARY FOR TESTING ONLY
   public void testing() {
     addCourse("Funktionell Programmering", "TDA333", 1, 2);
@@ -24,7 +20,7 @@ public class User {
   }
 
   public static User getInstance() {
-    if(instance == null) {
+    if (instance == null) {
       instance = new User();
     }
     return instance;
@@ -43,8 +39,8 @@ public class User {
     return courses;
   }
 
-  public void clearCourses(){
-      courses.clear();
+  public void clearCourses() {
+    courses.clear();
   }
 
   // Getters och Setters
