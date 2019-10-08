@@ -56,7 +56,7 @@
             <Text layoutX="401.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Pågående Kurser" AnchorPane.leftAnchor="401.0" />
             <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: white;" stylesheets="@../min5a.css" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
                <content>
-                  <FlowPane fx:id="activeCoursesFlowpane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="889.0" style="-fx-background-color: white;" vgap="30.0">
+                  <FlowPane fx:id="activeCoursesFlowPane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="889.0" style="-fx-background-color: white;" vgap="30.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </padding>
@@ -66,7 +66,7 @@
             <Text layoutX="412.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Avslutade Kurser" AnchorPane.leftAnchor="412.0" AnchorPane.topAnchor="344.2314453125" />
             <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="400.0">
                <content>
-                  <FlowPane fx:id="inactiveCoursesFlowpane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="888.0" style="-fx-background-color: white;" vgap="30.0">
+                  <FlowPane fx:id="inactiveCoursesFlowPane" hgap="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="248.0" prefWidth="888.0" style="-fx-background-color: white;" vgap="30.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </padding>
