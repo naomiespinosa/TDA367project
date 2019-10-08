@@ -1,11 +1,14 @@
 package viewcontroller;
 
+import javafx.event.ActionEvent;
 import org.junit.jupiter.api.Test;
 
-public class CourseSelectionPageTest {
+import static org.junit.jupiter.api.Assertions.assertSame;
+
+class CourseSelectionPageTest {
 
   @Test
-  public void sortingLists() {
+  private void testAddingCourses() {
 
   }
 }

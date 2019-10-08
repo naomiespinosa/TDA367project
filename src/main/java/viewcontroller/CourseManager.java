@@ -5,7 +5,7 @@ import model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CourseManager {
+abstract class CourseManager {
     private static User user = User.getInstance();
 
     //Observer

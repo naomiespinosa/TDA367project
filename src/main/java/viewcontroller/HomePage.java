@@ -20,7 +20,7 @@ public class HomePage extends Observer{
         CourseManager.attach(this);
     }
 
-    void updateLists(){
+    private void updateLists(){
         try {
             PanelItemManager.showActiveCourses(activeCoursesFlowpane, parent);
         } catch (IOException e) {

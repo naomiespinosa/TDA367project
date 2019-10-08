@@ -29,10 +29,11 @@ public class CourseSelectionPage extends Observer implements Initializable {
     private AnchorPane main;
     @FXML
     private AnchorPane addCoursePane;
+
     @FXML
-    private TextField courseNameTextArea;
+    TextField courseNameTextArea;
     @FXML
-    private TextField courseCodeTextArea;
+    TextField courseCodeTextArea;
     @FXML
     private Spinner yearSpinner;
     private int initialYear = 2019;
@@ -103,6 +104,10 @@ public class CourseSelectionPage extends Observer implements Initializable {
 
     @FXML
     void createNewCourse(ActionEvent event){
+        addCourse();
+    }
+
+    void addCourse(){
         CourseManager.createNewCourse(courseNameTextArea.getText(),courseCodeTextArea.getText(),(int) yearSpinner.getValue(),getPeriod());
 
         clearCourseInput();
@@ -163,8 +168,18 @@ public class CourseSelectionPage extends Observer implements Initializable {
         this.parent = parent;
     }
 
+    public void setCourseNameTextArea(String name) {
+        this.courseNameTextArea.setText(name);
+    }
+
+    public void setCourseCodeTextArea(String code) {
+        this.courseCodeTextArea.setText(code);
+    }
+
     @Override
     public void update() {
         updateLists();
     }
+
+
 }
