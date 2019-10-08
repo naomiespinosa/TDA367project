@@ -18,6 +18,8 @@ abstract class Timer {
 
   private State state = State.INACTIVE;
 
+  private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000;
+
   public Timer(final Course course) {
     this.course = course;
   }
@@ -33,7 +35,7 @@ abstract class Timer {
 
     this.startedAt = LocalDateTime.now();
     this.state = State.ACTIVE;
-    this.timer.schedule(new CallableTask(this.onCompleted), 10000);
+    this.timer.schedule(new CallableTask(this.onCompleted), STUDY_SESSION_LENGTH);
     this.timer.schedule(new CallableTask(this.onTick), 1000, 1000);
 
     if (this.onStart != null) {

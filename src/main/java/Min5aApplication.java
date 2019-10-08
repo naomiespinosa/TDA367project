@@ -34,7 +34,7 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
     mainPageCtrl.setTimerPage(
-            fxmlLoader.load(getClass().getClassLoader().getResource("fxml/FullPageTimer.fxml")).getRoot()
+            fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot()
     );
 
       mainPageCtrl.init();
