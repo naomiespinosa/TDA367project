@@ -1,48 +1,62 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-// Suposedly Good for OPC since if we want to add the feature of having multiple user this clas will
-// be open for extension
-// Users have their own classes that are not shared between users.
 public class User {
-  private String username = null;
-  private String name = null;
-  private List<Course> courses;
+  private String username;
+  private String name;
+  private List<Course> courses = new ArrayList<>();
+  private static User instance = null;
 
-  public User() {}
+  // TEMPORARY FOR TESTING ONLY
+  public void testing() {
+    addCourse("Funktionell Programmering", "TDA333", 1, 2);
+    addCourse("Programmering", "TDA333", 1, 2);
+    addCourse("Mattematisk Analys", "TDA333", 1, 2);
+    getCourse(2).endCourse();
+    addCourse("Kommunikation och ingejörskunskap", "TDA333", 1, 2);
+    addCourse("Hej", "TDA333", 1, 2);
+  }
+
+  public static User getInstance() {
+    if (instance == null) {
+      instance = new User();
+    }
+    return instance;
+  }
 
   // Used to add a new course
-  private void addCourse(String name, String courseCode, int year, int studyPeriod) {
+  public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     courses.add(new Course(name, courseCode, year, studyPeriod));
   }
 
-  // Returns specific course
-  private Course getCourse(int index) {
+  public Course getCourse(int index) {
     return courses.get(index);
   }
 
-  // TODO - Without
-  private void startStudySession(int index) {}
-
-  // Getters och Setters
-  private List<Course> getCourses() {
+  public List<Course> getCourses() {
     return courses;
   }
 
-  private String getUsername() {
+  public void clearCourses() {
+    courses.clear();
+  }
+
+  // Getters och Setters
+  public String getUsername() {
     return username;
   }
 
-  private void setUsername(String username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
-  private String getName() {
+  public String getName() {
     return name;
   }
 
-  private void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 }

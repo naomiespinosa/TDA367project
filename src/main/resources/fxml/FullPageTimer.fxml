@@ -6,8 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="transperentAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FullPageTimer">
+<AnchorPane fx:id="transperentAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.FullPageTimer">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -19,12 +20,15 @@
                   <Image url="@../images/close-cross.png" />
                </image>
             </ImageView>
-            <Button fx:id="startPauseFullPageTimer" layoutX="140.0" layoutY="218.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="269.0">
+            <Button fx:id="startPauseFullPageTimer" layoutX="140.0" layoutY="218.0" mnemonicParsing="false" onMouseClicked="#onTimerButtonClick" prefHeight="76.0" prefWidth="269.0">
                <graphic>
-                  <Label fx:id="startPauseLable" />
+                  <Label fx:id="startPauseLabel" />
                </graphic>
             </Button>
-            <Label fx:id="timeLable" layoutX="88.0" layoutY="52.0" prefHeight="133.0" prefWidth="374.0" />
+            <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="52.0" prefHeight="133.0" prefWidth="374.0" styleClass="timer" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="96.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>

@@ -1,18 +1,21 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
 public class Course {
   private String name;
   private String courseCode;
-  private List<Moment> momentItems;
-  private List<StudySession> studySessions;
-  private List<ToDo> toDoList;
+  private List<Moment> momentItems = new ArrayList<>();
+  private List<StudySession> studySessions = new ArrayList<>();
+  private List<ToDo> toDoList = new ArrayList<>();
   private int year;
   private int studyPeriod;
   private boolean isActive;
+  private Image image = null;
 
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
@@ -23,7 +26,7 @@ public class Course {
   }
 
   // TODO - This method is used to end a course and keep the information
-  private void endCourse() {
+  public void endCourse() {
     this.isActive = false;
   }
 
@@ -33,7 +36,9 @@ public class Course {
     // Code
   }
 
-  // Lists
+  // List Methods
+
+  // StudySession
 
   private void newStudySession() {}
 
@@ -46,6 +51,8 @@ public class Course {
   private void clearStudySessions() {
     studySessions.clear();
   }
+
+  // Moment
 
   private void newMoment(String name, Date deadline) {
     momentItems.add(new Moment(name, deadline));
@@ -63,32 +70,34 @@ public class Course {
     momentItems.clear();
   }
 
-  private void newTodo(String description) {
+  // To-Do
+
+  public void newTodo(String description) {
     toDoList.add(new ToDo(description));
   }
 
-  private void deleteTodo(int index) {
+  public void deleteTodo(int index) {
     toDoList.remove(index);
   }
 
-  private List<ToDo> getToDoList() {
-    return toDoList;
-  }
-
-  private void clearToDoList() {
+  public void clearToDoList() {
     toDoList.clear();
   }
 
   // Setters and Getters
-  private String getName() {
+  public String getName() {
     return name;
+  }
+
+  public javafx.scene.image.Image getImage() {
+    return image;
   }
 
   private void setName(String name) {
     this.name = name;
   }
 
-  private String getCourseCode() {
+  public String getCourseCode() {
     return courseCode;
   }
 

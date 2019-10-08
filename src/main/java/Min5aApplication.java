@@ -1,18 +1,21 @@
 import com.cathive.fx.guice.GuiceApplication;
 import com.cathive.fx.guice.GuiceFXMLLoader;
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Module;
-import controller.SidePanel;
 import java.io.IOException;
 import java.util.List;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.PageFactory;
+import model.User;
+import viewcontroller.MainPage;
+import viewcontroller.PageFactory;
 
 public class Min5aApplication extends GuiceApplication {
   @Inject private GuiceFXMLLoader fxmlLoader;
+
+  @Inject private EventBus eventBus;
 
   @Override
   public void init(final List<Module> modules) throws Exception {
@@ -21,17 +24,25 @@ public class Min5aApplication extends GuiceApplication {
 
   @Override
   public void start(Stage stage) throws IOException {
-    FXMLLoader sidePanelLoader =
-        new FXMLLoader(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
-    Parent root = sidePanelLoader.load(); // Loads the FXML for the SidePanel
-    SidePanel sidePanelCtrl =
-        sidePanelLoader.getController(); // Fetches the Controller for the fxml
+    // FOR TESTING ONLY
+    User user = User.getInstance();
+    user.testing();
+    // DELETE ABOVE
+
+    final GuiceFXMLLoader.Result result =
+        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
+    final Parent root = result.getRoot();
+
+    MainPage mainPageCtrl = result.getController(); // Fetches the Controller for the fxml
 
     // Insert pages into side panel
-    sidePanelCtrl.setHomePage(PageFactory.createHomePage());
-    sidePanelCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage());
-    sidePanelCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
-    sidePanelCtrl.init();
+    mainPageCtrl.setHomePage(PageFactory.createHomePage(mainPageCtrl));
+    mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
+    mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
+    mainPageCtrl.setTimerPage(
+        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
+
+    mainPageCtrl.init();
 
     Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");

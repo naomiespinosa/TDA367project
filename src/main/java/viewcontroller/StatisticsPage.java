@@ -1,4 +1,4 @@
-package controller;
+package viewcontroller;
 
 import java.net.URL;
 import java.util.ArrayList;
