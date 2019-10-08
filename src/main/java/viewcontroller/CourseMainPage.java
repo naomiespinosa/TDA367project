@@ -2,7 +2,9 @@ package viewcontroller;
 
 import java.awt.*;
 import java.io.IOException;
+import java.lang.management.MemoryManagerMXBean;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -19,24 +21,35 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javax.swing.*;
 import model.Course;
+import model.Moment;
 import model.ToDo;
 
 public class CourseMainPage implements Initializable {
 
   private Course course;
 
+  // Observable list for the courses To-Do's
+  private ObservableList<ToDo> toDos = FXCollections.observableArrayList();
+
+  // Observable list for the courses Moments
+  private ObservableList<Moment> moments = FXCollections.observableArrayList();
+
   @FXML private Label courseName;
+  @FXML private Label yearLabel;
+  @FXML private Label studyPeriodLabel;
 
   // ToDoList
   @FXML private ListView<ToDo> toDoListView = new ListView<>();
   @FXML private Button newToDoButton;
   @FXML private Button removeToDoButton;
-  @FXML private TextArea newToDo;
+  @FXML private TextArea toDoTextArea;
 
   // Deadline
-  @FXML private ListView deadlineListView;
-  @FXML private Button newDeadlineButton;
-  @FXML private TextArea newDeadline;
+  @FXML private ListView deadlineListView =  new ListView<>();
+  @FXML private Button addDeadlineButton;
+  @FXML private TextArea deadlineTextArea;
+  @FXML private Button removeDeadlineButton;
+  @FXML private DatePicker deadlineDatePicker;
 
   // Activity
   @FXML private ListView activityList;
@@ -47,28 +60,28 @@ public class CourseMainPage implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    populateToDoListView();
+    populateListViews();
+    deadlineDatePicker.setValue(LocalDate.now());
   }
 
   // Methods
 
-  // TODO Here the course.getToDolist should be inputed instead of the random todos
-  // Observable list for the courses To-Do's
-  private ObservableList<ToDo> toDos = FXCollections.observableArrayList(new ToDo("mdkfkd"), new ToDo("jkdf"));
+  // To-Do methods
 
   // Adds a new to-do in the course-specific To-Do list
   // and puts the to-do into the ListView in the CourseMainPage
   @FXML
   private void addToDo(Event e) {
-    if (newToDo.getText() != null) {
-      toDos.add(new ToDo(newToDo.getText()));
-      //course.getToDoList().add((new To-Do(newToDo.getText())));
-      toDoListView.setItems(toDos);
-      newToDo.setText(null);
+    if (toDoTextArea.getText() != null) {
+      ToDo todo1 = new ToDo(toDoTextArea.getText());
+      toDos.add(todo1);
+      course.newTodo(todo1.toString());
+      //toDoListView.setItems(toDos);
+      toDoTextArea.setText(null);
     }
   }
 
-  // Removes selected item in Listview and moves the selection up on step in the list
+  // Removes selected item in Listview and moves the selection up one step in the list
   @FXML
   private void removeToDo(Event e) {
     final int selectedIdx = toDoListView.getSelectionModel().getSelectedIndex();
@@ -79,17 +92,37 @@ public class CourseMainPage implements Initializable {
           (selectedIdx == toDoListView.getItems().size() - 1) ? selectedIdx - 1 : selectedIdx;
 
       toDoListView.getItems().remove(selectedIdx);
+      course.deleteTodo(selectedIdx);
       toDoListView.getSelectionModel().select(newSelectedIdx);
     }
   }
 
-  private void populateToDoListView(){
-    toDoListView.setItems(toDos);
+  // Moment methods
+
+  @FXML
+  private void addDeadline(Event event) {
+    if (deadlineTextArea.getText() != null && deadlineDatePicker.getValue() != null) {
+      Moment moment = new Moment(deadlineTextArea.getText(), deadlineDatePicker.getValue());
+      moments.add(moment);
+      course.newMoment(moment.toString(), deadlineDatePicker.getValue());
+      deadlineTextArea.setText(null);
+
+    }
+
   }
 
+
+  private void populateListViews(){
+    toDoListView.setItems(toDos);
+    deadlineListView.setItems(moments);
+  }
 
   void init(Course course) {
     this.course = course;
-    this.courseName.setText(course.getName());
+    this.courseName.setText(course.getName() + " " + course.getCourseCode());
+    this.yearLabel.setText("Läsår:" + " " + course.getYear());
+    this.studyPeriodLabel.setText("Läsperiod: " + " " + course.getStudyPeriod());
+    this.toDos.addAll(course.getToDoList());
   }
+
 }

@@ -1,23 +1,28 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Moment {
   private String name;
-  private Date deadline;
+  private LocalDate deadline;
   private boolean isPastDeadline;
 
-  Moment(String name, Date deadline) {
+  public Moment(String name, LocalDate deadline) {
     this.name = name;
     this.deadline = deadline;
     this.isPastDeadline = false;
   }
 
-  private Date getDeadline() {
+  @Override
+  public String toString() { return "Den" + " " + this.getDeadline() + ":" + " " + this.getName(); }
+
+  // Getters and Setters
+  private LocalDate getDeadline() {
     return deadline;
   }
 
-  private void setDeadline(Date deadline) { // do we want the user to be able to change the deadline date?
+  private void setDeadline(LocalDate deadline) { // do we want the user to be able to change the deadline date?
     this.deadline = deadline;
   }
 
