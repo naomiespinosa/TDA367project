@@ -17,7 +17,7 @@ public class Course {
   private boolean isActive;
   private Image image = null;
 
-  Course(String name, String courseCode, int year, int studyPeriod) {
+  public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
     this.year = year;

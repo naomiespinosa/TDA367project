@@ -19,16 +19,12 @@ import model.timer.event.StudyTimerCompletedEvent;
 import model.timer.event.StudyTimerStartedEvent;
 import model.timer.event.TimerTickEvent;
 
-public class FullPageTimer implements Initializable {
+public class Timer implements Initializable {
   @Inject private TimerManager timerManager;
 
   @Inject private EventBus eventBus;
 
-  @FXML private AnchorPane transperentAnchorPane;
-
   @FXML private AnchorPane fullPageTimerAnchorPane;
-
-  @FXML private ImageView closeFullPageTimer;
 
   @FXML private Button startPauseFullPageTimer;
 
@@ -61,7 +57,9 @@ public class FullPageTimer implements Initializable {
 
   @Subscribe
   public void onStudyTimerTick(final TimerTickEvent event) {
-    Platform.runLater(() -> this.timeLabel.setText(event.getElapsedSeconds().toString()));
+    Platform.runLater(() -> this.timeLabel.setText(
+        String.format("%02d:%02d", (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))
+    ));
   }
 
   @Override

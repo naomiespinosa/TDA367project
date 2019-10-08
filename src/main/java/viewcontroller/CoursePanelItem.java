@@ -23,6 +23,6 @@ public class CoursePanelItem {
 
   @FXML
   void goToPage(MouseEvent event) throws IOException {
-    parentController.pressedCourseItem(course);
+    parentController.pressedCourseItem(course, this.parentController);
   }
 }
