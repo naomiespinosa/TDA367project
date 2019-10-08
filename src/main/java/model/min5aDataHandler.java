@@ -1,7 +1,9 @@
 package model;
 
 public class min5aDataHandler {
-  private User user;
+
+
+  private User user = User.getInstance();
   private static min5aDataHandler instance = null;
 
   protected min5aDataHandler() {}
@@ -12,6 +14,9 @@ public class min5aDataHandler {
       instance.init();
     }
     return instance;
+  }
+  public User getUser() {
+    return user;
   }
 
   private void init() {

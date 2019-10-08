@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import controller.min5aMainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
+import model.StudySession;
 
 public class StatisticsPage implements Initializable {
 
@@ -77,7 +79,7 @@ public class StatisticsPage implements Initializable {
   @FXML
   private ListView<String> finishedCoursesListView;
 
-
+  private min5aMainController mainController = new min5aMainController();
   private boolean isGraphShowing = true;
 
   private ObservableList<String> items1 = FXCollections.observableArrayList();
@@ -106,12 +108,8 @@ public class StatisticsPage implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
+    setListOfCourses();
 
-    items1.add("Tda445");
-    activeCoursesListView.setItems(items1);
-
-    items2.add("Finished Course");
-    finishedCoursesListView.setItems(items2);
   }
 
   @FXML
@@ -132,17 +130,42 @@ public class StatisticsPage implements Initializable {
     //grade3StudyTime.setText();
     //grade4StudyTime.setText();
    // grade5StudyTime.setText();
-    //TODO koppla ihop med dependency injection för att få listan med kurser, och därav deras tidsinformation
+    //TODO cannot yet connect because time sensitive information and functionality is not yet implemented.
 
   }
 
   void setTotalStudyTimeDisplay(){
-    //totalStudyHour.setText();
-    //totalStudyMinute.setText();
-    //TODO access course total time info
+      ArrayList<Course> courseList = mainController.getCourseList();
+      int totalTimeSecond = 0;
+
+      for(int i = 0; i < courseList.size();i++ ){
+          Course course = courseList.get(i);
+          for (StudySession studySession: course.getStudySessions()){
+             totalTimeSecond += (int) studySession.getDuration().getSeconds();
+          }
+      }
+      int totalHour = totalTimeSecond/3600;
+      int totalMinute =(totalTimeSecond%3600)/60;
+
+   //---------------------------------------------------
+    totalStudyHour.setText(totalHour + " Timmar");
+    totalStudyMinute.setText(totalMinute + " Minuter");
+    //TODO access course total time info, the computing should be moved to another class perhaps in model. Leaving it here for now cus unsure where to put it.
   }
 
   void setListOfCourses(){
+      ArrayList<Course> courseList =  mainController.getCourseList();
+
+     for (Course course : courseList){
+         if(course.isActive()) {
+             items1.add(course.getName());
+         }else{
+             items2.add(course.getName());
+         }
+      }
+      activeCoursesListView.setItems(items1);
+      finishedCoursesListView.setItems(items2);
+
 
   }
 
