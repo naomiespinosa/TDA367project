@@ -1,18 +1,20 @@
 import com.cathive.fx.guice.GuiceApplication;
 import com.cathive.fx.guice.GuiceFXMLLoader;
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Module;
-import viewcontroller.MainPage;
 import java.io.IOException;
 import java.util.List;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
 
 public class Min5aApplication extends GuiceApplication {
   @Inject private GuiceFXMLLoader fxmlLoader;
+
+  @Inject private EventBus eventBus;
 
   @Override
   public void init(final List<Module> modules) throws Exception {
@@ -21,17 +23,21 @@ public class Min5aApplication extends GuiceApplication {
 
   @Override
   public void start(Stage stage) throws IOException {
-    FXMLLoader sidePanelLoader =
-        new FXMLLoader(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
-    Parent root = sidePanelLoader.load(); // Loads the FXML for the SidePanel
-    MainPage mainPageCtrl =
-        sidePanelLoader.getController(); // Fetches the Controller for the fxml
+    final GuiceFXMLLoader.Result result =
+        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
+    final Parent root = result.getRoot();
+
+    MainPage mainPageCtrl = result.getController(); // Fetches the Controller for the fxml
 
     // Insert pages into side panel
     mainPageCtrl.setHomePage(PageFactory.createHomePage());
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
-    mainPageCtrl.init();
+    mainPageCtrl.setTimerPage(
+            fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot()
+    );
+
+      mainPageCtrl.init();
 
     Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");
