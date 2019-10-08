@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.ContactsPage">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="-2.0" layoutY="111.0" prefHeight="580.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="591.0" prefWidth="755.0">
+               <children>
+                  <Label layoutX="185.0" layoutY="81.0" style="-fx-font-size: 30;" text="Namn" />
+                  <Label layoutX="73.0" layoutY="146.0" style="-fx-font-size: 30;" text="Email-Address" />
+                  <Label layoutX="56.0" layoutY="220.0" style="-fx-font-size: 30;" text="Telefonnummer" />
+                  <Label layoutX="60.0" layoutY="289.0" style="-fx-font-size: 30;" text="Kurstillhörighet" />
+                  <Label layoutX="196.0" layoutY="374.0" prefHeight="45.0" prefWidth="59.0" style="-fx-font-size: 30;" text="Titel" textAlignment="RIGHT" />
+                  <TextField fx:id="contactName" layoutX="289.0" layoutY="91.0" prefHeight="25.0" prefWidth="380.0" />
+                  <TextField fx:id="contactEmail" layoutX="290.0" layoutY="156.0" prefHeight="25.0" prefWidth="380.0" />
+                  <TextField fx:id="contactphone" layoutX="295.0" layoutY="230.0" prefHeight="25.0" prefWidth="380.0" />
+                  <Spinner fx:id="contactCourse" layoutX="293.0" layoutY="299.0" prefHeight="25.0" prefWidth="380.0" />
+                  <Spinner fx:id="contactTitle" layoutX="290.0" layoutY="384.0" prefHeight="25.0" prefWidth="225.0" />
+                  <Label layoutX="253.0" layoutY="-3.0" text="Ny Kontakt">
+                     <font>
+                        <Font size="54.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="459.0" layoutY="473.0" mnemonicParsing="false" onAction="#creacteContact" prefHeight="50.0" prefWidth="200.0" text="Skapa kurs">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Button layoutX="79.0" layoutY="52.0" mnemonicParsing="false" onAction="#openNewContactPage" prefHeight="60.0" prefWidth="250.0" text="Lägg till kontakt" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="316.0" layoutY="35.0" mnemonicParsing="false" onAction="#deleteContact" prefHeight="60.0" prefWidth="250.0" text="Ta bort kontakt" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
