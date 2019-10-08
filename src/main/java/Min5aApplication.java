@@ -34,10 +34,9 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
     mainPageCtrl.setTimerPage(
-            fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot()
-    );
+        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
 
-      mainPageCtrl.init();
+    mainPageCtrl.init();
 
     Scene scene = new Scene(root, 1200, 700);
     stage.setTitle("Min5a");

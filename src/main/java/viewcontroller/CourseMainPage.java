@@ -46,9 +46,10 @@ public class CourseMainPage implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     populateToDoListView();
-    this.courseStartTimerButton.setOnAction(e -> {
-      startTimer();
-    });
+    this.courseStartTimerButton.setOnAction(
+        e -> {
+          startTimer();
+        });
   }
 
   // Methods
