@@ -57,7 +57,9 @@ public class Timer implements Initializable {
 
   @Subscribe
   public void onStudyTimerTick(final TimerTickEvent event) {
-    Platform.runLater(() -> this.timeLabel.setText(event.getElapsedSeconds().toString()));
+    Platform.runLater(() -> this.timeLabel.setText(
+        String.format("%02d:%02d", (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))
+    ));
   }
 
   @Override

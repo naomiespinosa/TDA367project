@@ -16,7 +16,7 @@
       <Label fx:id="startPauseLabel" />
     </graphic>
   </Button>
-  <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="97.0" prefHeight="133.0" prefWidth="374.0" styleClass="timer" textAlignment="CENTER">
+  <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="97.0" prefHeight="133.0" prefWidth="374.0" styleClass="timer" text="00:00" textAlignment="CENTER">
     <font>
       <Font size="96.0" />
     </font>
