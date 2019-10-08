@@ -72,7 +72,7 @@ public class StatisticsPage implements Initializable {
   private Text totalStudyMinute;
 
   @FXML
-  private ListView<String> activeCoursesListView;
+  private ListView<String> activeCoursesListView ;
 
   @FXML
   private ListView<String> finishedCoursesListView;
@@ -107,11 +107,11 @@ public class StatisticsPage implements Initializable {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
 
-    items1.add("TDA552");
-   activeCoursesListView.setItems(items1);
+    items1.add("Tda445");
+    activeCoursesListView.setItems(items1);
 
-
-   // finishedCoursesListView.setItems(items2);
+    items2.add("Finished Course");
+    finishedCoursesListView.setItems(items2);
   }
 
   @FXML
