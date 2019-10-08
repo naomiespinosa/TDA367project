@@ -2,8 +2,8 @@ package viewcontroller;
 
 import org.junit.jupiter.api.Test;
 
-public class CourseSelectionPageTest {
+class CourseSelectionPageTest {
 
   @Test
-  public void sortingLists() {}
+  private void testAddingCourses() {}
 }

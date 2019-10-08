@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.timer.TimerManager;
@@ -57,9 +56,12 @@ public class Timer implements Initializable {
 
   @Subscribe
   public void onStudyTimerTick(final TimerTickEvent event) {
-    Platform.runLater(() -> this.timeLabel.setText(
-        String.format("%02d:%02d", (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))
-    ));
+    Platform.runLater(
+        () ->
+            this.timeLabel.setText(
+                String.format(
+                    "%02d:%02d",
+                    (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
   }
 
   @Override
