@@ -21,7 +21,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ListView fx:id="deadlineListView" prefHeight="308.0" prefWidth="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="momentListView" prefHeight="308.0" prefWidth="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>
@@ -33,7 +33,7 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Label>
-      <Label layoutX="389.0" layoutY="129.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Deadlines" AnchorPane.topAnchor="129.0">
+      <Label layoutX="389.0" layoutY="129.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Moment" AnchorPane.topAnchor="129.0">
          <font>
             <Font size="5.0" />
          </font></Label>
@@ -43,25 +43,25 @@
             <Font size="8.0" />
          </font>
       </TextArea>
-      <Button fx:id="addDeadlineButton" layoutX="401.0" layoutY="660.0" mnemonicParsing="false" onAction="#addDeadline" prefHeight="26.0" prefWidth="40.0" text="+" AnchorPane.bottomAnchor="14.0" />
-      <TextArea fx:id="deadlineTextArea" layoutX="525.0" layoutY="627.0" prefHeight="48.0" prefWidth="238.0" promptText="Välje ett datum och skriv i textfältet för att lägga till en deadline..." AnchorPane.bottomAnchor="25.0">
+      <Button fx:id="addMomentButton" layoutX="401.0" layoutY="660.0" mnemonicParsing="false" onAction="#addMoment" prefHeight="26.0" prefWidth="40.0" text="+" AnchorPane.bottomAnchor="14.0" />
+      <TextArea fx:id="momentTextArea" layoutX="525.0" layoutY="627.0" prefHeight="48.0" prefWidth="238.0" promptText="Välje ett datum och skriv i textfältet för att lägga till en deadline..." AnchorPane.bottomAnchor="25.0">
          <font>
             <Font size="8.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="courseTimer" editable="false" layoutX="773.0" layoutY="63.0" prefHeight="121.0" prefWidth="287.0" AnchorPane.rightAnchor="43.0" />
-      <Button fx:id="courseStartTimerButton" layoutX="896.0" layoutY="189.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Starta" AnchorPane.rightAnchor="158.0" />
+      <TextArea fx:id="courseTimer" editable="false" layoutX="778.0" layoutY="85.0" prefHeight="121.0" prefWidth="287.0" AnchorPane.rightAnchor="14.799999999999955" />
+      <Button fx:id="courseStartTimerButton" layoutX="892.0" layoutY="219.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Starta" AnchorPane.rightAnchor="130.79999999999995" />
       <ListView fx:id="activityList" layoutX="805.0" layoutY="313.0" prefHeight="332.0" prefWidth="352.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="805.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="313.0" />
-      <Label layoutX="818.0" layoutY="270.0" prefHeight="35.0" prefWidth="238.0" styleClass="sub-header" text="Senaste Aktivitet">
+      <Label layoutX="806.0" layoutY="277.0" prefHeight="35.0" prefWidth="238.0" styleClass="sub-header" text="Senaste Aktivitet">
          <font>
             <Font size="5.0" />
          </font>
       </Label>
       <Button fx:id="removeToDoButton" layoutX="7.0" layoutY="660.0" mnemonicParsing="false" onAction="#removeToDo" prefHeight="26.0" prefWidth="28.0" text="-" />
-      <Label fx:id="courseName" layoutX="48.0" layoutY="12.0" prefHeight="53.0" prefWidth="1063.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" />
+      <Label fx:id="courseName" layoutX="16.0" layoutY="14.0" prefHeight="53.0" prefWidth="1063.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" />
       <Label fx:id="yearLabel" layoutX="21.0" layoutY="95.0" style="-fx-font-size: 16;" text="Läsår:" />
       <Label fx:id="studyPeriodLabel" layoutX="329.0" layoutY="95.0" style="-fx-font-size: 16;" text="Läsperiod:" />
-      <Button fx:id="removeMomentButton" layoutX="471.0" layoutY="660.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="40.0" text="-" AnchorPane.bottomAnchor="14.0" />
-      <DatePicker fx:id="deadlineDatePicker" layoutX="389.0" layoutY="615.0" prefHeight="35.0" prefWidth="132.0" />
+      <Button fx:id="removeMomentButton" layoutX="471.0" layoutY="660.0" mnemonicParsing="false" onAction="#removeMoment" prefHeight="26.0" prefWidth="40.0" text="-" AnchorPane.bottomAnchor="14.0" />
+      <DatePicker fx:id="momentDatePicker" layoutX="389.0" layoutY="615.0" prefHeight="35.0" prefWidth="132.0" />
    </children>
 </AnchorPane>

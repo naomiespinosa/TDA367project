@@ -45,11 +45,11 @@ public class CourseMainPage implements Initializable {
   @FXML private TextArea toDoTextArea;
 
   // Deadline
-  @FXML private ListView deadlineListView =  new ListView<>();
-  @FXML private Button addDeadlineButton;
-  @FXML private TextArea deadlineTextArea;
-  @FXML private Button removeDeadlineButton;
-  @FXML private DatePicker deadlineDatePicker;
+  @FXML private ListView<Moment> momentListView =  new ListView<>();
+  @FXML private Button addMomentButton;
+  @FXML private TextArea momentTextArea;
+  @FXML private Button removeMomentButton;
+  @FXML private DatePicker momentDatePicker;
 
   // Activity
   @FXML private ListView activityList;
@@ -61,7 +61,7 @@ public class CourseMainPage implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     populateListViews();
-    deadlineDatePicker.setValue(LocalDate.now());
+    momentDatePicker.setValue(LocalDate.now());
   }
 
   // Methods
@@ -76,12 +76,11 @@ public class CourseMainPage implements Initializable {
       ToDo todo1 = new ToDo(toDoTextArea.getText());
       toDos.add(todo1);
       course.newTodo(todo1.toString());
-      //toDoListView.setItems(toDos);
       toDoTextArea.setText(null);
     }
   }
 
-  // Removes selected item in Listview and moves the selection up one step in the list
+  // Removes selected To-Do item in Listview and the courses To-Do list. Moves the selection up one step in the list
   @FXML
   private void removeToDo(Event e) {
     final int selectedIdx = toDoListView.getSelectionModel().getSelectedIndex();
@@ -99,30 +98,48 @@ public class CourseMainPage implements Initializable {
 
   // Moment methods
 
+  // Adds a Moment to the DeadlineListView as well as to the courses Moment list
   @FXML
-  private void addDeadline(Event event) {
-    if (deadlineTextArea.getText() != null && deadlineDatePicker.getValue() != null) {
-      Moment moment = new Moment(deadlineTextArea.getText(), deadlineDatePicker.getValue());
+  private void addMoment(Event event) {
+    if (momentTextArea.getText() != null && momentDatePicker.getValue() != null) {
+      Moment moment = new Moment(momentTextArea.getText(), momentDatePicker.getValue());
       moments.add(moment);
-      course.newMoment(moment.toString(), deadlineDatePicker.getValue());
-      deadlineTextArea.setText(null);
-
+      course.newMoment(moment.toString(), momentDatePicker.getValue());
+      momentTextArea.setText(null);
+      momentDatePicker.setValue(LocalDate.now());
     }
-
   }
 
+  // Removes selected Moment item in Listview and the courses Moment list. Moves the selection up one step in the list
+  @FXML
+  private void removeMoment() {
+    final int selectedIdx = momentListView.getSelectionModel().getSelectedIndex();
+    if (selectedIdx != -1) {
+      Moment itemToRemove = momentListView.getSelectionModel().getSelectedItem();
 
+      final int newSelectedIdx =
+              (selectedIdx == momentListView.getItems().size() - 1) ? selectedIdx -1 : selectedIdx;
+
+      momentListView.getItems().remove(selectedIdx);
+      course.deleteMoment(selectedIdx);
+      momentListView.getSelectionModel().select(newSelectedIdx);
+    }
+  }
+
+  // Populates the ListViews on the page with the correct items.
   private void populateListViews(){
     toDoListView.setItems(toDos);
-    deadlineListView.setItems(moments);
+    momentListView.setItems(moments);
   }
 
+  // Populates the page with the correct course informatin
   void init(Course course) {
     this.course = course;
     this.courseName.setText(course.getName() + " " + course.getCourseCode());
     this.yearLabel.setText("Läsår:" + " " + course.getYear());
     this.studyPeriodLabel.setText("Läsperiod: " + " " + course.getStudyPeriod());
     this.toDos.addAll(course.getToDoList());
+    this.moments.addAll(course.getMomentItems());
   }
 
 }
