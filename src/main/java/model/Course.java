@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
@@ -16,6 +17,9 @@ public class Course {
   private int studyPeriod;
   private boolean isActive;
   private Image image = null;
+  private String grade;
+
+  private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
 
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
@@ -26,12 +30,16 @@ public class Course {
   }
 
   // TODO - This method is used to end a course and keep the information
-  public void endCourse() {
-    this.isActive = false;
+  public void endCourse(String grade) {
+    if (grade != null) {
+      setGrade(grade);
+      this.isActive = false;
+    }
   }
 
   public void reactivateCourse() {
     this.isActive = true;
+    this.grade = null;
   }
 
   // TODO - This method deletes the course and eventually deletes the information? or stores it
@@ -106,7 +114,7 @@ public class Course {
     this.courseCode = courseCode;
   }
 
-  private int getYear() {
+  public int getYear() {
     return year;
   }
 
@@ -114,7 +122,7 @@ public class Course {
     this.year = year;
   }
 
-  private int getStudyPeriod() {
+  public int getStudyPeriod() {
     return studyPeriod;
   }
 
@@ -124,5 +132,19 @@ public class Course {
 
   public boolean isActive() {
     return isActive;
+  }
+
+  private void setGrade(String grade) {
+    if (acceptedGrades.contains(grade)) {
+      this.grade = grade;
+    }
+  }
+
+  public String getGrade() {
+    return grade;
+  }
+
+  public static List getAcceptedGrades() {
+    return acceptedGrades;
   }
 }

@@ -3,9 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
@@ -17,42 +17,6 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1080.0" stylesheets="@../min5a.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.CourseMainPage">
    <children>
-      <AnchorPane fx:id="courseEditPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane onMouseClicked="#closeTabMouse" opacity="0.75" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane prefHeight="500.0" prefWidth="880.0" styleClass="panel-background3" stylesheets="@../min5a.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0">
-               <children>
-                  <Text layoutX="313.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redigera kurs">
-                     <font>
-                        <Font size="50.0" />
-                     </font>
-                  </Text>
-                  <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="72.0" prefHeight="51.0" prefWidth="210.0" style="-fx-font-size: 35;" text="Kursnamn:">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="122.0" layoutY="128.0" prefHeight="51.0" prefWidth="140.0" style="-fx-font-size: 35;" text="Kurskod" />
-                  <Label alignment="CENTER_RIGHT" layoutX="103.0" layoutY="187.0" prefHeight="51.0" prefWidth="159.0" style="-fx-font-size: 35;" text="Läsperiod" />
-                  <Label alignment="CENTER_RIGHT" layoutX="140.0" layoutY="244.0" prefHeight="51.0" prefWidth="118.0" style="-fx-font-size: 35;" text="Läsår" />
-                  <TextField fx:id="courseNameTextArea" layoutX="276.0" layoutY="87.0" prefHeight="25.0" prefWidth="468.0" />
-                  <TextField fx:id="courseCodeTextArea" layoutX="277.0" layoutY="141.0" prefHeight="25.0" prefWidth="176.0" />
-                  <RadioButton fx:id="period1RadioButton" layoutX="311.0" layoutY="204.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="1" />
-                  <RadioButton fx:id="period2RadioButton" layoutX="380.0" layoutY="204.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="2" />
-                  <RadioButton fx:id="period3RadioButton" layoutX="446.0" layoutY="203.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="3" />
-                  <RadioButton fx:id="period4RadioButton" layoutX="514.0" layoutY="203.0" mnemonicParsing="false" style="-fx-font-size: 15;" text="4" />
-                  <Spinner fx:id="yearSpinner" layoutX="272.0" layoutY="257.0" />
-                  <Button layoutX="620.0" layoutY="427.0" mnemonicParsing="false" onAction="#changeCourse" prefHeight="25.0" prefWidth="195.0" text="Spara ändringar" />
-                  <Button layoutX="806.0" layoutY="16.0" mnemonicParsing="false" onAction="#closeTabButton" prefHeight="19.0" prefWidth="52.0" style="-fx-font-size: 20;">
-                     <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </Button>
-                  <Button layoutX="272.0" layoutY="318.0" mnemonicParsing="false" onAction="#toDeleteCourse" prefHeight="35.0" prefWidth="225.0" text="Radera kurs" />
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="deleteCoursePane" prefHeight="500.0" prefWidth="880.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0">
          <children>
             <Label fx:id="deleteCourseText" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="24.0" layoutY="28.0" prefHeight="150.0" prefWidth="840.0" style="-fx-font-size: 50;" text="Är du säker på att du vill radera kursen mmm333" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
@@ -110,9 +74,10 @@
                </font>
             </Label>
             <Button fx:id="removeToDoButton" mnemonicParsing="false" onAction="#removeToDo" prefHeight="26.0" prefWidth="28.0" text="-" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="660.0" />
-            <Label fx:id="courseName" prefHeight="53.0" prefWidth="1063.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="12.0" />
+            <Label fx:id="courseName" layoutX="69.0" prefHeight="54.0" prefWidth="1042.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="12.0" />
             <Button fx:id="toChangeStatusPageButton" mnemonicParsing="false" onAction="#toChangeStatusPage" prefHeight="35.0" prefWidth="150.0" text="Avsluta kurs" AnchorPane.leftAnchor="930.0" AnchorPane.topAnchor="15.0" />
             <Button mnemonicParsing="false" onAction="#editCourseTab" prefHeight="35.0" prefWidth="150.0" text="Redigera Kurs" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="15.0" />
+            <Label fx:id="gradeLabel" layoutX="13.0" layoutY="18.0" prefHeight="41.0" prefWidth="43.0" style="-fx-font-size: 40;" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="completeCoursePane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -132,10 +97,43 @@
                      </graphic>
                   </Button>
                   <Label layoutX="399.0" layoutY="192.0" prefHeight="106.0" prefWidth="840.0" style="-fx-font-size: 30;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-                  <Spinner fx:id="gradeSpinner" layoutX="462.0" layoutY="115.0" prefHeight="26.0" prefWidth="66.0" />
                   <CheckBox fx:id="termCheckBox" alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="168.0" mnemonicParsing="false" onAction="#termsAccepted" style="-fx-font-size: 20;" text="Jag vill härmed avsluta kursen TTT555" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="170.0" />
                   <Button layoutX="63.0" layoutY="440.0" mnemonicParsing="false" onAction="#cancelChangeStatus" text="Avbryt" />
                   <Label fx:id="gradeText" layoutX="323.0" layoutY="113.0" style="-fx-font-size: 20;" text="Betyg i kursen" />
+                  <ComboBox fx:id="gradeComboBox" layoutX="456.0" layoutY="115.0" prefWidth="150.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="courseEditPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane onMouseClicked="#closeTabMouse" opacity="0.75" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane prefHeight="500.0" prefWidth="880.0" styleClass="panel-background3" stylesheets="@../min5a.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <Text layoutX="313.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redigera kurs">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Text>
+                  <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="72.0" prefHeight="51.0" prefWidth="210.0" style="-fx-font-size: 35;" text="Kursnamn:">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="122.0" layoutY="128.0" prefHeight="51.0" prefWidth="140.0" style="-fx-font-size: 35;" text="Kurskod" />
+                  <Label alignment="CENTER_RIGHT" layoutX="103.0" layoutY="187.0" prefHeight="51.0" prefWidth="159.0" style="-fx-font-size: 35;" text="Läsperiod" />
+                  <Label alignment="CENTER_RIGHT" layoutX="140.0" layoutY="244.0" prefHeight="51.0" prefWidth="118.0" style="-fx-font-size: 35;" text="Läsår" />
+                  <TextField fx:id="courseNameTextArea" layoutX="276.0" layoutY="87.0" prefHeight="25.0" prefWidth="468.0" />
+                  <TextField fx:id="courseCodeTextArea" layoutX="277.0" layoutY="141.0" prefHeight="25.0" prefWidth="176.0" />
+                  <Spinner fx:id="yearSpinner" layoutX="278.0" layoutY="257.0" />
+                  <Button layoutX="620.0" layoutY="427.0" mnemonicParsing="false" onAction="#changeCourse" prefHeight="25.0" prefWidth="195.0" text="Spara ändringar" />
+                  <Button layoutX="806.0" layoutY="16.0" mnemonicParsing="false" onAction="#closeTabButton" prefHeight="19.0" prefWidth="52.0" style="-fx-font-size: 20;">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="272.0" layoutY="318.0" mnemonicParsing="false" onAction="#toDeleteCourse" prefHeight="35.0" prefWidth="225.0" text="Radera kurs" />
+                  <ComboBox fx:id="periodComboBox" layoutX="277.0" layoutY="200.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
          </children>

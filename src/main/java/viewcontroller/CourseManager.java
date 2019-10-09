@@ -56,8 +56,8 @@ abstract class CourseManager {
   }
 
   // Status // TODO grade
-  static void completeCourse(Course course) {
-    course.endCourse();
+  static void completeCourse(Course course, String grade) {
+    course.endCourse(grade);
     notifyAllObservers();
   }
 

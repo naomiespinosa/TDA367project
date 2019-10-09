@@ -87,14 +87,20 @@ public class CourseSelectionPage extends Observer implements Initializable {
   }
 
   void addCourse() {
-    CourseManager.createNewCourse(
-        courseNameTextArea.getText(),
-        courseCodeTextArea.getText(),
-        (int) yearSpinner.getValue(),
-        getPeriod());
+    if(!isNewCourseApproved()) { //Check so all fields are filled in
+      CourseManager.createNewCourse(
+              courseNameTextArea.getText(),
+              courseCodeTextArea.getText(),
+              (int) yearSpinner.getValue(),
+              getPeriod());
 
-    clearCourseInput();
-    resetPage();
+      clearCourseInput();
+      resetPage();
+    }
+  }
+  private boolean isNewCourseApproved() {
+    return courseNameTextArea.getText().trim().isEmpty() || courseCodeTextArea.getText().trim().isEmpty();
+
   }
 
   @FXML

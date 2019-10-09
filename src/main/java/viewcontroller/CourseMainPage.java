@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -25,10 +26,11 @@ public class CourseMainPage implements Initializable {
   private Course course;
 
   @FXML private Label courseName;
+  @FXML private Label gradeLabel;
 
   // Status
   @FXML private Button toChangeStatusPageButton;
-  @FXML private Spinner gradeSpinner;
+  @FXML private ComboBox gradeComboBox;
   @FXML private Label gradeText;
   @FXML private CheckBox termCheckBox;
   @FXML private Button changeStatusButton;
@@ -54,10 +56,7 @@ public class CourseMainPage implements Initializable {
   // Edit Course
   @FXML private TextField courseNameTextArea;
   @FXML private TextField courseCodeTextArea;
-  @FXML private RadioButton period1RadioButton;
-  @FXML private RadioButton period2RadioButton;
-  @FXML private RadioButton period3RadioButton;
-  @FXML private RadioButton period4RadioButton;
+  @FXML private ComboBox periodComboBox;
   @FXML private Spinner yearSpinner;
 
   // Delete Course
@@ -74,6 +73,7 @@ public class CourseMainPage implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     populateToDoListView();
+    gradeComboBox.getItems().addAll(Course.getAcceptedGrades());
     this.courseStartTimerButton.setOnAction(
         e -> {
           startTimer();
@@ -99,23 +99,41 @@ public class CourseMainPage implements Initializable {
   private void updateCourseInfo() {
     this.courseName.setText(course.getName());
     changeStatusButton.setDisable(true);
+    initStatusPane();
+    initEditPane();
+  }
 
+  private void initEditPane() {
+    periodComboBox.getItems().clear();
+
+    periodComboBox.getItems().addAll(1, 2, 3, 4);
+
+    SpinnerValueFactory<Integer> valueFactory =
+        new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, course.getYear(), 1);
+    yearSpinner.setValueFactory(valueFactory);
+
+    resetEditPane();
+  }
+
+  private void initStatusPane() {
     if (course.isActive()) {
       toChangeStatusPageButton.setText("Avsluta Kurs");
       changeStatusButton.setText("Avsluta Kurs");
-      gradeSpinner.setVisible(true);
+      gradeComboBox.setVisible(true);
+      gradeComboBox.getSelectionModel().select("3");
       gradeText.setVisible(true);
       termCheckBox.setText("Jag är säker på att jag vill avsluta kursen " + course.getName());
+      gradeLabel.setText(null);
 
     } else {
       toChangeStatusPageButton.setText("Starta Kurs");
       changeStatusButton.setText("Starta Kurs");
-      gradeSpinner.setVisible(false);
+      gradeComboBox.setVisible(false);
       gradeText.setVisible(false);
       termCheckBox.setText("Jag är säker på att jag vill återstarta kursen " + course.getName());
+      gradeLabel.setText(course.getGrade());
     }
   }
-
   // Methods
 
   // TODO Here the course.getToDolist should be inputed instead of the random todos
@@ -161,6 +179,9 @@ public class CourseMainPage implements Initializable {
   private void resetEditPane() {
     courseNameTextArea.setText(course.getName());
     courseCodeTextArea.setText(course.getCourseCode());
+
+    periodComboBox.getSelectionModel().select((Object) course.getStudyPeriod());
+    yearSpinner.getValueFactory().setValue(course.getYear());
   }
 
   @FXML
@@ -175,13 +196,25 @@ public class CourseMainPage implements Initializable {
     resetEditPane();
   }
 
-  @FXML // TODO be able to edit Period and Year
+  @FXML
   void changeCourse(ActionEvent event) {
-    CourseManager.changeName(course, courseNameTextArea.getText());
-    CourseManager.changeCode(course, courseCodeTextArea.getText());
+    if (!isEditApproved()) {
+      CourseManager.changeName(course, courseNameTextArea.getText());
+      CourseManager.changeCode(course, courseCodeTextArea.getText());
+      CourseManager.changeYear(course, (int) yearSpinner.getValue());
+      CourseManager.changePeriod(
+          course, (int) periodComboBox.getSelectionModel().getSelectedItem());
 
-    updateCourseInfo();
-    resetPanes();
+      updateCourseInfo();
+      resetPanes();
+    }else{
+
+    }
+  }
+
+  private boolean isEditApproved() {
+    return courseNameTextArea.getText().trim().isEmpty()
+            || courseCodeTextArea.getText().trim().isEmpty();
   }
 
   // Delete Course
@@ -227,7 +260,8 @@ public class CourseMainPage implements Initializable {
   @FXML
   void changeStatus() {
     if (course.isActive()) {
-      CourseManager.completeCourse(course);
+      CourseManager.completeCourse(
+          course, gradeComboBox.getSelectionModel().getSelectedItem().toString());
     } else {
       CourseManager.activateCourse(course);
     }
