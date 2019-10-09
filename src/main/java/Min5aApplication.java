@@ -4,7 +4,6 @@ import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

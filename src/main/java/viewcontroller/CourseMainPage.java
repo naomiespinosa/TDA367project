@@ -207,14 +207,14 @@ public class CourseMainPage implements Initializable {
 
       updateCourseInfo();
       resetPanes();
-    }else{
+    } else {
 
     }
   }
 
   private boolean isEditApproved() {
     return courseNameTextArea.getText().trim().isEmpty()
-            || courseCodeTextArea.getText().trim().isEmpty();
+        || courseCodeTextArea.getText().trim().isEmpty();
   }
 
   // Delete Course

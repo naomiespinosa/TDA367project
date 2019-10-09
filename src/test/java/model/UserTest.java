@@ -12,7 +12,7 @@ class UserTest {
     user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
     user.addCourse("Programmering", "TDA333", 1, 2);
     user.addCourse("Mattematisk Analys", "TDA333", 1, 2);
-    user.getCourse(2).endCourse();
+    user.getCourse(2).endCourse("4");
     user.addCourse("Kommunikation och ingejörskunskap", "TDA333", 1, 2);
     user.addCourse("Hej", "TDA333", 1, 2);
 
@@ -39,7 +39,7 @@ class UserTest {
     user.clearCourses();
     user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
     user.addCourse("Programmering", "TDA333", 1, 2);
-    user.getCourse(1).endCourse();
+    user.getCourse(1).endCourse("5");
     user.setName("Rolf");
 
     User user2 = User.getInstance();
