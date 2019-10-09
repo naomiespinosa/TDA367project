@@ -4,9 +4,16 @@ public class Contact {
 
     private String name;
     private String email;
-    private int phoneNumber;
-    Course course;
+    private String phoneNumber;
+    private Course course;
     private String titel; //Teacher, student ...
+
+    public Contact(String name, String email, String phoneNumber, String titel) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.titel = titel;
+    }
 
     public String getName() {
         return name;
@@ -16,7 +23,7 @@ public class Contact {
         return email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -32,11 +39,19 @@ public class Contact {
         this.email = email;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     public void setTitel(String titel) {
         this.titel = titel;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

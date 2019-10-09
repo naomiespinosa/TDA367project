@@ -2,6 +2,8 @@ package viewcontroller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Course;
 import model.User;
 
 abstract class CourseManager {
@@ -27,4 +29,9 @@ abstract class CourseManager {
   }
   // Adding Courses
 
+
+  // GetCourses
+  public static List<Course> getCourses(){
+    return user.getCourses();
+  }
 }
