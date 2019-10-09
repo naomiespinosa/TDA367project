@@ -1,9 +1,13 @@
 package viewcontroller;
 
 import java.io.IOException;
+
+import com.cathive.fx.guice.GuiceFXMLLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
+
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 public class PageFactory {
   public static AnchorPane createHomePage(MainPage parent) throws IOException {
@@ -54,5 +58,9 @@ public class PageFactory {
     ctr.setParent(mainPage);
 
     return root;
+  }
+
+  public static AnchorPane createTimerPage(GuiceFXMLLoader fxmlLoader) throws IOException {
+    return fxmlLoader.load(PageFactory.class.getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot();
   }
 }

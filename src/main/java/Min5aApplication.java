@@ -4,6 +4,7 @@ import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,8 +40,7 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setHomePage(PageFactory.createHomePage(mainPageCtrl));
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
-    mainPageCtrl.setTimerPage(
-        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
+    mainPageCtrl.setTimerPage(PageFactory.createTimerPage(fxmlLoader));
 
     mainPageCtrl.init();
 
