@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Comparator;
+import java.util.Collections;
 
 public class Moment {
   private String name;
@@ -18,19 +20,19 @@ public class Moment {
   public String toString() { return "Den" + " " + this.getDeadline() + ":" + " " + this.getName(); }
 
   // Getters and Setters
-  private LocalDate getDeadline() {
+  public LocalDate getDeadline() {
     return deadline;
   }
 
-  private void setDeadline(LocalDate deadline) { // do we want the user to be able to change the deadline date?
+  public void setDeadline(LocalDate deadline) { // do we want the user to be able to change the deadline date?
     this.deadline = deadline;
   }
 
-  private String getName() {
+  public String getName() {
     return name;
   }
 
-  private void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 

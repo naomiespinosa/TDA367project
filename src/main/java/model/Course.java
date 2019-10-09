@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
@@ -18,7 +19,7 @@ public class Course {
   private boolean isActive;
   private Image image = null;
 
-  Course(String name, String courseCode, int year, int studyPeriod) {
+  public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
     this.year = year;

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.lang.management.MemoryManagerMXBean;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -34,25 +36,29 @@ public class CourseMainPage implements Initializable {
   // Observable list for the courses Moments
   private ObservableList<Moment> moments = FXCollections.observableArrayList();
 
+
+  //Observable list for the courses latest activity
+  private ObservableList activities = FXCollections.observableArrayList();
+
   @FXML private Label courseName;
   @FXML private Label yearLabel;
   @FXML private Label studyPeriodLabel;
 
   // ToDoList
-  @FXML private ListView<ToDo> toDoListView = new ListView<>();
+  @FXML private ListView<ToDo> toDoListView = new ListView<ToDo>();
   @FXML private Button newToDoButton;
   @FXML private Button removeToDoButton;
   @FXML private TextArea toDoTextArea;
 
   // Deadline
-  @FXML private ListView<Moment> momentListView =  new ListView<>();
+  @FXML private ListView<Moment> momentListView =  new ListView<Moment>();
   @FXML private Button addMomentButton;
   @FXML private TextArea momentTextArea;
   @FXML private Button removeMomentButton;
   @FXML private DatePicker momentDatePicker;
 
   // Activity
-  @FXML private ListView activityList;
+  @FXML private ListView activityList =  new ListView();
 
   // Timer in Course
   @FXML private Button courseStartTimerButton;
@@ -126,13 +132,24 @@ public class CourseMainPage implements Initializable {
     }
   }
 
+  /* Sorts the momentListView and the courses
+   * Moment list so that the closest deadline
+   * is shown first
+   */
+  private void sortMoments() {}
+
+  // Latest Activity methods
+
+  // TODO: add logic so when a todo is done or a moment has passed it's
+  // deadline that it moves to the latest acticvity listview
+
   // Populates the ListViews on the page with the correct items.
   private void populateListViews(){
     toDoListView.setItems(toDos);
     momentListView.setItems(moments);
   }
 
-  // Populates the page with the correct course informatin
+  // Populates the page with the correct course information
   void init(Course course) {
     this.course = course;
     this.courseName.setText(course.getName() + " " + course.getCourseCode());
