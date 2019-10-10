@@ -16,119 +16,126 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.StatisticsPage">
    <children>
-      <StackPane layoutX="365.0" layoutY="187.0" prefHeight="219.0" prefWidth="350.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane layoutX="43.0" layoutY="23.6953125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="noGraphPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7B7F93;" />
-            <AnchorPane fx:id="graphPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6D9293;">
+            <StackPane layoutX="322.0" layoutY="163.3046875" prefHeight="219.0" prefWidth="350.0">
                <children>
-                  <BarChart prefHeight="326.0" prefWidth="400.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
+                  <AnchorPane fx:id="noGraphPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7B7F93;" />
+                  <AnchorPane fx:id="graphPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6D9293;">
+                     <children>
+                        <BarChart prefHeight="326.0" prefWidth="400.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
+            </StackPane>
+            <Button fx:id="changeGraphPaneButton" layoutX="451.0" layoutY="503.3046875" mnemonicParsing="false" onAction="#switchListGraphAction" text="Byt till Listvy">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="381.0" layoutY="606.3046875" mnemonicParsing="false" text="Lägg till Studietid för en kurs">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Text layoutX="47.0" layoutY="152.72265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Pågående Kurser">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="36.0" layoutY="417.72265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Avslutade Kurser">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="381.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistik">
+               <font>
+                  <Font name="Century Gothic" size="52.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="64.0" fitWidth="84.0" layoutX="578.0" layoutY="6.3046875" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/statistik.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="-0.58" contrast="0.19" hue="0.93" saturation="0.49" />
+               </effect>
+            </ImageView>
+            <Text layoutX="761.0" layoutY="145.72265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Tid spenderad per betyg">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="754.0" layoutY="411.72265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt antal nedlagda timmar">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="745.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="275.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="745.0" layoutY="425.3046875" stroke="BLACK" strokeType="INSIDE" width="275.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="25.0" layoutY="163.3046875" stroke="BLACK" strokeType="INSIDE" width="275.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="25.0" layoutY="428.3046875" stroke="BLACK" strokeType="INSIDE" width="275.0" />
+            <Text layoutX="754.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="755.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="755.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="755.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="gradeUStudyTime" layoutX="787.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15h 16min">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="grade3StudyTime" layoutX="788.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxx">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="grade4StudyTime" layoutX="788.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxx">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="grade5StudyTime" layoutX="788.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxx">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="totalStudyHour" layoutX="792.0" layoutY="488.140625" strokeType="OUTSIDE" strokeWidth="0.0" text="15 timmar">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <Text fx:id="totalStudyMinute" layoutX="818.0" layoutY="547.3271484375" strokeType="OUTSIDE" strokeWidth="0.0" text="15 minuter">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <ListView fx:id="activeCoursesListView" layoutX="25.0" layoutY="163.0" prefHeight="200.0" prefWidth="275.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+            <ListView fx:id="finishedCoursesListView" layoutX="25.0" layoutY="428.0" prefHeight="200.0" prefWidth="275.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
          </children>
-      </StackPane>
-      <Button fx:id="changeGraphPaneButton" layoutX="494.0" layoutY="527.0" mnemonicParsing="false" onAction="#switchListGraphAction" text="Byt till Listvy">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <Button layoutX="424.0" layoutY="630.0" mnemonicParsing="false" text="Lägg till Studietid för en kurs">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <Text layoutX="90.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pågående Kurser">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="79.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Avslutade Kurser">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="424.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistik">
-         <font>
-            <Font name="Century Gothic" size="52.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="64.0" fitWidth="84.0" layoutX="621.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/statistik.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="-0.58" contrast="0.19" hue="0.93" saturation="0.49" />
-         </effect>
-      </ImageView>
-      <Text layoutX="804.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tid spenderad per betyg">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="797.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt antal nedlagda timmar">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="788.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" width="275.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="788.0" layoutY="449.0" stroke="BLACK" strokeType="INSIDE" width="275.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="43.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" width="275.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff5912" height="200.0" layoutX="43.0" layoutY="452.0" stroke="BLACK" strokeType="INSIDE" width="275.0" />
-      <Text layoutX="804.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="805.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="805.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="805.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="gradeUStudyTime" layoutX="837.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15h 16min">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="grade3StudyTime" layoutX="838.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxx">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="grade4StudyTime" layoutX="838.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxx">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="grade5StudyTime" layoutX="838.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxx">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="totalStudyHour" layoutX="835.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15 timmar">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
-      <Text fx:id="totalStudyMinute" layoutX="874.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15 minuter">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
-      <ListView fx:id="activeCoursesListView" layoutX="47.0" layoutY="187.0" prefHeight="200.0" prefWidth="268.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
-      <ListView fx:id="finishedCoursesListView" layoutX="48.0" layoutY="452.0" prefHeight="200.0" prefWidth="268.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+      </AnchorPane>
    </children>
 </AnchorPane>
