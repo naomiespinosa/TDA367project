@@ -59,8 +59,6 @@ public class StatisticsPage implements Initializable {
     setListOfCourses();
   }
 
-  // This method
-
   @FXML
   void switchListGraphAction(ActionEvent event) {
     if (isGraphShowing) {
@@ -75,12 +73,21 @@ public class StatisticsPage implements Initializable {
   }
 
   void setStudyTimeGradesDisplay() {
-    // gradeUStudyTime.setText();
-    // grade3StudyTime.setText();
-    // grade4StudyTime.setText();
-    // grade5StudyTime.setText();
-    // TODO cannot yet connect because time sensitive information and functionality is not yet
-    // implemented.
+    for (Course course : user.getCourses()) {
+      if (!course.isActive()) {
+        switch (course.getGrade()) {
+          case "U":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+          case "3":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+          case "4":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+          case "5":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+        }
+      }
+    }
+    // TODO Fix so that Word HOUR is adapeted for 1, or several hours.
 
   }
 
@@ -102,8 +109,22 @@ public class StatisticsPage implements Initializable {
     // ---------------------------------------------------
     totalStudyHour.setText(totalHour + " Timmar");
     totalStudyMinute.setText(totalMinute + " Minuter");
-    // TODO access course total time info, the computing should be moved to another class perhaps in
-    // model. Leaving it here for now cus unsure where to put it.
+
+    // TODO Computing in this method will later on be moved to Course and accessed via a method.
+  }
+
+  int getTotalStudyTimeForCourse(Course course) {
+    int totalTimeSecond = 0;
+
+    for (StudySession studySession : course.getStudySessions()) {
+      totalTimeSecond += (int) studySession.getDuration().getSeconds();
+    }
+
+    int totalHour = totalTimeSecond / 3600;
+    return totalHour;
+
+    // TODO adapt for Hour AND minutes, perhaps send back a Pair. This methods computing should also
+    // be done in Course.
   }
 
   // TODO no dependancy
