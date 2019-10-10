@@ -34,13 +34,12 @@ public class PageFactory {
         PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
   }
 
-  static AnchorPane createCoursePanelItem(Course course, MainPage parentController)
-      throws IOException {
+  static AnchorPane createCoursePanelItem(Course course, MainPage parent) throws IOException {
     FXMLLoader coursePanelLoader =
         new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CoursePanelItem.fxml"));
     AnchorPane root = coursePanelLoader.load(); // Loads the FXML
     CoursePanelItem ctr = coursePanelLoader.getController(); // Fetches the Controller for the fxml
-    ctr.init(course, parentController);
+    ctr.init(course, parent);
     return root;
   }
 
