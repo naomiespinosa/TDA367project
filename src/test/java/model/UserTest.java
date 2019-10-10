@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 class UserTest {
   @Test
-  void courseFunctions() {
+  public void courseFunctions() {
     User user = User.getInstance();
     user.clearCourses();
     user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
     user.addCourse("Programmering", "TDA333", 1, 2);
     user.addCourse("Mattematisk Analys", "TDA333", 1, 2);
-    user.getCourse(2).endCourse();
+    user.getCourse(2).endCourse("4");
     user.addCourse("Kommunikation och ingejörskunskap", "TDA333", 1, 2);
     user.addCourse("Hej", "TDA333", 1, 2);
 
@@ -23,7 +23,7 @@ class UserTest {
   }
 
   @Test
-  void setGetFunctions() {
+  public void setGetFunctions() {
     User user = User.getInstance();
 
     user.setUsername("Rolf1337");
@@ -34,12 +34,12 @@ class UserTest {
   }
 
   @Test
-  void testSingleton() {
+  public void testSingleton() {
     User user = User.getInstance();
     user.clearCourses();
     user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
     user.addCourse("Programmering", "TDA333", 1, 2);
-    user.getCourse(1).endCourse();
+    user.getCourse(1).endCourse("5");
     user.setName("Rolf");
 
     User user2 = User.getInstance();

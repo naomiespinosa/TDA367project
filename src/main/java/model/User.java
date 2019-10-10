@@ -12,12 +12,12 @@ public class User {
 
   // TEMPORARY FOR TESTING ONLY
   public void testing() {
-    addCourse("Funktionell Programmering", "TDA333", 1, 2);
-    addCourse("Programmering", "TDA333", 1, 2);
-    addCourse("Mattematisk Analys", "TDA333", 1, 2);
-    getCourse(2).endCourse();
-    addCourse("Kommunikation och ingejörskunskap", "TDA333", 1, 2);
-    addCourse("Hej", "TDA333", 1, 2);
+    addCourse("Funktionell Programmering", "TDA333", 2019, 2);
+    addCourse("Programmering", "TDA333", 2015, 2);
+    addCourse("Mattematisk Analys", "TDA333", 2010, 2);
+    getCourse(2).endCourse("4");
+    addCourse("Kommunikation och ingejörskunskap", "TDA333", 2017, 2);
+    addCourse("Hej", "TDA333", 2020, 2);
   }
 
 
