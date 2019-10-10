@@ -1,7 +1,6 @@
 package viewcontroller;
 
-public abstract class Observer {
-  protected PanelItemManager panelItemManager;
+public interface Observer {
 
-  public abstract void update();
+  void update();
 }
