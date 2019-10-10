@@ -37,21 +37,21 @@ public class FullPageTimer implements Initializable {
   @FXML private Label timeLabel;
 
   public void onTimerButtonClick() {
-    if (this.timerManager.isRunning()) {
-      this.timerManager.cancel();
+    if (timerManager.isRunning()) {
+      timerManager.cancel();
     } else {
-      this.timerManager.start(new Course("asd", "sd", 1, 1));
+      timerManager.start(new Course("asd", "sd", 1, 1));
     }
   }
 
   @Subscribe
   public void onStudyTimerStarted(final StudyTimerStartedEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Stoppa timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Stoppa timer"));
   }
 
   @Subscribe
   public void onStudyTimerCanceled(final StudyTimerCanceledEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Starta timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Starta timer"));
   }
 
   @Subscribe

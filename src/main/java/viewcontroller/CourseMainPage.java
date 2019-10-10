@@ -104,6 +104,7 @@ public class CourseMainPage implements Initializable {
     completeCoursePane.toBack();
   }
 
+  // TODO CourseManager
   private void updateCourseInfo() {
     this.courseName.setText(course.getName() + " " + course.getCourseCode());
     this.yearLabel.setText("Läsår:" + " " + course.getYear());
@@ -152,6 +153,7 @@ public class CourseMainPage implements Initializable {
 
   // Adds a new to-do in the course-specific To-Do list
   // and puts the to-do into the ListView in the CourseMainPage
+  // TODO CourseManager
   @FXML
   private void addToDo(Event e) {
     if (toDoTextArea.getText() != null) {
@@ -162,6 +164,7 @@ public class CourseMainPage implements Initializable {
     }
   }
 
+  // TODO CourseManager
   // Removes selected To-Do item in Listview and the courses To-Do list. Moves the selection up one
   // step in the list
   @FXML
@@ -268,6 +271,7 @@ public class CourseMainPage implements Initializable {
     }
   }
 
+  // TODO CourseManager
   @FXML
   void changeStatus() {
     if (course.isActive()) {
@@ -288,6 +292,7 @@ public class CourseMainPage implements Initializable {
 
   // Moment methods
 
+  // TODO CourseManager
   // Adds a Moment to the DeadlineListView as well as to the courses Moment list
   @FXML
   private void addMoment(Event event) {
@@ -307,6 +312,7 @@ public class CourseMainPage implements Initializable {
     }
   }
 
+  // TODO CourseManager
   // Removes selected Moment item in Listview and the courses Moment list. Moves the selection up
   // one step in the list
   @FXML
@@ -341,6 +347,7 @@ public class CourseMainPage implements Initializable {
     momentListView.setItems(moments);
   }
 
+  // TODO CourseManager
   // Populates the page with the correct course information
   void init(Course course) {
     this.course = course;
