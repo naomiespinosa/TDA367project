@@ -78,12 +78,17 @@ public class StatisticsPage implements Initializable, Observer {
         switch (course.getGrade()) {
           case "U":
             gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
           case "3":
-            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            grade3StudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
           case "4":
-            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            grade4StudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
           case "5":
-            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            grade5StudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
+          default:
         }
       }
     }
