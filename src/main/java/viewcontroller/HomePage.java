@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 
-public class HomePage extends Observer {
+public class HomePage implements Observer {
   private MainPage parent;
 
   @FXML private FlowPane activeCoursesFlowpane;

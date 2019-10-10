@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.User;
 
-public class CourseSelectionPage extends Observer implements Initializable {
+public class CourseSelectionPage implements Initializable, Observer {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private FlowPane inactiveCoursesFlowPane;
