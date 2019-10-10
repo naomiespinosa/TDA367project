@@ -10,7 +10,8 @@ public abstract class UserManger {
     activeUser = user;
     activeUser.testing();
     PanelItemManager.setUser(activeUser);
-      CourseManager.update();
+    CourseManager.setUser(activeUser);
+    CourseManager.update();
   }
 
   public static User getActiveUser() {

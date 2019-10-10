@@ -15,6 +15,10 @@ abstract class CourseManager {
     observers.add(observer);
   }
 
+  static List<Course> getCourses() {
+    return user.getCourses();
+  }
+
   private static void notifyAllObservers() {
     for (Observer observer : observers) {
       observer.update();
@@ -65,7 +69,11 @@ abstract class CourseManager {
     notifyAllObservers();
   }
 
-  static void update(){
+  static void update() {
     notifyAllObservers();
+  }
+
+  public static void setUser(User activeUser) {
+    user = activeUser;
   }
 }

@@ -12,13 +12,7 @@ import model.User;
 
 public abstract class PanelItemManager {
 
-  public static void setUser(User user) {
-    PanelItemManager.user = user;
-  }
-
   private static User user = UserManger.getActiveUser();
-
-
 
   // Method used to display all Courses
   static void showActiveCourses(FlowPane activeCoursesFlowpane, MainPage parent)
@@ -61,5 +55,9 @@ public abstract class PanelItemManager {
     dropShadow.setOffsetX(3);
     dropShadow.setOffsetY(3);
     courseItem.setEffect(dropShadow);
+  }
+
+  public static void setUser(User activeuser) {
+    user = activeuser;
   }
 }
