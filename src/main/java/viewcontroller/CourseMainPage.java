@@ -349,7 +349,7 @@ public class CourseMainPage implements Initializable {
 
   // TODO CourseManager
   // Populates the page with the correct course information
-  void init(Course course) {
+ void init(Course course) {
     this.course = course;
     updateCourseInfo();
     resetPanes();
@@ -357,11 +357,11 @@ public class CourseMainPage implements Initializable {
         "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
   }
   // Setters And Getters
-  void setParent(MainPage parent) {
+   void setParent(MainPage parent) {
     this.parent = parent;
   }
 
-  public void startTimer() {
+  private void startTimer() {
     this.parent.showTimerPage();
   }
 }

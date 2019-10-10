@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -16,8 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.StatisticsPage">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="43.0" layoutY="23.6953125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="startPagePane" layoutX="43.0" layoutY="23.6953125" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <StackPane layoutX="322.0" layoutY="163.3046875" prefHeight="219.0" prefWidth="350.0">
                <children>
@@ -41,7 +41,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="381.0" layoutY="606.3046875" mnemonicParsing="false" text="Lägg till Studietid för en kurs">
+            <Button layoutX="381.0" layoutY="606.3046875" mnemonicParsing="false" onAction="#openAddStudyTimeDialogBox" text="Lägg till Studietid för en kurs">
                <font>
                   <Font size="20.0" />
                </font>
@@ -56,12 +56,12 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="381.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistik">
+            <Text layoutX="381.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistik">
                <font>
                   <Font name="Century Gothic" size="52.0" />
                </font>
             </Text>
-            <ImageView fitHeight="64.0" fitWidth="84.0" layoutX="578.0" layoutY="6.3046875" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="64.0" fitWidth="84.0" layoutX="578.0" layoutY="18.3046875" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/statistik.png" />
                </image>
@@ -135,6 +135,30 @@
             </Text>
             <ListView fx:id="activeCoursesListView" layoutX="25.0" layoutY="163.0" prefHeight="200.0" prefWidth="275.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
             <ListView fx:id="finishedCoursesListView" layoutX="25.0" layoutY="428.0" prefHeight="200.0" prefWidth="275.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addStudyTimePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.8);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="217.0" layoutX="396.0" layoutY="216.0" stroke="#797878" strokeType="INSIDE" width="350.0" />
+            <Text layoutX="453.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lägg till tid för kurs" wrappingWidth="235.20587158203125">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="chooseCourseComboBox" layoutX="445.0" layoutY="280.0" prefHeight="26.0" prefWidth="165.0" promptText="Välj en kurs" />
+            <Text fill="#747171" layoutX="445.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj en kursen du har studerat till">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <Button fx:id="saveStudyTimeButton" layoutX="683.0" layoutY="394.0" mnemonicParsing="false" text="Spara" />
+            <ComboBox fx:id="chooseHoursComboBox" layoutX="445.0" layoutY="351.0" prefHeight="26.0" prefWidth="38.0" />
+            <Text layoutX="504.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="timmar" wrappingWidth="46.40000000000009" />
+            <ComboBox fx:id="chooseMinutesComboBox" layoutX="583.0" layoutY="351.0" prefHeight="26.0" prefWidth="38.0" />
+            <Text layoutX="641.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="minuter" />
+            <Text layoutX="440.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jag har pluggat i..." wrappingWidth="137.60000000000002" />
+            <Text layoutX="553.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="och" />
+            <Button layoutX="413.0" layoutY="395.0" mnemonicParsing="false" onAction="#cancelAddStudyTime" prefHeight="26.0" prefWidth="58.0" text="Avbryt" />
          </children>
       </AnchorPane>
    </children>
