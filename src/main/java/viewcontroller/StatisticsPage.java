@@ -55,8 +55,8 @@ public class StatisticsPage implements Initializable, Observer {
 
   private boolean isGraphShowing = true;
 
-  private ObservableList<String> items1 = FXCollections.observableArrayList();
-  private ObservableList<String> items2 = FXCollections.observableArrayList();
+  private ObservableList<String> activeCourses = FXCollections.observableArrayList();
+  private ObservableList<String> inactiveCourses = FXCollections.observableArrayList();
 
   ArrayList<Course> activeCourseList;
   ArrayList<Course> finishedCourseList;
@@ -67,12 +67,14 @@ public class StatisticsPage implements Initializable, Observer {
     setTotalStudyTimeDisplay();
     setListOfCourses();
     CourseManager.attach(this);
+    addStudyTimePane.toBack();
+    startPagePane.toFront();
   }
 
   // TODO add functionality for add studyTime dialog
 
   @FXML
-  void switchListGraphAction(ActionEvent event) {
+  private void switchListGraphAction(ActionEvent event) {
     if (isGraphShowing) {
       noGraphPane.toFront();
       changeGraphPaneButton.setText("Byt till stapeldiagram");
@@ -96,7 +98,7 @@ public class StatisticsPage implements Initializable, Observer {
     startPagePane.toFront();
   }
 
-  void setStudyTimeGradesDisplay() {
+  private void setStudyTimeGradesDisplay() {
     for (Course course : CourseManager.getCourses()) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
@@ -123,7 +125,11 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO Computing in this method will later on be moved to Course and accessed via a method.
   // TODO no dependancy
 
-  void setTotalStudyTimeDisplay() {
+
+ 
+
+  private void setTotalStudyTimeDisplay() {
+
     List<Course> courseList = CourseManager.getCourses();
     int totalTimeSecond = 0;
 
@@ -143,7 +149,7 @@ public class StatisticsPage implements Initializable, Observer {
     // TODO Computing in this method will later on be moved to Course and accessed via a method.
   }
 
-  int getTotalStudyTimeForCourse(Course course) {
+  private int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
     for (StudySession studySession : course.getStudySessions()) {
@@ -157,21 +163,21 @@ public class StatisticsPage implements Initializable, Observer {
     // be done in Course.
   }
 
-  void setListOfCourses() {
+  private void setListOfCourses() {
     List<Course> courseList = CourseManager.getCourses();
 
-    items1.clear();
-    items2.clear();
+    activeCourses.clear();
+    inactiveCourses.clear();
 
     for (Course course : courseList) {
       if (course.isActive()) {
-        items1.add(course.getName());
+        activeCourses.add(course.getName());
       } else {
-        items2.add(course.getName());
+        inactiveCourses.add(course.getName());
       }
     }
-    activeCoursesListView.setItems(items1);
-    finishedCoursesListView.setItems(items2);
+    activeCoursesListView.setItems(activeCourses);
+    finishedCoursesListView.setItems(inactiveCourses);
   }
 
   @Override

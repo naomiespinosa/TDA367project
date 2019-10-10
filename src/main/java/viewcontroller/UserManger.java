@@ -17,4 +17,6 @@ public abstract class UserManger {
   public static User getActiveUser() {
     return activeUser;
   }
+
+  // TODO more functions
 }

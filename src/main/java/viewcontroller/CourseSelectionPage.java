@@ -62,27 +62,27 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   // Add course functionality
   @FXML
-  void addCourse(ActionEvent event) {
+  private void addCourse(ActionEvent event) {
     main.toBack();
     addCoursePane.toFront();
   }
 
   @FXML
-  void closeTabButton(ActionEvent event) {
+  private void closeTabButton(ActionEvent event) {
     resetPage();
   }
 
   @FXML
-  void closeTabMouse(MouseEvent event) {
+  private void closeTabMouse(MouseEvent event) {
     resetPage();
   }
 
   @FXML
-  void createNewCourse(ActionEvent event) {
+  private void createNewCourse(ActionEvent event) {
     addCourse();
   }
 
-  void addCourse() {
+  private void addCourse() {
     if (!isNewCourseApproved()) { // Check so all fields are filled in
       CourseManager.createNewCourse(
           courseNameTextArea.getText(),
@@ -101,7 +101,7 @@ public class CourseSelectionPage implements Initializable, Observer {
   }
 
   @FXML
-  void deleteInputs(ActionEvent event) {
+  private void deleteInputs(ActionEvent event) {
     clearCourseInput();
   }
 
@@ -149,14 +149,6 @@ public class CourseSelectionPage implements Initializable, Observer {
   // Setters And Getters
   void setParent(MainPage parent) {
     this.parent = parent;
-  }
-
-  public void setCourseNameTextArea(String name) {
-    this.courseNameTextArea.setText(name);
-  }
-
-  public void setCourseCodeTextArea(String code) {
-    this.courseCodeTextArea.setText(code);
   }
 
   @Override
