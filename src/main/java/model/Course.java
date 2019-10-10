@@ -49,11 +49,14 @@ public class Course {
 
   // StudySession
 
-  private void newStudySession() {}
+  public void newStudySession(Date start, Date stop) {
+    StudySession studySession = new StudySession(start, stop, this);
+    studySessions.add(studySession);
+  }
 
   private void deleteStudySession(int index) {}
 
-  private List<StudySession> getStudySessions() {
+  public List<StudySession> getStudySessions() {
     return studySessions;
   }
 

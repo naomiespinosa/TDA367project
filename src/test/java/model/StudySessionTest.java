@@ -32,11 +32,22 @@ public class StudySessionTest {
   }
 
   @Test
-  public void testStopDateIsSet() {
+  public void testStopDateIsSet2() {
     final Course course = mock(Course.class);
     final Date stopDate = new Date(2000, 1, 1, 0, 0, 0);
     StudySession studySession = new StudySession(new Date(2000, 1, 1, 0, 1, 0), stopDate, course);
 
     assertSame(stopDate, studySession.getStop());
+  }
+
+  @Test
+  public void testCourseIsSet() {
+    final Course course = mock(Course.class);
+    final Date stopDate = new Date(2000, 1, 1, 0, 0, 0);
+    StudySession studySession = new StudySession(new Date(2000, 1, 1, 0, 1, 0), stopDate, course);
+
+    Course testCourse = studySession.getCourse();
+
+    assertEquals(testCourse, course);
   }
 }

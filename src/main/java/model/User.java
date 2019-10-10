@@ -1,12 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class User {
   private String username;
   private String name;
-  private List<Course> courses = new ArrayList<>();
+  private ArrayList<Course> courses = new ArrayList<>();
   private static User instance = null;
 
   // TEMPORARY FOR TESTING ONLY
@@ -28,14 +28,16 @@ public class User {
 
   // Used to add a new course
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
-    courses.add(new Course(name, courseCode, year, studyPeriod));
+    Course course = new Course(name, courseCode, year, studyPeriod);
+    course.newStudySession(new Date(2019, 10, 8, 16, 0), new Date(2019, 10, 8, 17, 25));
+    courses.add(course);
   }
 
   public Course getCourse(int index) {
     return courses.get(index);
   }
 
-  public List<Course> getCourses() {
+  public ArrayList<Course> getCourses() {
     return courses;
   }
 
