@@ -89,21 +89,12 @@ public class CourseMainPage implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     populateListViews();
     momentDatePicker.setValue(LocalDate.now());
-    populateToDoListView();
+    populateListViews();
     gradeComboBox.getItems().addAll(Course.getAcceptedGrades());
     this.courseStartTimerButton.setOnAction(
         e -> {
           startTimer();
         });
-  }
-
-  // manual initialize
-  void init(Course course) {
-    this.course = course;
-    updateCourseInfo();
-    resetPanes();
-    deleteCourseText.setText(
-        "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
   }
 
   private void resetPanes() {
@@ -291,8 +282,6 @@ public class CourseMainPage implements Initializable {
     changeStatusButton.setDisable(true);
   }
 
-  // TodoList-items
-  private void populateToDoListView() {
   // Moment methods
 
   // Adds a Moment to the DeadlineListView as well as to the courses Moment list
@@ -339,8 +328,8 @@ public class CourseMainPage implements Initializable {
   // TODO ask: what should latest actiivity show?
 
   /* TODO: add logic so when a todo is done or a moment has passed it's
-  * deadline that it moves to the latest acticvity listview
-  */
+   * deadline that it moves to the latest acticvity listview
+   */
 
   // Populates the ListViews on the page with the correct items.
   private void populateListViews() {
@@ -356,6 +345,11 @@ public class CourseMainPage implements Initializable {
     this.studyPeriodLabel.setText("Läsperiod: " + " " + course.getStudyPeriod());
     this.toDos.addAll(course.getToDoList());
     this.moments.addAll(course.getMomentItems());
+    updateCourseInfo();
+    resetPanes();
+    deleteCourseText.setText(
+        "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
+  }
   // Setters And Getters
   void setParent(MainPage parent) {
     this.parent = parent;
