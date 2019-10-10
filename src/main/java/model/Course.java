@@ -50,8 +50,8 @@ public class Course {
   // StudySession
 
   public void newStudySession(Date start, Date stop) {
-   StudySession studySession = new StudySession( start, stop , this);
-   studySessions.add(studySession);
+    StudySession studySession = new StudySession(start, stop, this);
+    studySessions.add(studySession);
   }
 
   private void deleteStudySession(int index) {}

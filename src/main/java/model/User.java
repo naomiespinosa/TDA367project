@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class User {
   private String username;
@@ -20,7 +19,6 @@ public class User {
     addCourse("Hej", "TDA333", 2020, 2);
   }
 
-
   public static User getInstance() {
     if (instance == null) {
       instance = new User();
@@ -30,10 +28,9 @@ public class User {
 
   // Used to add a new course
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
-   Course course = new Course(name, courseCode, year, studyPeriod);
-   course.newStudySession(new Date(2019,10,8,16,0) , new Date(2019,10,8, 17,25));
+    Course course = new Course(name, courseCode, year, studyPeriod);
+    course.newStudySession(new Date(2019, 10, 8, 16, 0), new Date(2019, 10, 8, 17, 25));
     courses.add(course);
-
   }
 
   public Course getCourse(int index) {

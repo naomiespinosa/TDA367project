@@ -31,7 +31,7 @@ public class PageFactory {
 
   public static AnchorPane createStatisticsPage() throws IOException {
     return FXMLLoader.load(
-        PageFactory.class.getClassLoader().getResource("fxml/StatisticsDebug.fxml"));
+        PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
   }
 
   static AnchorPane createCoursePanelItem(Course course, MainPage parentController)
