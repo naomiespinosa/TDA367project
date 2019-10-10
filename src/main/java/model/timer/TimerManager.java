@@ -45,8 +45,7 @@ public class TimerManager {
                 new StudyTimerCompletedEvent(
                     activeTimer.getCourse(), activeTimer.getElapsedSeconds())));
 
-    activeTimer.onTick(
-        () -> eventBus.post(new TimerTickEvent(activeTimer.getElapsedSeconds())));
+    activeTimer.onTick(() -> eventBus.post(new TimerTickEvent(activeTimer.getElapsedSeconds())));
 
     activeTimer.start();
   }
