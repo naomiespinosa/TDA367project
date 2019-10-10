@@ -16,7 +16,7 @@ import model.Course;
 import model.StudySession;
 import model.User;
 
-public class StatisticsPage implements Initializable {
+public class StatisticsPage implements Initializable, Observer {
 
   @FXML private AnchorPane noGraphPane;
 
@@ -56,6 +56,7 @@ public class StatisticsPage implements Initializable {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
     setListOfCourses();
+    CourseManager.attach(this);
   }
 
   @FXML
@@ -127,6 +128,9 @@ public class StatisticsPage implements Initializable {
   void setListOfCourses() {
     ArrayList<Course> courseList = user.getCourses();
 
+    items1.clear();
+    items2.clear();
+
     for (Course course : courseList) {
       if (course.isActive()) {
         items1.add(course.getName());
@@ -136,5 +140,12 @@ public class StatisticsPage implements Initializable {
     }
     activeCoursesListView.setItems(items1);
     finishedCoursesListView.setItems(items2);
+  }
+
+  @Override
+  public void update() {
+    setStudyTimeGradesDisplay();
+    setTotalStudyTimeDisplay();
+    setListOfCourses();
   }
 }
