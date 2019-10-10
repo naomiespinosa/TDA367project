@@ -81,7 +81,6 @@ public class StatisticsPage implements Initializable, Observer {
       isGraphShowing = true;
     }
   }
-
   @FXML
   void openAddStudyTimeDialogBox(ActionEvent event) {
     startPagePane.toBack();
