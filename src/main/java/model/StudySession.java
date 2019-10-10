@@ -3,7 +3,7 @@ package model;
 import java.time.Duration;
 import java.util.Date;
 
-class StudySession {
+public class StudySession {
   private Date start;
   private Date stop;
   private Course course;

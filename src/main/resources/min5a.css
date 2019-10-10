@@ -44,6 +44,10 @@
     -fx-font-size: 12px
 }
 
+.timer{
+     -fx-font-size: 48pt;
+}
+
 .panel-font{
     -fx-text-fill: green_light;
     -fx-font-family: "Century Gothic";

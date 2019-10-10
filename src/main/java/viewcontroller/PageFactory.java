@@ -1,13 +1,20 @@
 package viewcontroller;
 
+import com.cathive.fx.guice.GuiceFXMLLoader;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 
 public class PageFactory {
-  public static AnchorPane createHomePage() {
-    return null; // Don't have one yet
+  public static AnchorPane createHomePage(MainPage parent) throws IOException {
+    FXMLLoader homePageLoader =
+        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml"));
+    AnchorPane root = homePageLoader.load(); // Loads the FXML
+    HomePage ctr = homePageLoader.getController(); // Fetches the Controller for the fxml
+    ctr.setParent(parent);
+    ctr.init();
+    return root;
   }
 
   public static AnchorPane createCourseSelectionPage(MainPage parent) throws IOException {
@@ -37,13 +44,22 @@ public class PageFactory {
     return root;
   }
 
-  static AnchorPane createCourseMainPage(Course course) throws IOException {
+  static AnchorPane createCourseMainPage(Course course, final MainPage mainPage)
+      throws IOException {
     FXMLLoader courseMainPageLoader =
         new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
     AnchorPane root = courseMainPageLoader.load(); // Loads the FXML
     CourseMainPage ctr =
         courseMainPageLoader.getController(); // Fetches the Controller for the fxml
     ctr.init(course);
+    ctr.setParent(mainPage);
+
     return root;
+  }
+
+  public static AnchorPane createTimerPage(GuiceFXMLLoader fxmlLoader) throws IOException {
+    return fxmlLoader
+        .load(PageFactory.class.getClassLoader().getResource("fxml/TimerPage.fxml"))
+        .getRoot();
   }
 }

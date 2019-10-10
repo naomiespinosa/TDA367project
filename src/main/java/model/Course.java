@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
 
@@ -16,6 +18,9 @@ public class Course {
   private int studyPeriod;
   private boolean isActive;
   private Image image = null;
+  private String grade;
+
+  private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
 
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
@@ -26,25 +31,33 @@ public class Course {
   }
 
   // TODO - This method is used to end a course and keep the information
-  public void endCourse() {
-    this.isActive = false;
+  public void endCourse(String grade) {
+    if (grade != null) {
+      setGrade(grade);
+      isActive = false;
+    }
+  }
+
+  public void reactivateCourse() {
+    isActive = true;
+    grade = null;
   }
 
   // TODO - This method deletes the course and eventually deletes the information? or stores it
   // somewhere
-  private void deleteCourse() {
-    // Code
-  }
 
   // List Methods
 
   // StudySession
 
-  private void newStudySession() {}
+  public void newStudySession(Date start, Date stop) {
+    StudySession studySession = new StudySession(start, stop, this);
+    studySessions.add(studySession);
+  }
 
   private void deleteStudySession(int index) {}
 
-  private List<StudySession> getStudySessions() {
+  public List<StudySession> getStudySessions() {
     return studySessions;
   }
 
@@ -97,7 +110,7 @@ public class Course {
     return image;
   }
 
-  private void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -105,7 +118,7 @@ public class Course {
     return courseCode;
   }
 
-  private void setCourseCode(String courseCode) {
+  public void setCourseCode(String courseCode) {
     this.courseCode = courseCode;
   }
 
@@ -127,5 +140,19 @@ public class Course {
 
   public boolean isActive() {
     return isActive;
+  }
+
+  private void setGrade(String grade) {
+    if (acceptedGrades.contains(grade)) {
+      this.grade = grade;
+    }
+  }
+
+  public String getGrade() {
+    return grade;
+  }
+
+  public static List getAcceptedGrades() {
+    return acceptedGrades;
   }
 }

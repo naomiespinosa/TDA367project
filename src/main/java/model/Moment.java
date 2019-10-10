@@ -24,7 +24,7 @@ public class Moment {
     return deadline;
   }
 
-  public void setDeadline(
+  private void setDeadline(
       LocalDate deadline) { // do we want the user to be able to change the deadline date?
     this.deadline = deadline;
   }
