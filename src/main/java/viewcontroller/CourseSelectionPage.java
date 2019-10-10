@@ -44,7 +44,6 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   void init() {
     // Temporary
-    this.user = User.getInstance();
     resetPage();
     updateLists();
   }

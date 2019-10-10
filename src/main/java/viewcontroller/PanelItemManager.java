@@ -12,7 +12,13 @@ import model.User;
 
 public abstract class PanelItemManager {
 
-  private static User user = User.getInstance();
+  public static void setUser(User user) {
+    PanelItemManager.user = user;
+  }
+
+  private static User user = UserManger.getActiveUser();
+
+
 
   // Method used to display all Courses
   static void showActiveCourses(FlowPane activeCoursesFlowpane, MainPage parent)

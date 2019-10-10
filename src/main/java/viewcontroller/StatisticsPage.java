@@ -49,7 +49,7 @@ public class StatisticsPage implements Initializable {
   ArrayList<Course> finishedCourseList;
 
   // Only for testing
-  User user = User.getInstance();
+  User user = UserManger.getActiveUser();
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

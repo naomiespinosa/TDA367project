@@ -8,9 +8,9 @@ import java.util.List;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.User;
 import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
+import viewcontroller.UserManger;
 
 public class Min5aApplication extends GuiceApplication {
   @Inject private GuiceFXMLLoader fxmlLoader;
@@ -24,10 +24,8 @@ public class Min5aApplication extends GuiceApplication {
 
   @Override
   public void start(Stage stage) throws IOException {
-    // FOR TESTING ONLY
-    User user = User.getInstance();
-    user.testing();
-    // DELETE ABOVE
+    // TODO get last logged in user or null
+    UserManger.getActiveUser();
 
     final GuiceFXMLLoader.Result result =
         fxmlLoader.load(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));

@@ -6,11 +6,10 @@ import model.Course;
 import model.User;
 
 abstract class CourseManager {
-  private static User user = User.getInstance();
+  private static User user = UserManger.getActiveUser();
 
   // Observer
   private static List<Observer> observers = new ArrayList<Observer>();
-  private int state;
 
   static void attach(Observer observer) {
     observers.add(observer);
@@ -64,6 +63,10 @@ abstract class CourseManager {
   // TODO grade
   static void activateCourse(Course course) {
     course.reactivateCourse();
+    notifyAllObservers();
+  }
+
+  static void update(){
     notifyAllObservers();
   }
 }
