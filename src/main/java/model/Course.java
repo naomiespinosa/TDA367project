@@ -2,8 +2,6 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
 
@@ -82,7 +80,9 @@ public class Course {
     toDoList.remove(index);
   }
 
-  public List<ToDo> getToDoList() { return toDoList; }
+  public List<ToDo> getToDoList() {
+    return toDoList;
+  }
 
   public void clearToDoList() {
     toDoList.clear();

@@ -2,13 +2,13 @@ import com.cathive.fx.guice.GuiceApplication;
 import com.cathive.fx.guice.GuiceFXMLLoader;
 import com.google.inject.Inject;
 import com.google.inject.Module;
-import viewcontroller.MainPage;
 import java.io.IOException;
 import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
 
 public class Min5aApplication extends GuiceApplication {
@@ -24,8 +24,7 @@ public class Min5aApplication extends GuiceApplication {
     FXMLLoader sidePanelLoader =
         new FXMLLoader(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
     Parent root = sidePanelLoader.load(); // Loads the FXML for the SidePanel
-    MainPage mainPageCtrl =
-        sidePanelLoader.getController(); // Fetches the Controller for the fxml
+    MainPage mainPageCtrl = sidePanelLoader.getController(); // Fetches the Controller for the fxml
 
     // Insert pages into side panel
     mainPageCtrl.setHomePage(PageFactory.createHomePage());

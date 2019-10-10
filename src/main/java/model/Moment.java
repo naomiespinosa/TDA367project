@@ -1,9 +1,7 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Comparator;
-import java.util.Collections;
 
 public class Moment {
   private String name;
@@ -17,14 +15,17 @@ public class Moment {
   }
 
   @Override
-  public String toString() { return "Den" + " " + this.getDeadline() + ":" + " " + this.getName(); }
+  public String toString() {
+    return "Den" + " " + this.getDeadline() + ":" + " " + this.getName();
+  }
 
   // Getters and Setters
   public LocalDate getDeadline() {
     return deadline;
   }
 
-  public void setDeadline(LocalDate deadline) { // do we want the user to be able to change the deadline date?
+  public void setDeadline(
+      LocalDate deadline) { // do we want the user to be able to change the deadline date?
     this.deadline = deadline;
   }
 
@@ -50,18 +51,17 @@ public class Moment {
 
   // Comparator for moment that prioritizes earlier dates
   // Is called whenever you add or remove a Moment
-  public Comparator<Moment> byDate = new Comparator<Moment>() {
-      @Override
-      public int compare(Moment moment1, Moment moment2) {
+  public Comparator<Moment> byDate =
+      new Comparator<Moment>() {
+        @Override
+        public int compare(Moment moment1, Moment moment2) {
           if (moment1.getDeadline().isBefore(moment2.getDeadline())) {
-              return -1;
+            return -1;
           }
           if (moment1.getDeadline().isAfter(moment2.getDeadline())) {
-              return 1;
+            return 1;
           }
           return 0;
-      }
-  };
-
-
+        }
+      };
 }

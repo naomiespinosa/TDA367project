@@ -1,6 +1,6 @@
 import com.google.inject.AbstractModule;
-import viewcontroller.MainPage;
 import model.User;
+import viewcontroller.MainPage;
 
 public class DependencyInjectionModule extends AbstractModule {
   @Override

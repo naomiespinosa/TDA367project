@@ -15,18 +15,20 @@ public class PageFactory {
         new FXMLLoader(
             PageFactory.class.getClassLoader().getResource("fxml/CourseSelectionPage.fxml"));
     AnchorPane root = courseSelectionPageLoader.load(); // Loads the FXML
-    CourseSelectionPage ctr = courseSelectionPageLoader.getController(); // Fetches the Controller for the fxml
+    CourseSelectionPage ctr =
+        courseSelectionPageLoader.getController(); // Fetches the Controller for the fxml
     ctr.setParent(parent);
     ctr.init();
     return root;
   }
 
   public static AnchorPane createStatisticsPage() throws IOException {
-    return FXMLLoader.load(PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
+    return FXMLLoader.load(
+        PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
   }
 
-  static AnchorPane createCoursePanelItem(
-          Course course, MainPage parentController) throws IOException {
+  static AnchorPane createCoursePanelItem(Course course, MainPage parentController)
+      throws IOException {
     FXMLLoader coursePanelLoader =
         new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CoursePanelItem.fxml"));
     AnchorPane root = coursePanelLoader.load(); // Loads the FXML
@@ -35,8 +37,7 @@ public class PageFactory {
     return root;
   }
 
-  static AnchorPane createCourseMainPage(Course course)
-      throws IOException {
+  static AnchorPane createCourseMainPage(Course course) throws IOException {
     FXMLLoader courseMainPageLoader =
         new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
     AnchorPane root = courseMainPageLoader.load(); // Loads the FXML

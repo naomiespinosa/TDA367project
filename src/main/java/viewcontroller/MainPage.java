@@ -57,7 +57,6 @@ public class MainPage implements Initializable {
   void pressedCourseItem(Course course) throws IOException {
     AnchorPane courseHomePage = PageFactory.createCourseMainPage(course);
     showPage(courseHomePage);
-
   }
 
   // Shows selected page on the right side of the screen
