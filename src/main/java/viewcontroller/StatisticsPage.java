@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -40,6 +41,18 @@ public class StatisticsPage implements Initializable, Observer {
 
   @FXML private ListView<String> finishedCoursesListView;
 
+  @FXML private AnchorPane addStudyTimePane;
+
+  @FXML private AnchorPane startPagePane;
+
+  @FXML private ComboBox<?> chooseCourseComboBox;
+
+  @FXML private Button saveStudyTimeButton;
+
+  @FXML private ComboBox<?> chooseHoursComboBox;
+
+  @FXML private ComboBox<?> chooseMinutesComboBox;
+
   private boolean isGraphShowing = true;
 
   private ObservableList<String> activeCourses = FXCollections.observableArrayList();
@@ -67,6 +80,17 @@ public class StatisticsPage implements Initializable, Observer {
       changeGraphPaneButton.setText("Byt till listvy");
       isGraphShowing = true;
     }
+  }
+  @FXML
+  void openAddStudyTimeDialogBox(ActionEvent event) {
+    startPagePane.toBack();
+    addStudyTimePane.toFront();
+  }
+
+  @FXML
+  void cancelAddStudyTime(ActionEvent event) {
+    addStudyTimePane.toBack();
+    startPagePane.toFront();
   }
 
   private void setStudyTimeGradesDisplay() {
