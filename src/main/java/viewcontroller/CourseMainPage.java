@@ -184,7 +184,7 @@ public class CourseMainPage implements Initializable {
 
   // Edit
   @FXML
-  void editCourseTab(ActionEvent event) {
+  private void editCourseTab(ActionEvent event) {
     resetPanes();
     courseEditPane.toFront();
     resetEditPane();
@@ -199,19 +199,19 @@ public class CourseMainPage implements Initializable {
   }
 
   @FXML
-  void closeTabButton(ActionEvent event) {
+ private void closeTabButton(ActionEvent event) {
     resetPanes();
     resetEditPane();
   }
 
   @FXML
-  void closeTabMouse(MouseEvent event) {
+ private void closeTabMouse(MouseEvent event) {
     resetPanes();
     resetEditPane();
   }
 
   @FXML
-  void changeCourse(ActionEvent event) {
+  private void changeCourse(ActionEvent event) {
     if (!isEditApproved()) {
       CourseManager.changeName(course, courseNameTextArea.getText());
       CourseManager.changeCode(course, courseCodeTextArea.getText());
@@ -233,37 +233,37 @@ public class CourseMainPage implements Initializable {
 
   // Delete Course
   @FXML
-  void toDeleteCourse(ActionEvent event) {
+   private void toDeleteCourse(ActionEvent event) {
     deleteCoursePane.toFront();
   }
 
   @FXML
-  void deleteCourse(ActionEvent event) {
+  private void deleteCourse(ActionEvent event) {
     CourseManager.deleteCourse(course);
     parent.init();
   }
 
   @FXML
-  void cancelDelete(ActionEvent event) {
+  private void cancelDelete(ActionEvent event) {
     deleteCoursePane.toBack();
   }
 
   // Complete Course
 
   @FXML
-  void toChangeStatusPage(ActionEvent event) {
+  private void toChangeStatusPage(ActionEvent event) {
     resetPanes();
     resetChangeStatusPane();
     completeCoursePane.toFront();
   }
 
   @FXML
-  void cancelChangeStatus() {
+  private void cancelChangeStatus() {
     resetPanes();
   }
 
   @FXML
-  void termsAccepted() {
+ private void termsAccepted() {
     if (termCheckBox.isSelected()) {
       changeStatusButton.setDisable(false);
     } else {
@@ -273,7 +273,7 @@ public class CourseMainPage implements Initializable {
 
   // TODO CourseManager
   @FXML
-  void changeStatus() {
+ private void changeStatus() {
     if (course.isActive()) {
       CourseManager.completeCourse(
           course, gradeComboBox.getSelectionModel().getSelectedItem().toString());
