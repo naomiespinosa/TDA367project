@@ -105,7 +105,11 @@ public class CourseMainPage implements Initializable {
   }
 
   private void updateCourseInfo() {
-    this.courseName.setText(course.getName());
+    this.courseName.setText(course.getName() + " " + course.getCourseCode());
+    this.yearLabel.setText("Läsår:" + " " + course.getYear());
+    this.studyPeriodLabel.setText("Läsperiod: " + " " + course.getStudyPeriod());
+    this.toDos.addAll(course.getToDoList());
+    this.moments.addAll(course.getMomentItems());
     changeStatusButton.setDisable(true);
     initStatusPane();
     initEditPane();
@@ -340,11 +344,6 @@ public class CourseMainPage implements Initializable {
   // Populates the page with the correct course information
   void init(Course course) {
     this.course = course;
-    this.courseName.setText(course.getName() + " " + course.getCourseCode());
-    this.yearLabel.setText("Läsår:" + " " + course.getYear());
-    this.studyPeriodLabel.setText("Läsperiod: " + " " + course.getStudyPeriod());
-    this.toDos.addAll(course.getToDoList());
-    this.moments.addAll(course.getMomentItems());
     updateCourseInfo();
     resetPanes();
     deleteCourseText.setText(
