@@ -33,13 +33,13 @@ public class Course {
   public void endCourse(String grade) {
     if (grade != null) {
       setGrade(grade);
-      this.isActive = false;
+      isActive = false;
     }
   }
 
   public void reactivateCourse() {
-    this.isActive = true;
-    this.grade = null;
+    isActive = true;
+    grade = null;
   }
 
   // TODO - This method deletes the course and eventually deletes the information? or stores it
