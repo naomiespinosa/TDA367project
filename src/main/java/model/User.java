@@ -5,9 +5,11 @@ import java.util.Date;
 
 public class User {
   private String username;
-  private String name;
   private ArrayList<Course> courses = new ArrayList<>();
-  private static User instance = null;
+
+  public User(String username) {
+    this.username = username;
+  }
 
   // TEMPORARY FOR TESTING ONLY
   public void testing() {
@@ -17,13 +19,6 @@ public class User {
     getCourse(2).endCourse("4");
     addCourse("Kommunikation och ingejörskunskap", "TDA333", 2017, 2);
     addCourse("Hej", "TDA333", 2020, 2);
-  }
-
-  public static User getInstance() {
-    if (instance == null) {
-      instance = new User();
-    }
-    return instance;
   }
 
   // Used to add a new course
@@ -52,13 +47,5 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 }

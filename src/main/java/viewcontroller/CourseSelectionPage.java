@@ -40,6 +40,7 @@ public class CourseSelectionPage implements Initializable, Observer {
   }
 
   void init() {
+    // Temporary
     resetPage();
     updateLists();
   }

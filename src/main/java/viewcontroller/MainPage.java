@@ -1,17 +1,19 @@
 package viewcontroller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
+import model.User;
 
-public class MainPage implements Initializable {
+public class MainPage {
 
   @FXML private AnchorPane mainPage;
+  @FXML private TextField usernameTextField;
+  @FXML private AnchorPane main;
+  @FXML private AnchorPane login;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -35,9 +37,6 @@ public class MainPage implements Initializable {
   public void setTimerPage(AnchorPane timerPage) {
     this.timerPage = timerPage;
   }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {}
 
   public void init() {
     showPage(homePage);
@@ -66,6 +65,21 @@ public class MainPage implements Initializable {
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
     AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
+  }
+
+  // LoginPage
+
+  @FXML
+  void login(ActionEvent event) {
+    // TODO login already existing user
+  }
+
+  @FXML
+  void newAccount() {
+    UserManger.setActiveUser(new User(usernameTextField.getText()));
+    login.toBack();
+    main.toFront();
+    init();
   }
 
   // Shows selected page on the right side of the screen

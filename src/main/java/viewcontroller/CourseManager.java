@@ -6,13 +6,17 @@ import model.Course;
 import model.User;
 
 abstract class CourseManager {
-  private static User user = User.getInstance();
+  private static User user = UserManger.getActiveUser();
 
   // Observer
   private static List<Observer> observers = new ArrayList<Observer>();
 
   static void attach(Observer observer) {
     observers.add(observer);
+  }
+
+  static List<Course> getCourses() {
+    return user.getCourses();
   }
 
   private static void notifyAllObservers() {
@@ -63,5 +67,13 @@ abstract class CourseManager {
   static void activateCourse(Course course) {
     course.reactivateCourse();
     notifyAllObservers();
+  }
+
+  static void update() {
+    notifyAllObservers();
+  }
+
+  public static void setUser(User activeUser) {
+    user = activeUser;
   }
 }

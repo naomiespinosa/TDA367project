@@ -2,6 +2,7 @@ package viewcontroller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
 import model.StudySession;
-import model.User;
 
 public class StatisticsPage implements Initializable, Observer {
 
@@ -48,10 +48,6 @@ public class StatisticsPage implements Initializable, Observer {
   ArrayList<Course> activeCourseList;
   ArrayList<Course> finishedCourseList;
 
-  // Only for testing
-  // TODO no dependancy
-  User user = User.getInstance();
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     setStudyTimeGradesDisplay();
@@ -74,7 +70,7 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   void setStudyTimeGradesDisplay() {
-    for (Course course : user.getCourses()) {
+    for (Course course : CourseManager.getCourses()) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
           case "U":
@@ -100,7 +96,7 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO Computing in this method will later on be moved to Course and accessed via a method.
   // TODO no dependancy
   void setTotalStudyTimeDisplay() {
-    ArrayList<Course> courseList = user.getCourses();
+    List<Course> courseList = CourseManager.getCourses();
     int totalTimeSecond = 0;
 
     for (int i = 0; i < courseList.size(); i++) {
@@ -133,9 +129,8 @@ public class StatisticsPage implements Initializable, Observer {
     // be done in Course.
   }
 
-  // TODO no dependancy
   void setListOfCourses() {
-    ArrayList<Course> courseList = user.getCourses();
+    List<Course> courseList = CourseManager.getCourses();
 
     items1.clear();
     items2.clear();
