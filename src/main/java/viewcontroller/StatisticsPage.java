@@ -16,35 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
 import model.StudySession;
+import model.User;
 
 public class StatisticsPage implements Initializable {
-
- /* @FXML private ListView activeCoursesListView;
-
-  @FXML private ListView finishedCourseListView;
-
-  @FXML private AnchorPane statisticsTimeListPane;
-
-  @FXML private AnchorPane statisticsTimeBarGraphPane;
-
-  @FXML private Button switchGraphPaneButton;
-
-  @FXML private Text totalHourText;
-
-  @FXML private Text totalMinuteText;
-
-  @FXML private Text gradeUTime;
-
-  @FXML private Text grade3Time;
-
-  @FXML private Text grade4Time;
-
-  @FXML private Text grade5Time;
-
-  @FXML private Button addCourseStudyTimeButton;
-
-  private ArrayList<Course> courses = new ArrayList<>();
-*/
 
   @FXML
   private AnchorPane noGraphPane;
@@ -87,6 +61,9 @@ public class StatisticsPage implements Initializable {
 
  ArrayList<Course> activeCourseList;
  ArrayList<Course> finishedCourseList;
+
+ //Only for testing
+    User user = User.getInstance();
 
 
   /*@FXML
@@ -135,7 +112,7 @@ public class StatisticsPage implements Initializable {
   }
 
   void setTotalStudyTimeDisplay(){
-      ArrayList<Course> courseList = mainController.getCourseList();
+      ArrayList<Course> courseList = user.getCourses();
       int totalTimeSecond = 0;
 
       for(int i = 0; i < courseList.size();i++ ){
@@ -154,7 +131,7 @@ public class StatisticsPage implements Initializable {
   }
 
   void setListOfCourses(){
-      ArrayList<Course> courseList =  mainController.getCourseList();
+      ArrayList<Course> courseList =  user.getCourses();
 
      for (Course course : courseList){
          if(course.isActive()) {
