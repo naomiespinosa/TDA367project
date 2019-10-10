@@ -43,17 +43,17 @@ public class MainPage {
   }
 
   @FXML
-  public void showHomePage(ActionEvent actionEvent) {
+  private void showHomePage(ActionEvent actionEvent) {
     showPage(homePage);
   }
 
   @FXML
-  void showCourseSelectionPage(ActionEvent event) {
+  private void showCourseSelectionPage(ActionEvent event) {
     showPage(courseSelectionPage);
   }
 
   @FXML
-  void showStatisticPage(ActionEvent event) {
+  private void showStatisticPage(ActionEvent event) {
     showPage(statisticsPage);
   }
 
@@ -61,7 +61,6 @@ public class MainPage {
     showPage(timerPage);
   };
 
-  // TODO should not depend on each other? how else to solve this?
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
     AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
@@ -70,12 +69,12 @@ public class MainPage {
   // LoginPage
 
   @FXML
-  void login(ActionEvent event) {
+  private void login(ActionEvent event) {
     // TODO login already existing user
   }
 
   @FXML
-  void newAccount() {
+  private void newAccount() {
     UserManger.setActiveUser(new User(usernameTextField.getText()));
     login.toBack();
     main.toFront();
@@ -83,9 +82,9 @@ public class MainPage {
   }
 
   // Shows selected page on the right side of the screen
-  private void showPage(AnchorPane page) {
+  private void showPage(AnchorPane pane) {
     mainPage.getChildren().clear();
-    mainPage.getChildren().add(page);
+    mainPage.getChildren().add(pane);
     mainPage.toFront();
   }
 }
