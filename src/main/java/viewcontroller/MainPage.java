@@ -18,7 +18,6 @@ public class MainPage implements Initializable {
   private AnchorPane courseSelectionPage;
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
-  private CourseSelectionPage courseSelectionCtrl;
 
   // Other FXML setters
   public void setHomePage(AnchorPane homePage) {
@@ -63,6 +62,7 @@ public class MainPage implements Initializable {
     showPage(timerPage);
   };
 
+  // TODO should not depend on each other? how else to solve this?
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
     AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);

@@ -32,33 +32,33 @@ public class Timer implements Initializable {
   @FXML private Label timeLabel;
 
   public void onTimerButtonClick() {
-    if (this.timerManager.isRunning()) {
-      this.timerManager.cancel();
+    if (timerManager.isRunning()) {
+      timerManager.cancel();
     } else {
-      this.timerManager.start(new Course("asd", "sd", 1, 1));
+      timerManager.start(new Course("asd", "sd", 1, 1));
     }
   }
 
   @Subscribe
   public void onStudyTimerStarted(final StudyTimerStartedEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Stoppa timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Stoppa timer"));
   }
 
   @Subscribe
   public void onStudyTimerCanceled(final StudyTimerCanceledEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Starta timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Starta timer"));
   }
 
   @Subscribe
   public void onStudyTimerCompleted(final StudyTimerCompletedEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Starta timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Starta timer"));
   }
 
   @Subscribe
   public void onStudyTimerTick(final TimerTickEvent event) {
     Platform.runLater(
         () ->
-            this.timeLabel.setText(
+            timeLabel.setText(
                 String.format(
                     "%02d:%02d",
                     (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
@@ -66,7 +66,7 @@ public class Timer implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.eventBus.register(this);
-    this.startPauseLabel.setText("Starta timer");
+    eventBus.register(this);
+    startPauseLabel.setText("Starta timer");
   }
 }
