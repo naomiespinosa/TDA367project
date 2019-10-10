@@ -49,6 +49,7 @@ public class StatisticsPage implements Initializable {
   ArrayList<Course> finishedCourseList;
 
   // Only for testing
+  // TODO no dependancy
   User user = User.getInstance();
 
   @Override
@@ -90,6 +91,8 @@ public class StatisticsPage implements Initializable {
 
   }
 
+  // TODO Computing in this method will later on be moved to Course and accessed via a method.
+  // TODO no dependancy
   void setTotalStudyTimeDisplay() {
     ArrayList<Course> courseList = user.getCourses();
     int totalTimeSecond = 0;
@@ -124,6 +127,7 @@ public class StatisticsPage implements Initializable {
     // be done in Course.
   }
 
+  // TODO no dependancy
   void setListOfCourses() {
     ArrayList<Course> courseList = user.getCourses();
 

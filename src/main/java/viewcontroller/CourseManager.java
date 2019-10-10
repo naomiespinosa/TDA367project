@@ -10,7 +10,6 @@ abstract class CourseManager {
 
   // Observer
   private static List<Observer> observers = new ArrayList<Observer>();
-  private int state;
 
   static void attach(Observer observer) {
     observers.add(observer);
@@ -55,13 +54,12 @@ abstract class CourseManager {
     notifyAllObservers();
   }
 
-  // Status // TODO grade
+  // Status
   static void completeCourse(Course course, String grade) {
     course.endCourse(grade);
     notifyAllObservers();
   }
 
-  // TODO grade
   static void activateCourse(Course course) {
     course.reactivateCourse();
     notifyAllObservers();
