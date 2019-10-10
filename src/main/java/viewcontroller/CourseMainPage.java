@@ -143,12 +143,6 @@ public class CourseMainPage implements Initializable {
     }
   }
 
-  /* Sorts the momentListView and the courses
-   * Moment list so that the closest deadline
-   * is shown first
-   */
-  private void sortMoments(){}
-
   // Latest Activity methods
     // TODO ask: what should latest actiivity show?
 
