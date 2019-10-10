@@ -61,6 +61,7 @@ public class MainPage {
     showPage(timerPage);
   };
 
+  // TODO should not depend on each other? how else to solve this?
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
     AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);

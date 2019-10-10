@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import model.User;
 
 public class CourseSelectionPage implements Initializable, Observer {
 
@@ -32,12 +31,10 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   @FXML private RadioButton period4RadioButton;
 
-  private User user; // temporary
   private MainPage parent;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
     initToggleGroup();
     resetSpinner();
   }

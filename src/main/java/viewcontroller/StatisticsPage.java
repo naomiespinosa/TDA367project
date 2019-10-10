@@ -16,7 +16,7 @@ import model.Course;
 import model.StudySession;
 import model.User;
 
-public class StatisticsPage implements Initializable {
+public class StatisticsPage implements Initializable, Observer {
 
   @FXML private AnchorPane noGraphPane;
 
@@ -56,6 +56,7 @@ public class StatisticsPage implements Initializable {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
     setListOfCourses();
+    CourseManager.attach(this);
   }
 
   @FXML
@@ -77,12 +78,17 @@ public class StatisticsPage implements Initializable {
         switch (course.getGrade()) {
           case "U":
             gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
           case "3":
-            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            grade3StudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
           case "4":
-            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            grade4StudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
           case "5":
-            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            grade5StudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+            break;
+          default:
         }
       }
     }
@@ -90,6 +96,8 @@ public class StatisticsPage implements Initializable {
 
   }
 
+  // TODO Computing in this method will later on be moved to Course and accessed via a method.
+  // TODO no dependancy
   void setTotalStudyTimeDisplay() {
     ArrayList<Course> courseList = user.getCourses();
     int totalTimeSecond = 0;
@@ -124,8 +132,12 @@ public class StatisticsPage implements Initializable {
     // be done in Course.
   }
 
+  // TODO no dependancy
   void setListOfCourses() {
     ArrayList<Course> courseList = user.getCourses();
+
+    items1.clear();
+    items2.clear();
 
     for (Course course : courseList) {
       if (course.isActive()) {
@@ -136,5 +148,12 @@ public class StatisticsPage implements Initializable {
     }
     activeCoursesListView.setItems(items1);
     finishedCoursesListView.setItems(items2);
+  }
+
+  @Override
+  public void update() {
+    setStudyTimeGradesDisplay();
+    setTotalStudyTimeDisplay();
+    setListOfCourses();
   }
 }
