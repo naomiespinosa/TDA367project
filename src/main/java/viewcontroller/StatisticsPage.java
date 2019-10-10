@@ -67,6 +67,8 @@ public class StatisticsPage implements Initializable, Observer {
     setTotalStudyTimeDisplay();
     setListOfCourses();
     CourseManager.attach(this);
+    addStudyTimePane.toBack();
+    startPagePane.toFront();
   }
 
   @FXML
@@ -81,6 +83,7 @@ public class StatisticsPage implements Initializable, Observer {
       isGraphShowing = true;
     }
   }
+
   @FXML
   void openAddStudyTimeDialogBox(ActionEvent event) {
     startPagePane.toBack();
