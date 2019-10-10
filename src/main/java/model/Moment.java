@@ -47,4 +47,21 @@ public class Moment {
   private void setNotPastDeadline() {
     this.isPastDeadline = false;
   }
+
+  // Comparator for moment that prioritizes earlier dates
+  // Is called whenever you add or remove a Moment
+  public Comparator<Moment> byDate = new Comparator<Moment>() {
+      @Override
+      public int compare(Moment moment1, Moment moment2) {
+          if (moment1.getDeadline().isBefore(moment2.getDeadline())) {
+              return -1;
+          }
+          if (moment1.getDeadline().isAfter(moment2.getDeadline())) {
+              return 1;
+          }
+          return 0;
+      }
+  };
+
+
 }

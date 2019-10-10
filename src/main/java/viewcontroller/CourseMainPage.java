@@ -36,9 +36,9 @@ public class CourseMainPage implements Initializable {
   // Observable list for the courses Moments
   private ObservableList<Moment> moments = FXCollections.observableArrayList();
 
-
   //Observable list for the courses latest activity
   private ObservableList activities = FXCollections.observableArrayList();
+
 
   @FXML private Label courseName;
   @FXML private Label yearLabel;
@@ -109,10 +109,17 @@ public class CourseMainPage implements Initializable {
   private void addMoment(Event event) {
     if (momentTextArea.getText() != null && momentDatePicker.getValue() != null) {
       Moment moment = new Moment(momentTextArea.getText(), momentDatePicker.getValue());
+
       moments.add(moment);
       course.newMoment(moment.toString(), momentDatePicker.getValue());
+
       momentTextArea.setText(null);
       momentDatePicker.setValue(LocalDate.now());
+
+      moments.sort(moment.byDate);
+      course.getMomentItems().sort(moment.byDate);
+
+      System.out.println(course.getMomentItems());
     }
   }
 
@@ -128,6 +135,10 @@ public class CourseMainPage implements Initializable {
 
       momentListView.getItems().remove(selectedIdx);
       course.deleteMoment(selectedIdx);
+
+      course.getMomentItems().sort(itemToRemove.byDate);
+      moments.sort(itemToRemove.byDate);
+
       momentListView.getSelectionModel().select(newSelectedIdx);
     }
   }
@@ -136,9 +147,10 @@ public class CourseMainPage implements Initializable {
    * Moment list so that the closest deadline
    * is shown first
    */
-  private void sortMoments() {}
+  private void sortMoments(){}
 
   // Latest Activity methods
+    // TODO ask: what should latest actiivity show?
 
   // TODO: add logic so when a todo is done or a moment has passed it's
   // deadline that it moves to the latest acticvity listview
