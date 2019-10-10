@@ -21,7 +21,6 @@ public class Course {
 
   private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
 
-
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
@@ -36,7 +35,6 @@ public class Course {
       setGrade(grade);
       isActive = false;
     }
-
   }
 
   public void reactivateCourse() {

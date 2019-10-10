@@ -58,8 +58,6 @@ public class StatisticsPage implements Initializable {
     setListOfCourses();
   }
 
-  // This method
-
   @FXML
   void switchListGraphAction(ActionEvent event) {
     if (isGraphShowing) {
@@ -74,21 +72,23 @@ public class StatisticsPage implements Initializable {
   }
 
   void setStudyTimeGradesDisplay() {
-    for( Course course : user.getCourses()){
-      if(!course.isActive()){
-        switch(course.getGrade()){
-          case "U":  gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
-          case "3":  gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
-          case "4":  gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
-          case "5":  gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+    for (Course course : user.getCourses()) {
+      if (!course.isActive()) {
+        switch (course.getGrade()) {
+          case "U":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+          case "3":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+          case "4":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
+          case "5":
+            gradeUStudyTime.setText(getTotalStudyTimeForCourse(course) + " Timme(ar)");
         }
       }
     }
     // TODO Fix so that Word HOUR is adapeted for 1, or several hours.
 
   }
-
-
 
   void setTotalStudyTimeDisplay() {
     ArrayList<Course> courseList = user.getCourses();
@@ -110,7 +110,7 @@ public class StatisticsPage implements Initializable {
     // TODO Computing in this method will later on be moved to Course and accessed via a method.
   }
 
-  int getTotalStudyTimeForCourse(Course course){
+  int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
     for (StudySession studySession : course.getStudySessions()) {
@@ -120,7 +120,8 @@ public class StatisticsPage implements Initializable {
     int totalHour = totalTimeSecond / 3600;
     return totalHour;
 
-    //TODO adapt for Hour AND minutes, perhaps send back a Pair. This methods computing should also be done in Course.
+    // TODO adapt for Hour AND minutes, perhaps send back a Pair. This methods computing should also
+    // be done in Course.
   }
 
   void setListOfCourses() {
