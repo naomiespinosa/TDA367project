@@ -199,13 +199,13 @@ public class CourseMainPage implements Initializable {
   }
 
   @FXML
- private void closeTabButton(ActionEvent event) {
+  private void closeTabButton(ActionEvent event) {
     resetPanes();
     resetEditPane();
   }
 
   @FXML
- private void closeTabMouse(MouseEvent event) {
+  private void closeTabMouse(MouseEvent event) {
     resetPanes();
     resetEditPane();
   }
@@ -233,7 +233,7 @@ public class CourseMainPage implements Initializable {
 
   // Delete Course
   @FXML
-   private void toDeleteCourse(ActionEvent event) {
+  private void toDeleteCourse(ActionEvent event) {
     deleteCoursePane.toFront();
   }
 
@@ -263,7 +263,7 @@ public class CourseMainPage implements Initializable {
   }
 
   @FXML
- private void termsAccepted() {
+  private void termsAccepted() {
     if (termCheckBox.isSelected()) {
       changeStatusButton.setDisable(false);
     } else {
@@ -273,7 +273,7 @@ public class CourseMainPage implements Initializable {
 
   // TODO CourseManager
   @FXML
- private void changeStatus() {
+  private void changeStatus() {
     if (course.isActive()) {
       CourseManager.completeCourse(
           course, gradeComboBox.getSelectionModel().getSelectedItem().toString());
@@ -349,7 +349,7 @@ public class CourseMainPage implements Initializable {
 
   // TODO CourseManager
   // Populates the page with the correct course information
- void init(Course course) {
+  void init(Course course) {
     this.course = course;
     updateCourseInfo();
     resetPanes();
@@ -357,7 +357,7 @@ public class CourseMainPage implements Initializable {
         "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
   }
   // Setters And Getters
-   void setParent(MainPage parent) {
+  void setParent(MainPage parent) {
     this.parent = parent;
   }
 

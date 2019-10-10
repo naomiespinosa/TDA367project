@@ -41,25 +41,17 @@ public class StatisticsPage implements Initializable, Observer {
 
   @FXML private ListView<String> finishedCoursesListView;
 
-  @FXML
-  private AnchorPane addStudyTimePane;
+  @FXML private AnchorPane addStudyTimePane;
 
-  @FXML
-  private AnchorPane startPagePane;
+  @FXML private AnchorPane startPagePane;
 
-  @FXML
-  private ComboBox<?> chooseCourseComboBox;
+  @FXML private ComboBox<?> chooseCourseComboBox;
 
-  @FXML
-  private Button saveStudyTimeButton;
+  @FXML private Button saveStudyTimeButton;
 
-  @FXML
-  private ComboBox<?> chooseHoursComboBox;
+  @FXML private ComboBox<?> chooseHoursComboBox;
 
-  @FXML
-  private ComboBox<?> chooseMinutesComboBox;
-
-
+  @FXML private ComboBox<?> chooseMinutesComboBox;
 
   private boolean isGraphShowing = true;
 
@@ -91,13 +83,13 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   @FXML
-  void openAddStudyTimeDialogBox(ActionEvent event){
+  void openAddStudyTimeDialogBox(ActionEvent event) {
     startPagePane.toBack();
     addStudyTimePane.toFront();
   }
 
   @FXML
-  void cancelAddStudyTime(ActionEvent event){
+  void cancelAddStudyTime(ActionEvent event) {
     addStudyTimePane.toBack();
     startPagePane.toFront();
   }
