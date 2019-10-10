@@ -25,43 +25,43 @@ public class TimerManager {
   }
 
   public void start(final Course course) {
-    if (this.isRunning() == true) {
-      this.activeTimer.cancel();
+    if (isRunning() == true) {
+      activeTimer.cancel();
     }
 
-    this.activeTimer = new StudyTimer(course);
+    activeTimer = new StudyTimer(course);
 
-    this.activeTimer.onStart(() -> this.eventBus.post(new StudyTimerStartedEvent(course)));
+    activeTimer.onStart(() -> eventBus.post(new StudyTimerStartedEvent(course)));
 
-    this.activeTimer.onCancel(
+    activeTimer.onCancel(
         () ->
-            this.eventBus.post(
+            eventBus.post(
                 new StudyTimerCanceledEvent(
-                    this.activeTimer.getCourse(), this.activeTimer.getElapsedSeconds())));
+                    activeTimer.getCourse(), activeTimer.getElapsedSeconds())));
 
-    this.activeTimer.onCompleted(
+    activeTimer.onCompleted(
         () ->
-            this.eventBus.post(
+            eventBus.post(
                 new StudyTimerCompletedEvent(
-                    this.activeTimer.getCourse(), this.activeTimer.getElapsedSeconds())));
+                    activeTimer.getCourse(), activeTimer.getElapsedSeconds())));
 
-    this.activeTimer.onTick(
-        () -> this.eventBus.post(new TimerTickEvent(this.activeTimer.getElapsedSeconds())));
+    activeTimer.onTick(
+        () -> eventBus.post(new TimerTickEvent(activeTimer.getElapsedSeconds())));
 
-    this.activeTimer.start();
+    activeTimer.start();
   }
 
   public void cancel() {
-    if (this.isRunning() == false) {
+    if (isRunning() == false) {
       return;
     }
 
-    this.activeTimer.cancel();
-    this.activeTimer = null;
+    activeTimer.cancel();
+    activeTimer = null;
   }
 
   @Subscribe
   public void onStudyTimerCompleted(final StudyTimerCompletedEvent event) {
-    this.activeTimer.cancel();
+    activeTimer.cancel();
   }
 }

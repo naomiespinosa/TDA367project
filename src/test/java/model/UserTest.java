@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class UserTest {
   @Test
-  void courseFunctions() {
+  public void courseFunctions() {
     User user = User.getInstance();
     user.clearCourses();
     user.addCourse("Funktionell Programmering", "TDA333", 1, 2);
@@ -23,7 +23,7 @@ class UserTest {
   }
 
   @Test
-  void setGetFunctions() {
+  public void setGetFunctions() {
     User user = User.getInstance();
 
     user.setUsername("Rolf1337");
@@ -34,7 +34,7 @@ class UserTest {
   }
 
   @Test
-  void testSingleton() {
+  public void testSingleton() {
     User user = User.getInstance();
     user.clearCourses();
     user.addCourse("Funktionell Programmering", "TDA333", 1, 2);

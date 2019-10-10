@@ -25,35 +25,35 @@ abstract class Timer {
   }
 
   public Course getCourse() {
-    return this.course;
+    return course;
   }
 
   public void start() {
-    if (this.state == State.ACTIVE) {
+    if (state == State.ACTIVE) {
       return;
     }
 
-    this.startedAt = LocalDateTime.now();
-    this.state = State.ACTIVE;
-    this.timer.schedule(new CallableTask(this.onCompleted), STUDY_SESSION_LENGTH);
-    this.timer.schedule(new CallableTask(this.onTick), 1000, 1000);
+    startedAt = LocalDateTime.now();
+    state = State.ACTIVE;
+    timer.schedule(new CallableTask(onCompleted), STUDY_SESSION_LENGTH);
+    timer.schedule(new CallableTask(onTick), 1000, 1000);
 
-    if (this.onStart != null) {
-      this.onStart.callback();
+    if (onStart != null) {
+      onStart.callback();
     }
   }
 
   public void cancel() {
-    if (this.state == State.CANCELED) {
+    if (state == State.CANCELED) {
       return;
     }
 
-    this.stoppedAt = LocalDateTime.now();
-    this.timer.cancel();
-    this.timer.purge();
+    stoppedAt = LocalDateTime.now();
+    timer.cancel();
+    timer.purge();
 
-    if (this.onCancel != null) {
-      this.onCancel.callback();
+    if (onCancel != null) {
+      onCancel.callback();
     }
   }
 
@@ -78,15 +78,15 @@ abstract class Timer {
   }
 
   public Long getElapsedSeconds() {
-    if (this.startedAt == null) {
+    if (startedAt == null) {
       throw new IllegalStateException();
     }
 
-    if (this.state == State.ACTIVE) {
-      return ChronoUnit.SECONDS.between(this.startedAt, LocalDateTime.now());
+    if (state == State.ACTIVE) {
+      return ChronoUnit.SECONDS.between(startedAt, LocalDateTime.now());
     }
 
-    return ChronoUnit.SECONDS.between(this.startedAt, this.stoppedAt);
+    return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
   }
 
   public enum State {

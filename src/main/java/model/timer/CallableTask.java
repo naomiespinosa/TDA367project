@@ -12,10 +12,10 @@ public class CallableTask extends TimerTask {
 
   @Override
   public void run() {
-    if (this.callback == null) {
+    if (callback == null) {
       return;
     }
 
-    this.callback.callback();
+    callback.callback();
   }
 }
