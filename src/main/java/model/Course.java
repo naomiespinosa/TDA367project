@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -66,19 +67,19 @@ public class Course {
 
   // Moment
 
-  private void newMoment(String name, Date deadline) {
+  public void newMoment(String name, LocalDate deadline) {
     momentItems.add(new Moment(name, deadline));
   }
 
-  private void deleteMoment(int index) {
+  public void deleteMoment(int index) {
     momentItems.remove(index);
   }
 
-  private List<Moment> getMomentItems() {
+  public List<Moment> getMomentItems() {
     return momentItems;
   }
 
-  private void clearMomentItems() {
+  public void clearMomentItems() {
     momentItems.clear();
   }
 
@@ -90,6 +91,10 @@ public class Course {
 
   public void deleteTodo(int index) {
     toDoList.remove(index);
+  }
+
+  public List<ToDo> getToDoList() {
+    return toDoList;
   }
 
   public void clearToDoList() {

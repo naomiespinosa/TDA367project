@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaProjects.TDA367project.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaProjects.TDA367project.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TDA367project.iml" filepath="$PROJECT_DIR$/.idea/modules/TDA367project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TDA367project.main.iml" filepath="$PROJECT_DIR$/.idea/modules/TDA367project.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TDA367project.test.iml" filepath="$PROJECT_DIR$/.idea/modules/TDA367project.test.iml" />

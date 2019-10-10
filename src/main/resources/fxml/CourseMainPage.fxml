@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
@@ -22,62 +23,6 @@
             <Label fx:id="deleteCourseText" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="24.0" layoutY="28.0" prefHeight="150.0" prefWidth="840.0" style="-fx-font-size: 50;" text="Är du säker på att du vill radera kursen mmm333" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
             <Button layoutX="110.0" layoutY="368.0" mnemonicParsing="false" onAction="#cancelDelete" text="Avbryt" />
             <Button layoutX="712.0" layoutY="368.0" mnemonicParsing="false" onAction="#deleteCourse" text="Ja" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label prefHeight="34.0" prefWidth="169.0" styleClass="sub-header" text="ToDoList" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="129.0">
-               <font>
-                  <Font name="Century Gothic" size="10.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Label>
-            <Label prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Deadlines" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="129.0">
-               <font>
-                  <Font size="5.0" />
-               </font>
-            </Label>
-            <SplitPane dividerPositions="0.5" prefHeight="442.0" prefWidth="643.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="169.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <ListView fx:id="toDoListView" layoutY="-128.0" prefHeight="453.0" prefWidth="318.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <ListView fx:id="deadlineListView" prefHeight="308.0" prefWidth="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-            <Button fx:id="newToDoButton" mnemonicParsing="false" onAction="#addToDo" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="627.6" />
-            <TextArea fx:id="newToDo" prefHeight="48.0" prefWidth="274.0" promptText="Skriv i textfältet och tryck på plusknappen för att lägga till en ToDo..." AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="627.0">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </TextArea>
-            <Button fx:id="newDeadlineButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="343.0" AnchorPane.topAnchor="627.6" />
-            <TextArea fx:id="newDeadline" prefHeight="48.0" prefWidth="274.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="382.0" AnchorPane.topAnchor="627.0">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </TextArea>
-            <TextArea fx:id="courseTimer" editable="false" prefHeight="121.0" prefWidth="287.0" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="60.0" />
-            <Button fx:id="courseStartTimerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Starta" AnchorPane.leftAnchor="895.6" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="189.0" />
-            <ListView fx:id="activityList" prefHeight="332.0" prefWidth="352.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="805.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="313.0" />
-            <Label prefHeight="35.0" prefWidth="238.0" styleClass="sub-header" text="Senaste Aktivitet" AnchorPane.leftAnchor="818.0" AnchorPane.topAnchor="270.0">
-               <font>
-                  <Font size="5.0" />
-               </font>
-            </Label>
-            <Button fx:id="removeToDoButton" mnemonicParsing="false" onAction="#removeToDo" prefHeight="26.0" prefWidth="28.0" text="-" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="660.0" />
-            <Label fx:id="courseName" layoutX="69.0" prefHeight="54.0" prefWidth="1042.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="12.0" />
-            <Button fx:id="toChangeStatusPageButton" mnemonicParsing="false" onAction="#toChangeStatusPage" prefHeight="35.0" prefWidth="150.0" text="Avsluta kurs" AnchorPane.leftAnchor="930.0" AnchorPane.topAnchor="15.0" />
-            <Button mnemonicParsing="false" onAction="#editCourseTab" prefHeight="35.0" prefWidth="150.0" text="Redigera Kurs" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="15.0" />
-            <Label fx:id="gradeLabel" layoutX="13.0" layoutY="18.0" prefHeight="41.0" prefWidth="43.0" style="-fx-font-size: 40;" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="completeCoursePane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -136,6 +81,66 @@
                   <ComboBox fx:id="periodComboBox" layoutX="277.0" layoutY="200.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <SplitPane dividerPositions="0.5" layoutX="9.0" layoutY="171.0" prefHeight="442.0" prefWidth="748.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="374.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="toDoListView" layoutY="-128.0" prefHeight="453.0" prefWidth="318.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="374.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="momentListView" prefHeight="308.0" prefWidth="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+            <Label prefHeight="34.0" prefWidth="169.0" styleClass="sub-header" text="ToDoList" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="129.0">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Button fx:id="newToDoButton" mnemonicParsing="false" onAction="#addToDo" prefHeight="26.0" prefWidth="28.0" text="+" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="627.6" />
+            <TextArea fx:id="courseTimer" editable="false" prefHeight="121.0" prefWidth="287.0" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="60.0" />
+            <Button fx:id="courseStartTimerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Starta" AnchorPane.leftAnchor="895.6" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="189.0" />
+            <ListView fx:id="activityList" prefHeight="332.0" prefWidth="352.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="805.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="313.0" />
+            <Label prefHeight="35.0" prefWidth="238.0" styleClass="sub-header" text="Senaste Aktivitet" AnchorPane.leftAnchor="818.0" AnchorPane.topAnchor="270.0">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Label>
+            <Button fx:id="removeToDoButton" mnemonicParsing="false" onAction="#removeToDo" prefHeight="26.0" prefWidth="28.0" text="-" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="660.0" />
+            <Label fx:id="courseName" layoutX="69.0" prefHeight="54.0" prefWidth="1042.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="12.0" />
+            <Button fx:id="toChangeStatusPageButton" mnemonicParsing="false" onAction="#toChangeStatusPage" prefHeight="35.0" prefWidth="150.0" text="Avsluta kurs" AnchorPane.leftAnchor="930.0" AnchorPane.topAnchor="15.0" />
+            <Button mnemonicParsing="false" onAction="#editCourseTab" prefHeight="35.0" prefWidth="150.0" text="Redigera Kurs" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="15.0" />
+            <Label fx:id="gradeLabel" layoutX="13.0" layoutY="18.0" prefHeight="41.0" prefWidth="43.0" style="-fx-font-size: 40;" />
+            <Label layoutX="387.0" layoutY="129.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Moment">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="momentDatePicker" layoutX="391.0" layoutY="623.0" prefHeight="35.0" prefWidth="132.0" />
+            <Button fx:id="removeMomentButton" layoutX="476.0" layoutY="662.0" mnemonicParsing="false" onAction="#removeMoment" prefHeight="26.0" prefWidth="40.0" text="-" />
+            <TextArea fx:id="momentTextArea" layoutX="527.0" layoutY="621.0" prefHeight="48.0" prefWidth="238.0" promptText="Välje ett datum och skriv i textfältet för att lägga till en deadline...">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </TextArea>
+            <Button fx:id="addMomentButton" layoutX="397.0" layoutY="662.0" mnemonicParsing="false" onAction="#addMoment" prefHeight="26.0" prefWidth="40.0" text="+" />
+            <TextArea fx:id="toDoTextArea" layoutX="53.0" layoutY="621.0" prefHeight="48.0" prefWidth="274.0" promptText="Skriv i textfältet och tryck på plusknappen för att lägga till en ToDo...">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </TextArea>
+            <Label fx:id="studyPeriodLabel" layoutX="364.0" layoutY="97.0" style="-fx-font-size: 16;" text="Läsperiod:" />
+            <Label fx:id="yearLabel" layoutX="31.0" layoutY="98.0" style="-fx-font-size: 16;" text="Läsår:" />
          </children>
       </AnchorPane>
    </children>
