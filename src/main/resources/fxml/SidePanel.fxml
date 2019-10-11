@@ -60,7 +60,7 @@
                               </Label>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" layoutX="34.0" layoutY="551.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-text-fill: #CEEDDB; -fx-font-size: 17;" styleClass="panel-button" stylesheets="@../min5a.css" text="Kontakter" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="480.0">
+                        <Button fx:id="contactsPageButton" contentDisplay="TOP" layoutX="34.0" layoutY="551.0" mnemonicParsing="false" onAction="#showContactsPage" prefHeight="120.0" prefWidth="120.0" style="-fx-text-fill: #CEEDDB; -fx-font-size: 17;" styleClass="panel-button" stylesheets="@../min5a.css" text="Kontakter" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="480.0">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

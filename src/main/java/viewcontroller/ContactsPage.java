@@ -2,20 +2,21 @@ package viewcontroller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import model.Contact;
-import model.Course;
-import model.ToDo;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ContactsPage extends Observer implements Initializable {
+public class ContactsPage extends Observer implements Initializable{
 
         Contact c;
         private ObservableList<Contact> contactsName =
@@ -37,29 +38,11 @@ public class ContactsPage extends Observer implements Initializable {
         private ComboBox contactCourse;
 
         @FXML
-        private ComboBox contactTitel;
+        private ComboBox contactTitle;
 
-        String[] acceptedTitles = {"Lärare", "Elev", "Handledare", "Övrig"};
+        private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
 
-        @FXML
-        void creacteContact(ActionEvent event) { }
-
-        @FXML
-        void deleteContact(ActionEvent event) { }
-
-        @FXML
-        void openNewContactPage(ActionEvent event) {
-
-        }
-
-        public ContactsPage(ListView l, TextField contactName, TextField phoneTextField, TextField contactEmail, ComboBox contactCourse, ComboBox contactTitel) {
-                this.contactsListview = l;
-                this.contactName = contactName;
-                this.contactphone = phoneTextField;
-                this.contactEmail = contactEmail;
-                this.contactCourse = contactCourse ;
-                this.contactTitel = contactTitel;
-        }
+        private List courseNames = new ArrayList<>();
 
         public void newContact(){
 
@@ -79,34 +62,42 @@ public class ContactsPage extends Observer implements Initializable {
                         contactName.setText(c.getName());
                         contactphone.setText(c.getPhoneNumber());
                         contactEmail.setText(c.getEmail());
-                        //this.courseContact.setText(c.getCourse()); //TODO
-                        contactTitel.getSelectionModel().select(c.getTitel());
+                        contactCourse.getSelectionModel().select(c.getCourse());
+                        contactTitle.getSelectionModel().select(c.getTitel());
                 }
 
         }
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
-                updateInfo();
-                CourseManager.attach(this);
-        }
 
         private void updateInfo() {
                 //Titel
-                contactTitel.getItems().clear();
-                contactTitel.getItems().addAll(acceptedTitles);
-                contactTitel.getSelectionModel().select("Lärare");
+            contactTitle.getItems().clear();
+            contactTitle.getItems().addAll(acceptedTitles);
+            contactTitle.getSelectionModel().select("Lärare");
 
                 // Courses
                 contactCourse.getItems().clear();
-                contactCourse.getItems().addAll(CourseManager.getCourses());
-                contactCourse.getSelectionModel().select(CourseManager.getCourses().get(0));
+                contactCourse.getItems().addAll(getCourseNames());
+                contactCourse.getSelectionModel().select(0);
         }
 
+    private List<String> getCourseNames() {
+            for (int i = 0; i < CourseManager.getCourses().size();i++){
+                courseNames.add(CourseManager.getCourses().get(i).getName());
+            }
+            return courseNames;
+    }
 
-        @Override
+
+    @Override
         public void update() {
-                updateInfo();
+               updateInfo();
         }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        updateInfo();
+    }
 }
 

@@ -39,8 +39,10 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setHomePage(PageFactory.createHomePage(mainPageCtrl));
     mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
     mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
+    mainPageCtrl.setContactsPage(PageFactory.createContactsPage());
     mainPageCtrl.setTimerPage(
         fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
+
 
     mainPageCtrl.init();
 
