@@ -176,6 +176,6 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   @Override
   public void update() {
-    //  updateLists();
+    updateLists(this.user);
   }
 }

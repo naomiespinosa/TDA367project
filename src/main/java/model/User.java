@@ -6,6 +6,7 @@ import java.util.Date;
 public class User {
   private String username;
   private ArrayList<Course> courses = new ArrayList<>();
+  private int id;
 
   public User() {}
 
@@ -45,5 +46,9 @@ public class User {
 
   public void setUsername(final String username) {
     this.username = username;
+  }
+
+  public int getId() {
+    return this.id;
   }
 }

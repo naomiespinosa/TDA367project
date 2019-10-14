@@ -16,4 +16,12 @@ public class UserRepository {
         .select("SELECT * FROM users")
         .listResult(this.objectMappers.forClass(User.class));
   }
+
+  public User findOneByUsername(final String username) {
+    return this.fluentJdbc
+        .query()
+        .select("SELECT * FROM users WHERE username = :username")
+        .namedParam("username", username)
+        .singleResult(this.objectMappers.forClass(User.class));
+  }
 }

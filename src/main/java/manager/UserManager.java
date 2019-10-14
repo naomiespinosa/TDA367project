@@ -9,10 +9,10 @@ public class UserManager {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
 
-  public void save(User user) {
+  public void create(User user) {
     this.fluentJdbc
         .query()
-        .update("INSERT OR REPLACE INTO users (username) VALUES (:username)")
+        .update("INSERT INTO users (username) VALUES (:username)")
         .namedParam("username", user.getUsername())
         .run();
   }

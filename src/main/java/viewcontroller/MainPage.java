@@ -97,8 +97,9 @@ public class MainPage {
     User user = new User();
     user.setUsername(usernameTextField.getText());
 
-    this.userManager.save(user);
-    this.eventBus.post(new UserChangedEvent(user));
+    this.userManager.create(user);
+    this.eventBus.post(
+        new UserChangedEvent(this.userRepository.findOneByUsername(user.getUsername())));
 
     login.toBack();
     main.toFront();
