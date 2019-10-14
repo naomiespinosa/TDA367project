@@ -1,4 +1,4 @@
-package model.timer.event;
+package event.timer;
 
 public class TimerTickEvent {
   private Long elapsedSeconds;

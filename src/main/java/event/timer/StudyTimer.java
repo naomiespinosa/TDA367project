@@ -1,6 +1,7 @@
-package model.timer;
+package event.timer;
 
 import model.Course;
+import model.Timer;
 
 public class StudyTimer extends Timer {
   public StudyTimer(final Course course) {

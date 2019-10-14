@@ -2,6 +2,7 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
+import event.UserChangedEvent;
 import java.io.IOException;
 import java.util.List;
 import javafx.event.ActionEvent;
@@ -10,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.User;
-import model.UserChangedEvent;
 import repository.UserRepository;
 
 public class MainPage {

@@ -3,6 +3,10 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import event.timer.StudyTimerCanceledEvent;
+import event.timer.StudyTimerCompletedEvent;
+import event.timer.StudyTimerStartedEvent;
+import event.timer.TimerTickEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -11,12 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import manager.TimerManager;
 import model.Course;
-import model.timer.TimerManager;
-import model.timer.event.StudyTimerCanceledEvent;
-import model.timer.event.StudyTimerCompletedEvent;
-import model.timer.event.StudyTimerStartedEvent;
-import model.timer.event.TimerTickEvent;
 
 public class Timer implements Initializable {
   @Inject private TimerManager timerManager;

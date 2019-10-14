@@ -3,7 +3,7 @@ package viewcontroller;
 import com.google.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
-import model.CourseManager;
+import manager.CourseManager;
 
 public class HomePage implements Observer {
   private MainPage parent;
@@ -19,11 +19,11 @@ public class HomePage implements Observer {
   }
 
   private void updateLists() {
-  //  try {
-  //    this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user);
-  //  } catch (IOException e) {
- //     e.printStackTrace();
- //   }
+    //  try {
+    //    this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user);
+    //  } catch (IOException e) {
+    //     e.printStackTrace();
+    //   }
   }
 
   void setParent(MainPage parent) {

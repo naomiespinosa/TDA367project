@@ -1,10 +1,9 @@
-package model.timer;
+package model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import model.Course;
 
-abstract class Timer {
+public abstract class Timer {
   private java.util.Timer timer = new java.util.Timer();
 
   private Course course;

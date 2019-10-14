@@ -1,7 +1,7 @@
-package model.timer;
+package model;
 
 import java.util.TimerTask;
-import model.timer.Timer.Callback;
+import model.Timer.Callback;
 
 public class CallableTask extends TimerTask {
   private Callback callback;

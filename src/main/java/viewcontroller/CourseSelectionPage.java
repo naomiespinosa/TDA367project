@@ -3,6 +3,7 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import event.UserChangedEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import manager.CourseManager;
 import model.*;
 import repository.CourseRepository;
 

@@ -2,16 +2,16 @@ import com.google.common.eventbus.EventBus;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import model.CourseManager;
-import viewcontroller.PanelItemManager;
+import manager.CourseManager;
+import manager.TimerManager;
 import model.User;
-import model.timer.TimerManager;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.FluentJdbcBuilder;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 import org.sqlite.SQLiteDataSource;
 import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
+import viewcontroller.PanelItemManager;
 
 public class DependencyInjectionModule extends AbstractModule {
   private User currentUser;

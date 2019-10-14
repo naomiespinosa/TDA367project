@@ -9,20 +9,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import model.Course;
-import viewcontroller.MainPage;
-import viewcontroller.PageFactory;
 
 public class PanelItemManager {
 
   @Inject private PageFactory pageFactory;
 
   // Method used to display all Courses
-  public void showActiveCourses(FlowPane activeCoursesFlowpane, MainPage parent, final List<Course> courses)
+  public void showActiveCourses(
+      FlowPane activeCoursesFlowpane, MainPage parent, final List<Course> courses)
       throws IOException {
     activeCoursesFlowpane.getChildren().clear();
     for (Course course :
-        sortCourses(
-            true, courses)) { // Runs through all the courses to only show the correct ones
+        sortCourses(true, courses)) { // Runs through all the courses to only show the correct ones
       AnchorPane courseItem = this.pageFactory.createCoursePanelItem(course, parent);
       setShadow(courseItem);
       activeCoursesFlowpane.getChildren().add(courseItem);
@@ -31,12 +29,12 @@ public class PanelItemManager {
 
   // Method that displays all inactive courses
   public void showInactiveCourses(
-      FlowPane inactiveCoursesFlowpane, MainPage parent, final List<Course> courses) throws IOException {
+      FlowPane inactiveCoursesFlowpane, MainPage parent, final List<Course> courses)
+      throws IOException {
     inactiveCoursesFlowpane.getChildren().clear();
 
     for (Course course :
-        sortCourses(
-            false, courses)) { // Runs through all the courses to only show the correct ones
+        sortCourses(false, courses)) { // Runs through all the courses to only show the correct ones
       AnchorPane courseItem = this.pageFactory.createCoursePanelItem(course, parent);
       setShadow(courseItem);
       inactiveCoursesFlowpane.getChildren().add(courseItem);

@@ -15,8 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import manager.CourseManager;
 import model.Course;
-import model.CourseManager;
 import model.StudySession;
 import repository.CourseRepository;
 

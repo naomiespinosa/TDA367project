@@ -1,4 +1,6 @@
-package model;
+package event;
+
+import model.User;
 
 public class UserChangedEvent {
   private User newUser;

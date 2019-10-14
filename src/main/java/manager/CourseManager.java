@@ -1,7 +1,9 @@
-package model;
+package manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Course;
+import model.User;
 import viewcontroller.Observer;
 
 public class CourseManager {
