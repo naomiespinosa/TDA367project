@@ -41,7 +41,7 @@ public class CourseManager {
     this.fluentJdbc
         .query()
         .update(
-            "INSERT INTO courses (name, code, year, studyPeriod, ownedBy) VALUES (:name, :code, :year, :studyPeriod, :ownedBy)")
+            "INSERT INTO courses (name, courseCode, year, studyPeriod, ownedBy) VALUES (:name, :code, :year, :studyPeriod, :ownedBy)")
         .namedParam("name", name)
         .namedParam("code", code)
         .namedParam("year", year)
@@ -56,7 +56,7 @@ public class CourseManager {
     this.fluentJdbc
         .query()
         .update(
-            "UPDATE courses SET name = :name, code = :code, year = :year, studyPeriod = :studyPeriod, ownedBy = :ownedBy, grade = :grade, isActive = :isActive WHERE id = :id")
+            "UPDATE courses SET name = :name, courseCode = :code, year = :year, studyPeriod = :studyPeriod, ownedBy = :ownedBy, grade = :grade, isActive = :isActive WHERE id = :id")
         .namedParam("id", course.getId())
         .namedParam("name", course.getName())
         .namedParam("code", course.getCourseCode())
