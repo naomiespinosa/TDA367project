@@ -21,7 +21,7 @@ public class CourseRepository {
   public List<Course> findByUser(final User user) {
     return this.fluentJdbc
         .query()
-        .select("SELECT * FROM courses WHERE owned_by = :username")
+        .select("SELECT * FROM courses WHERE ownedBy = :username")
         .namedParam("username", user.getUsername())
         .listResult(this.objectMappers.forClass(Course.class));
   }

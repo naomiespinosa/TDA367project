@@ -48,6 +48,8 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   @Inject private CourseRepository courseRepository;
 
+  private User user;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     initToggleGroup();
@@ -63,6 +65,7 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   @Subscribe
   private void updateLists(final UserChangedEvent userChangedEvent) {
+    this.user = userChangedEvent.getNewUser();
     this.updateLists(userChangedEvent.getNewUser());
   }
 
@@ -106,10 +109,12 @@ public class CourseSelectionPage implements Initializable, Observer {
           courseNameTextArea.getText(),
           courseCodeTextArea.getText(),
           (int) yearSpinner.getValue(),
-          getPeriod());
+          getPeriod(),
+          this.user);
 
       clearCourseInput();
       resetPage();
+      this.updateLists(this.user);
     }
   }
 

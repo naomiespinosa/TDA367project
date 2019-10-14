@@ -1,69 +1,50 @@
 package manager;
 
+import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import model.Course;
 import model.User;
+import org.codejargon.fluentjdbc.api.FluentJdbc;
+import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 import viewcontroller.Observer;
 
 public class CourseManager {
-  private static User user;
+  @Inject private FluentJdbc fluentJdbc;
+  @Inject private ObjectMappers objectMappers;
 
-  private static List<Observer> observers = new ArrayList<Observer>();
+  private List<Observer> observers = new ArrayList<Observer>();
 
   public void attach(Observer observer) {
     observers.add(observer);
   }
 
-  private static void notifyAllObservers() {
+  private void notifyAllObservers() {
     for (Observer observer : observers) {
       observer.update();
     }
   }
 
-  // Deleting courses
   public void deleteCourse(Course course) {
-    user.getCourses().remove(course);
     notifyAllObservers();
   }
 
-  // Adding Courses
-  public void createNewCourse(String name, String code, int year, int period) {
-    user.addCourse(name, code, year, period);
+  public void createNewCourse(String name, String code, int year, int period, final User user) {
+    this.fluentJdbc
+        .query()
+        .update(
+            "INSERT INTO courses (name, code, year, studyPeriod, ownedBy) VALUES (:name, :code, :year, :studyPeriod, :ownedBy)")
+        .namedParam("name", name)
+        .namedParam("code", code)
+        .namedParam("year", year)
+        .namedParam("studyPeriod", period)
+        .namedParam("ownedBy", user.getUsername())
+        .run();
+
     notifyAllObservers();
   }
 
-  // Editing Courses
-  public void changeName(Course course, String name) {
-    course.setName(name);
-    notifyAllObservers();
-  }
-
-  public void changeCode(Course course, String code) {
-    course.setCourseCode(code);
-    notifyAllObservers();
-  }
-
-  public void changeYear(Course course, int year) {
-    course.setYear(year);
-    notifyAllObservers();
-  }
-
-  public void changePeriod(Course course, int period) {
-    course.setStudyPeriod(period);
-    notifyAllObservers();
-  }
-
-  // Status
-  public void completeCourse(Course course, String grade) {
-    course.endCourse(grade);
-    notifyAllObservers();
-  }
-
-  public void activateCourse(Course course) {
-    course.reactivateCourse();
-    notifyAllObservers();
-  }
+  public void save(Course course) {}
 
   public void update() {
     notifyAllObservers();

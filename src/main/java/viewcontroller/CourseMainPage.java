@@ -215,11 +215,12 @@ public class CourseMainPage implements Initializable {
   @FXML
   private void changeCourse(ActionEvent event) {
     if (!isEditApproved()) {
-      this.courseManager.changeName(course, courseNameTextArea.getText());
-      this.courseManager.changeCode(course, courseCodeTextArea.getText());
-      this.courseManager.changeYear(course, (int) yearSpinner.getValue());
-      this.courseManager.changePeriod(
-          course, (int) periodComboBox.getSelectionModel().getSelectedItem());
+      course.setName(courseNameTextArea.getText());
+      course.setCourseCode(courseCodeTextArea.getText());
+      course.setYear((int) yearSpinner.getValue());
+      course.setStudyPeriod((int) periodComboBox.getSelectionModel().getSelectedItem());
+
+      this.courseManager.save(course);
 
       updateCourseInfo();
       resetPanes();
@@ -277,11 +278,13 @@ public class CourseMainPage implements Initializable {
   @FXML
   private void changeStatus() {
     if (course.isActive()) {
-      this.courseManager.completeCourse(
-          course, gradeComboBox.getSelectionModel().getSelectedItem().toString());
+      course.endCourse(gradeComboBox.getSelectionModel().getSelectedItem().toString());
     } else {
-      this.courseManager.activateCourse(course);
+      course.reactivateCourse();
     }
+
+    this.courseManager.save(course);
+
     resetPanes();
     updateCourseInfo();
     resetChangeStatusPane();

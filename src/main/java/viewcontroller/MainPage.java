@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import manager.UserManager;
 import model.Course;
 import model.User;
 import repository.UserRepository;
@@ -24,6 +25,7 @@ public class MainPage {
 
   @Inject private PageFactory pageFactory;
   @Inject private EventBus eventBus;
+  @Inject private UserManager userManager;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -94,6 +96,9 @@ public class MainPage {
   private void newAccount() {
     User user = new User();
     user.setUsername(usernameTextField.getText());
+
+    this.userManager.save(user);
+    this.eventBus.post(new UserChangedEvent(user));
 
     login.toBack();
     main.toFront();
