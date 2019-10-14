@@ -3,7 +3,6 @@ package model;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
-import viewcontroller.UserManger;
 
 class UserTest {
   @Test

@@ -1,12 +1,17 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
 import java.io.IOException;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.User;
+import model.UserChangedEvent;
+import repository.UserRepository;
 
 public class MainPage {
 
@@ -14,6 +19,11 @@ public class MainPage {
   @FXML private TextField usernameTextField;
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
+
+  @Inject private UserRepository userRepository;
+
+  @Inject private PageFactory pageFactory;
+  @Inject private EventBus eventBus;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -62,20 +72,29 @@ public class MainPage {
   };
 
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
-    AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
+    AnchorPane courseHomePage = this.pageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
   }
 
-  // LoginPage
-
   @FXML
   private void login(ActionEvent event) {
-    // TODO login already existing user
+    List<User> users = this.userRepository.findAll();
+
+    for (User user : users) {
+      if (user.getUsername().equals(this.usernameTextField.getText())) {
+        this.eventBus.post(new UserChangedEvent(user));
+        this.login.toBack();
+        main.toFront();
+        init();
+      }
+    }
   }
 
   @FXML
   private void newAccount() {
-    UserManger.setActiveUser(new User(usernameTextField.getText()));
+    User user = new User();
+    user.setUsername(usernameTextField.getText());
+
     login.toBack();
     main.toFront();
     init();

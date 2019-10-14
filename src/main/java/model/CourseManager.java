@@ -1,22 +1,16 @@
-package viewcontroller;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Course;
-import model.User;
+import viewcontroller.Observer;
 
-abstract class CourseManager {
-  private static User user = UserManger.getActiveUser();
+public class CourseManager {
+  private static User user;
 
-  // Observer
   private static List<Observer> observers = new ArrayList<Observer>();
 
-  static void attach(Observer observer) {
+  public void attach(Observer observer) {
     observers.add(observer);
-  }
-
-  static List<Course> getCourses() {
-    return user.getCourses();
   }
 
   private static void notifyAllObservers() {
@@ -26,54 +20,50 @@ abstract class CourseManager {
   }
 
   // Deleting courses
-  static void deleteCourse(Course course) {
+  public void deleteCourse(Course course) {
     user.getCourses().remove(course);
     notifyAllObservers();
   }
 
   // Adding Courses
-  static void createNewCourse(String name, String code, int year, int period) {
+  public void createNewCourse(String name, String code, int year, int period) {
     user.addCourse(name, code, year, period);
     notifyAllObservers();
   }
 
   // Editing Courses
-  static void changeName(Course course, String name) {
+  public void changeName(Course course, String name) {
     course.setName(name);
     notifyAllObservers();
   }
 
-  static void changeCode(Course course, String code) {
+  public void changeCode(Course course, String code) {
     course.setCourseCode(code);
     notifyAllObservers();
   }
 
-  static void changeYear(Course course, int year) {
+  public void changeYear(Course course, int year) {
     course.setYear(year);
     notifyAllObservers();
   }
 
-  static void changePeriod(Course course, int period) {
+  public void changePeriod(Course course, int period) {
     course.setStudyPeriod(period);
     notifyAllObservers();
   }
 
   // Status
-  static void completeCourse(Course course, String grade) {
+  public void completeCourse(Course course, String grade) {
     course.endCourse(grade);
     notifyAllObservers();
   }
 
-  static void activateCourse(Course course) {
+  public void activateCourse(Course course) {
     course.reactivateCourse();
     notifyAllObservers();
   }
 
-  static void update() {
+  public void update() {
     notifyAllObservers();
-  }
-
-  public static void setUser(User activeUser) {
-    user = activeUser;
   }
 }

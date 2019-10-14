@@ -1,7 +1,6 @@
 package model;
 
 import org.junit.jupiter.api.Test;
-import viewcontroller.UserManger;
 
 class CourseTest {
 

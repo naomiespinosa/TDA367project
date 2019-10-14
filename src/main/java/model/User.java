@@ -7,9 +7,7 @@ public class User {
   private String username;
   private ArrayList<Course> courses = new ArrayList<>();
 
-  public User(String username) {
-    this.username = username;
-  }
+  public User() {}
 
   // TEMPORARY FOR TESTING ONLY
   public void testing() {
@@ -45,7 +43,7 @@ public class User {
     return username;
   }
 
-  public void setUsername(String username) {
+  public void setUsername(final String username) {
     this.username = username;
   }
 }

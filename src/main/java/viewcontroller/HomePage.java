@@ -1,25 +1,29 @@
 package viewcontroller;
 
-import java.io.IOException;
+import com.google.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
+import model.CourseManager;
 
 public class HomePage implements Observer {
   private MainPage parent;
 
+  @Inject private PanelItemManager panelItemManager;
+
   @FXML private FlowPane activeCoursesFlowpane;
+  @Inject private CourseManager courseManager;
 
   void init() {
-    updateLists();
-    CourseManager.attach(this);
+    // updateLists();
+    this.courseManager.attach(this);
   }
 
   private void updateLists() {
-    try {
-      PanelItemManager.showActiveCourses(activeCoursesFlowpane, parent);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  //  try {
+  //    this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user);
+  //  } catch (IOException e) {
+ //     e.printStackTrace();
+ //   }
   }
 
   void setParent(MainPage parent) {
@@ -28,6 +32,6 @@ public class HomePage implements Observer {
 
   @Override
   public void update() {
-    updateLists();
+    // updateLists();
   }
 }
