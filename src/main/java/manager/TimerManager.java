@@ -3,7 +3,7 @@ package manager;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import event.timer.StudyTimer;
+import model.StudyTimer;
 import event.timer.StudyTimerCanceledEvent;
 import event.timer.StudyTimerCompletedEvent;
 import event.timer.StudyTimerStartedEvent;
