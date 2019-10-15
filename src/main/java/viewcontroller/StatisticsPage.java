@@ -20,8 +20,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import manager.CourseManager;
 import model.Course;
+import model.StudySession;
 import model.User;
 import repository.CourseRepository;
+import repository.StudySessionRepository;
 
 public class StatisticsPage implements Initializable, Observer {
 
@@ -70,6 +72,8 @@ public class StatisticsPage implements Initializable, Observer {
   @Inject private CourseManager courseManager;
 
   @Inject private CourseRepository courseRepository;
+
+  @Inject private StudySessionRepository studySessionRepository;
 
   private User user;
 
@@ -138,16 +142,13 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO no dependancy
 
   private void setTotalStudyTimeDisplay() {
-    List<Course> courseList = this.courseRepository.findByUser(this.user);
-
     int totalTimeSecond = 0;
 
-    for (int i = 0; i < courseList.size(); i++) {
-      Course course = courseList.get(i);
-      // for (StudySession studySession : course.getStudySessions()) {
-      //   totalTimeSecond += (int) studySession.getDuration().getSeconds();
-      // }
+    List<StudySession> studySessions = this.studySessionRepository.findByUser(this.user);
+    for (StudySession studySession : studySessions) {
+      totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
+
     int totalHour = totalTimeSecond / 3600;
     int totalMinute = (totalTimeSecond % 3600) / 60;
 
@@ -161,9 +162,9 @@ public class StatisticsPage implements Initializable, Observer {
   private int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
-    // for (StudySession studySession : course.getStudySessions()) {
-    //   totalTimeSecond += (int) studySession.getDuration().getSeconds();
-    //  }
+    for (StudySession studySession : this.studySessionRepository.findByCourse(course)) {
+      totalTimeSecond += (int) studySession.getDuration().getSeconds();
+    }
 
     int totalHour = totalTimeSecond / 3600;
     return totalHour;

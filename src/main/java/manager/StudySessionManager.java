@@ -14,8 +14,8 @@ public class StudySessionManager {
         .query()
         .update(
             "INSERT INTO studySessions (startedAt, stoppedAt, courseId, ownedBy) VALUES (:startedAt, :stoppedAt, :courseId, :ownedBy)")
-        .namedParam("startedAt", studySession.getStart())
-        .namedParam("stoppedAt", studySession.getStop())
+        .namedParam("startedAt", studySession.getStartedAt())
+        .namedParam("stoppedAt", studySession.getStoppedAt())
         .namedParam("courseId", studySession.getCourseId())
         .namedParam("ownedBy", studySession.getOwnedBy())
         .run();

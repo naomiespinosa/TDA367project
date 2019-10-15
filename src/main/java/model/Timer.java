@@ -25,7 +25,7 @@ public abstract class Timer {
 
   private State state = State.INACTIVE;
 
-  private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000L;
+  private static Long STUDY_SESSION_LENGTH = 1000L;
 
   public Timer(final Course course) {
     this.course = course;

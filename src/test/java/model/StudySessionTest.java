@@ -27,7 +27,7 @@ public class StudySessionTest {
     studySession.setStart(start);
     studySession.setStop(LocalDateTime.of(2000, 1, 1, 0, 1, 0));
 
-    assertSame(start, studySession.getStart());
+    assertSame(start, studySession.getStartedAt());
   }
 
   @Test

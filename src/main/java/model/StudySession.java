@@ -6,22 +6,22 @@ import java.time.ZoneOffset;
 
 public class StudySession {
   private int id;
-  private LocalDateTime start;
-  private LocalDateTime stop;
+  private LocalDateTime startedAt;
+  private LocalDateTime stoppedAt;
   private int courseId;
   private int ownedBy;
 
-  public LocalDateTime getStart() {
-    return this.start;
+  public LocalDateTime getStartedAt() {
+    return this.startedAt;
   }
 
-  public LocalDateTime getStop() {
-    return this.stop;
+  public LocalDateTime getStoppedAt() {
+    return this.stoppedAt;
   }
 
   public Duration getDuration() {
     return Duration.between(
-        this.start.toInstant(ZoneOffset.UTC), this.stop.toInstant(ZoneOffset.UTC));
+        this.startedAt.toInstant(ZoneOffset.UTC), this.stoppedAt.toInstant(ZoneOffset.UTC));
   }
 
   public int getOwnedBy() {
@@ -41,11 +41,11 @@ public class StudySession {
   }
 
   public void setStart(final LocalDateTime start) {
-    this.start = start;
+    this.startedAt = start;
   }
 
   public void setStop(final LocalDateTime stop) {
-    this.stop = stop;
+    this.stoppedAt = stop;
   }
 
   public void setCourseId(final int courseId) {
