@@ -3,6 +3,7 @@ package manager;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import event.UserChangedEvent;
 import event.timer.StudyTimerCanceledEvent;
 import event.timer.StudyTimerCompletedEvent;
 import event.timer.StudyTimerStartedEvent;
@@ -10,11 +11,14 @@ import event.timer.TimerTickEvent;
 import model.Course;
 import model.StudyTimer;
 import model.Timer;
+import model.User;
 
 public class TimerManager {
   private Timer activeTimer;
 
   private EventBus eventBus;
+
+  private User user;
 
   @Inject
   public TimerManager(final EventBus eventBus) {
@@ -39,13 +43,21 @@ public class TimerManager {
         () ->
             eventBus.post(
                 new StudyTimerCanceledEvent(
-                    activeTimer.getCourse(), activeTimer.getElapsedSeconds())));
+                    activeTimer.getCourse(),
+                    activeTimer.getElapsedSeconds(),
+                    activeTimer.getStartedAt(),
+                    activeTimer.getStoppedAt(),
+                    this.user)));
 
     activeTimer.onCompleted(
         () ->
             eventBus.post(
                 new StudyTimerCompletedEvent(
-                    activeTimer.getCourse(), activeTimer.getElapsedSeconds())));
+                    activeTimer.getCourse(),
+                    activeTimer.getElapsedSeconds(),
+                    activeTimer.getStartedAt(),
+                    activeTimer.getStoppedAt(),
+                    this.user)));
 
     activeTimer.onTick(() -> eventBus.post(new TimerTickEvent(activeTimer.getElapsedSeconds())));
 
@@ -64,5 +76,10 @@ public class TimerManager {
   @Subscribe
   public void onStudyTimerCompleted(final StudyTimerCompletedEvent event) {
     activeTimer.cancel();
+  }
+
+  @Subscribe
+  private void onUserChange(final UserChangedEvent userChangedEvent) {
+    this.user = userChangedEvent.getNewUser();
   }
 }

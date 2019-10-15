@@ -3,7 +3,6 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
 
@@ -51,23 +50,6 @@ public class Course {
   // somewhere
 
   // List Methods
-
-  // StudySession
-
-  public void newStudySession(Date start, Date stop) {
-    StudySession studySession = new StudySession(start, stop, this);
-    studySessions.add(studySession);
-  }
-
-  private void deleteStudySession(int index) {}
-
-  public List<StudySession> getStudySessions() {
-    return studySessions;
-  }
-
-  private void clearStudySessions() {
-    studySessions.clear();
-  }
 
   // Moment
 

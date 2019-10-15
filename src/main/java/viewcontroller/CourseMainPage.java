@@ -1,6 +1,8 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
+import event.CourseSelectedEvent;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -86,6 +88,8 @@ public class CourseMainPage implements Initializable {
   private MainPage parent;
 
   @Inject private CourseManager courseManager;
+
+  @Inject private EventBus eventBus;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -367,6 +371,7 @@ public class CourseMainPage implements Initializable {
   }
 
   private void startTimer() {
+    this.eventBus.post(new CourseSelectedEvent(this.course));
     this.parent.showTimerPage();
   }
 }

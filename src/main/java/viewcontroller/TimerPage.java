@@ -3,6 +3,7 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import event.CourseSelectedEvent;
 import event.timer.StudyTimerCanceledEvent;
 import event.timer.StudyTimerCompletedEvent;
 import event.timer.StudyTimerStartedEvent;
@@ -31,11 +32,13 @@ public class TimerPage implements Initializable {
 
   @FXML private Label timeLabel;
 
+  private Course course;
+
   public void onTimerButtonClick() {
     if (timerManager.isRunning()) {
       timerManager.cancel();
     } else {
-      timerManager.start(new Course("asd", "sd", 1, 1));
+      timerManager.start(this.course);
     }
   }
 
@@ -68,5 +71,14 @@ public class TimerPage implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     eventBus.register(this);
     startPauseLabel.setText("Starta timer");
+  }
+
+  public void setCourse(final Course course) {
+    this.course = course;
+  }
+
+  @Subscribe
+  private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
+    this.course = courseSelectedEvent.getCourse();
   }
 }

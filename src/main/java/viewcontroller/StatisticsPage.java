@@ -20,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import manager.CourseManager;
 import model.Course;
-import model.StudySession;
 import model.User;
 import repository.CourseRepository;
 
@@ -145,9 +144,9 @@ public class StatisticsPage implements Initializable, Observer {
 
     for (int i = 0; i < courseList.size(); i++) {
       Course course = courseList.get(i);
-      for (StudySession studySession : course.getStudySessions()) {
-        totalTimeSecond += (int) studySession.getDuration().getSeconds();
-      }
+      // for (StudySession studySession : course.getStudySessions()) {
+      //   totalTimeSecond += (int) studySession.getDuration().getSeconds();
+      // }
     }
     int totalHour = totalTimeSecond / 3600;
     int totalMinute = (totalTimeSecond % 3600) / 60;
@@ -162,9 +161,9 @@ public class StatisticsPage implements Initializable, Observer {
   private int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
-    for (StudySession studySession : course.getStudySessions()) {
-      totalTimeSecond += (int) studySession.getDuration().getSeconds();
-    }
+    // for (StudySession studySession : course.getStudySessions()) {
+    //   totalTimeSecond += (int) studySession.getDuration().getSeconds();
+    //  }
 
     int totalHour = totalTimeSecond / 3600;
     return totalHour;
