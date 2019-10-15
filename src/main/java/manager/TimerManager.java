@@ -3,12 +3,12 @@ package manager;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import model.StudyTimer;
 import event.timer.StudyTimerCanceledEvent;
 import event.timer.StudyTimerCompletedEvent;
 import event.timer.StudyTimerStartedEvent;
 import event.timer.TimerTickEvent;
 import model.Course;
+import model.StudyTimer;
 import model.Timer;
 
 public class TimerManager {

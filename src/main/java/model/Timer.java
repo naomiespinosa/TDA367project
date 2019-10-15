@@ -50,6 +50,7 @@ public abstract class Timer {
     stoppedAt = LocalDateTime.now();
     timer.cancel();
     timer.purge();
+    this.state = State.CANCELED;
 
     if (onCancel != null) {
       onCancel.callback();
@@ -86,6 +87,10 @@ public abstract class Timer {
     }
 
     return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
+  }
+
+  public State getState() {
+    return this.state;
   }
 
   public enum State {
