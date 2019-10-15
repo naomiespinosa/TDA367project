@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import manager.TimerManager;
 import model.Course;
 
-public class Timer implements Initializable {
+public class TimerPage implements Initializable {
   @Inject private TimerManager timerManager;
 
   @Inject private EventBus eventBus;
