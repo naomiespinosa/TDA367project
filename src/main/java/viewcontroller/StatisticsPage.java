@@ -71,6 +71,8 @@ public class StatisticsPage implements Initializable, Observer {
     startPagePane.toFront();
   }
 
+  // TODO add functionality for add studyTime dialog
+
   @FXML
   private void switchListGraphAction(ActionEvent event) {
     if (isGraphShowing) {
@@ -122,7 +124,9 @@ public class StatisticsPage implements Initializable, Observer {
 
   // TODO Computing in this method will later on be moved to Course and accessed via a method.
   // TODO no dependancy
+
   private void setTotalStudyTimeDisplay() {
+
     List<Course> courseList = CourseManager.getCourses();
     int totalTimeSecond = 0;
 
