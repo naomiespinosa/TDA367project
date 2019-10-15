@@ -73,10 +73,6 @@ public class TimerPage implements Initializable {
     startPauseLabel.setText("Starta timer");
   }
 
-  public void setCourse(final Course course) {
-    this.course = course;
-  }
-
   @Subscribe
   private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
     this.course = courseSelectedEvent.getCourse();
