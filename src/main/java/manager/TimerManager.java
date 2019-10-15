@@ -1,13 +1,15 @@
-package model.timer;
+package manager;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import event.timer.StudyTimerCanceledEvent;
+import event.timer.StudyTimerCompletedEvent;
+import event.timer.StudyTimerStartedEvent;
+import event.timer.TimerTickEvent;
 import model.Course;
-import model.timer.event.StudyTimerCanceledEvent;
-import model.timer.event.StudyTimerCompletedEvent;
-import model.timer.event.StudyTimerStartedEvent;
-import model.timer.event.TimerTickEvent;
+import model.StudyTimer;
+import model.Timer;
 
 public class TimerManager {
   private Timer activeTimer;

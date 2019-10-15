@@ -1,5 +1,9 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
+import event.UserChangedEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -10,6 +14,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import manager.CourseManager;
+import model.*;
+import repository.CourseRepository;
 
 public class CourseSelectionPage implements Initializable, Observer {
 
@@ -33,28 +40,42 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private MainPage parent;
 
+  @Inject private CourseManager courseManager;
+
+  @Inject private PanelItemManager panelItemManager;
+
+  @Inject private EventBus eventBus;
+
+  @Inject private CourseRepository courseRepository;
+
+  private User user;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     initToggleGroup();
     resetSpinner();
-  }
-
-  void init() {
-    // Temporary
-    resetPage();
-    updateLists();
+    this.eventBus.register(this);
   }
 
   private void resetPage() {
     main.toFront();
     addCoursePane.toBack();
-    CourseManager.attach(this);
+    this.courseManager.attach(this);
   }
 
-  private void updateLists() {
+  @Subscribe
+  private void updateLists(final UserChangedEvent userChangedEvent) {
+    this.user = userChangedEvent.getNewUser();
+    this.updateLists(userChangedEvent.getNewUser());
+  }
+
+  private void updateLists(final User user) {
+    this.resetPage();
+    List<Course> courses = this.courseRepository.findByUser(user);
+
     try {
-      PanelItemManager.showActiveCourses(activeCoursesFlowPane, parent);
-      PanelItemManager.showInactiveCourses(inactiveCoursesFlowPane, parent);
+      this.panelItemManager.showActiveCourses(activeCoursesFlowPane, parent, courses);
+      this.panelItemManager.showInactiveCourses(inactiveCoursesFlowPane, parent, courses);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -84,14 +105,16 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private void addCourse() {
     if (!isNewCourseApproved()) { // Check so all fields are filled in
-      CourseManager.createNewCourse(
+      this.courseManager.createNewCourse(
           courseNameTextArea.getText(),
           courseCodeTextArea.getText(),
           (int) yearSpinner.getValue(),
-          getPeriod());
+          getPeriod(),
+          this.user);
 
       clearCourseInput();
       resetPage();
+      this.updateLists(this.user);
     }
   }
 
@@ -153,6 +176,6 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   @Override
   public void update() {
-    updateLists();
+    updateLists(this.user);
   }
 }

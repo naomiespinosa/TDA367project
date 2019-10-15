@@ -1,10 +1,9 @@
-package model.timer;
+package model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import model.Course;
 
-abstract class Timer {
+public abstract class Timer {
   private java.util.Timer timer = new java.util.Timer();
 
   private Course course;
@@ -51,6 +50,7 @@ abstract class Timer {
     stoppedAt = LocalDateTime.now();
     timer.cancel();
     timer.purge();
+    this.state = State.CANCELED;
 
     if (onCancel != null) {
       onCancel.callback();
@@ -87,6 +87,10 @@ abstract class Timer {
     }
 
     return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
+  }
+
+  public State getState() {
+    return this.state;
   }
 
   public enum State {

@@ -1,63 +1,72 @@
 package viewcontroller;
 
 import com.cathive.fx.guice.GuiceFXMLLoader;
+import com.google.inject.Inject;
 import java.io.IOException;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 
 public class PageFactory {
-  public static AnchorPane createHomePage(MainPage parent) throws IOException {
-    FXMLLoader homePageLoader =
-        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml"));
-    AnchorPane root = homePageLoader.load(); // Loads the FXML
-    HomePage ctr = homePageLoader.getController(); // Fetches the Controller for the fxml
+
+  @Inject private GuiceFXMLLoader fxmlLoader;
+
+  public AnchorPane createHomePage(MainPage parent) throws IOException {
+    GuiceFXMLLoader.Result result =
+        this.fxmlLoader.load(PageFactory.class.getClassLoader().getResource("fxml/HomePage.fxml"));
+    AnchorPane root = result.getRoot();
+
+    HomePage ctr = result.getController();
     ctr.setParent(parent);
     ctr.init();
     return root;
   }
 
-  public static AnchorPane createCourseSelectionPage(MainPage parent) throws IOException {
-    FXMLLoader courseSelectionPageLoader =
-        new FXMLLoader(
+  public AnchorPane createCourseSelectionPage(MainPage parent) throws IOException {
+    GuiceFXMLLoader.Result result =
+        this.fxmlLoader.load(
             PageFactory.class.getClassLoader().getResource("fxml/CourseSelectionPage.fxml"));
-    AnchorPane root = courseSelectionPageLoader.load(); // Loads the FXML
-    CourseSelectionPage ctr =
-        courseSelectionPageLoader.getController(); // Fetches the Controller for the fxml
+
+    AnchorPane root = result.getRoot();
+    CourseSelectionPage ctr = result.getController();
     ctr.setParent(parent);
-    ctr.init();
     return root;
   }
 
-  public static AnchorPane createStatisticsPage() throws IOException {
-    return FXMLLoader.load(
-        PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"));
+  public AnchorPane createStatisticsPage() throws IOException {
+    return this.fxmlLoader
+        .load(PageFactory.class.getClassLoader().getResource("fxml/StatisticsPage.fxml"))
+        .getRoot();
   }
 
-  static AnchorPane createCoursePanelItem(Course course, MainPage parent) throws IOException {
-    FXMLLoader coursePanelLoader =
-        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CoursePanelItem.fxml"));
-    AnchorPane root = coursePanelLoader.load(); // Loads the FXML
-    CoursePanelItem ctr = coursePanelLoader.getController(); // Fetches the Controller for the fxml
+  public AnchorPane createCoursePanelItem(final Course course, final MainPage parent)
+      throws IOException {
+    GuiceFXMLLoader.Result result =
+        this.fxmlLoader.load(
+            PageFactory.class.getClassLoader().getResource("fxml/CoursePanelItem.fxml"));
+
+    AnchorPane root = result.getRoot();
+    CoursePanelItem ctr = result.getController(); // Fetches the Controller for the fxml
     ctr.init(course, parent);
     return root;
   }
 
-  static AnchorPane createCourseMainPage(Course course, final MainPage mainPage)
+  public AnchorPane createCourseMainPage(Course course, final MainPage mainPage)
       throws IOException {
-    FXMLLoader courseMainPageLoader =
-        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
-    AnchorPane root = courseMainPageLoader.load(); // Loads the FXML
-    CourseMainPage ctr =
-        courseMainPageLoader.getController(); // Fetches the Controller for the fxml
+    GuiceFXMLLoader.Result result =
+        this.fxmlLoader.load(
+            PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
+
+    AnchorPane root = result.getRoot();
+
+    CourseMainPage ctr = result.getController(); // Fetches the Controller for the fxml
     ctr.init(course);
     ctr.setParent(mainPage);
 
     return root;
   }
 
-  public static AnchorPane createTimerPage(GuiceFXMLLoader fxmlLoader) throws IOException {
-    return fxmlLoader
+  public AnchorPane createTimerPage() throws IOException {
+    return this.fxmlLoader
         .load(PageFactory.class.getClassLoader().getResource("fxml/TimerPage.fxml"))
         .getRoot();
   }
