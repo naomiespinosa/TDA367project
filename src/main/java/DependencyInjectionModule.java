@@ -21,11 +21,7 @@ public class DependencyInjectionModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    bind(TimerManager.class).in(Singleton.class);
     bind(EventBus.class).in(Singleton.class);
-    bind(CourseManager.class).in(Singleton.class);
-    bind(PageFactory.class).in(Singleton.class);
-    bind(PanelItemManager.class).in(Singleton.class);
     bind(CourseRepositoryInterface.class).to(CourseRepository.class);
     bind(UserRepositoryInterface.class).to(UserRepository.class);
   }
