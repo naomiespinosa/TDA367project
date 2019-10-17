@@ -8,11 +8,11 @@ public class Contact {
     private Course course;
     private String titel; //Teacher, student ...
 
-    public Contact(String name, String email, String phoneNumber, String titel) {
+    public Contact(String name, String email, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.titel = titel;
+        //this.titel = titel;
     }
 
     public String getName() {

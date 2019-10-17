@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import model.Contact;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -19,11 +21,12 @@ import java.util.ResourceBundle;
 public class ContactsPage extends Observer implements Initializable{
 
         Contact c;
-        private ObservableList<Contact> contactsName =
-                FXCollections.observableArrayList(new Contact("Johanna Wiberg","fggf","0204044","Teacher"));
+    private ArrayList<Contact> contacts = new ArrayList();
+    private ObservableList<Contact> contactsObserverList =
+            FXCollections.observableArrayList(new Contact("mdkfkd","hej","0303"));
 
          @FXML
-         private ListView<?> contactsListview;
+         private ListView contactsListview;
 
         @FXML
         private TextField contactName;
@@ -32,7 +35,7 @@ public class ContactsPage extends Observer implements Initializable{
         private TextField contactEmail;
 
         @FXML
-        private TextField contactphone;
+        private TextField contactPhone;
 
         @FXML
         private ComboBox contactCourse;
@@ -40,30 +43,79 @@ public class ContactsPage extends Observer implements Initializable{
         @FXML
         private ComboBox contactTitle;
 
+    @FXML
+    private Label name;
+
+    @FXML
+    private Label email;
+
+    @FXML
+    private Label number;
+
+    @FXML
+    private Label course;
+
+    @FXML
+    private Label title;
+
+    @FXML
+    private AnchorPane addContactAnchorPane;
+
+    @FXML
+    private AnchorPane seeContactAnchorpane;
+
+    @FXML
+    void createContact(ActionEvent event) {
+        if (contactName.getText() != null) {
+            contactsObserverList.add(new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
+            contactsListview.setItems(contactsObserverList);
+
+        }
+
+    }
+
         private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
 
         private List courseNames = new ArrayList<>();
 
+
+
         public void newContact(){
+            contactName.getText();
+            contactEmail.getText();
+            contactPhone.getText();
 
         }
 
-        public void removeContact(){
+            public void removeContact(Contact c) {
+                this.contacts.remove(c);
+               // this.listModel.remove(c);
+            }
 
-        }
+
 
         public void contactsListChanged(){
-
         }
+
+        public void clearTextArea(){
+
+            contactName.clear();
+            contactPhone.clear();
+            contactEmail.clear();
+        }
+
+    private void populateContactListView() {
+        contactsListview.setItems(contactsObserverList);
+    }
 
 
        private void presentContact(Contact c) {
                 if (c != null) {
-                        contactName.setText(c.getName());
-                        contactphone.setText(c.getPhoneNumber());
-                        contactEmail.setText(c.getEmail());
-                        contactCourse.getSelectionModel().select(c.getCourse());
-                        contactTitle.getSelectionModel().select(c.getTitel());
+                        name.setText(c.getName());
+                        number.setText(c.getPhoneNumber());
+                        email.setText(c.getEmail());
+                        contactCourse.getSelectionModel().select(c.getCourse()); //Detta måste converteras till en string
+                        contactTitle.getSelectionModel().select(c.getTitel()); // -//-
                 }
 
         }
@@ -98,6 +150,7 @@ public class ContactsPage extends Observer implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateInfo();
+        populateContactListView();
     }
 }
 
