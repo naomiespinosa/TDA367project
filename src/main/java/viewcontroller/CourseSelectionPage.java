@@ -16,7 +16,7 @@ import javafx.scene.layout.FlowPane;
 import model.*;
 import model.event.UserChangedEvent;
 import model.manager.CourseManager;
-import model.repository.CourseRepository;
+import model.repository.CourseRepositoryInterface;
 
 public class CourseSelectionPage implements Initializable, Observer {
 
@@ -46,7 +46,7 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   @Inject private EventBus eventBus;
 
-  @Inject private CourseRepository courseRepository;
+  @Inject private CourseRepositoryInterface courseRepository;
 
   private User user;
 

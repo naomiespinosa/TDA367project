@@ -7,7 +7,7 @@ import model.User;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
-public class CourseRepository {
+public class CourseRepository implements CourseRepositoryInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
 

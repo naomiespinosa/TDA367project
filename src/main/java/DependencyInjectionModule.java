@@ -5,11 +5,14 @@ import com.google.inject.Singleton;
 import model.User;
 import model.manager.CourseManager;
 import model.manager.TimerManager;
+import model.repository.CourseRepository;
+import model.repository.CourseRepositoryInterface;
+import model.repository.UserRepository;
+import model.repository.UserRepositoryInterface;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.FluentJdbcBuilder;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 import org.sqlite.SQLiteDataSource;
-import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
 import viewcontroller.PanelItemManager;
 
@@ -23,7 +26,8 @@ public class DependencyInjectionModule extends AbstractModule {
     bind(CourseManager.class).in(Singleton.class);
     bind(PageFactory.class).in(Singleton.class);
     bind(PanelItemManager.class).in(Singleton.class);
-    bind(MainPage.class);
+    bind(CourseRepositoryInterface.class).to(CourseRepository.class);
+    bind(UserRepositoryInterface.class).to(UserRepository.class);
   }
 
   @Provides

@@ -12,7 +12,7 @@ import model.Course;
 import model.User;
 import model.event.UserChangedEvent;
 import model.manager.UserManager;
-import model.repository.UserRepository;
+import model.repository.UserRepositoryInterface;
 
 public class MainPage {
 
@@ -21,7 +21,7 @@ public class MainPage {
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
 
-  @Inject private UserRepository userRepository;
+  @Inject private UserRepositoryInterface userRepository;
 
   @Inject private PageFactory pageFactory;
   @Inject private EventBus eventBus;
