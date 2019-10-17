@@ -3,6 +3,7 @@ package model;
 import java.time.Duration;
 import java.util.Date;
 
+// Represents one StudySession for a specific course
 public class StudySession {
   private Date start;
   private Date stop;
@@ -15,18 +16,18 @@ public class StudySession {
   }
 
   public Date getStart() {
-    return this.start;
+    return start;
   }
 
   public Date getStop() {
-    return this.stop;
+    return stop;
   }
 
   public Duration getDuration() {
-    return Duration.between(this.start.toInstant(), this.stop.toInstant());
+    return Duration.between(start.toInstant(), stop.toInstant());
   }
 
   public Course getCourse() {
-    return this.course;
+    return course;
   }
 }
