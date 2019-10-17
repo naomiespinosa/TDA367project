@@ -1,10 +1,15 @@
 package model;
 
+import com.google.inject.Inject;
+import java.util.List;
+import model.repository.CourseRepositoryInterface;
+
 public class User {
   private String username;
   private int id;
 
-  // Getters och Setters
+  @Inject private CourseRepositoryInterface courseRepository;
+
   public String getUsername() {
     return username;
   }
@@ -15,5 +20,9 @@ public class User {
 
   public int getId() {
     return this.id;
+  }
+
+  public List<Course> getCourses() {
+    return this.courseRepository.findByUser(this);
   }
 }

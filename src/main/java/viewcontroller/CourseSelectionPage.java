@@ -71,7 +71,7 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private void updateLists(final User user) {
     this.resetPage();
-    List<Course> courses = this.courseRepository.findByUser(user);
+    List<Course> courses = user.getCourses();
 
     try {
       this.panelItemManager.showActiveCourses(activeCoursesFlowPane, parent, courses);

@@ -114,7 +114,7 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setStudyTimeGradesDisplay() {
-    for (Course course : this.courseRepository.findByUser(this.user)) {
+    for (Course course : user.getCourses()) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
           case "U":
@@ -139,7 +139,7 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO no dependancy
 
   private void setTotalStudyTimeDisplay() {
-    List<Course> courseList = this.courseRepository.findByUser(this.user);
+    List<Course> courseList = user.getCourses();
 
     int totalTimeSecond = 0;
 
@@ -174,7 +174,7 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setListOfCourses() {
-    List<Course> courseList = this.courseRepository.findByUser(this.user);
+    List<Course> courseList = user.getCourses();
 
     activeCourses.clear();
     inactiveCourses.clear();

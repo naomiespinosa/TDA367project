@@ -4,10 +4,8 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import java.io.IOException;
-import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
-import model.Course;
 import model.User;
 import model.event.UserChangedEvent;
 import model.manager.CourseManager;
@@ -39,10 +37,8 @@ public class HomePage implements Observer {
   }
 
   private void updateLists() {
-    List<Course> courses = this.courseRepository.findByUser(this.user);
-
     try {
-      this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, courses);
+      this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user.getCourses());
     } catch (IOException e) {
       e.printStackTrace();
     }
