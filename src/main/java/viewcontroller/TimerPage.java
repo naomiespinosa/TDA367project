@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
+import model.event.CourseSelectedEvent;
 import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
@@ -31,11 +32,13 @@ public class TimerPage implements Initializable {
 
   @FXML private Label timeLabel;
 
+  private Course course;
+
   public void onTimerButtonClick() {
     if (timerManager.isRunning()) {
       timerManager.cancel();
     } else {
-      timerManager.start(new Course("asd", "sd", 1, 1));
+      timerManager.start(this.course);
     }
   }
 
@@ -68,5 +71,10 @@ public class TimerPage implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     eventBus.register(this);
     startPauseLabel.setText("Starta timer");
+  }
+
+  @Subscribe
+  private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
+    this.course = courseSelectedEvent.getCourse();
   }
 }

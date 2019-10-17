@@ -1,5 +1,6 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import java.net.URL;
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Moment;
 import model.ToDo;
+import model.event.CourseSelectedEvent;
 import model.manager.CourseManagerInterface;
 
 public class CourseMainPage implements Initializable {
@@ -90,6 +92,8 @@ public class CourseMainPage implements Initializable {
   private MainPage parent;
 
   @Inject private CourseManagerInterface courseManager;
+
+  @Inject private EventBus eventBus;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -370,6 +374,7 @@ public class CourseMainPage implements Initializable {
   }
 
   private void startTimer() {
+    this.eventBus.post(new CourseSelectedEvent(this.course));
     this.parent.showTimerPage();
   }
 }

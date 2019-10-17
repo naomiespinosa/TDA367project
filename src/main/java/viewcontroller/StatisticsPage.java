@@ -24,6 +24,7 @@ import model.User;
 import model.event.UserChangedEvent;
 import model.manager.CourseManagerInterface;
 import model.repository.CourseRepositoryInterface;
+import model.repository.StudySessionRepositoryInterface;
 
 public class StatisticsPage implements Initializable, Observer {
 
@@ -72,6 +73,8 @@ public class StatisticsPage implements Initializable, Observer {
   @Inject private CourseManagerInterface courseManager;
 
   @Inject private CourseRepositoryInterface courseRepository;
+
+  @Inject private StudySessionRepositoryInterface studySessionRepository;
 
   private User user;
 
@@ -140,16 +143,13 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO no dependancy
 
   private void setTotalStudyTimeDisplay() {
-    List<Course> courseList = user.getCourses();
-
     int totalTimeSecond = 0;
 
-    for (int i = 0; i < courseList.size(); i++) {
-      Course course = courseList.get(i);
-      for (StudySession studySession : course.getStudySessions()) {
-        totalTimeSecond += (int) studySession.getDuration().getSeconds();
-      }
+    List<StudySession> studySessions = user.getStudySessions();
+    for (StudySession studySession : studySessions) {
+      totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
+
     int totalHour = totalTimeSecond / 3600;
     int totalMinute = (totalTimeSecond % 3600) / 60;
 
@@ -163,7 +163,7 @@ public class StatisticsPage implements Initializable, Observer {
   private int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
-    for (StudySession studySession : course.getStudySessions()) {
+    for (StudySession studySession : this.studySessionRepository.findByCourse(course)) {
       totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
 
@@ -175,12 +175,10 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setListOfCourses() {
-    List<Course> courseList = user.getCourses();
-
     activeCourses.clear();
     inactiveCourses.clear();
 
-    for (Course course : courseList) {
+    for (Course course : user.getCourses()) {
       if (course.isActive()) {
         activeCourses.add(course.getName());
       } else {
