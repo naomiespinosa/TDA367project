@@ -9,7 +9,6 @@ public class StudySession {
   private LocalDateTime startedAt;
   private LocalDateTime stoppedAt;
   private int courseId;
-  private int ownedBy;
 
   public LocalDateTime getStartedAt() {
     return this.startedAt;
@@ -22,10 +21,6 @@ public class StudySession {
   public Duration getDuration() {
     return Duration.between(
         this.startedAt.toInstant(ZoneOffset.UTC), this.stoppedAt.toInstant(ZoneOffset.UTC));
-  }
-
-  public int getOwnedBy() {
-    return this.ownedBy;
   }
 
   public int getCourseId() {
@@ -50,9 +45,5 @@ public class StudySession {
 
   public void setCourseId(final int courseId) {
     this.courseId = courseId;
-  }
-
-  public void setOwnedBy(final int ownedBy) {
-    this.ownedBy = ownedBy;
   }
 }

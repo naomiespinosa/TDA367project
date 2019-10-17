@@ -143,11 +143,9 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO no dependancy
 
   private void setTotalStudyTimeDisplay() {
-    List<Course> courseList = user.getCourses();
-
     int totalTimeSecond = 0;
 
-    List<StudySession> studySessions = this.studySessionRepository.findByUser(this.user);
+    List<StudySession> studySessions = user.getStudySessions();
     for (StudySession studySession : studySessions) {
       totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
@@ -177,12 +175,10 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setListOfCourses() {
-    List<Course> courseList = user.getCourses();
-
     activeCourses.clear();
     inactiveCourses.clear();
 
-    for (Course course : courseList) {
+    for (Course course : user.getCourses()) {
       if (course.isActive()) {
         activeCourses.add(course.getName());
       } else {

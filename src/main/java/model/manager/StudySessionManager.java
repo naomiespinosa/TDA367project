@@ -17,7 +17,6 @@ public class StudySessionManager implements StudySessionManagerInterface {
         .namedParam("startedAt", studySession.getStartedAt())
         .namedParam("stoppedAt", studySession.getStoppedAt())
         .namedParam("courseId", studySession.getCourseId())
-        .namedParam("ownedBy", studySession.getOwnedBy())
         .run();
   }
 }

@@ -22,7 +22,7 @@ public class StudySessionRepository implements StudySessionRepositoryInterface {
   public List<StudySession> findByUser(final User user) {
     return this.fluentJdbc
         .query()
-        .select("SELECT * FROM studySessions WHERE ownedBy = :userId")
+        .select("SELECT * FROM studySessions JOIN users ON users.id WHERE users.id = :userId")
         .namedParam("userId", user.getId())
         .listResult(this.objectMappers.forClass(StudySession.class));
   }
