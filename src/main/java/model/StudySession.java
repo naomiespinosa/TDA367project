@@ -3,6 +3,7 @@ package model;
 import java.time.Duration;
 import java.util.Date;
 
+// Represents one StudySession for a specific course
 public class StudySession {
   private Date start;
   private Date stop;
