@@ -75,10 +75,16 @@ public class MainPage {
 
   @FXML
   private void newAccount() {
-    UserManger.setActiveUser(new User(usernameTextField.getText()));
-    login.toBack();
-    main.toFront();
-    init();
+    if (usernameIsValid()) {
+      UserManger.setActiveUser(new User(usernameTextField.getText()));
+      login.toBack();
+      main.toFront();
+      init();
+    }
+  }
+
+  private boolean usernameIsValid() {
+    return !usernameTextField.getText().trim().isEmpty();
   }
 
   // Shows selected page on the right side of the screen

@@ -3,6 +3,8 @@ package viewcontroller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,6 +45,7 @@ public class CourseSelectionPage implements Initializable, Observer {
     // Temporary
     resetPage();
     updateLists();
+    addTextLimiter(courseCodeTextArea);
   }
 
   private void resetPage() {
@@ -58,6 +61,24 @@ public class CourseSelectionPage implements Initializable, Observer {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  static void addTextLimiter(TextField courseCodeText) {
+    courseCodeText
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends String> ov,
+                  final String oldValue,
+                  final String newValue) {
+                if (courseCodeText.getText().length() > 6) {
+                  String s = courseCodeText.getText().substring(0, 6);
+                  courseCodeText.setText(s);
+                }
+              }
+            });
   }
 
   // Add course functionality
@@ -86,7 +107,9 @@ public class CourseSelectionPage implements Initializable, Observer {
     if (!isNewCourseApproved()) { // Check so all fields are filled in
       CourseManager.createNewCourse(
           courseNameTextArea.getText(),
-          courseCodeTextArea.getText(),
+          courseCodeTextArea
+              .getText()
+              .substring(0, 6), // Makes sure we do not allow more than 6 chars
           (int) yearSpinner.getValue(),
           getPeriod());
 
