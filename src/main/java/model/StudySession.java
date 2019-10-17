@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+// Represents one StudySession for a specific course
 public class StudySession {
   private int id;
   private LocalDateTime startedAt;
@@ -11,24 +12,24 @@ public class StudySession {
   private int courseId;
 
   public LocalDateTime getStartedAt() {
-    return this.startedAt;
+    return startedAt;
   }
 
   public LocalDateTime getStoppedAt() {
-    return this.stoppedAt;
+    return stoppedAt;
   }
 
   public Duration getDuration() {
     return Duration.between(
-        this.startedAt.toInstant(ZoneOffset.UTC), this.stoppedAt.toInstant(ZoneOffset.UTC));
+        startedAt.toInstant(ZoneOffset.UTC), stoppedAt.toInstant(ZoneOffset.UTC));
   }
 
   public int getCourseId() {
-    return this.courseId;
+    return courseId;
   }
 
   public int getId() {
-    return this.id;
+    return id;
   }
 
   public void setId(int id) {
@@ -36,11 +37,11 @@ public class StudySession {
   }
 
   public void setStart(final LocalDateTime start) {
-    this.startedAt = start;
+    startedAt = start;
   }
 
   public void setStop(final LocalDateTime stop) {
-    this.stoppedAt = stop;
+    stoppedAt = stop;
   }
 
   public void setCourseId(final int courseId) {
