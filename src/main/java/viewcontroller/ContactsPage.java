@@ -3,15 +3,19 @@ package viewcontroller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Contact;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,13 +24,15 @@ import java.util.ResourceBundle;
 
 public class ContactsPage extends Observer implements Initializable{
 
-        Contact c;
+
     private ArrayList<Contact> contacts = new ArrayList();
     private ObservableList<Contact> contactsObserverList =
-            FXCollections.observableArrayList(new Contact("mdkfkd","hej","0303"));
+            FXCollections.observableArrayList();
 
          @FXML
-         private ListView contactsListview;
+         private ListView<Contact> contactsListview = new ListView<>();
+
+
 
         @FXML
         private TextField contactName;
@@ -66,59 +72,65 @@ public class ContactsPage extends Observer implements Initializable{
 
     @FXML
     void createContact(ActionEvent event) {
-        if (contactName.getText() != null) {
+        if (!isContactApproved()) {
             contactsObserverList.add(new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
-            contactsListview.setItems(contactsObserverList);
+            resetInputs();
+            seeContactAnchorpane.toFront();
 
         }
+    }
+    @FXML
+    void listview(MouseEvent event) {
+    getSelectedContact();
+    }
+
+    @FXML
+    void addNewContact(ActionEvent event) {
+        addContactAnchorPane.toFront();
 
     }
 
-        private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
+
+    private void resetInputs() {
+        contactName.clear();
+        contactPhone.clear();
+        contactEmail.clear();
+    }
+
+    private boolean isContactApproved() {
+        return contactName.getText().trim().isEmpty() || contactEmail.getText().trim().isEmpty() || contactPhone.getText().trim().isEmpty();
+    }
+
+    private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
 
         private List courseNames = new ArrayList<>();
 
 
-
-        public void newContact(){
-            contactName.getText();
-            contactEmail.getText();
-            contactPhone.getText();
-
-        }
-
             public void removeContact(Contact c) {
-                this.contacts.remove(c);
-               // this.listModel.remove(c);
+
             }
-
-
 
         public void contactsListChanged(){
         }
 
-        public void clearTextArea(){
-
-            contactName.clear();
-            contactPhone.clear();
-            contactEmail.clear();
-        }
 
     private void populateContactListView() {
-        contactsListview.setItems(contactsObserverList);
+            contactsListview.setItems(contactsObserverList);
     }
 
 
-       private void presentContact(Contact c) {
-                if (c != null) {
+       /*private void presentContact() {
+              //c =  getSelectedContact();
+            if (c != null) {
+
                         name.setText(c.getName());
                         number.setText(c.getPhoneNumber());
                         email.setText(c.getEmail());
-                        contactCourse.getSelectionModel().select(c.getCourse()); //Detta måste converteras till en string
-                        contactTitle.getSelectionModel().select(c.getTitel()); // -//-
+                     //   contactCourse.getSelectionModel().select(c.getCourse()); //Detta måste converteras till en string
+                     //   contactTitle.getSelectionModel().select(c.getTitel()); // -//-
                 }
 
-        }
+        }*/
 
 
         private void updateInfo() {
@@ -140,6 +152,17 @@ public class ContactsPage extends Observer implements Initializable{
             return courseNames;
     }
 
+   private void getSelectedContact() {
+        if (contactsListview.getSelectionModel().getSelectedIndex() != -1) {
+            Contact selectedContact = contactsListview.getSelectionModel().getSelectedItem();
+            name.setText(selectedContact.getName());
+            email.setText(selectedContact.getEmail());
+            number.setText(selectedContact.getPhoneNumber());
+
+
+        }
+   }
+
 
     @Override
         public void update() {
@@ -151,6 +174,11 @@ public class ContactsPage extends Observer implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         updateInfo();
         populateContactListView();
+    }
+
+
+    public void listhej(javafx.scene.input.MouseEvent mouseEvent) {
+            getSelectedContact();
     }
 }
 
