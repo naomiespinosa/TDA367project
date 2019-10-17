@@ -6,10 +6,11 @@ import com.google.inject.Inject;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
+import model.Observer;
 import model.User;
 import model.event.UserChangedEvent;
-import model.manager.CourseManager;
-import model.repository.CourseRepository;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
 
 public class HomePage implements Observer {
   private MainPage parent;
@@ -17,8 +18,8 @@ public class HomePage implements Observer {
   @Inject private PanelItemManager panelItemManager;
 
   @FXML private FlowPane activeCoursesFlowpane;
-  @Inject private CourseManager courseManager;
-  @Inject private CourseRepository courseRepository;
+  @Inject private CourseManagerInterface courseManager;
+  @Inject private CourseRepositoryInterface courseRepository;
   private User user;
 
   @Inject

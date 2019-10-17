@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.User;
 import model.event.UserChangedEvent;
-import model.manager.UserManager;
+import model.manager.UserManagerInterface;
 import model.repository.UserRepositoryInterface;
 
 public class MainPage {
@@ -25,7 +25,7 @@ public class MainPage {
 
   @Inject private PageFactory pageFactory;
   @Inject private EventBus eventBus;
-  @Inject private UserManager userManager;
+  @Inject private UserManagerInterface userManager;
 
   // Other FXMLs
   private AnchorPane homePage;

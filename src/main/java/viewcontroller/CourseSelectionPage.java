@@ -14,8 +14,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.*;
+import model.Observer;
 import model.event.UserChangedEvent;
-import model.manager.CourseManager;
+import model.manager.CourseManagerInterface;
 import model.repository.CourseRepositoryInterface;
 
 public class CourseSelectionPage implements Initializable, Observer {
@@ -40,7 +41,7 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private MainPage parent;
 
-  @Inject private CourseManager courseManager;
+  @Inject private CourseManagerInterface courseManager;
 
   @Inject private PanelItemManager panelItemManager;
 

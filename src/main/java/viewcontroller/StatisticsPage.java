@@ -18,11 +18,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
+import model.Observer;
 import model.StudySession;
 import model.User;
 import model.event.UserChangedEvent;
-import model.manager.CourseManager;
-import model.repository.CourseRepository;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
 
 public class StatisticsPage implements Initializable, Observer {
 
@@ -68,9 +69,9 @@ public class StatisticsPage implements Initializable, Observer {
   ArrayList<Course> activeCourseList;
   ArrayList<Course> finishedCourseList;
 
-  @Inject private CourseManager courseManager;
+  @Inject private CourseManagerInterface courseManager;
 
-  @Inject private CourseRepository courseRepository;
+  @Inject private CourseRepositoryInterface courseRepository;
 
   private User user;
 

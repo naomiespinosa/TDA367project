@@ -3,6 +3,10 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import model.User;
+import model.manager.CourseManager;
+import model.manager.CourseManagerInterface;
+import model.manager.UserManager;
+import model.manager.UserManagerInterface;
 import model.repository.CourseRepository;
 import model.repository.CourseRepositoryInterface;
 import model.repository.UserRepository;
@@ -20,6 +24,8 @@ public class DependencyInjectionModule extends AbstractModule {
     bind(EventBus.class).in(Singleton.class);
     bind(CourseRepositoryInterface.class).to(CourseRepository.class);
     bind(UserRepositoryInterface.class).to(UserRepository.class);
+    bind(UserManagerInterface.class).to(UserManager.class);
+    bind(CourseManagerInterface.class).to(CourseManager.class).in(Singleton.class);
   }
 
   @Provides

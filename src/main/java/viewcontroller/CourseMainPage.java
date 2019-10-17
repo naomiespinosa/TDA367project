@@ -10,18 +10,22 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Moment;
 import model.ToDo;
-import model.manager.CourseManager;
+import model.manager.CourseManagerInterface;
 
 public class CourseMainPage implements Initializable {
 
@@ -85,7 +89,7 @@ public class CourseMainPage implements Initializable {
 
   private MainPage parent;
 
-  @Inject private CourseManager courseManager;
+  @Inject private CourseManagerInterface courseManager;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -139,7 +143,6 @@ public class CourseMainPage implements Initializable {
       gradeText.setVisible(true);
       termCheckBox.setText("Jag är säker på att jag vill avsluta kursen " + course.getName());
       gradeLabel.setText(null);
-
     } else {
       toChangeStatusPageButton.setText("Starta Kurs");
       changeStatusButton.setText("Starta Kurs");
