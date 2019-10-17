@@ -3,7 +3,6 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import event.UserChangedEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +17,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import manager.CourseManager;
 import model.Course;
+import model.Observer;
 import model.StudySession;
 import model.User;
-import repository.CourseRepository;
-import repository.StudySessionRepository;
+import model.event.UserChangedEvent;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
+import model.repository.StudySessionRepositoryInterface;
 
 public class StatisticsPage implements Initializable, Observer {
 
@@ -69,11 +70,11 @@ public class StatisticsPage implements Initializable, Observer {
   ArrayList<Course> activeCourseList;
   ArrayList<Course> finishedCourseList;
 
-  @Inject private CourseManager courseManager;
+  @Inject private CourseManagerInterface courseManager;
 
-  @Inject private CourseRepository courseRepository;
+  @Inject private CourseRepositoryInterface courseRepository;
 
-  @Inject private StudySessionRepository studySessionRepository;
+  @Inject private StudySessionRepositoryInterface studySessionRepository;
 
   private User user;
 
@@ -117,7 +118,7 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setStudyTimeGradesDisplay() {
-    for (Course course : this.courseRepository.findByUser(this.user)) {
+    for (Course course : user.getCourses()) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
           case "U":
@@ -142,6 +143,8 @@ public class StatisticsPage implements Initializable, Observer {
   // TODO no dependancy
 
   private void setTotalStudyTimeDisplay() {
+    List<Course> courseList = user.getCourses();
+
     int totalTimeSecond = 0;
 
     List<StudySession> studySessions = this.studySessionRepository.findByUser(this.user);
@@ -174,7 +177,7 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setListOfCourses() {
-    List<Course> courseList = this.courseRepository.findByUser(this.user);
+    List<Course> courseList = user.getCourses();
 
     activeCourses.clear();
     inactiveCourses.clear();

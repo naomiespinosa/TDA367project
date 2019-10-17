@@ -1,11 +1,11 @@
-package manager;
+package model.manager;
 
 import com.google.inject.Inject;
 import model.StudySession;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
-public class StudySessionManager {
+public class StudySessionManager implements StudySessionManagerInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
 

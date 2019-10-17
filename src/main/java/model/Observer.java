@@ -1,4 +1,4 @@
-package viewcontroller;
+package model;
 
 public interface Observer {
 

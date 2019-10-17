@@ -1,4 +1,4 @@
-package event.timer;
+package model.event.timer;
 
 import java.time.LocalDateTime;
 import model.Course;
