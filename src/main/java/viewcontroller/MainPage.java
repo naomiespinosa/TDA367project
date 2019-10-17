@@ -2,17 +2,17 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
-import event.UserChangedEvent;
 import java.io.IOException;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import manager.UserManager;
 import model.Course;
 import model.User;
-import repository.UserRepository;
+import model.event.UserChangedEvent;
+import model.manager.UserManagerInterface;
+import model.repository.UserRepositoryInterface;
 
 public class MainPage {
 
@@ -21,11 +21,11 @@ public class MainPage {
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
 
-  @Inject private UserRepository userRepository;
+  @Inject private UserRepositoryInterface userRepository;
 
   @Inject private PageFactory pageFactory;
   @Inject private EventBus eventBus;
-  @Inject private UserManager userManager;
+  @Inject private UserManagerInterface userManager;
 
   // Other FXMLs
   private AnchorPane homePage;

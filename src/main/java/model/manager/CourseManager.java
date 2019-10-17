@@ -1,15 +1,15 @@
-package manager;
+package model.manager;
 
 import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import model.Course;
+import model.Observer;
 import model.User;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
-import viewcontroller.Observer;
 
-public class CourseManager {
+public class CourseManager implements CourseManagerInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
 

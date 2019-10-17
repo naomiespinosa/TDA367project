@@ -3,15 +3,14 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import event.UserChangedEvent;
 import java.io.IOException;
-import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
-import manager.CourseManager;
-import model.Course;
+import model.Observer;
 import model.User;
-import repository.CourseRepository;
+import model.event.UserChangedEvent;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
 
 public class HomePage implements Observer {
   private MainPage parent;
@@ -19,8 +18,8 @@ public class HomePage implements Observer {
   @Inject private PanelItemManager panelItemManager;
 
   @FXML private FlowPane activeCoursesFlowpane;
-  @Inject private CourseManager courseManager;
-  @Inject private CourseRepository courseRepository;
+  @Inject private CourseManagerInterface courseManager;
+  @Inject private CourseRepositoryInterface courseRepository;
   private User user;
 
   @Inject
@@ -39,10 +38,8 @@ public class HomePage implements Observer {
   }
 
   private void updateLists() {
-    List<Course> courses = this.courseRepository.findByUser(this.user);
-
     try {
-      this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, courses);
+      this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user.getCourses());
     } catch (IOException e) {
       e.printStackTrace();
     }

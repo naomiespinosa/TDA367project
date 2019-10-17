@@ -3,7 +3,6 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import event.UserChangedEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -14,9 +13,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import manager.CourseManager;
 import model.*;
-import repository.CourseRepository;
+import model.Observer;
+import model.event.UserChangedEvent;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
 
 public class CourseSelectionPage implements Initializable, Observer {
 
@@ -40,13 +41,13 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private MainPage parent;
 
-  @Inject private CourseManager courseManager;
+  @Inject private CourseManagerInterface courseManager;
 
   @Inject private PanelItemManager panelItemManager;
 
   @Inject private EventBus eventBus;
 
-  @Inject private CourseRepository courseRepository;
+  @Inject private CourseRepositoryInterface courseRepository;
 
   private User user;
 
@@ -71,7 +72,7 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private void updateLists(final User user) {
     this.resetPage();
-    List<Course> courses = this.courseRepository.findByUser(user);
+    List<Course> courses = user.getCourses();
 
     try {
       this.panelItemManager.showActiveCourses(activeCoursesFlowPane, parent, courses);

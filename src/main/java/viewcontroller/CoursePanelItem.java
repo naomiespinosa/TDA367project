@@ -11,7 +11,7 @@ public class CoursePanelItem {
   @FXML private Label courseName;
   @FXML private Label courseCode;
 
-  // TODO manager.CourseManager & CourseFactory?
+  // TODO model.manager.CourseManager & CourseFactory?
   private Course course;
   private MainPage parentController;
 
