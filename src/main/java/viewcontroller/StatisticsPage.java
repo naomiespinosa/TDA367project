@@ -3,7 +3,6 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import event.UserChangedEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +17,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import manager.CourseManager;
 import model.Course;
 import model.StudySession;
 import model.User;
-import repository.CourseRepository;
+import model.event.UserChangedEvent;
+import model.manager.CourseManager;
+import model.repository.CourseRepository;
 
 public class StatisticsPage implements Initializable, Observer {
 

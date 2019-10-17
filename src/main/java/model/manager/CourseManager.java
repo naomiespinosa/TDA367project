@@ -1,4 +1,4 @@
-package manager;
+package model.manager;
 
 import com.google.inject.Inject;
 import java.util.ArrayList;

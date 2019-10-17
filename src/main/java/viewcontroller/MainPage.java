@@ -2,17 +2,17 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
-import event.UserChangedEvent;
 import java.io.IOException;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import manager.UserManager;
 import model.Course;
 import model.User;
-import repository.UserRepository;
+import model.event.UserChangedEvent;
+import model.manager.UserManager;
+import model.repository.UserRepository;
 
 public class MainPage {
 

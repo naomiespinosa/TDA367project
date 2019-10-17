@@ -1,4 +1,4 @@
-package event.timer;
+package model.event.timer;
 
 import model.Course;
 
