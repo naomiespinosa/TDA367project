@@ -10,6 +10,6 @@ public class UserChangedEvent {
   }
 
   public User getNewUser() {
-    return this.newUser;
+    return newUser;
   }
 }
