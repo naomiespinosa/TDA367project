@@ -32,10 +32,11 @@ public class Min5aApplication extends GuiceApplication {
     MainPage mainPageCtrl = result.getController(); // Fetches the Controller for the fxml
 
     // Insert pages into side panel
-    mainPageCtrl.setHomePage(this.pageFactory.createHomePage(mainPageCtrl));
-    mainPageCtrl.setCourseSelectionPage(this.pageFactory.createCourseSelectionPage(mainPageCtrl));
-    mainPageCtrl.setStatisticsPage(this.pageFactory.createStatisticsPage());
-    mainPageCtrl.setTimerPage(this.pageFactory.createTimerPage());
+    mainPageCtrl.setHomePage(pageFactory.createHomePage(mainPageCtrl));
+    mainPageCtrl.setCourseSelectionPage(pageFactory.createCourseSelectionPage(mainPageCtrl));
+    mainPageCtrl.setStatisticsPage(pageFactory.createStatisticsPage());
+    mainPageCtrl.setTimerPage(pageFactory.createTimerPage());
+    mainPageCtrl.setContactsPage(pageFactory.createContactsPage());
 
     mainPageCtrl.init();
 

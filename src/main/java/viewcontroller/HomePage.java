@@ -40,8 +40,8 @@ public class HomePage implements Observer {
 
   @Subscribe
   private void onUserChange(final UserChangedEvent userChangedEvent) {
-    this.user = userChangedEvent.getNewUser();
-    this.updateLists();
+    user = userChangedEvent.getNewUser();
+    updateLists();
   }
 
   private void updateLists() {
