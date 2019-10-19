@@ -148,18 +148,24 @@ public class ContactsPage extends Observer implements Initializable {
     contactsListview.setItems(contactsObserverList);
   }
 
-  private void samePageErrorMgm(){
-    if(!isTextareaFilled()){
-      isTextAreaFilled.setVisible(false); }
-    else{isTextAreaFilled.setVisible(true);}
-    if(isEmailApproved()){
+  private void samePageErrorMgm() {
+    if (!isTextareaFilled()) {
+      isTextAreaFilled.setVisible(false);
+    } else {
+      isTextAreaFilled.setVisible(true);
+    }
+    if (isEmailApproved()) {
       isEmailApproved.setVisible(false);
-    }    else{isEmailApproved.setVisible(true);}
-    if(isPhoneApproved()){
+    } else {
+      isEmailApproved.setVisible(true);
+    }
+    if (isPhoneApproved()) {
       isPhoneApproved.setVisible(false);
-    }    else{isPhoneApproved.setVisible(true);}
-
+    } else {
+      isPhoneApproved.setVisible(true);
+    }
   }
+
   private void initSamePageErrorMgm() {
     if (isTextareaFilled()) {
       isTextAreaFilled.setText("*Allt måste vara ifyllt");
@@ -190,7 +196,6 @@ public class ContactsPage extends Observer implements Initializable {
     }
     return courseNames;
   }
-
 
   private void showSelectedContact() {
     seeContactAnchorpane.toFront();
