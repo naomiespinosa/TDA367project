@@ -1,5 +1,8 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +18,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
+import model.Observer;
 import model.StudySession;
+import model.User;
+import model.event.UserChangedEvent;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
+import model.repository.StudySessionRepositoryInterface;
 
 public class StatisticsPage implements Initializable, Observer {
 
@@ -61,15 +70,27 @@ public class StatisticsPage implements Initializable, Observer {
   ArrayList<Course> activeCourseList;
   ArrayList<Course> finishedCourseList;
 
+  @Inject private CourseManagerInterface courseManager;
+
+  @Inject private CourseRepositoryInterface courseRepository;
+
+  @Inject private StudySessionRepositoryInterface studySessionRepository;
+
+  private User user;
+
+  @Inject
+  public StatisticsPage(final EventBus eventBus) {
+    eventBus.register(this);
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    setStudyTimeGradesDisplay();
-    setTotalStudyTimeDisplay();
-    setListOfCourses();
-    CourseManager.attach(this);
+    this.courseManager.attach(this);
     addStudyTimePane.toBack();
     startPagePane.toFront();
   }
+
+  // TODO add functionality for add studyTime dialog
 
   @FXML
   private void switchListGraphAction(ActionEvent event) {
@@ -97,7 +118,7 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setStudyTimeGradesDisplay() {
-    for (Course course : CourseManager.getCourses()) {
+    for (Course course : user.getCourses()) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
           case "U":
@@ -116,22 +137,19 @@ public class StatisticsPage implements Initializable, Observer {
         }
       }
     }
-    // TODO Fix so that Word HOUR is adapeted for 1, or several hours.
-
   }
 
   // TODO Computing in this method will later on be moved to Course and accessed via a method.
   // TODO no dependancy
+
   private void setTotalStudyTimeDisplay() {
-    List<Course> courseList = CourseManager.getCourses();
     int totalTimeSecond = 0;
 
-    for (int i = 0; i < courseList.size(); i++) {
-      Course course = courseList.get(i);
-      for (StudySession studySession : course.getStudySessions()) {
-        totalTimeSecond += (int) studySession.getDuration().getSeconds();
-      }
+    List<StudySession> studySessions = user.getStudySessions();
+    for (StudySession studySession : studySessions) {
+      totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
+
     int totalHour = totalTimeSecond / 3600;
     int totalMinute = (totalTimeSecond % 3600) / 60;
 
@@ -145,7 +163,7 @@ public class StatisticsPage implements Initializable, Observer {
   private int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
-    for (StudySession studySession : course.getStudySessions()) {
+    for (StudySession studySession : this.studySessionRepository.findByCourse(course)) {
       totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
 
@@ -157,12 +175,10 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setListOfCourses() {
-    List<Course> courseList = CourseManager.getCourses();
-
     activeCourses.clear();
     inactiveCourses.clear();
 
-    for (Course course : courseList) {
+    for (Course course : user.getCourses()) {
       if (course.isActive()) {
         activeCourses.add(course.getName());
       } else {
@@ -178,5 +194,11 @@ public class StatisticsPage implements Initializable, Observer {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
     setListOfCourses();
+  }
+
+  @Subscribe
+  private void updateLists(final UserChangedEvent userChangedEvent) {
+    this.user = userChangedEvent.getNewUser();
+    this.update();
   }
 }

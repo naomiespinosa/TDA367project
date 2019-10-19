@@ -1,10 +1,9 @@
-package model.timer;
+package model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import model.Course;
 
-abstract class Timer {
+public abstract class Timer {
   private java.util.Timer timer = new java.util.Timer();
 
   private Course course;
@@ -16,9 +15,17 @@ abstract class Timer {
   private LocalDateTime startedAt;
   private LocalDateTime stoppedAt;
 
+  public LocalDateTime getStartedAt() {
+    return this.startedAt;
+  }
+
+  public LocalDateTime getStoppedAt() {
+    return this.stoppedAt;
+  }
+
   private State state = State.INACTIVE;
 
-  private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000;
+  private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000L;
 
   public Timer(final Course course) {
     this.course = course;
@@ -51,6 +58,7 @@ abstract class Timer {
     stoppedAt = LocalDateTime.now();
     timer.cancel();
     timer.purge();
+    this.state = State.CANCELED;
 
     if (onCancel != null) {
       onCancel.callback();
@@ -66,6 +74,7 @@ abstract class Timer {
   }
 
   public void onCompleted(final Callback callback) {
+    stoppedAt = LocalDateTime.now();
     this.onCompleted = callback;
   }
 
@@ -87,6 +96,10 @@ abstract class Timer {
     }
 
     return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
+  }
+
+  public State getState() {
+    return this.state;
   }
 
   public enum State {

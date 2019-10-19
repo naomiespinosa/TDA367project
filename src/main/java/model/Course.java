@@ -3,7 +3,6 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
 
@@ -19,8 +18,12 @@ public class Course {
   private boolean isActive;
   private Image image = null;
   private String grade;
+  private String ownedBy;
+  private int id;
 
   private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
+
+  public Course() {}
 
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
@@ -47,23 +50,6 @@ public class Course {
   // somewhere
 
   // List Methods
-
-  // StudySession
-
-  public void newStudySession(Date start, Date stop) {
-    StudySession studySession = new StudySession(start, stop, this);
-    studySessions.add(studySession);
-  }
-
-  private void deleteStudySession(int index) {}
-
-  public List<StudySession> getStudySessions() {
-    return studySessions;
-  }
-
-  private void clearStudySessions() {
-    studySessions.clear();
-  }
 
   // Moment
 
@@ -154,5 +140,13 @@ public class Course {
 
   public static List getAcceptedGrades() {
     return acceptedGrades;
+  }
+
+  public String getOwnedBy() {
+    return this.ownedBy;
+  }
+
+  public int getId() {
+    return this.id;
   }
 }

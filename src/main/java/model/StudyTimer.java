@@ -1,6 +1,4 @@
-package model.timer;
-
-import model.Course;
+package model;
 
 public class StudyTimer extends Timer {
   public StudyTimer(final Course course) {
