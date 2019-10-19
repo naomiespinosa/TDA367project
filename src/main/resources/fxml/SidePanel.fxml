@@ -47,7 +47,7 @@
                               <Font size="27.0" />
                            </font>
                                 </Button>
-                        <Button contentDisplay="TOP" layoutX="34.0" layoutY="417.0" maxHeight="120.0" maxWidth="120.0" minHeight="120.0" minWidth="120.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-text-fill: #CEEDDB; -fx-font-size: 17;" styleClass="panel-button" stylesheets="@../min5a.css" text="Timer" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="360.0">
+                        <Button contentDisplay="TOP" layoutX="34.0" layoutY="417.0" maxHeight="120.0" maxWidth="120.0" minHeight="120.0" minWidth="120.0" mnemonicParsing="false" onAction="#showtFullPageTimer" prefHeight="120.0" prefWidth="120.0" style="-fx-text-fill: #CEEDDB; -fx-font-size: 17;" styleClass="panel-button" stylesheets="@../min5a.css" text="Timer" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="360.0">
                            <graphic>
                               <Label style="-fx-font-size: 17; -fx-text-fill: #CEEDDB;" styleClass="-f">
                                  <graphic>

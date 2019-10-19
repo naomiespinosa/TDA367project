@@ -117,6 +117,11 @@ public class Course {
     return studyPeriod;
   }
 
+  @Override
+  public String toString() {
+    return this.getName();
+  }
+
   private void setStudyPeriod(int studyPeriod) {
     this.studyPeriod = studyPeriod;
   }

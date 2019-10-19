@@ -1,184 +1,222 @@
 package viewcontroller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.input.TouchEvent;
-import javafx.scene.layout.AnchorPane;
-import model.Contact;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import model.Contact;
 
-public class ContactsPage extends Observer implements Initializable{
+// De som är kvar är visa upp de som finns i comboboxarna & få same error massege att försvinna när
+// målet är uppfyllt
+public class ContactsPage extends Observer implements Initializable {
 
+  private ArrayList<Contact> contacts = new ArrayList();
+  private ObservableList<Contact> contactsObserverList = FXCollections.observableArrayList();
+  // FXML
+  @FXML private ListView<Contact> contactsListview = new ListView<>();
 
-    private ArrayList<Contact> contacts = new ArrayList();
-    private ObservableList<Contact> contactsObserverList =
-            FXCollections.observableArrayList();
+  @FXML private TextField contactName;
 
-         @FXML
-         private ListView<Contact> contactsListview = new ListView<>();
+  @FXML private TextField contactEmail;
 
+  @FXML private TextField contactPhone;
 
+  @FXML private ComboBox contactCourse;
 
-        @FXML
-        private TextField contactName;
+  @FXML private ComboBox contactTitle;
 
-        @FXML
-        private TextField contactEmail;
+  @FXML private Button createContact;
 
-        @FXML
-        private TextField contactPhone;
+  @FXML private Label name;
 
-        @FXML
-        private ComboBox contactCourse;
+  @FXML private Label email;
 
-        @FXML
-        private ComboBox contactTitle;
+  @FXML private Label number;
 
-    @FXML
-    private Label name;
+  @FXML private Label contactLabel;
 
-    @FXML
-    private Label email;
+  @FXML private Label course;
 
-    @FXML
-    private Label number;
+  @FXML private Label title;
 
-    @FXML
-    private Label course;
+  @FXML private AnchorPane addContactAnchorPane;
 
-    @FXML
-    private Label title;
+  @FXML private AnchorPane seeContactAnchorpane;
 
-    @FXML
-    private AnchorPane addContactAnchorPane;
+  @FXML private Label isTextAreaFilled;
 
-    @FXML
-    private AnchorPane seeContactAnchorpane;
+  @FXML private Label isEmailApproved;
 
-    @FXML
-    void createContact(ActionEvent event) {
-        if (!isContactApproved()) {
-            contactsObserverList.add(new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
-            resetInputs();
-            seeContactAnchorpane.toFront();
+  @FXML private Label isPhoneApproved;
 
-        }
+  @FXML
+  void createContact(ActionEvent event) {
+    samePageErrorMgm();
+
+    if (isContactApproved()) {
+      contactsObserverList.add(
+          new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
+      resetInputs();
     }
-    @FXML
-    void listview(MouseEvent event) {
-    getSelectedContact();
+  }
+
+  @FXML
+  void removeContact(ActionEvent event) {
+    removeContact();
+  }
+
+  @FXML
+  void editContact(ActionEvent event) {
+    addContactAnchorPane.toFront();
+
+    contactLabel.setText("Redigera kurs");
+    createContact.setText("Spara");
+
+    if ((contactsListview.getSelectionModel().getSelectedIndex() != -1)) {
+      Contact selectedContact = contactsListview.getSelectionModel().getSelectedItem();
+      contactName.setText(selectedContact.getName());
+      contactEmail.setText(selectedContact.getEmail());
+      contactPhone.setText(selectedContact.getPhoneNumber());
+      name.setText(selectedContact.getName());
+      email.setText(selectedContact.getEmail());
+      number.setText(selectedContact.getPhoneNumber());
+      removeContact();
     }
+    samePageErrorMgm();
+  }
 
-    @FXML
-    void addNewContact(ActionEvent event) {
-        addContactAnchorPane.toFront();
+  @FXML
+  void addNewContact(ActionEvent event) {
+    resetNewContact();
+  }
 
+  @FXML
+  void deleteContact(ActionEvent event) {
+    removeContact();
+    addContactAnchorPane.toFront();
+  }
+
+  // Is filled areas approved
+  private boolean isEmailApproved() {
+    return (contactEmail.getText().contains("@") && contactEmail.getText().contains("."));
+  }
+
+  private boolean isPhoneApproved() {
+    return (contactPhone.getText().matches("[0-9]+") && contactPhone.getText().length() >= 3);
+  }
+
+  private boolean isTextareaFilled() {
+    return contactName.getText().trim().isEmpty();
+  }
+
+  private boolean isContactApproved() {
+    return (!isTextareaFilled() && isEmailApproved() && isPhoneApproved());
+  }
+
+  private void resetNewContact() {
+    addContactAnchorPane.toFront();
+    contactLabel.setText("Ny kontakt");
+  }
+
+  private void resetInputs() {
+    contactName.clear();
+    contactPhone.clear();
+    contactEmail.clear();
+    samePageErrorMgm();
+  }
+
+  private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
+
+  private List courseNames = new ArrayList<>();
+
+  public void removeContact() {
+    final int selectedIdx = contactsListview.getSelectionModel().getSelectedIndex();
+    if (selectedIdx != -1) {
+      contactsListview.getItems().remove(selectedIdx);
     }
+  }
 
+  private void populateContactListView() {
+    contactsListview.setItems(contactsObserverList);
+  }
 
-    private void resetInputs() {
-        contactName.clear();
-        contactPhone.clear();
-        contactEmail.clear();
+  private void samePageErrorMgm(){
+    if(!isTextareaFilled()){
+      isTextAreaFilled.setVisible(false); }
+    else{isTextAreaFilled.setVisible(true);}
+    if(isEmailApproved()){
+      isEmailApproved.setVisible(false);
+    }    else{isEmailApproved.setVisible(true);}
+    if(isPhoneApproved()){
+      isPhoneApproved.setVisible(false);
+    }    else{isPhoneApproved.setVisible(true);}
+
+  }
+  private void initSamePageErrorMgm() {
+    if (isTextareaFilled()) {
+      isTextAreaFilled.setText("*Allt måste vara ifyllt");
     }
-
-    private boolean isContactApproved() {
-        return contactName.getText().trim().isEmpty() || contactEmail.getText().trim().isEmpty() || contactPhone.getText().trim().isEmpty();
+    if (!isEmailApproved()) {
+      isEmailApproved.setText("*Email-Addressen måste innehålla ett snabel a (@) och en punkt");
     }
-
-    private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
-
-        private List courseNames = new ArrayList<>();
-
-
-            public void removeContact(Contact c) {
-
-            }
-
-        public void contactsListChanged(){
-        }
-
-
-    private void populateContactListView() {
-            contactsListview.setItems(contactsObserverList);
+    if (!isPhoneApproved()) {
+      isPhoneApproved.setText("*Telefonnummret måste innehålla 3 eller fler siffror");
     }
+  }
 
+  private void updateInfo() {
+    // Titel
+    contactTitle.getItems().clear();
+    contactTitle.getItems().addAll(acceptedTitles);
+    contactTitle.getSelectionModel().select("Lärare");
 
-       /*private void presentContact() {
-              //c =  getSelectedContact();
-            if (c != null) {
+    // Courses
+    contactCourse.getItems().clear();
+    contactCourse.getItems().addAll(getCourseNames());
+    contactCourse.getSelectionModel().select(0);
+  }
 
-                        name.setText(c.getName());
-                        number.setText(c.getPhoneNumber());
-                        email.setText(c.getEmail());
-                     //   contactCourse.getSelectionModel().select(c.getCourse()); //Detta måste converteras till en string
-                     //   contactTitle.getSelectionModel().select(c.getTitel()); // -//-
-                }
-
-        }*/
-
-
-        private void updateInfo() {
-                //Titel
-            contactTitle.getItems().clear();
-            contactTitle.getItems().addAll(acceptedTitles);
-            contactTitle.getSelectionModel().select("Lärare");
-
-                // Courses
-                contactCourse.getItems().clear();
-                contactCourse.getItems().addAll(getCourseNames());
-                contactCourse.getSelectionModel().select(0);
-        }
-
-    private List<String> getCourseNames() {
-            for (int i = 0; i < CourseManager.getCourses().size();i++){
-                courseNames.add(CourseManager.getCourses().get(i).getName());
-            }
-            return courseNames;
+  private List<String> getCourseNames() {
+    for (int i = 0; i < CourseManager.getCourses().size(); i++) {
+      courseNames.add(CourseManager.getCourses().get(i).getName());
     }
-
-   private void getSelectedContact() {
-        if (contactsListview.getSelectionModel().getSelectedIndex() != -1) {
-            Contact selectedContact = contactsListview.getSelectionModel().getSelectedItem();
-            name.setText(selectedContact.getName());
-            email.setText(selectedContact.getEmail());
-            number.setText(selectedContact.getPhoneNumber());
+    return courseNames;
+  }
 
 
-        }
-   }
-
-
-    @Override
-        public void update() {
-               updateInfo();
-        }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        updateInfo();
-        populateContactListView();
+  private void showSelectedContact() {
+    seeContactAnchorpane.toFront();
+    if (contactsListview.getSelectionModel().getSelectedIndex() != -1) {
+      Contact selectedContact = contactsListview.getSelectionModel().getSelectedItem();
+      name.setText(selectedContact.getName());
+      email.setText(selectedContact.getEmail());
+      number.setText(selectedContact.getPhoneNumber());
+      title.setText(contactTitle.getSelectionModel().getSelectedItem().toString());
+      course.setText(contactCourse.getSelectionModel().getSelectedItem().toString());
     }
+  }
 
+  @Override
+  public void update() {
+    updateInfo();
+  }
 
-    public void listhej(javafx.scene.input.MouseEvent mouseEvent) {
-            getSelectedContact();
-    }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    updateInfo();
+    populateContactListView();
+    initSamePageErrorMgm();
+  }
+
+  public void showContact(javafx.scene.input.MouseEvent mouseEvent) {
+    showSelectedContact();
+  }
 }
-

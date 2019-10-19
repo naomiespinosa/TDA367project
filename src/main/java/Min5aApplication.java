@@ -43,7 +43,6 @@ public class Min5aApplication extends GuiceApplication {
     mainPageCtrl.setTimerPage(
         fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
 
-
     mainPageCtrl.init();
 
     Scene scene = new Scene(root, 1200, 700);

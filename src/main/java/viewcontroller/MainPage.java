@@ -38,7 +38,8 @@ public class MainPage implements Initializable {
     this.timerPage = timerPage;
   }
 
-  public void setContactsPage(AnchorPane contactsPage) {this.contactsPage = contactsPage;
+  public void setContactsPage(AnchorPane contactsPage) {
+    this.contactsPage = contactsPage;
   }
 
   @Override
@@ -64,8 +65,13 @@ public class MainPage implements Initializable {
   }
 
   @FXML
-  void showContactsPage(ActionEvent event){
+  void showContactsPage(ActionEvent event) {
     showPage(contactsPage);
+  }
+
+  @FXML
+  void showtFullPageTimer(ActionEvent event) {
+    showTimerPage();
   }
 
   void showTimerPage() {
@@ -83,6 +89,4 @@ public class MainPage implements Initializable {
     mainPage.getChildren().add(page);
     mainPage.toFront();
   }
-
-
 }

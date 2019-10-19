@@ -58,10 +58,10 @@ public class PageFactory {
 
   public static AnchorPane createContactsPage() throws IOException {
     FXMLLoader courseContactsPageLoader =
-            new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/ContactsPage.fxml"));
+        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/ContactsPage.fxml"));
     AnchorPane root = courseContactsPageLoader.load(); // Loads the FXML
     ContactsPage ctr =
-            courseContactsPageLoader.getController(); // Fetches the Controller for the fxml
+        courseContactsPageLoader.getController(); // Fetches the Controller for the fxml
 
     return root;
   }
