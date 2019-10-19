@@ -69,6 +69,8 @@ public class PageFactory {
         fxmlLoader.load(PageFactory.class.getClassLoader().getResource("fxml/ContactsPage.fxml"));
 
     AnchorPane root = result.getRoot();
+    ContactsPage ctr = result.getController();
+    ctr.init();
     return root;
   }
 

@@ -1,6 +1,8 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,9 +16,11 @@ import model.Contact;
 import model.Observer;
 import model.User;
 import model.event.UserChangedEvent;
+import model.manager.CourseManagerInterface;
 
 public class ContactsPage implements Observer {
 
+  private EventBus eventBus;
   private ArrayList<Contact> contacts = new ArrayList();
   private ObservableList<Contact> contactsObserverList = FXCollections.observableArrayList();
   // FXML
@@ -58,6 +62,8 @@ public class ContactsPage implements Observer {
 
   private User user;
 
+  @Inject private CourseManagerInterface courseManager;
+
   // TODO make this subscribe work
   @Subscribe
   private void onUserChange(final UserChangedEvent userChangedEvent) {
@@ -65,10 +71,20 @@ public class ContactsPage implements Observer {
     updatePage();
   }
 
+  @Inject
+  public ContactsPage(final EventBus eventBus) {
+    this.eventBus = eventBus;
+    this.eventBus.register(this);
+  }
+
   private void updatePage() {
     updateInfo();
     populateContactListView();
     initSamePageErrorMgm();
+  }
+
+  void init() {
+    courseManager.attach(this);
   }
 
   @FXML
@@ -80,11 +96,6 @@ public class ContactsPage implements Observer {
           new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
       resetInputs();
     }
-  }
-
-  @FXML
-  void removeContact(ActionEvent event) {
-    removeContact();
   }
 
   @FXML
@@ -149,8 +160,6 @@ public class ContactsPage implements Observer {
 
   private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
 
-  private List courseNames = new ArrayList<>();
-
   public void removeContact() {
     final int selectedIdx = contactsListview.getSelectionModel().getSelectedIndex();
     if (selectedIdx != -1) {
@@ -204,7 +213,9 @@ public class ContactsPage implements Observer {
     contactCourse.getSelectionModel().select(0);
   }
 
+  // TODO SHOW UPDATES
   private List<String> getCourseNames() {
+    List courseNames = new ArrayList<>();
     for (int i = 0; i < user.getCourses().size(); i++) {
       courseNames.add(user.getCourses().get(i).getName());
     }
@@ -227,13 +238,6 @@ public class ContactsPage implements Observer {
   public void update() {
     updateInfo();
   }
-
-  /*  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    updateInfo();
-    populateContactListView();
-    initSamePageErrorMgm();
-  }*/
 
   public void showContact(javafx.scene.input.MouseEvent mouseEvent) {
     showSelectedContact();
