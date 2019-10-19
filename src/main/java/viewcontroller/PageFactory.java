@@ -53,8 +53,7 @@ public class PageFactory {
   public AnchorPane createCourseMainPage(Course course, final MainPage mainPage)
       throws IOException {
     GuiceFXMLLoader.Result result =
-        this.fxmlLoader.load(
-            PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
+        fxmlLoader.load(PageFactory.class.getClassLoader().getResource("fxml/CourseMainPage.fxml"));
 
     AnchorPane root = result.getRoot();
 
@@ -65,18 +64,16 @@ public class PageFactory {
     return root;
   }
 
-  public static AnchorPane createContactsPage() throws IOException {
-    FXMLLoader courseContactsPageLoader =
-        new FXMLLoader(PageFactory.class.getClassLoader().getResource("fxml/ContactsPage.fxml"));
-    AnchorPane root = courseContactsPageLoader.load(); // Loads the FXML
-    ContactsPage ctr =
-        courseContactsPageLoader.getController(); // Fetches the Controller for the fxml
+  public AnchorPane createContactsPage() throws IOException {
+    GuiceFXMLLoader.Result result =
+        fxmlLoader.load(PageFactory.class.getClassLoader().getResource("fxml/ContactsPage.fxml"));
 
+    AnchorPane root = result.getRoot();
     return root;
   }
 
   public AnchorPane createTimerPage() throws IOException {
-    return this.fxmlLoader
+    return fxmlLoader
         .load(PageFactory.class.getClassLoader().getResource("fxml/TimerPage.fxml"))
         .getRoot();
   }

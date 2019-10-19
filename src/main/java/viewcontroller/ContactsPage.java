@@ -1,22 +1,21 @@
 package viewcontroller;
 
-import java.net.URL;
+import com.google.common.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Contact;
+import model.Observer;
+import model.User;
+import model.event.UserChangedEvent;
 
-// De som är kvar är visa upp de som finns i comboboxarna & få same error massege att försvinna när
-// målet är uppfyllt
-public class ContactsPage extends Observer implements Initializable {
+public class ContactsPage implements Observer {
 
   private ArrayList<Contact> contacts = new ArrayList();
   private ObservableList<Contact> contactsObserverList = FXCollections.observableArrayList();
@@ -56,6 +55,21 @@ public class ContactsPage extends Observer implements Initializable {
   @FXML private Label isEmailApproved;
 
   @FXML private Label isPhoneApproved;
+
+  private User user;
+
+  // TODO make this subscribe work
+  @Subscribe
+  private void onUserChange(final UserChangedEvent userChangedEvent) {
+    user = userChangedEvent.getNewUser();
+    updatePage();
+  }
+
+  private void updatePage() {
+    updateInfo();
+    populateContactListView();
+    initSamePageErrorMgm();
+  }
 
   @FXML
   void createContact(ActionEvent event) {
@@ -191,8 +205,8 @@ public class ContactsPage extends Observer implements Initializable {
   }
 
   private List<String> getCourseNames() {
-    for (int i = 0; i < CourseManager.getCourses().size(); i++) {
-      courseNames.add(CourseManager.getCourses().get(i).getName());
+    for (int i = 0; i < user.getCourses().size(); i++) {
+      courseNames.add(user.getCourses().get(i).getName());
     }
     return courseNames;
   }
@@ -214,12 +228,12 @@ public class ContactsPage extends Observer implements Initializable {
     updateInfo();
   }
 
-  @Override
+  /*  @Override
   public void initialize(URL location, ResourceBundle resources) {
     updateInfo();
     populateContactListView();
     initSamePageErrorMgm();
-  }
+  }*/
 
   public void showContact(javafx.scene.input.MouseEvent mouseEvent) {
     showSelectedContact();

@@ -85,7 +85,7 @@ public class StatisticsPage implements Initializable, Observer {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.courseManager.attach(this);
+    courseManager.attach(this);
     addStudyTimePane.toBack();
     startPagePane.toFront();
   }
@@ -198,7 +198,7 @@ public class StatisticsPage implements Initializable, Observer {
 
   @Subscribe
   private void updateLists(final UserChangedEvent userChangedEvent) {
-    this.user = userChangedEvent.getNewUser();
-    this.update();
+    user = userChangedEvent.getNewUser();
+    update();
   }
 }

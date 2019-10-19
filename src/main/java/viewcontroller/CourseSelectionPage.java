@@ -54,20 +54,20 @@ public class CourseSelectionPage implements Initializable, Observer {
   public void initialize(URL location, ResourceBundle resources) {
     initToggleGroup();
     resetSpinner();
-    this.eventBus.register(this);
+    eventBus.register(this);
     addTextLimiter(courseCodeTextArea);
   }
 
   private void resetPage() {
     main.toFront();
     addCoursePane.toBack();
-    this.courseManager.attach(this);
+    courseManager.attach(this);
   }
 
   @Subscribe
   private void updateLists(final UserChangedEvent userChangedEvent) {
-    this.user = userChangedEvent.getNewUser();
-    this.updateLists(userChangedEvent.getNewUser());
+    user = userChangedEvent.getNewUser();
+    updateLists(userChangedEvent.getNewUser());
   }
 
   private void updateLists(final User user) {

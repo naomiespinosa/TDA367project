@@ -20,6 +20,28 @@
                           <items>
                               <AnchorPane maxWidth="120.0" minHeight="0.0" minWidth="120.0" prefHeight="700.0" prefWidth="120.0" styleClass="panel-background1" stylesheets="@../min5a.css">
                                   <children>
+                              <Button contentDisplay="TOP" maxHeight="120.0" maxWidth="120.0" minHeight="120.0" minWidth="120.0" mnemonicParsing="false" onAction="#showFullPageTimer" prefHeight="120.0" prefWidth="120.0" style="-fx-text-fill: #CEEDDB; -fx-font-size: 17;" styleClass="panel-button" stylesheets="@../min5a.css" text="Timer" AnchorPane.topAnchor="360.0">
+                                 <graphic>
+                                    <Label style="-fx-font-size: 17; -fx-text-fill: #CEEDDB;" styleClass="-f">
+                                       <graphic>
+                                          <ImageView fitHeight="94.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/analog-stopwatch-white.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Label>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="contactsPageButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showContactsPage" prefHeight="120.0" prefWidth="120.0" style="-fx-text-fill: #CEEDDB; -fx-font-size: 17;" styleClass="panel-button" stylesheets="@../min5a.css" text="Kontakter" AnchorPane.topAnchor="480.0">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/contact-information-white.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                                       <Button fx:id="escapeHatchButton" contentDisplay="GRAPHIC_ONLY" layoutX="18.0" layoutY="30.0" maxHeight="120.0" maxWidth="120.0" minHeight="120.0" minWidth="120.0" mnemonicParsing="false" onAction="#showHomePage" prefHeight="120.0" prefWidth="120.0" styleClass="panel-button" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <graphic>
                                             <ImageView fitHeight="86.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" x="50.0">

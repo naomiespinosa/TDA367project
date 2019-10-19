@@ -35,7 +35,6 @@ public class MainPage {
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
   private AnchorPane contactsPage;
-  private CourseSelectionPage courseSelectionCtrl;
 
   // Other FXML setters
   public void setHomePage(AnchorPane homePage) {
@@ -57,9 +56,6 @@ public class MainPage {
   public void setContactsPage(AnchorPane contactsPage) {
     this.contactsPage = contactsPage;
   }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {}
 
   public void init() {
     showPage(homePage);
@@ -86,7 +82,7 @@ public class MainPage {
   }
 
   @FXML
-  void showtFullPageTimer(ActionEvent event) {
+  void showFullPageTimer(ActionEvent event) {
     showTimerPage();
   }
 
@@ -95,7 +91,7 @@ public class MainPage {
   };
 
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
-    AnchorPane courseHomePage = this.pageFactory.createCourseMainPage(course, mainPage);
+    AnchorPane courseHomePage = pageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
   }
 
