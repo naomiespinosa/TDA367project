@@ -1,8 +1,13 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,9 +15,13 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import model.User;
+import model.*;
+import model.Observer;
+import model.event.UserChangedEvent;
+import model.manager.CourseManagerInterface;
+import model.repository.CourseRepositoryInterface;
 
-public class CourseSelectionPage extends Observer implements Initializable {
+public class CourseSelectionPage implements Initializable, Observer {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private FlowPane inactiveCoursesFlowPane;
@@ -32,73 +41,111 @@ public class CourseSelectionPage extends Observer implements Initializable {
 
   @FXML private RadioButton period4RadioButton;
 
-  private User user; // temporary
   private MainPage parent;
+
+  @Inject private CourseManagerInterface courseManager;
+  @Inject private PanelItemManager panelItemManager;
+  @Inject private EventBus eventBus;
+  @Inject private CourseRepositoryInterface courseRepository;
+
+  private User user;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
     initToggleGroup();
     resetSpinner();
-  }
-
-  void init() {
-    // Temporary
-    this.user = User.getInstance();
-    resetPage();
-    updateLists();
+    this.eventBus.register(this);
+    addTextLimiter(courseCodeTextArea);
   }
 
   private void resetPage() {
     main.toFront();
     addCoursePane.toBack();
-    CourseManager.attach(this);
+    this.courseManager.attach(this);
   }
 
-  private void updateLists() {
+  @Subscribe
+  private void updateLists(final UserChangedEvent userChangedEvent) {
+    this.user = userChangedEvent.getNewUser();
+    this.updateLists(userChangedEvent.getNewUser());
+  }
+
+  private void updateLists(final User user) {
+    this.resetPage();
+    List<Course> courses = user.getCourses();
+
     try {
-      PanelItemManager.showActiveCourses(activeCoursesFlowPane, parent);
-      PanelItemManager.showInactiveCourses(inactiveCoursesFlowPane, parent);
+      this.panelItemManager.showActiveCourses(activeCoursesFlowPane, parent, courses);
+      this.panelItemManager.showInactiveCourses(inactiveCoursesFlowPane, parent, courses);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
+  static void addTextLimiter(TextField courseCodeText) {
+    courseCodeText
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends String> ov,
+                  final String oldValue,
+                  final String newValue) {
+                if (courseCodeText.getText().length() > 6) {
+                  String s = courseCodeText.getText().substring(0, 6);
+                  courseCodeText.setText(s);
+                }
+              }
+            });
+  }
+
   // Add course functionality
   @FXML
-  void addCourse(ActionEvent event) {
+  private void addCourse(ActionEvent event) {
     main.toBack();
     addCoursePane.toFront();
   }
 
   @FXML
-  void closeTabButton(ActionEvent event) {
+  private void closeTabButton(ActionEvent event) {
     resetPage();
   }
 
   @FXML
-  void closeTabMouse(MouseEvent event) {
+  private void closeTabMouse(MouseEvent event) {
     resetPage();
   }
 
   @FXML
-  void createNewCourse(ActionEvent event) {
+  private void createNewCourse(ActionEvent event) {
     addCourse();
   }
 
-  void addCourse() {
-    CourseManager.createNewCourse(
-        courseNameTextArea.getText(),
-        courseCodeTextArea.getText(),
-        (int) yearSpinner.getValue(),
-        getPeriod());
+  private void addCourse() {
+    if (!isNewCourseApproved()) { // Check so all fields are filled in
+      this.courseManager.createNewCourse(
+          courseNameTextArea.getText(),
+          courseCodeTextArea
+              .getText()
+              .substring(0, 6), // Makes sure we do not allow more than 6 chars
+          (int) yearSpinner.getValue(),
+          getPeriod(),
+          this.user);
 
-    clearCourseInput();
-    resetPage();
+      clearCourseInput();
+      resetPage();
+      this.updateLists(this.user);
+    }
+  }
+
+  private boolean isNewCourseApproved() {
+    return courseNameTextArea.getText().trim().isEmpty()
+        || courseCodeTextArea.getText().trim().isEmpty();
   }
 
   @FXML
-  void deleteInputs(ActionEvent event) {
+  private void deleteInputs(ActionEvent event) {
     clearCourseInput();
   }
 
@@ -148,16 +195,8 @@ public class CourseSelectionPage extends Observer implements Initializable {
     this.parent = parent;
   }
 
-  public void setCourseNameTextArea(String name) {
-    this.courseNameTextArea.setText(name);
-  }
-
-  public void setCourseCodeTextArea(String code) {
-    this.courseCodeTextArea.setText(code);
-  }
-
   @Override
   public void update() {
-    updateLists();
+    updateLists(this.user);
   }
 }

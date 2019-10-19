@@ -1,9 +1,9 @@
-package model.timer.event;
+package model.event.timer;
 
 import model.Course;
 
 public abstract class TimerEvent {
-  private Course course;
+  protected Course course;
 
   public TimerEvent(final Course course) {
     this.course = course;

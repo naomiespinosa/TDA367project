@@ -8,7 +8,6 @@ import java.util.List;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.User;
 import viewcontroller.MainPage;
 import viewcontroller.PageFactory;
 
@@ -17,6 +16,8 @@ public class Min5aApplication extends GuiceApplication {
 
   @Inject private EventBus eventBus;
 
+  @Inject private PageFactory pageFactory;
+
   @Override
   public void init(final List<Module> modules) throws Exception {
     modules.add(new DependencyInjectionModule());
@@ -24,11 +25,6 @@ public class Min5aApplication extends GuiceApplication {
 
   @Override
   public void start(Stage stage) throws IOException {
-    // FOR TESTING ONLY
-    User user = User.getInstance();
-    user.testing();
-    // DELETE ABOVE
-
     final GuiceFXMLLoader.Result result =
         fxmlLoader.load(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
     final Parent root = result.getRoot();
@@ -36,12 +32,11 @@ public class Min5aApplication extends GuiceApplication {
     MainPage mainPageCtrl = result.getController(); // Fetches the Controller for the fxml
 
     // Insert pages into side panel
-    mainPageCtrl.setHomePage(PageFactory.createHomePage(mainPageCtrl));
-    mainPageCtrl.setCourseSelectionPage(PageFactory.createCourseSelectionPage(mainPageCtrl));
-    mainPageCtrl.setStatisticsPage(PageFactory.createStatisticsPage());
-    mainPageCtrl.setContactsPage(PageFactory.createContactsPage());
-    mainPageCtrl.setTimerPage(
-        fxmlLoader.load(getClass().getClassLoader().getResource("fxml/TimerPage.fxml")).getRoot());
+    mainPageCtrl.setHomePage(this.pageFactory.createHomePage(mainPageCtrl));
+    mainPageCtrl.setCourseSelectionPage(this.pageFactory.createCourseSelectionPage(mainPageCtrl));
+    mainPageCtrl.setStatisticsPage(this.pageFactory.createStatisticsPage());
+    mainPageCtrl.setTimerPage(this.pageFactory.createTimerPage());
+      mainPageCtrl.setContactsPage(PageFactory.createContactsPage());
 
     mainPageCtrl.init();
 

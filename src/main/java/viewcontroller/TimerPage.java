@@ -12,13 +12,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
-import model.timer.TimerManager;
-import model.timer.event.StudyTimerCanceledEvent;
-import model.timer.event.StudyTimerCompletedEvent;
-import model.timer.event.StudyTimerStartedEvent;
-import model.timer.event.TimerTickEvent;
+import model.event.CourseSelectedEvent;
+import model.event.timer.StudyTimerCanceledEvent;
+import model.event.timer.StudyTimerCompletedEvent;
+import model.event.timer.StudyTimerStartedEvent;
+import model.event.timer.TimerTickEvent;
+import model.manager.TimerManager;
 
-public class Timer implements Initializable {
+public class TimerPage implements Initializable {
   @Inject private TimerManager timerManager;
 
   @Inject private EventBus eventBus;
@@ -31,34 +32,36 @@ public class Timer implements Initializable {
 
   @FXML private Label timeLabel;
 
+  private Course course;
+
   public void onTimerButtonClick() {
-    if (this.timerManager.isRunning()) {
-      this.timerManager.cancel();
+    if (timerManager.isRunning()) {
+      timerManager.cancel();
     } else {
-      this.timerManager.start(new Course("asd", "sd", 1, 1));
+      timerManager.start(this.course);
     }
   }
 
   @Subscribe
   public void onStudyTimerStarted(final StudyTimerStartedEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Stoppa timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Stoppa timer"));
   }
 
   @Subscribe
   public void onStudyTimerCanceled(final StudyTimerCanceledEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Starta timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Starta timer"));
   }
 
   @Subscribe
   public void onStudyTimerCompleted(final StudyTimerCompletedEvent event) {
-    Platform.runLater(() -> this.startPauseLabel.setText("Starta timer"));
+    Platform.runLater(() -> startPauseLabel.setText("Starta timer"));
   }
 
   @Subscribe
   public void onStudyTimerTick(final TimerTickEvent event) {
     Platform.runLater(
         () ->
-            this.timeLabel.setText(
+            timeLabel.setText(
                 String.format(
                     "%02d:%02d",
                     (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
@@ -66,7 +69,12 @@ public class Timer implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.eventBus.register(this);
-    this.startPauseLabel.setText("Starta timer");
+    eventBus.register(this);
+    startPauseLabel.setText("Starta timer");
+  }
+
+  @Subscribe
+  private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
+    this.course = courseSelectedEvent.getCourse();
   }
 }

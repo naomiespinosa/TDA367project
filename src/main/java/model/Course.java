@@ -1,7 +1,8 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.List;
 import javafx.scene.image.Image;
 
@@ -16,6 +17,13 @@ public class Course {
   private int studyPeriod;
   private boolean isActive;
   private Image image = null;
+  private String grade;
+  private String ownedBy;
+  private int id;
+
+  private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
+
+  public Course() {}
 
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
@@ -26,47 +34,38 @@ public class Course {
   }
 
   // TODO - This method is used to end a course and keep the information
-  public void endCourse() {
-    this.isActive = false;
+  public void endCourse(String grade) {
+    if (grade != null) {
+      setGrade(grade);
+      isActive = false;
+    }
+  }
+
+  public void reactivateCourse() {
+    isActive = true;
+    grade = null;
   }
 
   // TODO - This method deletes the course and eventually deletes the information? or stores it
   // somewhere
-  private void deleteCourse() {
-    // Code
-  }
 
   // List Methods
 
-  // StudySession
-
-  private void newStudySession() {}
-
-  private void deleteStudySession(int index) {}
-
-  private List<StudySession> getStudySessions() {
-    return studySessions;
-  }
-
-  private void clearStudySessions() {
-    studySessions.clear();
-  }
-
   // Moment
 
-  private void newMoment(String name, Date deadline) {
+  public void newMoment(String name, LocalDate deadline) {
     momentItems.add(new Moment(name, deadline));
   }
 
-  private void deleteMoment(int index) {
+  public void deleteMoment(int index) {
     momentItems.remove(index);
   }
 
-  private List<Moment> getMomentItems() {
+  public List<Moment> getMomentItems() {
     return momentItems;
   }
 
-  private void clearMomentItems() {
+  public void clearMomentItems() {
     momentItems.clear();
   }
 
@@ -78,6 +77,10 @@ public class Course {
 
   public void deleteTodo(int index) {
     toDoList.remove(index);
+  }
+
+  public List<ToDo> getToDoList() {
+    return toDoList;
   }
 
   public void clearToDoList() {
@@ -93,7 +96,7 @@ public class Course {
     return image;
   }
 
-  private void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -101,32 +104,49 @@ public class Course {
     return courseCode;
   }
 
-  private void setCourseCode(String courseCode) {
+  public void setCourseCode(String courseCode) {
     this.courseCode = courseCode;
   }
 
-  private int getYear() {
+  public int getYear() {
     return year;
   }
 
-  private void setYear(int year) {
+  public void setYear(int year) {
     this.year = year;
   }
 
-  private int getStudyPeriod() {
+  public int getStudyPeriod() {
     return studyPeriod;
   }
 
-  @Override
-  public String toString() {
-    return this.getName();
-  }
-
-  private void setStudyPeriod(int studyPeriod) {
+  public void setStudyPeriod(int studyPeriod) {
     this.studyPeriod = studyPeriod;
   }
 
   public boolean isActive() {
     return isActive;
+  }
+
+  private void setGrade(String grade) {
+    if (acceptedGrades.contains(grade)) {
+      this.grade = grade;
+    }
+  }
+
+  public String getGrade() {
+    return grade;
+  }
+
+  public static List getAcceptedGrades() {
+    return acceptedGrades;
+  }
+
+  public String getOwnedBy() {
+    return this.ownedBy;
+  }
+
+  public int getId() {
+    return this.id;
   }
 }

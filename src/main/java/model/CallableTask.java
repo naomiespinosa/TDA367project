@@ -1,7 +1,7 @@
-package model.timer;
+package model;
 
 import java.util.TimerTask;
-import model.timer.Timer.Callback;
+import model.Timer.Callback;
 
 public class CallableTask extends TimerTask {
   private Callback callback;
@@ -12,10 +12,10 @@ public class CallableTask extends TimerTask {
 
   @Override
   public void run() {
-    if (this.callback == null) {
+    if (callback == null) {
       return;
     }
 
-    this.callback.callback();
+    callback.callback();
   }
 }

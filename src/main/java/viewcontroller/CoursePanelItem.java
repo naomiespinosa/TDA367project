@@ -11,6 +11,7 @@ public class CoursePanelItem {
   @FXML private Label courseName;
   @FXML private Label courseCode;
 
+  // TODO model.manager.CourseManager & CourseFactory?
   private Course course;
   private MainPage parentController;
 
@@ -22,7 +23,7 @@ public class CoursePanelItem {
   }
 
   @FXML
-  void goToPage(MouseEvent event) throws IOException {
+  private void goToPage(MouseEvent event) throws IOException {
     parentController.pressedCourseItem(course, this.parentController);
   }
 }

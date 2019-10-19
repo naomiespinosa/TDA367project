@@ -1,17 +1,33 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
+import model.User;
+import model.event.UserChangedEvent;
+import model.manager.UserManagerInterface;
+import model.repository.UserRepositoryInterface;
 
-public class MainPage implements Initializable {
+public class MainPage {
 
   @FXML private AnchorPane mainPage;
+  @FXML private TextField usernameTextField;
+  @FXML private AnchorPane main;
+  @FXML private AnchorPane login;
+  @FXML private Label loginErrorText;
+
+  @Inject private UserRepositoryInterface userRepository;
+
+  @Inject private PageFactory pageFactory;
+  @Inject private EventBus eventBus;
+  @Inject private UserManagerInterface userManager;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -50,17 +66,17 @@ public class MainPage implements Initializable {
   }
 
   @FXML
-  public void showHomePage(ActionEvent actionEvent) {
+  private void showHomePage(ActionEvent actionEvent) {
     showPage(homePage);
   }
 
   @FXML
-  void showCourseSelectionPage(ActionEvent event) {
+  private void showCourseSelectionPage(ActionEvent event) {
     showPage(courseSelectionPage);
   }
 
   @FXML
-  void showStatisticPage(ActionEvent event) {
+  private void showStatisticPage(ActionEvent event) {
     showPage(statisticsPage);
   }
 
@@ -79,14 +95,60 @@ public class MainPage implements Initializable {
   };
 
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
-    AnchorPane courseHomePage = PageFactory.createCourseMainPage(course, mainPage);
+    AnchorPane courseHomePage = this.pageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
   }
 
+  void initLoginPage() {
+    login.toFront();
+    main.toBack();
+    loginErrorText.setText("");
+    usernameTextField.clear();
+  }
+
+  @FXML
+  private void login(ActionEvent event) {
+    loginErrorText.setText("");
+    List<User> users = userRepository.findAll();
+
+    for (User user : users) {
+      if (user.getUsername().equals(usernameTextField.getText())) {
+        eventBus.post(new UserChangedEvent(user));
+        login.toBack();
+        main.toFront();
+        init();
+      } else {
+        loginErrorText.setText("*Denna användaren finns inte");
+      }
+    }
+  }
+
+  @FXML
+  private void newAccount() {
+    loginErrorText.setText("");
+    User user = new User();
+    if (usernameIsValid()) {
+      user.setUsername(usernameTextField.getText());
+
+      userManager.create(user);
+      eventBus.post(new UserChangedEvent(userRepository.findOneByUsername(user.getUsername())));
+
+      login.toBack();
+      main.toFront();
+      init();
+    } else {
+      loginErrorText.setText("*Får inte lämnas tom");
+    }
+  }
+
+  private boolean usernameIsValid() {
+    return !usernameTextField.getText().trim().isEmpty();
+  }
+
   // Shows selected page on the right side of the screen
-  private void showPage(AnchorPane page) {
+  private void showPage(AnchorPane pane) {
     mainPage.getChildren().clear();
-    mainPage.getChildren().add(page);
+    mainPage.getChildren().add(pane);
     mainPage.toFront();
   }
 }

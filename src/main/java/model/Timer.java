@@ -1,10 +1,9 @@
-package model.timer;
+package model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import model.Course;
 
-abstract class Timer {
+public abstract class Timer {
   private java.util.Timer timer = new java.util.Timer();
 
   private Course course;
@@ -16,44 +15,53 @@ abstract class Timer {
   private LocalDateTime startedAt;
   private LocalDateTime stoppedAt;
 
+  public LocalDateTime getStartedAt() {
+    return this.startedAt;
+  }
+
+  public LocalDateTime getStoppedAt() {
+    return this.stoppedAt;
+  }
+
   private State state = State.INACTIVE;
 
-  private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000;
+  private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000L;
 
   public Timer(final Course course) {
     this.course = course;
   }
 
   public Course getCourse() {
-    return this.course;
+    return course;
   }
 
   public void start() {
-    if (this.state == State.ACTIVE) {
+    if (state == State.ACTIVE) {
       return;
     }
 
-    this.startedAt = LocalDateTime.now();
-    this.state = State.ACTIVE;
-    this.timer.schedule(new CallableTask(this.onCompleted), STUDY_SESSION_LENGTH);
-    this.timer.schedule(new CallableTask(this.onTick), 1000, 1000);
+    startedAt = LocalDateTime.now();
+    state = State.ACTIVE;
+    timer.schedule(new CallableTask(onCompleted), STUDY_SESSION_LENGTH);
+    timer.schedule(new CallableTask(onTick), 1000, 1000);
 
-    if (this.onStart != null) {
-      this.onStart.callback();
+    if (onStart != null) {
+      onStart.callback();
     }
   }
 
   public void cancel() {
-    if (this.state == State.CANCELED) {
+    if (state == State.CANCELED) {
       return;
     }
 
-    this.stoppedAt = LocalDateTime.now();
-    this.timer.cancel();
-    this.timer.purge();
+    stoppedAt = LocalDateTime.now();
+    timer.cancel();
+    timer.purge();
+    this.state = State.CANCELED;
 
-    if (this.onCancel != null) {
-      this.onCancel.callback();
+    if (onCancel != null) {
+      onCancel.callback();
     }
   }
 
@@ -66,6 +74,7 @@ abstract class Timer {
   }
 
   public void onCompleted(final Callback callback) {
+    stoppedAt = LocalDateTime.now();
     this.onCompleted = callback;
   }
 
@@ -78,15 +87,19 @@ abstract class Timer {
   }
 
   public Long getElapsedSeconds() {
-    if (this.startedAt == null) {
+    if (startedAt == null) {
       throw new IllegalStateException();
     }
 
-    if (this.state == State.ACTIVE) {
-      return ChronoUnit.SECONDS.between(this.startedAt, LocalDateTime.now());
+    if (state == State.ACTIVE) {
+      return ChronoUnit.SECONDS.between(startedAt, LocalDateTime.now());
     }
 
-    return ChronoUnit.SECONDS.between(this.startedAt, this.stoppedAt);
+    return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
+  }
+
+  public State getState() {
+    return this.state;
   }
 
   public enum State {
