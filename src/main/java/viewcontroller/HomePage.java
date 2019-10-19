@@ -4,7 +4,10 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import model.Observer;
 import model.User;
@@ -18,6 +21,10 @@ public class HomePage implements Observer {
   @Inject private PanelItemManager panelItemManager;
 
   @FXML private FlowPane activeCoursesFlowpane;
+  @FXML private TextField userName;
+  @FXML private TextField email;
+  @FXML private TextField password;
+  @FXML private Label changeWorked;
   @Inject private CourseManagerInterface courseManager;
   @Inject private CourseRepositoryInterface courseRepository;
   private User user;
@@ -39,7 +46,11 @@ public class HomePage implements Observer {
 
   private void updateLists() {
     try {
-      this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user.getCourses());
+      panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user.getCourses());
+      userName.setText(user.getUsername());
+      email.setText("myemail@mail.com");
+      password.setText("*******");
+      changeWorked.setText("");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -47,6 +58,33 @@ public class HomePage implements Observer {
 
   void setParent(MainPage parent) {
     this.parent = parent;
+  }
+
+  // TODO insert in SQL
+  @FXML
+  void changeUser(ActionEvent event) {
+    changeWorked.setText("");
+    if (isValidChangeMade()) {
+      user.setUsername(userName.getText());
+      changeWorked.setText("Ändringarna är nu uppdaterade");
+    }
+  }
+
+  private boolean isValidChangeMade() {
+    return isInputEmpty() && isChangeMade();
+  }
+
+  private boolean isChangeMade() {
+    return !user.getUsername().equals(userName.getText());
+  }
+
+  private boolean isInputEmpty() {
+    return !userName.getText().trim().isEmpty();
+  }
+
+  @FXML
+  void logOut(ActionEvent event) {
+    parent.initLoginPage();
   }
 
   @Override

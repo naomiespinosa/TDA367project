@@ -44,11 +44,8 @@ public class CourseSelectionPage implements Initializable, Observer {
   private MainPage parent;
 
   @Inject private CourseManagerInterface courseManager;
-
   @Inject private PanelItemManager panelItemManager;
-
   @Inject private EventBus eventBus;
-
   @Inject private CourseRepositoryInterface courseRepository;
 
   private User user;
@@ -58,14 +55,7 @@ public class CourseSelectionPage implements Initializable, Observer {
     initToggleGroup();
     resetSpinner();
     this.eventBus.register(this);
-  }
-
-  void init() {
-    // Temporary
-    resetPage();
-    updateLists();
     addTextLimiter(courseCodeTextArea);
-
   }
 
   private void resetPage() {
