@@ -1,13 +1,14 @@
 package model;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
 public class Course {
+  public Instant localdate;
   private String name;
   private String courseCode;
   private List<Moment> momentItems = new ArrayList<>();
@@ -16,14 +17,11 @@ public class Course {
   private int year;
   private int studyPeriod;
   private boolean isActive;
-  private Image image = null;
   private String grade;
   private String ownedBy;
   private int id;
 
   private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
-
-  public Course() {}
 
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
@@ -45,13 +43,6 @@ public class Course {
     isActive = true;
     grade = null;
   }
-
-  // TODO - This method deletes the course and eventually deletes the information? or stores it
-  // somewhere
-
-  // List Methods
-
-  // Moment
 
   public void newMoment(String name, LocalDate deadline) {
     momentItems.add(new Moment(name, deadline));
@@ -90,10 +81,6 @@ public class Course {
   // Setters and Getters
   public String getName() {
     return name;
-  }
-
-  public javafx.scene.image.Image getImage() {
-    return image;
   }
 
   public void setName(String name) {

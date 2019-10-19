@@ -9,6 +9,11 @@ import model.User;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
+/**
+ * @Author Hanna @Author Robin
+ *
+ * <p>This is a class that manages changes, additions and deleteions regarding classes
+ */
 public class CourseManager implements CourseManagerInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
