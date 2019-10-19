@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
@@ -20,6 +21,7 @@ public class MainPage {
   @FXML private TextField usernameTextField;
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
+  @FXML private Label loginErrorText;
 
   @Inject private UserRepositoryInterface userRepository;
 
@@ -78,32 +80,50 @@ public class MainPage {
     showPage(courseHomePage);
   }
 
+  void initLoginPage() {
+    login.toFront();
+    main.toBack();
+    loginErrorText.setText("");
+    usernameTextField.clear();
+  }
+
   @FXML
   private void login(ActionEvent event) {
-    List<User> users = this.userRepository.findAll();
+    loginErrorText.setText("");
+    List<User> users = userRepository.findAll();
 
     for (User user : users) {
-      if (user.getUsername().equals(this.usernameTextField.getText())) {
-        this.eventBus.post(new UserChangedEvent(user));
-        this.login.toBack();
+      if (user.getUsername().equals(usernameTextField.getText())) {
+        eventBus.post(new UserChangedEvent(user));
+        login.toBack();
         main.toFront();
         init();
+      } else {
+        loginErrorText.setText("*Denna användaren finns inte");
       }
     }
   }
 
   @FXML
   private void newAccount() {
+    loginErrorText.setText("");
     User user = new User();
-    user.setUsername(usernameTextField.getText());
+    if (usernameIsValid()) {
+      user.setUsername(usernameTextField.getText());
 
-    this.userManager.create(user);
-    this.eventBus.post(
-        new UserChangedEvent(this.userRepository.findOneByUsername(user.getUsername())));
+      userManager.create(user);
+      eventBus.post(new UserChangedEvent(userRepository.findOneByUsername(user.getUsername())));
 
-    login.toBack();
-    main.toFront();
-    init();
+      login.toBack();
+      main.toFront();
+      init();
+    } else {
+      loginErrorText.setText("*Får inte lämnas tom");
+    }
+  }
+
+  private boolean usernameIsValid() {
+    return !usernameTextField.getText().trim().isEmpty();
   }
 
   // Shows selected page on the right side of the screen
