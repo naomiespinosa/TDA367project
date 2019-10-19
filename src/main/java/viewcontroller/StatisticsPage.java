@@ -26,40 +26,30 @@ import model.manager.CourseManagerInterface;
 import model.repository.CourseRepositoryInterface;
 import model.repository.StudySessionRepositoryInterface;
 
+/**
+ * This page displays all the information about study-sessions and grades.
+ *
+ * @author Naomi
+ */
 public class StatisticsPage implements Initializable, Observer {
 
   @FXML private AnchorPane noGraphPane;
 
   @FXML private AnchorPane graphPane;
-
   @FXML private Button changeGraphPaneButton;
-
   @FXML private Text gradeUStudyTime;
-
   @FXML private Text grade3StudyTime;
-
   @FXML private Text grade4StudyTime;
-
   @FXML private Text grade5StudyTime;
-
   @FXML private Text totalStudyHour;
-
   @FXML private Text totalStudyMinute;
-
   @FXML private ListView<String> activeCoursesListView;
-
   @FXML private ListView<String> finishedCoursesListView;
-
   @FXML private AnchorPane addStudyTimePane;
-
   @FXML private AnchorPane startPagePane;
-
   @FXML private ComboBox<?> chooseCourseComboBox;
-
   @FXML private Button saveStudyTimeButton;
-
   @FXML private ComboBox<?> chooseHoursComboBox;
-
   @FXML private ComboBox<?> chooseMinutesComboBox;
 
   private boolean isGraphShowing = true;

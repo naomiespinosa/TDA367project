@@ -21,6 +21,13 @@ import model.event.UserChangedEvent;
 import model.manager.CourseManagerInterface;
 import model.repository.CourseRepositoryInterface;
 
+/**
+ * This page shows all of the users courses. Here the user can interact with the items to get to the
+ * courseMainPage The user can also add new courses
+ *
+ * @author Hanna
+ * @author Johanna
+ */
 public class CourseSelectionPage implements Initializable, Observer {
 
   @FXML private FlowPane activeCoursesFlowPane;
@@ -82,7 +89,12 @@ public class CourseSelectionPage implements Initializable, Observer {
     }
   }
 
-  static void addTextLimiter(TextField courseCodeText) {
+  /**
+   * This limits the text the user can input
+   *
+   * @param courseCodeText The textarea that is to be limited
+   */
+  private static void addTextLimiter(TextField courseCodeText) {
     courseCodeText
         .textProperty()
         .addListener(

@@ -29,6 +29,14 @@ import model.ToDo;
 import model.event.CourseSelectedEvent;
 import model.manager.CourseManagerInterface;
 
+/**
+ * This class represents a specific page dedicated to the specific course. It shows info about the
+ * course. It also allows the user to edit, complete and delete the course. The user can also add
+ * and delete moments and to-dos
+ *
+ * @author Hanna
+ * @author Theo
+ */
 public class CourseMainPage implements Initializable {
 
   private Course course;

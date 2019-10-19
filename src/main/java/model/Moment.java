@@ -3,6 +3,10 @@ package model;
 import java.time.LocalDate;
 import java.util.Comparator;
 
+/**
+ * Moment defines what a moment/assignment is and what it can do. A moment have an description and a
+ * date
+ */
 public class Moment {
   private String name;
   private LocalDate deadline;
@@ -19,8 +23,23 @@ public class Moment {
     return "Den" + " " + this.getDeadline() + ":" + " " + this.getName();
   }
 
+  /** Comparator for moment that prioritizes earlier dates */
+  public Comparator<Moment> byDate =
+      new Comparator<Moment>() {
+        @Override
+        public int compare(Moment moment1, Moment moment2) {
+          if (moment1.getDeadline().isBefore(moment2.getDeadline())) {
+            return -1;
+          }
+          if (moment1.getDeadline().isAfter(moment2.getDeadline())) {
+            return 1;
+          }
+          return 0;
+        }
+      };
+
   // Getters and Setters
-  public LocalDate getDeadline() {
+  private LocalDate getDeadline() {
     return deadline;
   }
 
@@ -29,7 +48,7 @@ public class Moment {
     this.deadline = deadline;
   }
 
-  public String getName() {
+  private String getName() {
     return name;
   }
 
@@ -48,20 +67,4 @@ public class Moment {
   private void setNotPastDeadline() {
     this.isPastDeadline = false;
   }
-
-  // Comparator for moment that prioritizes earlier dates
-  // Is called whenever you add or remove a Moment
-  public Comparator<Moment> byDate =
-      new Comparator<Moment>() {
-        @Override
-        public int compare(Moment moment1, Moment moment2) {
-          if (moment1.getDeadline().isBefore(moment2.getDeadline())) {
-            return -1;
-          }
-          if (moment1.getDeadline().isAfter(moment2.getDeadline())) {
-            return 1;
-          }
-          return 0;
-        }
-      };
 }

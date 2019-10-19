@@ -28,7 +28,6 @@ public class Min5aApplication extends GuiceApplication {
     final GuiceFXMLLoader.Result result =
         fxmlLoader.load(getClass().getClassLoader().getResource("fxml/SidePanel.fxml"));
     final Parent root = result.getRoot();
-
     MainPage mainPageCtrl = result.getController(); // Fetches the Controller for the fxml
 
     // Insert pages into side panel

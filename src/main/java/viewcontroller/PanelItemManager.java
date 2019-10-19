@@ -10,12 +10,25 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import model.Course;
 
+/**
+ * This is a manager for creating the CoursePanelItems. It fills the flowPanes in
+ * CourseSelectionPage and HomePage
+ *
+ * @author Hanna
+ */
 public class PanelItemManager {
 
   @Inject private PageFactory pageFactory;
 
-  // Method used to display all Courses
-  public void showActiveCourses(
+  /**
+   * Method used to display all Courses
+   *
+   * @param activeCoursesFlowpane activeCoursesFlowpane
+   * @param parent parent
+   * @param courses courses
+   * @throws IOException if we cant load the fxml
+   */
+  void showActiveCourses(
       FlowPane activeCoursesFlowpane, MainPage parent, final List<Course> courses)
       throws IOException {
     activeCoursesFlowpane.getChildren().clear();
@@ -27,8 +40,17 @@ public class PanelItemManager {
     }
   }
 
-  // Method that displays all inactive courses
-  public void showInactiveCourses(
+  //
+
+  /**
+   * Method that displays all inactive courses
+   *
+   * @param inactiveCoursesFlowpane inactiveCoursesFlowpane
+   * @param parent parent
+   * @param courses courses
+   * @throws IOException if we cant load the fxml
+   */
+  void showInactiveCourses(
       FlowPane inactiveCoursesFlowpane, MainPage parent, final List<Course> courses)
       throws IOException {
     inactiveCoursesFlowpane.getChildren().clear();
