@@ -5,10 +5,20 @@ import model.StudySession;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
+/**
+ * Manages study-sessions where it saves the information of start and stop
+ *
+ * @author Robin
+ */
 public class StudySessionManager implements StudySessionManagerInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
 
+  /**
+   * Creates a new study-session with a start and stop time and saves the information
+   *
+   * @param studySession a time where the user records studying
+   */
   public void create(final StudySession studySession) {
     this.fluentJdbc
         .query()

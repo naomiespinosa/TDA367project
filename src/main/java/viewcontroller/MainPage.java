@@ -15,6 +15,12 @@ import model.event.UserChangedEvent;
 import model.manager.UserManagerInterface;
 import model.repository.UserRepositoryInterface;
 
+/**
+ * This is the centre of the application and decides what page to be displayed and also handles the
+ * login functions
+ *
+ * @author Hanna
+ */
 public class MainPage {
 
   @FXML private AnchorPane mainPage;
@@ -29,12 +35,24 @@ public class MainPage {
   @Inject private EventBus eventBus;
   @Inject private UserManagerInterface userManager;
 
+  /** This function initializes the page by deciding what to be displayed first */
+  public void init() {
+    showPage(homePage);
+    login.toFront();
+    main.toBack();
+    resetLoginPage();
+  }
+
+  private void resetLoginPage() {
+    loginErrorText.setText("");
+    usernameTextField.clear();
+  }
+
   // Other FXMLs
   private AnchorPane homePage;
   private AnchorPane courseSelectionPage;
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
-  private AnchorPane contactsPage;
 
   // Other FXML setters
   public void setHomePage(AnchorPane homePage) {
@@ -53,12 +71,16 @@ public class MainPage {
     this.timerPage = timerPage;
   }
 
-  public void setContactsPage(AnchorPane contactsPage) {
-    this.contactsPage = contactsPage;
-  }
-
-  public void init() {
-    showPage(homePage);
+  // Displaying Pages functions
+  /**
+   * Shows selected page on the right side of the screen
+   *
+   * @param pane the AnchorPane to be shown
+   */
+  private void showPage(AnchorPane pane) {
+    mainPage.getChildren().clear();
+    mainPage.getChildren().add(pane);
+    mainPage.toFront();
   }
 
   @FXML
@@ -76,31 +98,16 @@ public class MainPage {
     showPage(statisticsPage);
   }
 
-  @FXML
-  void showContactsPage(ActionEvent event) {
-    showPage(contactsPage);
-  }
-
-  @FXML
-  void showFullPageTimer(ActionEvent event) {
-    showTimerPage();
-  }
-
   void showTimerPage() {
     showPage(timerPage);
-  };
+  }
 
   void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
-    AnchorPane courseHomePage = pageFactory.createCourseMainPage(course, mainPage);
+    AnchorPane courseHomePage = this.pageFactory.createCourseMainPage(course, mainPage);
     showPage(courseHomePage);
   }
 
-  void initLoginPage() {
-    login.toFront();
-    main.toBack();
-    loginErrorText.setText("");
-    usernameTextField.clear();
-  }
+  // Login Functionality
 
   @FXML
   private void login(ActionEvent event) {
@@ -112,7 +119,7 @@ public class MainPage {
         eventBus.post(new UserChangedEvent(user));
         login.toBack();
         main.toFront();
-        init();
+        resetLoginPage();
       } else {
         loginErrorText.setText("*Denna användaren finns inte");
       }
@@ -131,7 +138,7 @@ public class MainPage {
 
       login.toBack();
       main.toFront();
-      init();
+      resetLoginPage();
     } else {
       loginErrorText.setText("*Får inte lämnas tom");
     }
@@ -139,12 +146,5 @@ public class MainPage {
 
   private boolean usernameIsValid() {
     return !usernameTextField.getText().trim().isEmpty();
-  }
-
-  // Shows selected page on the right side of the screen
-  private void showPage(AnchorPane pane) {
-    mainPage.getChildren().clear();
-    mainPage.getChildren().add(pane);
-    mainPage.toFront();
   }
 }

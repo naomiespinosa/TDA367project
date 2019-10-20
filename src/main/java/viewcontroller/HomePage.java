@@ -15,6 +15,11 @@ import model.event.UserChangedEvent;
 import model.manager.CourseManagerInterface;
 import model.repository.CourseRepositoryInterface;
 
+/**
+ * This is the frontpage that shows active courses and also info about the user
+ *
+ * @author Hanna
+ */
 public class HomePage implements Observer {
   private MainPage parent;
 
@@ -44,16 +49,20 @@ public class HomePage implements Observer {
     updateLists();
   }
 
-  private void updateLists() {
+  void updateLists() {
     try {
       panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user.getCourses());
-      userName.setText(user.getUsername());
-      email.setText("myemail@mail.com");
-      password.setText("*******");
-      changeWorked.setText("");
+      initUserInfo();
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private void initUserInfo() {
+    userName.setText(user.getUsername());
+    email.setText("myemail@mail.com");
+    password.setText("*******");
+    changeWorked.setText("");
   }
 
   void setParent(MainPage parent) {
@@ -84,7 +93,7 @@ public class HomePage implements Observer {
 
   @FXML
   void logOut(ActionEvent event) {
-    parent.initLoginPage();
+    parent.init();
   }
 
   @Override

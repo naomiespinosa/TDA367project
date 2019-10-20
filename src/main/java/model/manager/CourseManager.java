@@ -10,9 +10,10 @@ import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
 /**
- * @Author Hanna @Author Robin
+ * This is a class that manages changes, additions and deleteions regarding classes
  *
- * <p>This is a class that manages changes, additions and deleteions regarding classes
+ * @author Hanna
+ * @author Robin
  */
 public class CourseManager implements CourseManagerInterface {
   @Inject private FluentJdbc fluentJdbc;
@@ -20,10 +21,16 @@ public class CourseManager implements CourseManagerInterface {
 
   private List<Observer> observers = new ArrayList<Observer>();
 
+  /**
+   * Attaches all classes that want to observe changes in courses
+   *
+   * @param observer Classes that want to observe changes in courses
+   */
   public void attach(Observer observer) {
     observers.add(observer);
   }
 
+  /** Tells all the observers to update */
   private void notifyAllObservers() {
     List<Observer> observersClone = new ArrayList<>(observers);
 
@@ -32,6 +39,11 @@ public class CourseManager implements CourseManagerInterface {
     }
   }
 
+  /**
+   * Deletes a course from the user, notifies observers
+   *
+   * @param course the course that is to be deleted
+   */
   public void deleteCourse(final Course course) {
     this.fluentJdbc
         .query()
@@ -42,6 +54,15 @@ public class CourseManager implements CourseManagerInterface {
     notifyAllObservers();
   }
 
+  /**
+   * Creates a new course that now belongs to the active user, notifies observers
+   *
+   * @param name name
+   * @param code code
+   * @param year year
+   * @param period period
+   * @param user user
+   */
   public void createNewCourse(String name, String code, int year, int period, final User user) {
     this.fluentJdbc
         .query()
@@ -57,6 +78,11 @@ public class CourseManager implements CourseManagerInterface {
     notifyAllObservers();
   }
 
+  /**
+   * Saves the course information
+   *
+   * @param course course
+   */
   public void save(Course course) {
     this.fluentJdbc
         .query()
@@ -72,10 +98,6 @@ public class CourseManager implements CourseManagerInterface {
         .namedParam("isActive", course.isActive())
         .run();
 
-    notifyAllObservers();
-  }
-
-  public void update() {
     notifyAllObservers();
   }
 }

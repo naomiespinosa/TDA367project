@@ -19,21 +19,24 @@ import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 import model.manager.TimerManager;
 
+/**
+ * This is the class that represents the timer and functionality regarding controlling the fxml
+ *
+ * @author Robin
+ */
 public class TimerPage implements Initializable {
   @Inject private TimerManager timerManager;
 
   @Inject private EventBus eventBus;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
-
   @FXML private Button startPauseFullPageTimer;
-
   @FXML private Label startPauseLabel;
-
   @FXML private Label timeLabel;
 
   private Course course;
 
+  /** initializes the timer */
   public void onTimerButtonClick() {
     if (timerManager.isRunning()) {
       timerManager.cancel();

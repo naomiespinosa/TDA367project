@@ -55,7 +55,7 @@ public class CourseTest {
 
   @Test
   public void settersGettersTest() {
-    Course course = new Course("namn", "tda345", 34, 3);
+    Course course = new Course();
 
     course.setName("hej");
     assertEquals("hej", course.getName());

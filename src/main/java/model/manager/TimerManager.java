@@ -13,6 +13,7 @@ import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
+/** @author Robin */
 public class TimerManager {
   private Timer activeTimer;
 
