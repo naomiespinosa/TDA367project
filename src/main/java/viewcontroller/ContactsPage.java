@@ -148,7 +148,7 @@ public class ContactsPage implements Observer {
 
   private void resetNewContact() {
     addContactAnchorPane.toFront();
-    contactLabel.setText("Ny kontakt");
+    contactLabel.setText("Ny Kontakt");
   }
 
   private void resetInputs() {
