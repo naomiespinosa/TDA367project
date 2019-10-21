@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // A course hold information about the specific course and is user specific.
+
 public class Course {
   private String name;
   private String courseCode;
