@@ -1,12 +1,9 @@
 package viewcontroller;
 
-import java.net.URL;
-import java.util.*;
-
 import com.google.common.eventbus.Subscribe;
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;

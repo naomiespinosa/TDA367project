@@ -26,7 +26,6 @@ import model.Course;
 import model.Min5a;
 import model.Moment;
 import model.ToDo;
-import model.event.CourseSelectedEvent;
 
 public class CourseMainPage implements Initializable, Page {
 
@@ -90,7 +89,6 @@ public class CourseMainPage implements Initializable, Page {
 
   private MainPage parent;
   private Min5a model;
-
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -356,11 +354,10 @@ public class CourseMainPage implements Initializable, Page {
     momentListView.setItems(moments);
   }
 
-
   // Setters And Getters
 
   private void startTimer() {
-    //this.eventBus.post(new CourseSelectedEvent(this.course));
+    // this.eventBus.post(new CourseSelectedEvent(this.course));
     this.parent.showTimerPage();
   }
 
@@ -371,8 +368,9 @@ public class CourseMainPage implements Initializable, Page {
     updateCourseInfo();
     resetPanes();
     deleteCourseText.setText(
-            "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
+        "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
   }
+
   public void setCourse(Course course) {
     this.course = course;
   }

@@ -1,16 +1,12 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -51,10 +47,6 @@ public class StatisticsPage implements Page {
 
   //  List<Course> activeCourseList;
   //  List<Course> finishedCourseList;
-
-
-
-
 
   // TODO add functionality for add studyTime dialog
 
@@ -169,7 +161,7 @@ public class StatisticsPage implements Page {
     update();
   }
 
-  private void update(){
+  private void update() {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
     setListOfCourses();
@@ -179,6 +171,6 @@ public class StatisticsPage implements Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     this.mainPage = mainPage;
-   // update();
+    // update();
   }
 }

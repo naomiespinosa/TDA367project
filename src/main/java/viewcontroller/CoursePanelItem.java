@@ -1,12 +1,11 @@
 package viewcontroller;
 
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.Course;
 import model.Min5a;
-
-import java.util.Optional;
 
 public class CoursePanelItem implements Page {
 
@@ -17,13 +16,12 @@ public class CoursePanelItem implements Page {
   private Course course;
   private MainPage parentController;
 
-
   @FXML
   private void goToPage(MouseEvent event) {
     parentController.pressedCourseItem(course);
   }
 
-  void setCourse(Course course){
+  void setCourse(Course course) {
     this.course = course;
   }
 

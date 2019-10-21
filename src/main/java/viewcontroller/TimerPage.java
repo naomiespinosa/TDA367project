@@ -1,13 +1,9 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +24,6 @@ public class TimerPage implements Page {
   @FXML private Label timeLabel;
 
   private Course course;
-
 
   public void onTimerButtonClick() {
     //    if (timerManager.isRunning()) {
@@ -62,7 +57,6 @@ public class TimerPage implements Page {
                     "%02d:%02d",
                     (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
   }
-
 
   @Subscribe
   private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {

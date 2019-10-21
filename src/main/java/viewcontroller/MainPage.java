@@ -1,13 +1,12 @@
 package viewcontroller;
 
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
-
-import java.util.Optional;
 
 public class MainPage implements Page {
 
