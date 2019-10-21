@@ -1,5 +1,6 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import java.util.Optional;
 import javafx.application.Platform;
@@ -16,6 +17,7 @@ import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
 public class TimerPage implements Page {
+  private EventBus eventBus;
   private Min5a model;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
@@ -24,10 +26,6 @@ public class TimerPage implements Page {
   @FXML private Label timeLabel;
 
   private Course course;
-
-  TimerPage(EventBus eventBus) {
-    this.eventBus = eventBus;
-  }
 
   public void onTimerButtonClick() {
     //    if (timerManager.isRunning()) {

@@ -1,11 +1,10 @@
 package viewcontroller;
 
+import com.google.common.eventbus.EventBus;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import com.google.common.eventbus.EventBus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -91,6 +90,7 @@ public class CourseMainPage implements Initializable, Page {
 
   private MainPage parent;
   private Min5a model;
+  private EventBus eventBus;
 
   CourseMainPage(EventBus eventBus) {
     this.eventBus = eventBus;

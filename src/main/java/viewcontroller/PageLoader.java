@@ -64,7 +64,7 @@ public class PageLoader {
   }
 
   static AnchorPane createContactsPage() {
-    Result<StatisticsPage> res = loadPage("fxml/ContactsPage.fxml");
+    Result<ContactsPage> res = loadPage("fxml/ContactsPage.fxml");
     res.ctrl.initPage(model, Optional.empty());
     return res.root;
   }
