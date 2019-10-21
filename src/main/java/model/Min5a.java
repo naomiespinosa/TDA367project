@@ -62,12 +62,18 @@ public class Min5a {
    * @param password the plain text password, a hash will be stored
    */
   public void addUser(Integer personNumber, String name, String password) {
-    if (userMap.containsKey(personNumber)) {
-      // TODO notify that user already exists
-    } else {
-      User user = User.createUser(personNumber, name, password);
-      userMap.put(personNumber, user);
-    }
+    User user = User.createUser(personNumber, name, password);
+    userMap.put(personNumber, user);
+  }
+
+  /**
+   * Checks if the username is already taken
+   *
+   * @param name social security number
+   * @return if the user is unique
+   */
+  public boolean isUserUnique(String name) {
+    return !userMap.containsKey(name);
   }
 
   /**
@@ -80,7 +86,8 @@ public class Min5a {
    */
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     Course course = new Course(name, courseCode, year, studyPeriod);
-    activeUser.ifPresent(u -> u.addCourse(course));
+    activeUser.get().addCourse(course);
+    // activeUser.ifPresent(u -> u.addCourse(course));
     bus.post(new CourseChangeEvent());
   }
 
@@ -128,6 +135,22 @@ public class Min5a {
    */
   public List<User> getUsers() {
     return new ArrayList<>(userMap.values()); // use defensive copying
+  }
+
+  public String getActiveUserName() {
+    return activeUser.get().getName();
+  }
+
+  public void setActiveUserName(String name) {
+    activeUser.get().setName(name);
+  }
+
+  public int getActiveUserId() {
+    return activeUser.get().getPersonNumber();
+  }
+
+  public void setActiveUserId(int id) {
+    activeUser.get().setPersonNumber(id);
   }
 
   /**
