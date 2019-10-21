@@ -117,4 +117,14 @@ public class PageFactory {
         .load(PageFactory.class.getClassLoader().getResource("fxml/TimerPage.fxml"))
         .getRoot();
   }
+
+  public AnchorPane createContactsPage() throws IOException {
+    GuiceFXMLLoader.Result result =
+        fxmlLoader.load(PageFactory.class.getClassLoader().getResource("fxml/ContactsPage.fxml"));
+
+    AnchorPane root = result.getRoot();
+    ContactsPage ctr = result.getController();
+    ctr.init();
+    return root;
+  }
 }

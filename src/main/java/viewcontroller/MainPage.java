@@ -53,6 +53,7 @@ public class MainPage {
   private AnchorPane courseSelectionPage;
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
+  private AnchorPane contactsPage;
 
   // Other FXML setters
   public void setHomePage(AnchorPane homePage) {
@@ -69,6 +70,10 @@ public class MainPage {
 
   public void setTimerPage(AnchorPane timerPage) {
     this.timerPage = timerPage;
+  }
+
+  public void setContactsPage(AnchorPane contactsPage) {
+    this.contactsPage = contactsPage;
   }
 
   // Displaying Pages functions
@@ -96,6 +101,16 @@ public class MainPage {
   @FXML
   private void showStatisticPage(ActionEvent event) {
     showPage(statisticsPage);
+  }
+
+  @FXML
+  void showContactsPage(ActionEvent event) {
+    showPage(contactsPage);
+  }
+
+  @FXML
+  void showFullPageTimer(ActionEvent event) {
+    showTimerPage();
   }
 
   void showTimerPage() {

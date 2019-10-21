@@ -1,9 +1,9 @@
 package model;
 
 /**
- * The contact class defines what a contact is and what a contact can do.
- * A contact consist of a name, an email address, a phone number,
- * what course it’s related to and what title it has (Student, teacher…).
+ * The contact class defines what a contact is and what a contact can do. A contact consist of a
+ * name, an email address, a phone number, what course it’s related to and what title it has
+ * (Student, teacher…).
  */
 public class Contact {
 
@@ -16,10 +16,9 @@ public class Contact {
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
-
   }
 
-  //Setters and Getters
+  // Setters and Getters
   public String getName() {
     return name;
   }
@@ -31,7 +30,6 @@ public class Contact {
   public String getPhoneNumber() {
     return phoneNumber;
   }
-
 
   public Course getCourse() {
     return course;
