@@ -48,6 +48,14 @@ public class StatisticsPage implements Page {
   //  List<Course> activeCourseList;
   //  List<Course> finishedCourseList;
 
+
+  public StatisticsPage(final EventBus eventBus) {
+    eventBus.register(this);
+  }
+
+
+
+
   // TODO add functionality for add studyTime dialog
 
   @FXML

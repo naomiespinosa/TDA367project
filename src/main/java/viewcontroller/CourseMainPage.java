@@ -90,6 +90,13 @@ public class CourseMainPage implements Initializable, Page {
   private MainPage parent;
   private Min5a model;
 
+
+
+  CourseMainPage(EventBus eventBus) {
+    this.eventBus = eventBus;
+  }
+
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     populateListViews();

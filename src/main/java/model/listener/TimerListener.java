@@ -17,8 +17,6 @@ public class TimerListener {
     StudySession studySession = new StudySession();
     studySession.setStop(studyTimerCompletedEvent.getStoppedAt());
     studySession.setStart(studyTimerCompletedEvent.getStartedAt());
-    studySession.setCourseId(studyTimerCompletedEvent.getCourse().getId());
-
     //    this.studySessionManager.create(studySession);
   }
 }
