@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+// Testing for model.Course
 class CourseTest {
   private static Min5a model;
 
