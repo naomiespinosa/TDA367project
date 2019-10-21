@@ -98,7 +98,7 @@ public class ContactsPage implements Page {
   void editContact(ActionEvent event) {
     addContactAnchorPane.toFront();
 
-    contactLabel.setText("Redigera kurs");
+    contactLabel.setText("Redigera kontakt");
     createContact.setText("Spara");
 
     if ((contactsListview.getSelectionModel().getSelectedIndex() != -1)) {
@@ -200,7 +200,6 @@ public class ContactsPage implements Page {
 
   private void updateInfo() {
 
-    // Courses
     contactCourse.getItems().clear();
     contactCourse.getItems().addAll(getCourseNames());
     contactCourse.getSelectionModel().select(0);
@@ -240,7 +239,11 @@ public class ContactsPage implements Page {
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
+
     contactTitle.getItems().addAll(acceptedTitles);
-    contactsListview.getSelectionModel().select(0);
+    contactTitle.getSelectionModel().select(0);
+    // Todo fix so that the current courses (if there are any existing already) are in the courses
+    // Combobox
+
   }
 }
