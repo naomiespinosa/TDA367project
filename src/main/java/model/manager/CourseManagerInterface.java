@@ -4,6 +4,7 @@ import model.Course;
 import model.Observable;
 import model.User;
 
+/** Manages courses. */
 public interface CourseManagerInterface extends Observable {
 
   /**

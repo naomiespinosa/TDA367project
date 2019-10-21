@@ -7,6 +7,7 @@ import model.StudySession;
 import model.event.timer.StudyTimerCompletedEvent;
 import model.manager.StudySessionManagerInterface;
 
+/** Listens to timer changes. */
 public class TimerListener {
 
   @Inject private StudySessionManagerInterface studySessionManager;
@@ -16,6 +17,11 @@ public class TimerListener {
     eventBus.register(this);
   }
 
+  /**
+   * Creates new study sessions from completed timers.
+   *
+   * @param studyTimerCompletedEvent The event from the completed timer.
+   */
   @Subscribe
   private void onStudyTimerCompleted(final StudyTimerCompletedEvent studyTimerCompletedEvent) {
     StudySession studySession = new StudySession();
