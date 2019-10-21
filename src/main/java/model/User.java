@@ -32,6 +32,10 @@ public class User {
     return personNumber;
   }
 
+  public void setPersonNumber(int id) {
+    this.personNumber = id;
+  }
+
   public boolean hasPassword(String password) {
     return passwordHash.equals(Util.hash(password));
   }
@@ -47,4 +51,6 @@ public class User {
   public void addCourse(Course course) {
     courses.add(course);
   }
+
+
 }

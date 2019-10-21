@@ -30,17 +30,11 @@ public class MainPage implements Page {
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
-  }
-
-  public void init() {
-    // Insert pages into side panel
     homePage = PageLoader.createHomePage(this);
     courseSelectionPage = PageLoader.createCourseSelectionPage(this);
     statisticsPage = PageLoader.createStatisticsPage();
     timerPage = PageLoader.createTimerPage();
     contactsPage = PageLoader.createContactsPage();
-
-    showPage(homePage);
   }
 
   @FXML
@@ -78,34 +72,51 @@ public class MainPage implements Page {
 
   @FXML
   private void login(ActionEvent event) {
-    Integer personNumber = Integer.parseInt(usernameTextField.getText()); // TODO check if it is int
+    loginErrorText.setText("");
     String password = "42"; // TODO should come from GUI
 
-    if (model.login(personNumber, password)) {
-      login.toBack();
-      main.toFront();
-      init();
-    } else {
-      loginErrorText.setText("*Denna användaren finns inte");
+    if (usernameIsValid()) {
+      Integer personNumber = Integer.parseInt(usernameTextField.getText());
+      if (model.login(personNumber, password)) {
+        toHome();
+      } else {
+        loginErrorText.setText("*Denna användaren finns inte");
+      }
     }
+  }
+
+  private boolean usernameIsValid() {
+    if (usernameTextField.getText().trim().isEmpty()) {
+      loginErrorText.setText("*Denna rutan får inte lämnas tom");
+      return false;
+    } else if (!usernameTextField.getText().matches("[0-9]+")) {
+      loginErrorText.setText("*Endast siffror");
+      return false;
+    }
+    return true;
   }
 
   @FXML
   private void newAccount() {
+    loginErrorText.setText("");
     String name = usernameTextField.getText();
     String pwd = "tda367"; // TODO from GUI
     int personNumber = 42; // TODO should be supplied by GUI
-
-    if (model.isUserUnique(name) && !usernameTextField.getText().trim().isEmpty()) {
-      model.addUser(personNumber, name, pwd);
-      model.login(personNumber, pwd);
-    } else {
-      loginErrorText.setText("*Användaren finns redan");
+    if (usernameIsValid()) {
+      if (model.isUserUnique(name) && !usernameTextField.getText().trim().isEmpty()) {
+        model.addUser(personNumber, name, pwd);
+        model.login(personNumber, pwd);
+        toHome();
+      } else {
+        loginErrorText.setText("*Användaren finns redan");
+      }
     }
+  }
 
+  void toHome() {
     login.toBack();
     main.toFront();
-    init();
+    showPage(homePage);
   }
 
   // Shows selected page on the right side of the screen

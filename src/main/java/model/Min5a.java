@@ -136,6 +136,22 @@ public class Min5a {
     return new ArrayList<>(userMap.values()); // use defensive copying
   }
 
+  public String getActiveUserName(){
+    return activeUser.get().getName();
+  }
+
+  public void setActiveUserName(String name){
+    activeUser.get().setName(name);
+  }
+
+  public int getActiveUserId(){
+    return activeUser.get().getPersonNumber();
+  }
+
+  public void setActiveUserId(int id){
+    activeUser.get().setPersonNumber(id);
+  }
+
   /**
    * Initialise the model with a list of users.
    *

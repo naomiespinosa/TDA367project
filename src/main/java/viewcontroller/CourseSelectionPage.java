@@ -1,10 +1,9 @@
 package viewcontroller;
 
 import com.google.common.eventbus.Subscribe;
-import java.net.URL;
+import java.util.Optional;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import com.google.common.eventbus.Subscribe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
