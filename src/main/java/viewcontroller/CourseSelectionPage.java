@@ -2,12 +2,11 @@ package viewcontroller;
 
 import com.google.common.eventbus.Subscribe;
 import java.net.URL;
-import java.util.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import com.google.common.eventbus.Subscribe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,7 +14,7 @@ import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.event.CourseChangeEvent;
 
-public class CourseSelectionPage implements Initializable, Page {
+public class CourseSelectionPage implements Page {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private FlowPane inactiveCoursesFlowPane;
@@ -34,13 +33,6 @@ public class CourseSelectionPage implements Initializable, Page {
 
   private MainPage parent;
   private Min5a model;
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    initToggleGroup();
-    resetSpinner();
-    model.register(this);
-  }
 
   private void resetPage() {
     main.toFront();
@@ -74,16 +66,6 @@ public class CourseSelectionPage implements Initializable, Page {
   private void createNewCourse(ActionEvent event) {
     addCourse();
   }
-
-  //  private void addCourse() {
-  //    if (!isNewCourseApproved()) {
-  //      model.addCourse(courseNameTextArea.getText(), courseCodeTextArea.getText(), (int)
-  // yearSpinner.getValue(), getPeriod());
-  //      clearCourseInput();
-  //      resetPage();
-  //      this.updateLists();
-  //    }
-  //  }
 
   private void addCourse() {
     if (!isNewCourseApproved()) { // Check so all fields are filled in
@@ -175,6 +157,8 @@ public class CourseSelectionPage implements Initializable, Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     mainPage.ifPresent(page -> parent = page);
+    initToggleGroup();
+    resetSpinner();
     addTextLimiter(courseCodeTextArea, 6); // Code Reuse
   }
 }

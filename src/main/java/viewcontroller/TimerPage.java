@@ -2,12 +2,9 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -19,7 +16,7 @@ import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
-public class TimerPage implements Initializable, Page {
+public class TimerPage implements Page {
   private EventBus eventBus;
   private Min5a model;
 
@@ -29,10 +26,6 @@ public class TimerPage implements Initializable, Page {
   @FXML private Label timeLabel;
 
   private Course course;
-
-  TimerPage(EventBus eventBus) {
-    this.eventBus = eventBus;
-  }
 
   public void onTimerButtonClick() {
     //    if (timerManager.isRunning()) {
@@ -67,12 +60,6 @@ public class TimerPage implements Initializable, Page {
                     (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    eventBus.register(this);
-    startPauseLabel.setText("Starta timer");
-  }
-
   @Subscribe
   private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
     this.course = courseSelectedEvent.getCourse();
@@ -81,5 +68,6 @@ public class TimerPage implements Initializable, Page {
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
+    startPauseLabel.setText("Starta timer");
   }
 }

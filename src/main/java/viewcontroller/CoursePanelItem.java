@@ -27,6 +27,8 @@ public class CoursePanelItem implements Page {
 
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.courseName.setText(course.getName());
+    this.courseCode.setText(course.getCourseCode());
     mainPage.ifPresent(page -> parentController = page);
   }
 }
