@@ -167,6 +167,8 @@ public class StatisticsPage implements Page {
     setListOfCourses();
   }
 
+
+
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
