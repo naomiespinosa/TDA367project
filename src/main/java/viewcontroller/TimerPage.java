@@ -30,7 +30,7 @@ public class TimerPage implements Initializable, Page {
 
   private Course course;
 
-  TimerPage(EventBus eventBus){
+  TimerPage(EventBus eventBus) {
     this.eventBus = eventBus;
   }
 

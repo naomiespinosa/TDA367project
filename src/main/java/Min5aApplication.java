@@ -1,10 +1,8 @@
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Min5a;
 import viewcontroller.PageLoader;
-
 
 public class Min5aApplication extends Application {
   private PageLoader pageLoader;
@@ -20,6 +18,4 @@ public class Min5aApplication extends Application {
     stage.setScene(scene);
     stage.show();
   }
-
-
 }
