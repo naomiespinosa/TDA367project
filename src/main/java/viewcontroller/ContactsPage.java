@@ -15,6 +15,13 @@ import model.Contact;
 import model.Course;
 import model.Min5a;
 
+/**
+ * The contact class defines what a contact is and what a contact can do. A contact consist of a
+ * name, an email address, a phone number, what course it’s related to and what title it has
+ * (Student, teacher…).
+ *
+ * @author Johanna
+ */
 public class ContactsPage implements Page {
 
   private EventBus eventBus;

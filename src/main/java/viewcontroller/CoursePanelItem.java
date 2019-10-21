@@ -7,6 +7,12 @@ import javafx.scene.input.MouseEvent;
 import model.Course;
 import model.Min5a;
 
+/**
+ * This is the small boxes displaying courses that you can press on that are being shown in
+ * FlowPanes
+ *
+ * @author Hanna
+ */
 public class CoursePanelItem implements Page {
 
   @FXML private Label courseName;

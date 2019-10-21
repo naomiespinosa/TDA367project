@@ -8,9 +8,20 @@ import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
 
+/**
+ * A Factory Method that loads and creates all the fxml/Anchorpanes that we need
+ *
+ * @author Hanna
+ */
 public class PageLoader {
   private static Min5a model;
 
+  /**
+   * Needs to be a static variable so that we can divide min5a to the controllers that are in need
+   * of the information
+   *
+   * @param model min5a
+   */
   public static void setModel(Min5a model) {
     PageLoader.model = model;
   }
