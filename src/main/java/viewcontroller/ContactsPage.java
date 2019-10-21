@@ -59,6 +59,8 @@ public class ContactsPage implements Page {
 
   private Min5a model;
 
+  private MainPage parent;
+
   /*  // TODO make this subscribe work
   @Subscribe
   private void onUserChange(final UserChangedEvent userChangedEvent) {
