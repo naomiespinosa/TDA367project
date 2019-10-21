@@ -87,7 +87,7 @@ public class Min5a {
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     Course course = new Course(name, courseCode, year, studyPeriod);
     activeUser.get().addCourse(course);
-    //activeUser.ifPresent(u -> u.addCourse(course));
+    // activeUser.ifPresent(u -> u.addCourse(course));
     bus.post(new CourseChangeEvent());
   }
 
@@ -137,19 +137,19 @@ public class Min5a {
     return new ArrayList<>(userMap.values()); // use defensive copying
   }
 
-  public String getActiveUserName(){
+  public String getActiveUserName() {
     return activeUser.get().getName();
   }
 
-  public void setActiveUserName(String name){
+  public void setActiveUserName(String name) {
     activeUser.get().setName(name);
   }
 
-  public int getActiveUserId(){
+  public int getActiveUserId() {
     return activeUser.get().getPersonNumber();
   }
 
-  public void setActiveUserId(int id){
+  public void setActiveUserId(int id) {
     activeUser.get().setPersonNumber(id);
   }
 

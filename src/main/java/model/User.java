@@ -52,6 +52,4 @@ public class User {
   public void addCourse(Course course) {
     courses.add(course);
   }
-
-
 }

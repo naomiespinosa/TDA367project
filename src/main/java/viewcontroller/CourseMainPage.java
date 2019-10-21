@@ -1,16 +1,12 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -28,7 +24,7 @@ import model.Min5a;
 import model.Moment;
 import model.ToDo;
 
-public class CourseMainPage implements Initializable, Page {
+public class CourseMainPage implements Page {
 
   private Course course;
 
@@ -90,23 +86,6 @@ public class CourseMainPage implements Initializable, Page {
 
   private MainPage parent;
   private Min5a model;
-  private EventBus eventBus;
-
-  CourseMainPage(EventBus eventBus) {
-    this.eventBus = eventBus;
-  }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    populateListViews();
-    momentDatePicker.setValue(LocalDate.now());
-    populateListViews();
-    gradeComboBox.getItems().addAll(Course.getAcceptedGrades());
-    this.courseStartTimerButton.setOnAction(
-        e -> {
-          startTimer();
-        });
-  }
 
   private void resetPanes() {
     mainPane.toFront();
@@ -374,6 +353,14 @@ public class CourseMainPage implements Initializable, Page {
     resetPanes();
     deleteCourseText.setText(
         "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
+    populateListViews();
+    momentDatePicker.setValue(LocalDate.now());
+    populateListViews();
+    gradeComboBox.getItems().addAll(Course.getAcceptedGrades());
+    this.courseStartTimerButton.setOnAction(
+        e -> {
+          startTimer();
+        });
   }
 
   public void setCourse(Course course) {
