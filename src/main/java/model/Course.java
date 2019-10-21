@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
 public class Course {
@@ -16,7 +15,6 @@ public class Course {
   private int year;
   private int studyPeriod;
   private boolean isActive;
-  private Image image = null;
   private String grade;
 
   private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
@@ -86,10 +84,6 @@ public class Course {
   // Setters and Getters
   public String getName() {
     return name;
-  }
-
-  public javafx.scene.image.Image getImage() {
-    return image;
   }
 
   public void setName(String name) {
