@@ -22,7 +22,7 @@ import model.StudySession;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
-public class StatisticsPage implements Initializable, Page {
+public class StatisticsPage implements Page {
 
   @FXML private AnchorPane noGraphPane;
   @FXML private AnchorPane graphPane;
@@ -53,16 +53,6 @@ public class StatisticsPage implements Initializable, Page {
   //  List<Course> finishedCourseList;
 
 
-  public StatisticsPage(final EventBus eventBus) {
-    eventBus.register(this);
-  }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    //    this.courseManager.attach(this);
-    addStudyTimePane.toBack();
-    startPagePane.toFront();
-  }
 
   // TODO add functionality for add studyTime dialog
 
@@ -187,5 +177,7 @@ public class StatisticsPage implements Initializable, Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     this.mainPage = mainPage;
+    addStudyTimePane.toBack();
+    startPagePane.toFront();
   }
 }

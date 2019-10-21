@@ -14,7 +14,7 @@ import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.event.CourseChangeEvent;
 
-public class CourseSelectionPage implements Initializable, Page {
+public class CourseSelectionPage implements Page {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private FlowPane inactiveCoursesFlowPane;
@@ -34,13 +34,6 @@ public class CourseSelectionPage implements Initializable, Page {
   private MainPage parent;
   private PanelItemManager panelItemManager;
   private Min5a model;
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    initToggleGroup();
-    resetSpinner();
-    model.register(this);
-  }
 
   private void resetPage() {
     main.toFront();
@@ -159,5 +152,7 @@ public class CourseSelectionPage implements Initializable, Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     mainPage.ifPresent(page -> parent = page);
+    initToggleGroup();
+    resetSpinner();
   }
 }

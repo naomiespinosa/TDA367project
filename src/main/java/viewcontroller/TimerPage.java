@@ -19,8 +19,7 @@ import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
-public class TimerPage implements Initializable, Page {
-  private EventBus eventBus;
+public class TimerPage implements Page {
   private Min5a model;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
@@ -30,9 +29,6 @@ public class TimerPage implements Initializable, Page {
 
   private Course course;
 
-  TimerPage(EventBus eventBus){
-    this.eventBus = eventBus;
-  }
 
   public void onTimerButtonClick() {
     //    if (timerManager.isRunning()) {
@@ -67,11 +63,6 @@ public class TimerPage implements Initializable, Page {
                     (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    eventBus.register(this);
-    startPauseLabel.setText("Starta timer");
-  }
 
   @Subscribe
   private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
@@ -81,5 +72,6 @@ public class TimerPage implements Initializable, Page {
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
+    startPauseLabel.setText("Starta timer");
   }
 }
