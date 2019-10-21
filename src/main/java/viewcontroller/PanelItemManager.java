@@ -6,6 +6,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import model.Course;
 
+/**
+ * This is a manager for creating the CoursePanelItems. It fills the flowPanes in
+ * CourseSelectionPage and HomePage
+ *
+ * @author Hanna
+ */
 class PanelItemManager {
   static void showCourses(FlowPane flowPane, MainPage parent, Iterable<Course> courses) {
     flowPane.getChildren().clear();

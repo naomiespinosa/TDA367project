@@ -32,11 +32,7 @@
          </font>
       </Text>
       <Text layoutX="152.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Användarnamn:" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="436.41796875" />
-      <Text layoutX="152.0" layoutY="506.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Personnummer:" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="484.41796875" />
-      <Text layoutX="205.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Lösenord:" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="536.41796875" />
       <TextField fx:id="userName" layoutX="298.0" layoutY="436.0" AnchorPane.leftAnchor="298.0" />
-      <TextField fx:id="securityCode" editable="false" layoutX="298.0" layoutY="486.0" />
-      <TextField fx:id="password" editable="false" layoutX="298.0" layoutY="536.0" />
       <Button layoutX="298.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeUser" prefHeight="26.0" prefWidth="149.0" text="Spara ändringar" />
       <Button layoutX="580.0" layoutY="583.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="166.0" text="Logga ut" />
       <Label fx:id="changeWorked" layoutX="298.0" layoutY="608.0" text="Label" />

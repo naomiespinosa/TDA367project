@@ -16,6 +16,11 @@ import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
+/**
+ * This is the class that represents the timer and functionality regarding controlling the fxml
+ *
+ * @author Robin
+ */
 public class TimerPage implements Page {
   private EventBus eventBus;
   private Min5a model;

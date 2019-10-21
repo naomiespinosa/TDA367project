@@ -16,8 +16,12 @@ import model.Course;
 import model.Min5a;
 import model.StudySession;
 import model.event.CourseChangeEvent;
-import model.event.UserChangedEvent;
 
+/**
+ * This page displays all the information about study-sessions and grades.
+ *
+ * @author Naomi
+ */
 public class StatisticsPage implements Page {
 
   @FXML private AnchorPane noGraphPane;
@@ -156,10 +160,10 @@ public class StatisticsPage implements Page {
     update();
   }
 
-  @Subscribe
-  private void updateLists(final UserChangedEvent userChangedEvent) {
-    update();
-  }
+  //  @Subscribe
+  //  private void updateLists(final UserChangedEvent userChangedEvent) {
+  //    update();
+  //  }
 
   private void update() {
     setStudyTimeGradesDisplay();
