@@ -2,7 +2,7 @@ package model.manager;
 
 import model.StudySession;
 
-/** */
+/** Manages study sessions. */
 public interface StudySessionManagerInterface {
 
   /**
