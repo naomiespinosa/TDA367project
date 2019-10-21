@@ -91,6 +91,10 @@ public class Min5a {
     bus.post(new CourseChangeEvent());
   }
 
+  public void notifyCourseChangedEvent() {
+    bus.post(new CourseChangeEvent());
+  }
+
   /**
    * Retrieve all of the active user's courses
    *
@@ -106,8 +110,9 @@ public class Min5a {
    * @param p a predicate over a course
    * @return filtered list (iterable) of courses
    */
-  public Iterable<Course> filterCourses(Predicate<Course> p) {
-    return activeUser.get().filterCourses(p);
+  public Iterable<Course> filterCourses(Predicate<Course> p) { // todo how to make activeUser present
+      return activeUser.get().filterCourses(p);
+
   }
 
   /**
@@ -161,4 +166,26 @@ public class Min5a {
   public void setUsers(List<User> users) {
     for (User user : users) userMap.put(user.getPersonNumber(), user);
   }
+
+  public List<String> getActiveCourseName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : activeCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
+  }
+
+  public List<String> getInactiveCoursesName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : inActiveCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
+  }
+
 }
+

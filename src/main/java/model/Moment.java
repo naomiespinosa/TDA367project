@@ -16,7 +16,7 @@ public class Moment {
 
   @Override
   public String toString() {
-    return "Den" + " " + this.getDeadline() + ":" + " " + this.getName();
+    return "Den" + " " + this.deadline.getDayOfMonth() + " " + this.deadline.getMonth() + " " + this.deadline.getYear() + ":" + " " + this.name;
   }
 
   // Getters and Setters

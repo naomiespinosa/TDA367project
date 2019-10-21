@@ -75,9 +75,8 @@ public class StatisticsPage implements Page {
     startPagePane.toFront();
   }
 
-  private void setStudyTimeGradesDisplay() {
-    Iterable<Course> courses = null;
-    for (Course course : courses) {
+  void setStudyTimeGradesDisplay() {
+    for (Course course : model.getCourses()) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
           case "U":
@@ -131,14 +130,21 @@ public class StatisticsPage implements Page {
     return totalHour;
 
     // TODO adapt for Hour AND minutes, perhaps send back a Pair. This methods computing should also
-    // be done in Course.
+    //  be done in Course.
   }
 
   private void setListOfCourses() {
+    activeCourses.addAll(model.getActiveCourseName());
+    inactiveCourses.addAll(model.getInactiveCoursesName());
+
+    activeCoursesListView.setItems(activeCourses);
+    finishedCoursesListView.setItems(inactiveCourses);
+    /*
     activeCourses.clear();
+
     inactiveCourses.clear();
 
-    Iterable<Course> courses = null;
+    Iterable<Course> courses = model.getCourses();
 
     for (Course course : courses) {
       if (course.isActive()) {
@@ -149,6 +155,8 @@ public class StatisticsPage implements Page {
     }
     activeCoursesListView.setItems(activeCourses);
     finishedCoursesListView.setItems(inactiveCourses);
+    */
+
   }
 
   @Subscribe
@@ -161,9 +169,10 @@ public class StatisticsPage implements Page {
     update();
   }
 
+
   private void update() {
-    setStudyTimeGradesDisplay();
-    setTotalStudyTimeDisplay();
+   // setStudyTimeGradesDisplay();
+   // setTotalStudyTimeDisplay();
     setListOfCourses();
   }
 
@@ -171,6 +180,6 @@ public class StatisticsPage implements Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     this.mainPage = mainPage;
-    // update();
+    update();
   }
 }
