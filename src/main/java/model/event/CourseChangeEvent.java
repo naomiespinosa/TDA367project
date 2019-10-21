@@ -1,4 +1,3 @@
 package model.event;
 
-public class CourseChangeEvent {
-}
+public class CourseChangeEvent {}

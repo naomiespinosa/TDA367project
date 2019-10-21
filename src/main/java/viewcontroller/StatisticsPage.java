@@ -52,7 +52,6 @@ public class StatisticsPage implements Initializable, Page {
   //  List<Course> activeCourseList;
   //  List<Course> finishedCourseList;
 
-
   public StatisticsPage(final EventBus eventBus) {
     eventBus.register(this);
   }
@@ -177,7 +176,7 @@ public class StatisticsPage implements Initializable, Page {
     update();
   }
 
-  private void update(){
+  private void update() {
     setStudyTimeGradesDisplay();
     setTotalStudyTimeDisplay();
     setListOfCourses();

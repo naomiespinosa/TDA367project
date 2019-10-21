@@ -1,10 +1,9 @@
 package model;
 
 import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
 import java.util.*;
 import java.util.function.Predicate;
-
-import com.google.inject.Inject;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
@@ -14,7 +13,8 @@ public class Min5a {
   private Optional<User> activeUser;
   static EventBus bus;
 
-  @Inject private Min5a() {
+  @Inject
+  private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
     bus = new EventBus();
@@ -62,12 +62,18 @@ public class Min5a {
    * @param password the plain text password, a hash will be stored
    */
   public void addUser(Integer personNumber, String name, String password) {
-    if (userMap.containsKey(personNumber)) {
-      // TODO notify that user already exists
-    } else {
-      User user = User.createUser(personNumber, name, password);
-      userMap.put(personNumber, user);
-    }
+    User user = User.createUser(personNumber, name, password);
+    userMap.put(personNumber, user);
+  }
+
+  /**
+   * Checks if the username is already taken
+   *
+   * @param name social security number
+   * @return if the user is unique
+   */
+  public boolean isUserUnique(String name) {
+    return !userMap.containsKey(name);
   }
 
   /**

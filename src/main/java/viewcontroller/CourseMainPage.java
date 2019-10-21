@@ -94,7 +94,7 @@ public class CourseMainPage implements Initializable, Page {
   private EventBus eventBus;
   private Min5a model;
 
-  CourseMainPage(EventBus eventBus){
+  CourseMainPage(EventBus eventBus) {
     this.eventBus = eventBus;
   }
 

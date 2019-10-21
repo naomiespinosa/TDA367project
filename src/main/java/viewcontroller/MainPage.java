@@ -1,13 +1,13 @@
 package viewcontroller;
 
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
-
-import java.util.Optional;
 
 public class MainPage implements Page {
 
@@ -15,6 +15,8 @@ public class MainPage implements Page {
   @FXML private TextField usernameTextField;
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
+
+  @FXML private Label loginErrorText;
 
   private Min5a model;
 
@@ -72,7 +74,7 @@ public class MainPage implements Page {
       main.toFront();
       init();
     } else {
-      // TODO give message 'could not login'
+      loginErrorText.setText("*Denna användaren finns inte");
     }
   }
 
@@ -82,8 +84,12 @@ public class MainPage implements Page {
     String pwd = "tda367"; // TODO from GUI
     int personNumber = 42; // TODO should be supplied by GUI
 
-    model.addUser(personNumber, name, pwd);
-    model.login(personNumber, pwd);
+    if (model.isUserUnique(name) && !usernameTextField.getText().trim().isEmpty()) {
+      model.addUser(personNumber, name, pwd);
+      model.login(personNumber, pwd);
+    } else {
+      loginErrorText.setText("*Användaren finns redan");
+    }
 
     login.toBack();
     main.toFront();

@@ -1,9 +1,10 @@
 package viewcontroller;
 
+import com.google.common.eventbus.Subscribe;
 import java.net.URL;
 import java.util.*;
-
-import com.google.common.eventbus.Subscribe;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +33,6 @@ public class CourseSelectionPage implements Initializable, Page {
   @FXML private RadioButton period4RadioButton;
 
   private MainPage parent;
-  private PanelItemManager panelItemManager;
   private Min5a model;
 
   @Override
@@ -49,8 +49,8 @@ public class CourseSelectionPage implements Initializable, Page {
 
   private void updateLists() {
     resetPage();
-    panelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
-    panelItemManager.showCourses(inactiveCoursesFlowPane, parent, model.inActiveCourses());
+    PanelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
+    PanelItemManager.showCourses(inactiveCoursesFlowPane, parent, model.inActiveCourses());
   }
 
   // Add course functionality
@@ -75,18 +75,26 @@ public class CourseSelectionPage implements Initializable, Page {
     addCourse();
   }
 
+  //  private void addCourse() {
+  //    if (!isNewCourseApproved()) {
+  //      model.addCourse(courseNameTextArea.getText(), courseCodeTextArea.getText(), (int)
+  // yearSpinner.getValue(), getPeriod());
+  //      clearCourseInput();
+  //      resetPage();
+  //      this.updateLists();
+  //    }
+  //  }
+
   private void addCourse() {
     if (!isNewCourseApproved()) { // Check so all fields are filled in
-      //      courseManager.createNewCourse(
-      //          courseNameTextArea.getText(),
-      //          courseCodeTextArea.getText(),
-      //          (int) yearSpinner.getValue(),
-      //          getPeriod(),
-      //          this.user);
-
+      model.addCourse(
+          courseNameTextArea.getText(),
+          courseCodeTextArea.getText().substring(0, 6),
+          (int) yearSpinner.getValue(),
+          getPeriod());
       clearCourseInput();
       resetPage();
-      this.updateLists();
+      updateLists();
     }
   }
 
@@ -114,8 +122,7 @@ public class CourseSelectionPage implements Initializable, Page {
     yearSpinner.setValueFactory(valueFactory);
   }
 
-  // Togglegroup
-
+  // ToggleGroup
   private void initToggleGroup() {
     periodToggleGroup = new ToggleGroup();
     period1RadioButton.setToggleGroup(periodToggleGroup);
@@ -126,7 +133,7 @@ public class CourseSelectionPage implements Initializable, Page {
     period1RadioButton.setSelected(true);
   }
 
-  private int getPeriod() { // TODO
+  private int getPeriod() {
     if (periodToggleGroup.getSelectedToggle() != null) {
       if (periodToggleGroup.getSelectedToggle() == period1RadioButton) {
         return 1;
@@ -141,13 +148,22 @@ public class CourseSelectionPage implements Initializable, Page {
     return 0;
   }
 
-  // Setters And Getters
-  public void setParent(MainPage parent) {
-    this.parent = parent;
-  }
-
-  public void init() {
-    // initialisation code goes here
+  static void addTextLimiter(TextField courseCodeText, int limit) {
+    courseCodeText
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends String> ov,
+                  final String oldValue,
+                  final String newValue) {
+                if (courseCodeText.getText().length() > limit) {
+                  String s = courseCodeText.getText().substring(0, limit);
+                  courseCodeText.setText(s);
+                }
+              }
+            });
   }
 
   @Subscribe
@@ -159,5 +175,6 @@ public class CourseSelectionPage implements Initializable, Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     mainPage.ifPresent(page -> parent = page);
+    addTextLimiter(courseCodeTextArea, 6); // Code Reuse
   }
 }
