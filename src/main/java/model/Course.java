@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javafx.scene.image.Image;
 
 // A course hold information about the specific course and is user specific.
+
 public class Course {
   private String name;
   private String courseCode;
@@ -16,10 +16,7 @@ public class Course {
   private int year;
   private int studyPeriod;
   private boolean isActive;
-  private Image image = null;
   private String grade;
-  private String ownedBy;
-  private int id;
 
   private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
 
@@ -90,10 +87,6 @@ public class Course {
     return name;
   }
 
-  public javafx.scene.image.Image getImage() {
-    return image;
-  }
-
   public void setName(String name) {
     this.name = name;
   }
@@ -138,13 +131,5 @@ public class Course {
 
   public static List getAcceptedGrades() {
     return acceptedGrades;
-  }
-
-  public String getOwnedBy() {
-    return this.ownedBy;
-  }
-
-  public int getId() {
-    return this.id;
   }
 }

@@ -29,19 +29,4 @@ public class StudySessionTest {
 
     assertSame(start, studySession.getStartedAt());
   }
-
-  @Test
-  public void testCourseIsSet() {
-    final Course course = mock(Course.class);
-    when(course.getId())
-        .thenAnswer(
-            (invocation) -> {
-              return 1;
-            });
-
-    StudySession studySession = new StudySession();
-    studySession.setCourseId(course.getId());
-
-    assertEquals(1, course.getId());
-  }
 }
