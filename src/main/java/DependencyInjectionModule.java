@@ -8,6 +8,8 @@ import model.manager.CourseManager;
 import model.manager.CourseManagerInterface;
 import model.manager.StudySessionManager;
 import model.manager.StudySessionManagerInterface;
+import model.manager.TimerManager;
+import model.manager.TimerManagerInterface;
 import model.manager.UserManager;
 import model.manager.UserManagerInterface;
 import model.repository.CourseRepository;
@@ -35,6 +37,7 @@ public class DependencyInjectionModule extends AbstractModule {
     bind(StudySessionManagerInterface.class).to(StudySessionManager.class);
     bind(StudySessionRepositoryInterface.class).to(StudySessionRepository.class);
     bind(CourseManagerInterface.class).to(CourseManager.class).in(Singleton.class);
+    bind(TimerManagerInterface.class).to(TimerManager.class).in(Singleton.class);
   }
 
   @Provides

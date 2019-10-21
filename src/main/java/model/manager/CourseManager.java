@@ -15,10 +15,16 @@ public class CourseManager implements CourseManagerInterface {
 
   private List<Observer> observers = new ArrayList<Observer>();
 
+  /**
+   * Attaches an observer to the list of observers.
+   *
+   * @param observer
+   */
   public void attach(Observer observer) {
     observers.add(observer);
   }
 
+  /** Notifies all observers of changes. */
   private void notifyAllObservers() {
     List<Observer> observersClone = new ArrayList<>(observers);
 
@@ -27,6 +33,7 @@ public class CourseManager implements CourseManagerInterface {
     }
   }
 
+  @Override
   public void deleteCourse(final Course course) {
     this.fluentJdbc
         .query()
@@ -37,6 +44,7 @@ public class CourseManager implements CourseManagerInterface {
     notifyAllObservers();
   }
 
+  @Override
   public void createNewCourse(String name, String code, int year, int period, final User user) {
     this.fluentJdbc
         .query()
@@ -52,6 +60,7 @@ public class CourseManager implements CourseManagerInterface {
     notifyAllObservers();
   }
 
+  @Override
   public void save(Course course) {
     this.fluentJdbc
         .query()
@@ -70,6 +79,7 @@ public class CourseManager implements CourseManagerInterface {
     notifyAllObservers();
   }
 
+  /** Method being called to notify CourseManager of changes to observees. */
   public void update() {
     notifyAllObservers();
   }

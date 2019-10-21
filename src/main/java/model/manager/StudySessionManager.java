@@ -5,6 +5,7 @@ import model.StudySession;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
+/** @author Robin Hallabro-Kokko <robin@hallabro.nu> */
 public class StudySessionManager implements StudySessionManagerInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;

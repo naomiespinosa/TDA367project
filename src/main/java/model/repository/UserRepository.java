@@ -7,11 +7,13 @@ import model.User;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
+/** @author Robin Hallabro-Kokko <robin@hallabro.nu> */
 public class UserRepository implements UserRepositoryInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
   @Inject private Injector injector;
 
+  @Override
   public List<User> findAll() {
     List<User> users =
         this.fluentJdbc
@@ -26,6 +28,7 @@ public class UserRepository implements UserRepositoryInterface {
     return users;
   }
 
+  @Override
   public User findOneByUsername(final String username) {
     User user =
         this.fluentJdbc

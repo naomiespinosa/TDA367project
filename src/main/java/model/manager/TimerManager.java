@@ -13,7 +13,8 @@ import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
-public class TimerManager {
+/** @author Robin Hallabro-Kokko <robin@hallabro.nu> */
+public class TimerManager implements TimerManagerInterface {
   private Timer activeTimer;
 
   private EventBus eventBus;
@@ -26,10 +27,12 @@ public class TimerManager {
     this.eventBus.register(this);
   }
 
+  @Override
   public Boolean isRunning() {
     return this.activeTimer != null;
   }
 
+  @Override
   public void start(final Course course) {
     if (isRunning() == true) {
       activeTimer.cancel();
@@ -64,6 +67,7 @@ public class TimerManager {
     activeTimer.start();
   }
 
+  @Override
   public void cancel() {
     if (isRunning() == false) {
       return;

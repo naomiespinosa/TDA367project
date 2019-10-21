@@ -17,10 +17,10 @@ import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
-import model.manager.TimerManager;
+import model.manager.TimerManagerInterface;
 
 public class TimerPage implements Initializable {
-  @Inject private TimerManager timerManager;
+  @Inject private TimerManagerInterface timerManager;
 
   @Inject private EventBus eventBus;
 

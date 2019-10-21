@@ -8,10 +8,12 @@ import model.User;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
 import org.codejargon.fluentjdbc.api.mapper.ObjectMappers;
 
+/** @author Robin Hallabro-Kokko <robin@hallabro.nu> */
 public class StudySessionRepository implements StudySessionRepositoryInterface {
   @Inject private FluentJdbc fluentJdbc;
   @Inject private ObjectMappers objectMappers;
 
+  @Override
   public List<StudySession> findAll() {
     return this.fluentJdbc
         .query()
@@ -19,6 +21,7 @@ public class StudySessionRepository implements StudySessionRepositoryInterface {
         .listResult(this.objectMappers.forClass(StudySession.class));
   }
 
+  @Override
   public List<StudySession> findByUser(final User user) {
     return this.fluentJdbc
         .query()
@@ -27,6 +30,7 @@ public class StudySessionRepository implements StudySessionRepositoryInterface {
         .listResult(this.objectMappers.forClass(StudySession.class));
   }
 
+  @Override
   public List<StudySession> findByCourse(final Course course) {
     return this.fluentJdbc
         .query()
