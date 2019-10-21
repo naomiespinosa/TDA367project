@@ -86,7 +86,8 @@ public class Min5a {
    */
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     Course course = new Course(name, courseCode, year, studyPeriod);
-    activeUser.ifPresent(u -> u.addCourse(course));
+    activeUser.get().addCourse(course);
+    //activeUser.ifPresent(u -> u.addCourse(course));
     bus.post(new CourseChangeEvent());
   }
 

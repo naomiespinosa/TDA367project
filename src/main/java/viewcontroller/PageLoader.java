@@ -71,8 +71,8 @@ public class PageLoader {
 
   static AnchorPane createCoursePanelItem(Course course, MainPage parent) {
     Result<CoursePanelItem> res = loadPage("fxml/CoursePanelItem.fxml");
-    res.ctrl.initPage(model, Optional.of(parent));
     res.ctrl.setCourse(course);
+    res.ctrl.initPage(model, Optional.of(parent));
     return res.root;
   }
 

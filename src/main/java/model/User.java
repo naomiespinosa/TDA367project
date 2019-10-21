@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ public class User {
   private String name;
   private String passwordHash;
   private int personNumber;
-  private List<Course> courses;
+  private List<Course> courses = new ArrayList<>();
 
   private User(Integer personNumber, String name, String passwordHash) {
     this.personNumber = personNumber;

@@ -6,13 +6,12 @@ public class Contact {
   private String email;
   private String phoneNumber;
   private Course course;
-  private String titel; // Teacher, student ...
+  private String titel;
 
   public Contact(String name, String email, String phoneNumber) {
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    // this.titel = titel;
   }
 
   public String getName() {

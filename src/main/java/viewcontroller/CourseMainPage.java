@@ -250,7 +250,6 @@ public class CourseMainPage implements Initializable, Page {
 
   @FXML
   private void deleteCourse(ActionEvent event) {
-    //    this.courseManager.deleteCourse(course);
     parent.toHome();
   }
 
