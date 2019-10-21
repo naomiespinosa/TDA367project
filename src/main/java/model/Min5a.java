@@ -93,6 +93,8 @@ public class Min5a {
     return activeUser.get().getCourses();
   }
 
+
+
   /**
    * Filter the list of the active user's courses
    *

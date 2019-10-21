@@ -64,6 +64,12 @@ public class PageLoader {
     return res.root;
   }
 
+  static AnchorPane createContactsPage() {
+    Result<StatisticsPage> res = loadPage("fxml/ContactsPage.fxml");
+    res.ctrl.initPage(model, Optional.empty());
+    return res.root;
+  }
+
   static AnchorPane createCoursePanelItem(Course course, MainPage parent) {
     Result<CoursePanelItem> res = loadPage("fxml/CoursePanelItem.fxml");
     res.ctrl.initPage(model, Optional.of(parent));
@@ -77,6 +83,8 @@ public class PageLoader {
     res.ctrl.init(course);
     return res.root;
   }
+
+
 
   static AnchorPane createTimerPage() {
     Result<TimerPage> res = loadPage("fxml/TimerPage.fxml");

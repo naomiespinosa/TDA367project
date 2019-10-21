@@ -23,6 +23,7 @@ public class MainPage implements Page {
   private AnchorPane courseSelectionPage;
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
+  private AnchorPane contactsPage;
 
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
@@ -35,6 +36,7 @@ public class MainPage implements Page {
     courseSelectionPage = PageLoader.createCourseSelectionPage(this);
     statisticsPage = PageLoader.createStatisticsPage();
     timerPage = PageLoader.createTimerPage();
+    contactsPage = PageLoader.createContactsPage();
 
     showPage(homePage);
   }
@@ -52,6 +54,16 @@ public class MainPage implements Page {
   @FXML
   private void showStatisticPage(ActionEvent event) {
     showPage(statisticsPage);
+  }
+
+    @FXML
+    void showContactsPage(ActionEvent event) {
+        showPage(contactsPage);
+    }
+
+  @FXML
+  private void showTimerPage(ActionEvent event){
+      showTimerPage();
   }
 
   void showTimerPage() {

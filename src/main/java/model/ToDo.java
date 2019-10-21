@@ -1,8 +1,9 @@
 package model;
 
-// This class represent a normal checklist for the user and will either be done or not
+/** This class represent a normal checklist for the user and will either be done or not */
 public class ToDo {
   private boolean isDone;
+
   private String description;
 
   // Constructor, a todoItem is not done when created
@@ -18,23 +19,7 @@ public class ToDo {
   }
 
   // Getters and Setters
-  private boolean getIsDone() {
-    return isDone;
-  }
-
-  private void setActive() {
-    this.isDone = false;
-  }
-
-  private void setInactive() {
-    this.isDone = true;
-  }
-
-  private String getDescription() {
+  String getDescription() {
     return description;
-  }
-
-  private void setDescription(String description) {
-    this.description = description;
   }
 }
