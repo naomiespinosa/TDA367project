@@ -48,13 +48,9 @@ public class StatisticsPage implements Page {
   //  List<Course> activeCourseList;
   //  List<Course> finishedCourseList;
 
-
   public StatisticsPage(final EventBus eventBus) {
     eventBus.register(this);
   }
-
-
-
 
   // TODO add functionality for add studyTime dialog
 
@@ -174,8 +170,6 @@ public class StatisticsPage implements Page {
     setTotalStudyTimeDisplay();
     setListOfCourses();
   }
-
-
 
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {

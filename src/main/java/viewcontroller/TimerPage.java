@@ -29,7 +29,6 @@ public class TimerPage implements Page {
     this.eventBus = eventBus;
   }
 
-
   public void onTimerButtonClick() {
     //    if (timerManager.isRunning()) {
     //      timerManager.cancel();
