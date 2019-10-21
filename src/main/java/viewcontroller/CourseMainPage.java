@@ -1,10 +1,11 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.google.common.eventbus.EventBus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +28,6 @@ import model.Course;
 import model.Min5a;
 import model.Moment;
 import model.ToDo;
-import model.event.CourseSelectedEvent;
 
 public class CourseMainPage implements Initializable, Page {
 
@@ -90,8 +90,6 @@ public class CourseMainPage implements Initializable, Page {
   @FXML private AnchorPane completeCoursePane;
 
   private MainPage parent;
-
-  private EventBus eventBus;
   private Min5a model;
 
   CourseMainPage(EventBus eventBus) {
@@ -362,19 +360,10 @@ public class CourseMainPage implements Initializable, Page {
     momentListView.setItems(moments);
   }
 
-  // TODO model.this.courseManager
-  // Populates the page with the correct course information
-  void init(Course course) {
-    this.course = course;
-    updateCourseInfo();
-    resetPanes();
-    deleteCourseText.setText(
-        "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
-  }
   // Setters And Getters
 
   private void startTimer() {
-    this.eventBus.post(new CourseSelectedEvent(this.course));
+    // this.eventBus.post(new CourseSelectedEvent(this.course));
     this.parent.showTimerPage();
   }
 
@@ -382,5 +371,13 @@ public class CourseMainPage implements Initializable, Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     mainPage.ifPresent(page -> this.parent = page);
+    updateCourseInfo();
+    resetPanes();
+    deleteCourseText.setText(
+        "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
   }
 }

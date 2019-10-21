@@ -16,13 +16,6 @@ public class CoursePanelItem implements Page {
   private Course course;
   private MainPage parentController;
 
-  void init(Course course, MainPage parentController) {
-    this.courseName.setText(course.getName());
-    this.courseCode.setText(course.getCourseCode());
-    this.course = course;
-    this.parentController = parentController;
-  }
-
   @FXML
   private void goToPage(MouseEvent event) {
     parentController.pressedCourseItem(course);
@@ -34,6 +27,8 @@ public class CoursePanelItem implements Page {
 
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.courseName.setText(course.getName());
+    this.courseCode.setText(course.getCourseCode());
     mainPage.ifPresent(page -> parentController = page);
   }
 }
