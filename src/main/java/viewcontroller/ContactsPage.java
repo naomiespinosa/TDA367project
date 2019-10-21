@@ -1,6 +1,7 @@
 package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,10 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import model.Contact;
 import model.Course;
 import model.Min5a;
+import model.event.CourseChangeEvent;
 
 public class ContactsPage implements Page {
 
-  private EventBus eventBus;
   private ArrayList<Contact> contacts = new ArrayList();
   private ObservableList<Contact> contactsObserverList = FXCollections.observableArrayList();
   // FXML
@@ -60,6 +61,7 @@ public class ContactsPage implements Page {
   private Min5a model;
 
   private MainPage parent;
+  private EventBus eventBus = Min5a.bus;
 
   /*  // TODO make this subscribe work
   @Subscribe
@@ -85,15 +87,18 @@ public class ContactsPage implements Page {
     if (isContactApproved()) {
       contactsObserverList.add(
           new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
-      resetInputs();
     }
+    contactsListview.setItems(contactsObserverList);
+    seeContactAnchorpane.toFront();
+    contactsListview.getSelectionModel().selectLast();
+    showSelectedContact();
   }
 
   @FXML
   void editContact(ActionEvent event) {
     addContactAnchorPane.toFront();
 
-    contactLabel.setText("Redigera kurs");
+    contactLabel.setText("Redigera kontakt");
     createContact.setText("Spara");
 
     if ((contactsListview.getSelectionModel().getSelectedIndex() != -1)) {
@@ -138,6 +143,7 @@ public class ContactsPage implements Page {
   }
 
   private void resetNewContact() {
+    resetInputs();
     addContactAnchorPane.toFront();
     contactLabel.setText("Ny kontakt");
   }
@@ -193,12 +199,7 @@ public class ContactsPage implements Page {
   }
 
   private void updateInfo() {
-    // Titel
-    contactTitle.getItems().clear();
-    contactTitle.getItems().addAll(acceptedTitles);
-    contactTitle.getSelectionModel().select("Lärare");
 
-    // Courses
     contactCourse.getItems().clear();
     contactCourse.getItems().addAll(getCourseNames());
     contactCourse.getSelectionModel().select(0);
@@ -226,10 +227,10 @@ public class ContactsPage implements Page {
     }
   }
 
-  /* @Override
-  public void update() {
-      updateInfo();
-  }*/
+  @Subscribe
+  public void update(CourseChangeEvent event) {
+    updateInfo();
+  }
 
   public void showContact(javafx.scene.input.MouseEvent mouseEvent) {
     showSelectedContact();
@@ -238,5 +239,11 @@ public class ContactsPage implements Page {
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
+
+    contactTitle.getItems().addAll(acceptedTitles);
+    contactTitle.getSelectionModel().select(0);
+    // Todo fix so that the current courses (if there are any existing already) are in the courses
+    // Combobox
+
   }
 }
