@@ -1,34 +1,50 @@
 package model;
 
-import com.google.inject.Inject;
 import java.util.List;
-import model.repository.CourseRepositoryInterface;
-import model.repository.StudySessionRepositoryInterface;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class User {
-  private String username;
-  private int id;
+  private String name;
+  private String passwordHash;
+  private int personNumber;
+  private List<Course> courses;
 
-  @Inject private CourseRepositoryInterface courseRepository;
-  @Inject private StudySessionRepositoryInterface studySessionRepository;
-
-  public String getUsername() {
-    return username;
+  private User(Integer personNumber, String name, String passwordHash) {
+    this.personNumber = personNumber;
+    this.name = name;
+    this.passwordHash = passwordHash;
   }
 
-  public void setUsername(final String username) {
-    this.username = username;
+  static User createUser(Integer personNumber, String name, String password) {
+    return new User(personNumber, name, Util.hash(password));
   }
 
-  public int getId() {
-    return this.id;
+  public String getName() {
+    return name;
   }
 
-  public List<Course> getCourses() {
-    return this.courseRepository.findByUser(this);
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public List<StudySession> getStudySessions() {
-    return this.studySessionRepository.findByUser(this);
+  public int getPersonNumber() {
+    return personNumber;
+  }
+
+  public boolean hasPassword(String password) {
+    return passwordHash.equals(Util.hash(password));
+  }
+
+  public Iterable<Course> getCourses() {
+    return courses;
+  }
+
+  public Iterable<Course> filterCourses(Predicate<Course> p) {
+    return courses.stream().filter(p).collect(Collectors.toList());
+  }
+
+  public void addCourse(Course course) {
+    courses.add(course);
   }
 }

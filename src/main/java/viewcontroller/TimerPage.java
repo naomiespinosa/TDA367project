@@ -17,29 +17,23 @@ import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
-import model.manager.TimerManager;
 
 public class TimerPage implements Initializable {
-  @Inject private TimerManager timerManager;
-
   @Inject private EventBus eventBus;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
-
   @FXML private Button startPauseFullPageTimer;
-
   @FXML private Label startPauseLabel;
-
   @FXML private Label timeLabel;
 
   private Course course;
 
   public void onTimerButtonClick() {
-    if (timerManager.isRunning()) {
-      timerManager.cancel();
-    } else {
-      timerManager.start(this.course);
-    }
+    //    if (timerManager.isRunning()) {
+    //      timerManager.cancel();
+    //    } else {
+    //      timerManager.start(this.course);
+    //    }
   }
 
   @Subscribe

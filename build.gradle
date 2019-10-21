@@ -16,7 +16,7 @@ dependencies {
     implementation 'com.google.guava:guava:28.+'
     implementation 'org.xerial:sqlite-jdbc:3.28.0'
     implementation 'org.codejargon:fluentjdbc:1.8.3'
-
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 repositories {

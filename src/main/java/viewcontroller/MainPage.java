@@ -2,18 +2,13 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
-import java.io.IOException;
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
-import model.User;
+import model.Min5a;
 import model.event.UserChangedEvent;
-import model.manager.UserManagerInterface;
-import model.repository.UserRepositoryInterface;
 
 public class MainPage {
 
@@ -21,13 +16,10 @@ public class MainPage {
   @FXML private TextField usernameTextField;
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
-  @FXML private Label loginErrorText;
 
-  @Inject private UserRepositoryInterface userRepository;
-
-  @Inject private PageFactory pageFactory;
+  @Inject private PageLoader pageLoader;
   @Inject private EventBus eventBus;
-  @Inject private UserManagerInterface userManager;
+  @Inject private Min5a model;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -35,24 +27,13 @@ public class MainPage {
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
 
-  // Other FXML setters
-  public void setHomePage(AnchorPane homePage) {
-    this.homePage = homePage;
-  }
-
-  public void setCourseSelectionPage(AnchorPane courseSelectionPage) {
-    this.courseSelectionPage = courseSelectionPage;
-  }
-
-  public void setStatisticsPage(AnchorPane statisticsPage) {
-    this.statisticsPage = statisticsPage;
-  }
-
-  public void setTimerPage(AnchorPane timerPage) {
-    this.timerPage = timerPage;
-  }
-
   public void init() {
+    // Insert pages into side panel
+    homePage = pageLoader.createHomePage(this);
+    courseSelectionPage = pageLoader.createCourseSelectionPage(this);
+    statisticsPage = pageLoader.createStatisticsPage();
+    timerPage = pageLoader.createTimerPage();
+
     showPage(homePage);
   }
 
@@ -73,57 +54,39 @@ public class MainPage {
 
   void showTimerPage() {
     showPage(timerPage);
-  };
-
-  void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
-    AnchorPane courseHomePage = this.pageFactory.createCourseMainPage(course, mainPage);
-    showPage(courseHomePage);
   }
 
-  void initLoginPage() {
-    login.toFront();
-    main.toBack();
-    loginErrorText.setText("");
-    usernameTextField.clear();
+  void pressedCourseItem(Course course) {
+    showPage(pageLoader.createCourseMainPage(course, this));
   }
 
   @FXML
   private void login(ActionEvent event) {
-    loginErrorText.setText("");
-    List<User> users = userRepository.findAll();
+    Integer personNumber = Integer.parseInt(usernameTextField.getText()); // TODO check if it is int
+    String password = "42"; // TODO should come from GUI
 
-    for (User user : users) {
-      if (user.getUsername().equals(usernameTextField.getText())) {
-        eventBus.post(new UserChangedEvent(user));
-        login.toBack();
-        main.toFront();
-        init();
-      } else {
-        loginErrorText.setText("*Denna användaren finns inte");
-      }
+    if (model.login(personNumber, password)) {
+      eventBus.post(new UserChangedEvent());
+      login.toBack();
+      main.toFront();
+      init();
+    } else {
+      // TODO give message 'could not login'
     }
   }
 
   @FXML
   private void newAccount() {
-    loginErrorText.setText("");
-    User user = new User();
-    if (usernameIsValid()) {
-      user.setUsername(usernameTextField.getText());
+    String name = usernameTextField.getText();
+    String pwd = "tda367"; // TODO from GUI
+    int personNumber = 42; // TODO should be supplied by GUI
 
-      userManager.create(user);
-      eventBus.post(new UserChangedEvent(userRepository.findOneByUsername(user.getUsername())));
+    model.addUser(personNumber, name, pwd);
+    model.login(personNumber, pwd);
 
-      login.toBack();
-      main.toFront();
-      init();
-    } else {
-      loginErrorText.setText("*Får inte lämnas tom");
-    }
-  }
-
-  private boolean usernameIsValid() {
-    return !usernameTextField.getText().trim().isEmpty();
+    login.toBack();
+    main.toFront();
+    init();
   }
 
   // Shows selected page on the right side of the screen

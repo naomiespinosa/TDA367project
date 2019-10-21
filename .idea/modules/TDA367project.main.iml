@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Gradle: com.google.guava:guava:28.1-jre" level="project" />
     <orderEntry type="library" name="Gradle: org.xerial:sqlite-jdbc:3.28.0" level="project" />
     <orderEntry type="library" name="Gradle: org.codejargon:fluentjdbc:1.8.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />

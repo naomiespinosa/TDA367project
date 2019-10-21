@@ -1,15 +1,39 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-  @Test
-  public void setGetFunctions() {
-    User user = new User();
+  private static Min5a model;
 
-    user.setUsername("Rolf1337");
-    assertSame("Rolf1337", user.getUsername());
+  @BeforeAll
+  static void setup() {
+    model = Min5a.createMin5a(); // Start with a clean model
+  }
+
+  @Test
+  public void testUsers() {
+    int size = 3;
+    TestData.insertUsers(size, model);
+
+    List<User> users = model.getUsers();
+    assertEquals(size, users.size());
+
+    for (int i = 0; i < size; i++) {
+      User user = users.get(i);
+      assertEquals(TestData.number + i, user.getPersonNumber());
+      assertEquals(TestData.name, user.getName());
+      assertTrue(user.hasPassword(TestData.pwd));
+    }
+  }
+
+  @Test
+  public void testLogin() {
+    assertFalse(model.login(TestData.number, TestData.pwd));
+    TestData.insertUsers(1, model);
+    assertTrue(model.login(TestData.number, TestData.pwd));
   }
 }
