@@ -27,7 +27,6 @@ import model.Course;
 import model.Moment;
 import model.ToDo;
 import model.event.CourseSelectedEvent;
-import model.manager.CourseManagerInterface;
 
 public class CourseMainPage implements Initializable {
 
@@ -90,8 +89,6 @@ public class CourseMainPage implements Initializable {
   @FXML private AnchorPane completeCoursePane;
 
   private MainPage parent;
-
-  @Inject private CourseManagerInterface courseManager;
 
   @Inject private EventBus eventBus;
 
@@ -227,7 +224,7 @@ public class CourseMainPage implements Initializable {
       course.setYear((int) yearSpinner.getValue());
       course.setStudyPeriod((int) periodComboBox.getSelectionModel().getSelectedItem());
 
-      this.courseManager.save(course);
+//      this.courseManager.save(course);
 
       updateCourseInfo();
       resetPanes();
@@ -249,7 +246,7 @@ public class CourseMainPage implements Initializable {
 
   @FXML
   private void deleteCourse(ActionEvent event) {
-    this.courseManager.deleteCourse(course);
+//    this.courseManager.deleteCourse(course);
     parent.init();
   }
 
@@ -290,7 +287,7 @@ public class CourseMainPage implements Initializable {
       course.reactivateCourse();
     }
 
-    this.courseManager.save(course);
+//    this.courseManager.save(course);
 
     resetPanes();
     updateCourseInfo();

@@ -3,9 +3,11 @@ package viewcontroller;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,11 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import model.*;
+import model.Min5a;
 import model.Observer;
-import model.event.UserChangedEvent;
-import model.manager.CourseManagerInterface;
-import model.repository.CourseRepositoryInterface;
 
 public class CourseSelectionPage implements Initializable, Observer {
 
@@ -27,59 +26,35 @@ public class CourseSelectionPage implements Initializable, Observer {
   @FXML private AnchorPane addCoursePane;
 
   @FXML TextField courseNameTextArea;
-  @FXML TextField courseCodeTextArea;
-  @FXML private Spinner yearSpinner;
+  @FXML TextField courseCodeTextArea; @FXML
+  private Spinner yearSpinner;
   private int initialYear = 2019;
   @FXML private ToggleGroup periodToggleGroup;
   @FXML private RadioButton period1RadioButton;
-
   @FXML private RadioButton period2RadioButton;
-
   @FXML private RadioButton period3RadioButton;
-
   @FXML private RadioButton period4RadioButton;
 
   private MainPage parent;
-
-  @Inject private CourseManagerInterface courseManager;
-
   @Inject private PanelItemManager panelItemManager;
-
-  @Inject private EventBus eventBus;
-
-  @Inject private CourseRepositoryInterface courseRepository;
-
-  private User user;
+  @Inject private Min5a model;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     initToggleGroup();
     resetSpinner();
-    this.eventBus.register(this);
+    model.register(this);
   }
 
   private void resetPage() {
     main.toFront();
     addCoursePane.toBack();
-    this.courseManager.attach(this);
   }
 
-  @Subscribe
-  private void updateLists(final UserChangedEvent userChangedEvent) {
-    this.user = userChangedEvent.getNewUser();
-    this.updateLists(userChangedEvent.getNewUser());
-  }
-
-  private void updateLists(final User user) {
-    this.resetPage();
-    List<Course> courses = user.getCourses();
-
-    try {
-      this.panelItemManager.showActiveCourses(activeCoursesFlowPane, parent, courses);
-      this.panelItemManager.showInactiveCourses(inactiveCoursesFlowPane, parent, courses);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  private void updateLists() {
+    resetPage();
+    panelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
+    panelItemManager.showCourses(inactiveCoursesFlowPane, parent, model.inActiveCourses());
   }
 
   // Add course functionality
@@ -106,16 +81,16 @@ public class CourseSelectionPage implements Initializable, Observer {
 
   private void addCourse() {
     if (!isNewCourseApproved()) { // Check so all fields are filled in
-      this.courseManager.createNewCourse(
-          courseNameTextArea.getText(),
-          courseCodeTextArea.getText(),
-          (int) yearSpinner.getValue(),
-          getPeriod(),
-          this.user);
+//      courseManager.createNewCourse(
+//          courseNameTextArea.getText(),
+//          courseCodeTextArea.getText(),
+//          (int) yearSpinner.getValue(),
+//          getPeriod(),
+//          this.user);
 
       clearCourseInput();
       resetPage();
-      this.updateLists(this.user);
+      this.updateLists();
     }
   }
 
@@ -171,12 +146,16 @@ public class CourseSelectionPage implements Initializable, Observer {
   }
 
   // Setters And Getters
-  void setParent(MainPage parent) {
+  public void setParent(MainPage parent) {
     this.parent = parent;
+  }
+
+  public void init() {
+    // initialisation code goes here
   }
 
   @Override
   public void update() {
-    updateLists(this.user);
+    updateLists();
   }
 }

@@ -4,7 +4,6 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -20,46 +19,26 @@ import javafx.scene.text.Text;
 import model.Course;
 import model.Observer;
 import model.StudySession;
-import model.User;
 import model.event.UserChangedEvent;
-import model.manager.CourseManagerInterface;
-import model.repository.CourseRepositoryInterface;
-import model.repository.StudySessionRepositoryInterface;
 
 public class StatisticsPage implements Initializable, Observer {
 
   @FXML private AnchorPane noGraphPane;
-
   @FXML private AnchorPane graphPane;
-
   @FXML private Button changeGraphPaneButton;
-
   @FXML private Text gradeUStudyTime;
-
   @FXML private Text grade3StudyTime;
-
   @FXML private Text grade4StudyTime;
-
   @FXML private Text grade5StudyTime;
-
   @FXML private Text totalStudyHour;
-
   @FXML private Text totalStudyMinute;
-
   @FXML private ListView<String> activeCoursesListView;
-
   @FXML private ListView<String> finishedCoursesListView;
-
   @FXML private AnchorPane addStudyTimePane;
-
   @FXML private AnchorPane startPagePane;
-
   @FXML private ComboBox<?> chooseCourseComboBox;
-
   @FXML private Button saveStudyTimeButton;
-
   @FXML private ComboBox<?> chooseHoursComboBox;
-
   @FXML private ComboBox<?> chooseMinutesComboBox;
 
   private boolean isGraphShowing = true;
@@ -67,16 +46,8 @@ public class StatisticsPage implements Initializable, Observer {
   private ObservableList<String> activeCourses = FXCollections.observableArrayList();
   private ObservableList<String> inactiveCourses = FXCollections.observableArrayList();
 
-  ArrayList<Course> activeCourseList;
-  ArrayList<Course> finishedCourseList;
-
-  @Inject private CourseManagerInterface courseManager;
-
-  @Inject private CourseRepositoryInterface courseRepository;
-
-  @Inject private StudySessionRepositoryInterface studySessionRepository;
-
-  private User user;
+//  List<Course> activeCourseList;
+//  List<Course> finishedCourseList;
 
   @Inject
   public StatisticsPage(final EventBus eventBus) {
@@ -85,7 +56,7 @@ public class StatisticsPage implements Initializable, Observer {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.courseManager.attach(this);
+//    this.courseManager.attach(this);
     addStudyTimePane.toBack();
     startPagePane.toFront();
   }
@@ -118,7 +89,8 @@ public class StatisticsPage implements Initializable, Observer {
   }
 
   private void setStudyTimeGradesDisplay() {
-    for (Course course : user.getCourses()) {
+    Iterable<Course> courses = null;
+    for (Course course : courses) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
           case "U":
@@ -145,7 +117,7 @@ public class StatisticsPage implements Initializable, Observer {
   private void setTotalStudyTimeDisplay() {
     int totalTimeSecond = 0;
 
-    List<StudySession> studySessions = user.getStudySessions();
+    List<StudySession> studySessions = null; // user.getStudySessions();
     for (StudySession studySession : studySessions) {
       totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
@@ -163,7 +135,8 @@ public class StatisticsPage implements Initializable, Observer {
   private int getTotalStudyTimeForCourse(Course course) {
     int totalTimeSecond = 0;
 
-    for (StudySession studySession : this.studySessionRepository.findByCourse(course)) {
+    Iterable<StudySession> studySessions = null; // find study sessions for a course
+    for (StudySession studySession : studySessions) {
       totalTimeSecond += (int) studySession.getDuration().getSeconds();
     }
 
@@ -178,7 +151,9 @@ public class StatisticsPage implements Initializable, Observer {
     activeCourses.clear();
     inactiveCourses.clear();
 
-    for (Course course : user.getCourses()) {
+    Iterable<Course> courses = null;
+
+    for (Course course : courses) {
       if (course.isActive()) {
         activeCourses.add(course.getName());
       } else {
@@ -198,7 +173,7 @@ public class StatisticsPage implements Initializable, Observer {
 
   @Subscribe
   private void updateLists(final UserChangedEvent userChangedEvent) {
-    this.user = userChangedEvent.getNewUser();
+//    this.user = userChangedEvent.getNewUser();
     this.update();
   }
 }

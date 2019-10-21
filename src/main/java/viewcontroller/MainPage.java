@@ -2,17 +2,14 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
-import java.io.IOException;
-import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
-import model.User;
+import model.Min5a;
 import model.event.UserChangedEvent;
-import model.manager.UserManagerInterface;
-import model.repository.UserRepositoryInterface;
 
 public class MainPage {
 
@@ -21,11 +18,9 @@ public class MainPage {
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
 
-  @Inject private UserRepositoryInterface userRepository;
-
-  @Inject private PageFactory pageFactory;
+  @Inject private PageLoader pageLoader;
   @Inject private EventBus eventBus;
-  @Inject private UserManagerInterface userManager;
+  @Inject private Min5a model;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -33,24 +28,13 @@ public class MainPage {
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
 
-  // Other FXML setters
-  public void setHomePage(AnchorPane homePage) {
-    this.homePage = homePage;
-  }
-
-  public void setCourseSelectionPage(AnchorPane courseSelectionPage) {
-    this.courseSelectionPage = courseSelectionPage;
-  }
-
-  public void setStatisticsPage(AnchorPane statisticsPage) {
-    this.statisticsPage = statisticsPage;
-  }
-
-  public void setTimerPage(AnchorPane timerPage) {
-    this.timerPage = timerPage;
-  }
-
   public void init() {
+    // Insert pages into side panel
+    homePage = pageLoader.createHomePage(this);
+    courseSelectionPage = pageLoader.createCourseSelectionPage(this);
+    statisticsPage = pageLoader.createStatisticsPage();
+    timerPage = pageLoader.createTimerPage();
+
     showPage(homePage);
   }
 
@@ -71,35 +55,36 @@ public class MainPage {
 
   void showTimerPage() {
     showPage(timerPage);
-  };
+  }
 
-  void pressedCourseItem(Course course, final MainPage mainPage) throws IOException {
-    AnchorPane courseHomePage = this.pageFactory.createCourseMainPage(course, mainPage);
-    showPage(courseHomePage);
+  void pressedCourseItem(Course course) {
+    showPage(pageLoader.createCourseMainPage(course, this));
   }
 
   @FXML
   private void login(ActionEvent event) {
-    List<User> users = this.userRepository.findAll();
+    Integer personNumber = Integer.parseInt(usernameTextField.getText());  // TODO check if it is int
+    String password = "42";  // TODO should come from GUI
 
-    for (User user : users) {
-      if (user.getUsername().equals(this.usernameTextField.getText())) {
-        this.eventBus.post(new UserChangedEvent(user));
-        this.login.toBack();
-        main.toFront();
-        init();
-      }
+    if (model.login(personNumber, password)) {
+      eventBus.post(new UserChangedEvent());
+      login.toBack();
+      main.toFront();
+      init();
+    } else {
+      // TODO give message 'could not login'
     }
   }
 
+
   @FXML
   private void newAccount() {
-    User user = new User();
-    user.setUsername(usernameTextField.getText());
+    String name = usernameTextField.getText();
+    String pwd = "tda367";  // TODO from GUI
+    int personNumber = 42;  // TODO should be supplied by GUI
 
-    this.userManager.create(user);
-    this.eventBus.post(
-        new UserChangedEvent(this.userRepository.findOneByUsername(user.getUsername())));
+    model.addUser(personNumber, name, pwd);
+    model.login(personNumber, pwd);
 
     login.toBack();
     main.toFront();

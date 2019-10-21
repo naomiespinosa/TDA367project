@@ -1,51 +1,40 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
+import model.Min5a;
 import model.Observer;
-import model.User;
 import model.event.UserChangedEvent;
-import model.manager.CourseManagerInterface;
-import model.repository.CourseRepositoryInterface;
 
 public class HomePage implements Observer {
   private MainPage parent;
+  private Min5a model;
 
   @Inject private PanelItemManager panelItemManager;
-
-  @FXML private FlowPane activeCoursesFlowpane;
-  @Inject private CourseManagerInterface courseManager;
-  @Inject private CourseRepositoryInterface courseRepository;
-  private User user;
+  @FXML private FlowPane activeCoursesFlowPane;
 
   @Inject
-  public HomePage(final EventBus eventBus) {
-    eventBus.register(this);
+  public HomePage(Min5a model) {
+    this.model = model;
+    model.register(this);
   }
 
-  void init() {
-    this.courseManager.attach(this);
+  public void init() {
+//    this.courseManager.attach(this);
   }
 
   @Subscribe
-  private void onUserChange(final UserChangedEvent userChangedEvent) {
-    this.user = userChangedEvent.getNewUser();
-    this.updateLists();
+  private void onUserChange(UserChangedEvent userChangedEvent) {
+    updateLists();
   }
 
   private void updateLists() {
-    try {
-      this.panelItemManager.showActiveCourses(activeCoursesFlowpane, parent, user.getCourses());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    panelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
   }
 
-  void setParent(MainPage parent) {
+  public void setParent(MainPage parent) {
     this.parent = parent;
   }
 

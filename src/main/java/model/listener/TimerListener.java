@@ -5,14 +5,9 @@ import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import model.StudySession;
 import model.event.timer.StudyTimerCompletedEvent;
-import model.manager.StudySessionManagerInterface;
 
 public class TimerListener {
-
-  @Inject private StudySessionManagerInterface studySessionManager;
-
-  @Inject
-  public TimerListener(final EventBus eventBus) {
+  @Inject public TimerListener(final EventBus eventBus) {
     eventBus.register(this);
   }
 
@@ -23,6 +18,6 @@ public class TimerListener {
     studySession.setStart(studyTimerCompletedEvent.getStartedAt());
     studySession.setCourseId(studyTimerCompletedEvent.getCourse().getId());
 
-    this.studySessionManager.create(studySession);
+//    this.studySessionManager.create(studySession);
   }
 }

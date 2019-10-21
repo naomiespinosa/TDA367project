@@ -1,6 +1,5 @@
 package viewcontroller;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +22,7 @@ public class CoursePanelItem {
   }
 
   @FXML
-  private void goToPage(MouseEvent event) throws IOException {
-    parentController.pressedCourseItem(course, this.parentController);
+  private void goToPage(MouseEvent event) {
+    parentController.pressedCourseItem(course);
   }
 }
