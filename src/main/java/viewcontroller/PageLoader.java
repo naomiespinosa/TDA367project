@@ -74,7 +74,7 @@ public class PageLoader {
   static AnchorPane createCourseMainPage(Course course, MainPage mainPage) {
     Result<CourseMainPage> res = loadPage("fxml/CourseMainPage.fxml");
     res.ctrl.initPage(model, Optional.of(mainPage));
-    res.ctrl.init(course);
+    res.ctrl.setCourse(course);
     return res.root;
   }
 

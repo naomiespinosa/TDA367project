@@ -54,6 +54,8 @@ public class StatisticsPage implements Page {
 
 
 
+
+
   // TODO add functionality for add studyTime dialog
 
   @FXML
@@ -177,7 +179,6 @@ public class StatisticsPage implements Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     this.mainPage = mainPage;
-    addStudyTimePane.toBack();
-    startPagePane.toFront();
+   // update();
   }
 }
