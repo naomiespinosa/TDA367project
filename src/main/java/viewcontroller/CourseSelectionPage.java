@@ -2,6 +2,8 @@ package viewcontroller;
 
 import java.net.URL;
 import java.util.*;
+
+import com.google.common.eventbus.Subscribe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,9 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.Min5a;
-import model.Observer;
+import model.event.CourseChangeEvent;
 
-public class CourseSelectionPage implements Initializable, Observer, Page {
+public class CourseSelectionPage implements Initializable, Page {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private FlowPane inactiveCoursesFlowPane;
@@ -148,8 +150,8 @@ public class CourseSelectionPage implements Initializable, Observer, Page {
     // initialisation code goes here
   }
 
-  @Override
-  public void update() {
+  @Subscribe
+  public void courseChaneMade(CourseChangeEvent event) {
     updateLists();
   }
 

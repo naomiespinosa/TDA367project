@@ -18,11 +18,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
 import model.Min5a;
-import model.Observer;
 import model.StudySession;
+import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
-public class StatisticsPage implements Initializable, Observer, Page {
+public class StatisticsPage implements Initializable, Page {
 
   @FXML private AnchorPane noGraphPane;
   @FXML private AnchorPane graphPane;
@@ -167,17 +167,20 @@ public class StatisticsPage implements Initializable, Observer, Page {
     finishedCoursesListView.setItems(inactiveCourses);
   }
 
-  @Override
-  public void update() {
-    setStudyTimeGradesDisplay();
-    setTotalStudyTimeDisplay();
-    setListOfCourses();
+  @Subscribe
+  public void courseChange(CourseChangeEvent event) {
+    update();
   }
 
   @Subscribe
   private void updateLists(final UserChangedEvent userChangedEvent) {
-    //    this.user = userChangedEvent.getNewUser();
-    this.update();
+    update();
+  }
+
+  private void update(){
+    setStudyTimeGradesDisplay();
+    setTotalStudyTimeDisplay();
+    setListOfCourses();
   }
 
   @Override

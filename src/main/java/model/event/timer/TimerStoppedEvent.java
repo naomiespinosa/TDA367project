@@ -11,7 +11,7 @@ public abstract class TimerStoppedEvent extends TimerEvent {
   private User owner;
 
   public User getOwner() {
-    return this.owner;
+    return owner;
   }
 
   public TimerStoppedEvent(

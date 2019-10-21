@@ -4,12 +4,12 @@ import com.google.common.eventbus.Subscribe;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 import model.Min5a;
-import model.Observer;
+import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
 import java.util.Optional;
 
-public class HomePage implements Observer,Page {
+public class HomePage implements Page {
 
   private MainPage parent;
   private Min5a model;
@@ -25,8 +25,8 @@ public class HomePage implements Observer,Page {
     PanelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
   }
 
-  @Override
-  public void update() {
+  @Subscribe
+  public void courseChangeMade(CourseChangeEvent event) {
     updateLists();
   }
 
