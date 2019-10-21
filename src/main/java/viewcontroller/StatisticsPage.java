@@ -2,9 +2,9 @@ package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import com.google.inject.Inject;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +17,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Course;
+import model.Min5a;
 import model.Observer;
 import model.StudySession;
 import model.event.UserChangedEvent;
 
-public class StatisticsPage implements Initializable, Observer {
+public class StatisticsPage implements Initializable, Observer, Page {
 
   @FXML private AnchorPane noGraphPane;
   @FXML private AnchorPane graphPane;
@@ -45,11 +46,13 @@ public class StatisticsPage implements Initializable, Observer {
 
   private ObservableList<String> activeCourses = FXCollections.observableArrayList();
   private ObservableList<String> inactiveCourses = FXCollections.observableArrayList();
+  private Min5a model;
+  private Optional<MainPage> mainPage;
 
   //  List<Course> activeCourseList;
   //  List<Course> finishedCourseList;
 
-  @Inject
+
   public StatisticsPage(final EventBus eventBus) {
     eventBus.register(this);
   }
@@ -175,5 +178,11 @@ public class StatisticsPage implements Initializable, Observer {
   private void updateLists(final UserChangedEvent userChangedEvent) {
     //    this.user = userChangedEvent.getNewUser();
     this.update();
+  }
+
+  @Override
+  public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.model = model;
+    this.mainPage = mainPage;
   }
 }

@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.Course;
+import model.Min5a;
 
-public class CoursePanelItem {
+import java.util.Optional;
+
+public class CoursePanelItem implements Page {
 
   @FXML private Label courseName;
   @FXML private Label courseCode;
@@ -24,5 +27,14 @@ public class CoursePanelItem {
   @FXML
   private void goToPage(MouseEvent event) {
     parentController.pressedCourseItem(course);
+  }
+
+  void setCourse(Course course){
+    this.course = course;
+  }
+
+  @Override
+  public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    mainPage.ifPresent(page -> parentController = page);
   }
 }

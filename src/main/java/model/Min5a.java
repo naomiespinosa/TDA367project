@@ -3,6 +3,8 @@ package model;
 import com.google.common.eventbus.EventBus;
 import java.util.*;
 import java.util.function.Predicate;
+
+import com.google.inject.Inject;
 import model.event.UserChangedEvent;
 
 /** The overall (aggregate) model of our monopoly game. */
@@ -11,7 +13,7 @@ public class Min5a {
   private Optional<User> activeUser;
   static EventBus bus;
 
-  private Min5a() {
+  @Inject private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
     bus = new EventBus();

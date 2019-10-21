@@ -1,9 +1,9 @@
 package viewcontroller;
 
 import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,11 +24,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
+import model.Min5a;
 import model.Moment;
 import model.ToDo;
 import model.event.CourseSelectedEvent;
 
-public class CourseMainPage implements Initializable {
+public class CourseMainPage implements Initializable, Page {
 
   private Course course;
 
@@ -90,7 +91,12 @@ public class CourseMainPage implements Initializable {
 
   private MainPage parent;
 
-  @Inject private EventBus eventBus;
+  private EventBus eventBus;
+  private Min5a model;
+
+  CourseMainPage(EventBus eventBus){
+    this.eventBus = eventBus;
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -366,12 +372,15 @@ public class CourseMainPage implements Initializable {
         "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
   }
   // Setters And Getters
-  void setParent(MainPage parent) {
-    this.parent = parent;
-  }
 
   private void startTimer() {
     this.eventBus.post(new CourseSelectedEvent(this.course));
     this.parent.showTimerPage();
+  }
+
+  @Override
+  public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.model = model;
+    mainPage.ifPresent(page -> this.parent = page);
   }
 }

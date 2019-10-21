@@ -1,25 +1,22 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
-import model.event.UserChangedEvent;
 
-public class MainPage {
+import java.util.Optional;
+
+public class MainPage implements Page {
 
   @FXML private AnchorPane mainPage;
   @FXML private TextField usernameTextField;
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
 
-  @Inject private PageLoader pageLoader;
-  @Inject private EventBus eventBus;
-  @Inject private Min5a model;
+  private Min5a model;
 
   // Other FXMLs
   private AnchorPane homePage;
@@ -27,12 +24,17 @@ public class MainPage {
   private AnchorPane statisticsPage;
   private AnchorPane timerPage;
 
+  @Override
+  public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.model = model;
+  }
+
   public void init() {
     // Insert pages into side panel
-    homePage = pageLoader.createHomePage(this);
-    courseSelectionPage = pageLoader.createCourseSelectionPage(this);
-    statisticsPage = pageLoader.createStatisticsPage();
-    timerPage = pageLoader.createTimerPage();
+    homePage = PageLoader.createHomePage(this);
+    courseSelectionPage = PageLoader.createCourseSelectionPage(this);
+    statisticsPage = PageLoader.createStatisticsPage();
+    timerPage = PageLoader.createTimerPage();
 
     showPage(homePage);
   }
@@ -57,7 +59,7 @@ public class MainPage {
   }
 
   void pressedCourseItem(Course course) {
-    showPage(pageLoader.createCourseMainPage(course, this));
+    showPage(PageLoader.createCourseMainPage(course, this));
   }
 
   @FXML
@@ -66,7 +68,6 @@ public class MainPage {
     String password = "42"; // TODO should come from GUI
 
     if (model.login(personNumber, password)) {
-      eventBus.post(new UserChangedEvent());
       login.toBack();
       main.toFront();
       init();

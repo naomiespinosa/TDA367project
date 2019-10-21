@@ -1,26 +1,25 @@
-import com.cathive.fx.guice.GuiceApplication;
-import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
-import com.google.inject.Module;
-import java.util.List;
+
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Min5a;
 import viewcontroller.PageLoader;
 
-public class Min5aApplication extends GuiceApplication {
-  @Inject private EventBus eventBus;
-  @Inject private PageLoader pageLoader;
 
-  @Override
-  public void init(List<Module> modules) {
-    modules.add(new DependencyInjectionModule());
-  }
+public class Min5aApplication extends Application {
+  private PageLoader pageLoader;
+  private Min5a model;
 
   @Override
   public void start(Stage stage) {
+    model = Min5a.createMin5a();
+    pageLoader = new PageLoader();
+    pageLoader.setModel(model);
     Scene scene = new Scene(pageLoader.createMainPage(), 1200, 700);
     stage.setTitle("Min5a");
     stage.setScene(scene);
     stage.show();
   }
+
+
 }

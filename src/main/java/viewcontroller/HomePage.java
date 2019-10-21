@@ -1,29 +1,20 @@
 package viewcontroller;
 
 import com.google.common.eventbus.Subscribe;
-import com.google.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.Observer;
 import model.event.UserChangedEvent;
 
-public class HomePage implements Observer {
+import java.util.Optional;
+
+public class HomePage implements Observer,Page {
+
   private MainPage parent;
   private Min5a model;
 
-  @Inject private PanelItemManager panelItemManager;
   @FXML private FlowPane activeCoursesFlowPane;
-
-  @Inject
-  public HomePage(Min5a model) {
-    this.model = model;
-    model.register(this);
-  }
-
-  public void init() {
-    //    this.courseManager.attach(this);
-  }
 
   @Subscribe
   private void onUserChange(UserChangedEvent userChangedEvent) {
@@ -31,15 +22,17 @@ public class HomePage implements Observer {
   }
 
   private void updateLists() {
-    panelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
-  }
-
-  public void setParent(MainPage parent) {
-    this.parent = parent;
+    PanelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
   }
 
   @Override
   public void update() {
     updateLists();
+  }
+
+  @Override
+  public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.model = model;
+    mainPage.ifPresent(page -> parent = page);
   }
 }

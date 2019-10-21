@@ -1,6 +1,5 @@
 package viewcontroller;
 
-import com.google.inject.Inject;
 import java.net.URL;
 import java.util.*;
 import javafx.event.ActionEvent;
@@ -13,7 +12,7 @@ import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.Observer;
 
-public class CourseSelectionPage implements Initializable, Observer {
+public class CourseSelectionPage implements Initializable, Observer, Page {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private FlowPane inactiveCoursesFlowPane;
@@ -31,8 +30,8 @@ public class CourseSelectionPage implements Initializable, Observer {
   @FXML private RadioButton period4RadioButton;
 
   private MainPage parent;
-  @Inject private PanelItemManager panelItemManager;
-  @Inject private Min5a model;
+  private PanelItemManager panelItemManager;
+  private Min5a model;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -152,5 +151,11 @@ public class CourseSelectionPage implements Initializable, Observer {
   @Override
   public void update() {
     updateLists();
+  }
+
+  @Override
+  public void initPage(Min5a model, Optional<MainPage> mainPage) {
+    this.model = model;
+    mainPage.ifPresent(page -> parent = page);
   }
 }
