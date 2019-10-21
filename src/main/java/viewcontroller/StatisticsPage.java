@@ -80,7 +80,7 @@ public class StatisticsPage implements Page {
   }
 
   private void setStudyTimeGradesDisplay() {
-    Iterable<Course> courses = null;
+    Iterable<Course> courses = model.getCourses();
     for (Course course : courses) {
       if (!course.isActive()) {
         switch (course.getGrade()) {
@@ -142,7 +142,7 @@ public class StatisticsPage implements Page {
     activeCourses.clear();
     inactiveCourses.clear();
 
-    Iterable<Course> courses = null;
+    Iterable<Course> courses = model.getCourses();
 
     for (Course course : courses) {
       if (course.isActive()) {
@@ -167,7 +167,7 @@ public class StatisticsPage implements Page {
 
   private void update() {
     setStudyTimeGradesDisplay();
-    setTotalStudyTimeDisplay();
+    // setTotalStudyTimeDisplay();
     setListOfCourses();
   }
 

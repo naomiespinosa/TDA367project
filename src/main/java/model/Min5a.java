@@ -11,7 +11,7 @@ import model.event.UserChangedEvent;
 public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
-  static EventBus bus;
+  public static EventBus bus; // should be public? or use a getter?
 
   @Inject
   private Min5a() {
