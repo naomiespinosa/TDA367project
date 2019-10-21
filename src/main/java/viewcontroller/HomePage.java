@@ -1,13 +1,12 @@
 package viewcontroller;
 
 import com.google.common.eventbus.Subscribe;
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
-
-import java.util.Optional;
 
 public class HomePage implements Page {
 

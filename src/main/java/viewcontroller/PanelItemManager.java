@@ -1,10 +1,8 @@
 package viewcontroller;
 
-
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-
 import javafx.scene.paint.Color;
 import model.Course;
 

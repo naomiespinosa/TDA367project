@@ -1,13 +1,12 @@
 package viewcontroller;
 
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
-
-import java.util.Optional;
 
 public class MainPage implements Page {
 
@@ -56,14 +55,14 @@ public class MainPage implements Page {
     showPage(statisticsPage);
   }
 
-    @FXML
-    void showContactsPage(ActionEvent event) {
-        showPage(contactsPage);
-    }
+  @FXML
+  void showContactsPage(ActionEvent event) {
+    showPage(contactsPage);
+  }
 
   @FXML
-  private void showTimerPage(ActionEvent event){
-      showTimerPage();
+  private void showTimerPage(ActionEvent event) {
+    showTimerPage();
   }
 
   void showTimerPage() {

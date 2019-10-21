@@ -1,9 +1,8 @@
 package viewcontroller;
 
+import java.util.Optional;
 import model.Min5a;
 
-import java.util.Optional;
-
 public interface Page {
-    void initPage(Min5a model, Optional<MainPage> mainPage);
+  void initPage(Min5a model, Optional<MainPage> mainPage);
 }

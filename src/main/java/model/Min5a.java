@@ -1,10 +1,9 @@
 package model;
 
 import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
 import java.util.*;
 import java.util.function.Predicate;
-
-import com.google.inject.Inject;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
@@ -14,7 +13,8 @@ public class Min5a {
   private Optional<User> activeUser;
   static EventBus bus;
 
-  @Inject private Min5a() {
+  @Inject
+  private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
     bus = new EventBus();
@@ -92,8 +92,6 @@ public class Min5a {
   public Iterable<Course> getCourses() {
     return activeUser.get().getCourses();
   }
-
-
 
   /**
    * Filter the list of the active user's courses

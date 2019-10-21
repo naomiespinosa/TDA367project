@@ -1,9 +1,8 @@
 package viewcontroller;
 
+import com.google.common.eventbus.Subscribe;
 import java.net.URL;
 import java.util.*;
-
-import com.google.common.eventbus.Subscribe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

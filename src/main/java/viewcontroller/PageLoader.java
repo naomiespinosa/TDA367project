@@ -2,7 +2,6 @@ package viewcontroller;
 
 import java.io.IOException;
 import java.util.Optional;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -32,7 +31,7 @@ public class PageLoader {
       FXMLLoader fxmlLoader = new FXMLLoader(PageLoader.class.getClassLoader().getResource(fxml));
       AnchorPane root = fxmlLoader.load();
       T ctrl = fxmlLoader.getController();
-      model.register(ctrl);  // TODO Let all pages listen to bus, perhaps do per pages
+      model.register(ctrl); // TODO Let all pages listen to bus, perhaps do per pages
       result = new Result<T>(ctrl, root);
     } catch (IOException exception) {
       exception.printStackTrace(); // TODO: display user message!
@@ -83,8 +82,6 @@ public class PageLoader {
     res.ctrl.init(course);
     return res.root;
   }
-
-
 
   static AnchorPane createTimerPage() {
     Result<TimerPage> res = loadPage("fxml/TimerPage.fxml");
