@@ -21,32 +21,57 @@ public class Contact {
     this.phoneNumber = phoneNumber;
   }
 
+  /**
+   * gets the name of the contact
+   *
+   * @return name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Gets the email of the contact
+   *
+   * @return email
+   */
   public String getEmail() {
     return email;
   }
 
+  /**
+   * gets the phone number of the contact
+   *
+   * @return phone number
+   */
   public String getPhoneNumber() {
     return phoneNumber;
   }
 
+  /**
+   * Sets the name of the contact
+   *
+   * @param name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * gets the course of the contact
+   *
+   * @return course
+   */
   public Course getCourse() {
     return course;
   }
 
+  /**
+   * Sets the course of the contact
+   *
+   * @param course
+   */
   public void setCourse(Course course) {
     this.course = course;
-  }
-
-  @Override
-  public String toString() {
-    return this.getName();
   }
 }

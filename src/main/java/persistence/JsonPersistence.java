@@ -40,6 +40,5 @@ public class JsonPersistence implements Persistence {
 
     List<User> users = gson.fromJson(reader, listType);
     model.setUsers(users);
-    // model.addCourse("hej", "test123", 2019, 1);
   }
 }
