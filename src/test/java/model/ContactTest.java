@@ -33,10 +33,4 @@ public class ContactTest {
     contact.setCourse(course);
     assertEquals("Hej", contact.getCourse().getName());
   }
-
-  @Test
-  public void contactToString() {
-    Contact contact = new Contact("Johanna", "j@live.se", "0707");
-    assertEquals("Johanna", contact.toString());
-  }
 }

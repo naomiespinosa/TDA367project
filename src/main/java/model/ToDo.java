@@ -19,7 +19,9 @@ public class ToDo {
   }
 
   // Getters and Setters
-  String getDescription() {
+
+  /** @return the description of a tod'o */
+  public String getDescription() {
     return description;
   }
 }

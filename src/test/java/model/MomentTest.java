@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class MomentTest {
 
-  // TODO KOLLA HUR MAN SKRIVER IN DATUM NÄR MAN SKAPAR EN TODO
   @Test
   public void momentToString() {
     String str = "2019-11-11";
@@ -35,7 +34,8 @@ public class MomentTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate dateTime = LocalDate.parse(str, formatter);
     Moment moment = new Moment("tenta", dateTime);
-    assertEquals("tenta", moment.getName());
+    moment.setName("hej");
+    assertEquals("hej", moment.getName());
   }
 
   @Test

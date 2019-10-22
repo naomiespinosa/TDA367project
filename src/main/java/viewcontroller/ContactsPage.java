@@ -73,6 +73,11 @@ public class ContactsPage implements Page {
     initSamePageErrorMgm();
   }
 
+  /**
+   * Creates the contact if the contacts textareas is approved
+   *
+   * @param event
+   */
   @FXML
   void createContact(ActionEvent event) {
     samePageErrorMgm();
@@ -85,6 +90,11 @@ public class ContactsPage implements Page {
     contactsListview.getSelectionModel().selectLast();
   }
 
+  /**
+   * "Edits" the contact by crearing a new one.
+   *
+   * @param event
+   */
   @FXML
   void editContact(ActionEvent event) {
     addContactAnchorPane.toFront();
@@ -105,11 +115,22 @@ public class ContactsPage implements Page {
     samePageErrorMgm();
   }
 
+  /**
+   * when pressing the "add new contact - button" the page resets
+   *
+   * @param event
+   */
   @FXML
   void addNewContact(ActionEvent event) {
     resetNewContact();
   }
 
+  /**
+   * when pressing the delete-button the contact is deleted, you get to the page where you can add a
+   * contact and all the inputs is reset
+   *
+   * @param event
+   */
   @FXML
   void deleteContact(ActionEvent event) {
     removeContact();
@@ -118,22 +139,42 @@ public class ContactsPage implements Page {
   }
 
   // Is filled areas approved
+
+  /**
+   * Check if the email textarea contains a "@" and a "."
+   *
+   * @return boolean
+   */
   private boolean isEmailApproved() {
     return (contactEmail.getText().contains("@") && contactEmail.getText().contains("."));
   }
 
+  /**
+   * Check if the phone number textarea contains at least 3 characters and only numbers
+   *
+   * @return boolean
+   */
   private boolean isPhoneApproved() {
     return (contactPhone.getText().matches("[0-9]+") && contactPhone.getText().length() >= 3);
   }
-
+  /**
+   * Check if the the name textarea is not empty
+   *
+   * @return boolean
+   */
   private boolean isTextareaFilled() {
     return contactName.getText().trim().isEmpty();
   }
-
+  /**
+   * Check if all the criterias for text areas if filled
+   *
+   * @return boolean
+   */
   private boolean isContactApproved() {
     return (!isTextareaFilled() && isEmailApproved() && isPhoneApproved());
   }
 
+  /** resets everything that has with the add contact AnchorPane to do with */
   private void resetNewContact() {
     resetInputs();
     addContactAnchorPane.toFront();
@@ -151,7 +192,7 @@ public class ContactsPage implements Page {
   private static final List acceptedTitles =
       Arrays.asList("Examinator", "Elev", "Handledare", "Annan");
 
-  public void removeContact() {
+  private void removeContact() {
     final int selectedIdx = contactsListview.getSelectionModel().getSelectedIndex();
     if (selectedIdx != -1) {
       contactsListview.getItems().remove(selectedIdx);
@@ -226,6 +267,11 @@ public class ContactsPage implements Page {
     updateInfo();
   }
 
+  /**
+   * Show the contact who is selected in the listview in the seeContactAnchorPane
+   *
+   * @param mouseEvent
+   */
   public void showContact(javafx.scene.input.MouseEvent mouseEvent) {
     showSelectedContact();
   }

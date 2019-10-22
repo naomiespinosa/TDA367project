@@ -147,7 +147,6 @@ public class CourseMainPage implements Page {
       gradeLabel.setText(course.getGrade());
     }
   }
-  // Methods
 
   // To-Do methods
 
