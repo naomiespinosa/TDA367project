@@ -104,7 +104,6 @@ public class CourseMainPage implements Page {
     completeCoursePane.toBack();
   }
 
-
   private void updateCourseInfo() {
     this.courseName.setText(course.getName() + " " + course.getCourseCode());
     this.yearLabel.setText("Läsår:" + " " + course.getYear());

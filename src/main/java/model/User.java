@@ -53,7 +53,7 @@ public class User {
     courses.add(course);
   }
 
-    public void deleteCourse(Course course) {
-      courses.remove(course);
-    }
+  public void deleteCourse(Course course) {
+    courses.remove(course);
+  }
 }

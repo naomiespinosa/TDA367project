@@ -54,6 +54,12 @@ public class Min5a {
     return false; // TODO: no such user event
   }
 
+  public void logout() {
+    if (activeUser.isPresent()) {
+      activeUser = Optional.empty();
+    }
+  }
+
   /**
    * Add an user to the model.
    *
@@ -100,7 +106,7 @@ public class Min5a {
    *
    * @param course desired course
    */
-  public void deleteCourse(Course course){
+  public void deleteCourse(Course course) {
     activeUser.get().deleteCourse(course);
     bus.post(new CourseChangeEvent());
   }
@@ -162,7 +168,7 @@ public class Min5a {
   }
 
   /**
-   * Sets the name  of the user
+   * Sets the name of the user
    *
    * @param name the desired name of the user
    */
