@@ -54,6 +54,13 @@ public class Min5a {
     return false; // TODO: no such user event
   }
 
+  /** Maked the user not active */
+  public void logout() {
+    if (activeUser.isPresent()) {
+      activeUser = Optional.empty();
+    }
+  }
+
   /**
    * Add an user to the model.
    *
@@ -64,7 +71,6 @@ public class Min5a {
   public void addUser(Integer personNumber, String name, String password) {
     User user = User.createUser(personNumber, name, password);
     userMap.put(personNumber, user);
-    bus.post(new UserChangedEvent());
   }
 
   /**
@@ -93,6 +99,16 @@ public class Min5a {
   }
 
   public void notifyCourseChangedEvent() {
+    bus.post(new CourseChangeEvent());
+  }
+
+  /**
+   * Deletes course
+   *
+   * @param course desired course
+   */
+  public void deleteCourse(Course course) {
+    activeUser.get().deleteCourse(course);
     bus.post(new CourseChangeEvent());
   }
 
@@ -143,15 +159,30 @@ public class Min5a {
     return new ArrayList<>(userMap.values()); // use defensive copying
   }
 
+  /**
+   * Retrieve the userName
+   *
+   * @return the name of the user
+   */
   public String getActiveUserName() {
     return activeUser.get().getName();
   }
 
+  /**
+   * Sets the name of the user
+   *
+   * @param name the desired name of the user
+   */
   public void setActiveUserName(String name) {
     activeUser.get().setName(name);
     bus.post(new UserChangedEvent());
   }
 
+  /**
+   * Retrieves the social security code
+   *
+   * @return the social security code
+   */
   public int getActiveUserId() {
     return activeUser.get().getPersonNumber();
   }

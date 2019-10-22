@@ -254,6 +254,7 @@ public class CourseMainPage implements Page {
 
   @FXML
   private void deleteCourse(ActionEvent event) {
+    model.deleteCourse(course);
     parent.toHome();
   }
 
