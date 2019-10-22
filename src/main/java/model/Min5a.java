@@ -49,6 +49,7 @@ public class Min5a {
         bus.post(new UserChangedEvent());
         return true;
       }
+      //
     }
     return false; // TODO: no such user event
   }
