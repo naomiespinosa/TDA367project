@@ -54,6 +54,7 @@ public class Min5a {
     return false; // TODO: no such user event
   }
 
+  /** Maked the user not active */
   public void logout() {
     if (activeUser.isPresent()) {
       activeUser = Optional.empty();
