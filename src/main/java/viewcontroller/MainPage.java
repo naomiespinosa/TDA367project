@@ -122,7 +122,7 @@ public class MainPage implements Page {
     if (usernameIsValid() && passwordIsValid()) {
       if (model.isUserUnique(personNumber) && !usernameTextField.getText().trim().isEmpty()) {
         model.addUser(personNumber, "Your Name", pwd);
-        model.login(personNumber, pwd);
+        model.login(personNumber, pwd); // TODO Wont work if i have logged in once
         toHome();
       } else {
         loginErrorText.setText("*Användaren finns redan");

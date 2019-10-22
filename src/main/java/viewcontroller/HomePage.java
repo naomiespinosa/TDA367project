@@ -33,9 +33,9 @@ public class HomePage implements Page {
   }
 
   private void updateLists() {
+
     PanelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
     userName.setText(model.getActiveUserName());
-    securityCode.setText(String.valueOf(model.getActiveUserId()));
     worked.setText("");
   }
 
@@ -70,7 +70,8 @@ public class HomePage implements Page {
   }
 
   @FXML
-  private void logOut(ActionEvent event) {
+  void logOut(ActionEvent event) {
+    model.logout();
     parent.toLoginPage();
   }
 

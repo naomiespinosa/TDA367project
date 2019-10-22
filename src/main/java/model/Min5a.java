@@ -1,7 +1,6 @@
 package model;
 
 import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
 import java.util.*;
 import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
@@ -12,8 +11,8 @@ public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
   public static EventBus bus; // should be public? or use a getter?
+  public static Boolean isFirstRun = true;
 
-  @Inject
   private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
@@ -50,8 +49,16 @@ public class Min5a {
         bus.post(new UserChangedEvent());
         return true;
       }
+      //
     }
     return false; // TODO: no such user event
+  }
+
+  /** Maked the user not active */
+  public void logout() {
+    if (activeUser.isPresent()) {
+      activeUser = Optional.empty();
+    }
   }
 
   /**
@@ -64,7 +71,6 @@ public class Min5a {
   public void addUser(Integer personNumber, String name, String password) {
     User user = User.createUser(personNumber, name, password);
     userMap.put(personNumber, user);
-    bus.post(new UserChangedEvent());
   }
 
   /**
@@ -92,6 +98,20 @@ public class Min5a {
     bus.post(new CourseChangeEvent());
   }
 
+  public void notifyCourseChangedEvent() {
+    bus.post(new CourseChangeEvent());
+  }
+
+  /**
+   * Deletes course
+   *
+   * @param course desired course
+   */
+  public void deleteCourse(Course course) {
+    activeUser.get().deleteCourse(course);
+    bus.post(new CourseChangeEvent());
+  }
+
   /**
    * Retrieve all of the active user's courses
    *
@@ -107,7 +127,8 @@ public class Min5a {
    * @param p a predicate over a course
    * @return filtered list (iterable) of courses
    */
-  public Iterable<Course> filterCourses(Predicate<Course> p) {
+  public Iterable<Course> filterCourses(
+      Predicate<Course> p) { // todo how to make activeUser present
     return activeUser.get().filterCourses(p);
   }
 
@@ -138,15 +159,30 @@ public class Min5a {
     return new ArrayList<>(userMap.values()); // use defensive copying
   }
 
+  /**
+   * Retrieve the userName
+   *
+   * @return the name of the user
+   */
   public String getActiveUserName() {
     return activeUser.get().getName();
   }
 
+  /**
+   * Sets the name of the user
+   *
+   * @param name the desired name of the user
+   */
   public void setActiveUserName(String name) {
     activeUser.get().setName(name);
     bus.post(new UserChangedEvent());
   }
 
+  /**
+   * Retrieves the social security code
+   *
+   * @return the social security code
+   */
   public int getActiveUserId() {
     return activeUser.get().getPersonNumber();
   }
@@ -158,5 +194,25 @@ public class Min5a {
    */
   public void setUsers(List<User> users) {
     for (User user : users) userMap.put(user.getPersonNumber(), user);
+  }
+
+  public List<String> getActiveCourseName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : activeCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
+  }
+
+  public List<String> getInactiveCoursesName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : inActiveCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
   }
 }

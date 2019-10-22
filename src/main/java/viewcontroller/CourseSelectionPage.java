@@ -160,7 +160,7 @@ public class CourseSelectionPage implements Page {
   }
 
   @Subscribe
-  public void courseChaneMade(CourseChangeEvent event) {
+  public void courseChangeMade(CourseChangeEvent event) {
     updateLists();
   }
 
