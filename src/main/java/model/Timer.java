@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public abstract class Timer {
+public class Timer {
   private java.util.Timer timer = new java.util.Timer();
   private Course course;
   private Callback onStart;

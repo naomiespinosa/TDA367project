@@ -3,7 +3,6 @@ package model.manager;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import model.Course;
-import model.StudyTimer;
 import model.Timer;
 import model.User;
 import model.event.timer.StudyTimerCanceledEvent;
@@ -45,7 +44,7 @@ public class TimerManager {
       activeTimer.cancel();
     }
 
-    activeTimer = new StudyTimer(course);
+    activeTimer = new Timer(course);
 
     activeTimer.onStart(() -> eventBus.post(new StudyTimerStartedEvent(course)));
 
