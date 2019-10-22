@@ -15,14 +15,6 @@ public abstract class Timer {
   private LocalDateTime startedAt;
   private LocalDateTime stoppedAt;
 
-  public LocalDateTime getStartedAt() {
-    return this.startedAt;
-  }
-
-  public LocalDateTime getStoppedAt() {
-    return this.stoppedAt;
-  }
-
   private State state = State.INACTIVE;
 
   private static Long STUDY_SESSION_LENGTH = 25L * 60L * 1000L;

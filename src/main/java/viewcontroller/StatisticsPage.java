@@ -102,7 +102,6 @@ public class StatisticsPage implements Page {
     }
   }
 
-
   private void setTotalStudyTimeDisplay() {
     int totalTimeSecond = 0;
 

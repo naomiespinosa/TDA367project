@@ -6,7 +6,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * The user class defines what a user is and what it can do. The user consist of a name, a personalNumber and a password. The user has a collection of courses.
+ * The user class defines what a user is and what it can do. The user consist of a name, a
+ * personalNumber and a password. The user has a collection of courses.
  */
 public class User {
   private String name;
@@ -22,6 +23,7 @@ public class User {
 
   /**
    * Creates a user
+   *
    * @param personNumber
    * @param name
    * @param password
@@ -43,10 +45,7 @@ public class User {
     this.name = name;
   }
 
-  /**
-   *
-   * @return the personalnumber of the user
-   */
+  /** @return the personalnumber of the user */
   public int getPersonNumber() {
     return personNumber;
   }
@@ -57,6 +56,7 @@ public class User {
 
   /**
    * checks if the password matches the hashpassword
+   *
    * @param password
    * @return a boolean
    */
@@ -64,14 +64,13 @@ public class User {
     return passwordHash.equals(Util.hash(password));
   }
 
-  /**
-   * @return a copy of a list with courses
-   */
+  /** @return a copy of a list with courses */
   public Iterable<Course> getCourses() {
     return courses;
   }
   /**
    * Filter the courses
+   *
    * @return a copy of a list with courses
    */
   public Iterable<Course> filterCourses(Predicate<Course> p) {
@@ -80,6 +79,7 @@ public class User {
 
   /**
    * Adss a course to a list
+   *
    * @param course
    */
   public void addCourse(Course course) {

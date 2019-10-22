@@ -20,9 +20,7 @@ public class ToDo {
 
   // Getters and Setters
 
-  /**
-   * @return the description of a tod'o
-   */
+  /** @return the description of a tod'o */
   public String getDescription() {
     return description;
   }

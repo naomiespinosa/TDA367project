@@ -27,9 +27,10 @@ public class CoursePanelItem implements Page {
 
   /**
    * Sets a course to the coursepanelItem
+   *
    * @param course
    */
- public void setCourse(Course course) {
+  public void setCourse(Course course) {
     this.course = course;
   }
 
