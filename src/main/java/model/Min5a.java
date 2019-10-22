@@ -1,7 +1,6 @@
 package model;
 
 import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
 import java.util.*;
 import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
@@ -12,8 +11,8 @@ public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
   public static EventBus bus; // should be public? or use a getter?
+  public static Boolean isFirstRun = true;
 
-  @Inject
   private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
@@ -50,6 +49,7 @@ public class Min5a {
         bus.post(new UserChangedEvent());
         return true;
       }
+      //
     }
     return false; // TODO: no such user event
   }
@@ -91,6 +91,10 @@ public class Min5a {
     bus.post(new CourseChangeEvent());
   }
 
+  public void notifyCourseChangedEvent() {
+    bus.post(new CourseChangeEvent());
+  }
+
   /**
    * Deletes course
    *
@@ -116,7 +120,8 @@ public class Min5a {
    * @param p a predicate over a course
    * @return filtered list (iterable) of courses
    */
-  public Iterable<Course> filterCourses(Predicate<Course> p) {
+  public Iterable<Course> filterCourses(
+      Predicate<Course> p) { // todo how to make activeUser present
     return activeUser.get().filterCourses(p);
   }
 
@@ -182,5 +187,25 @@ public class Min5a {
    */
   public void setUsers(List<User> users) {
     for (User user : users) userMap.put(user.getPersonNumber(), user);
+  }
+
+  public List<String> getActiveCourseName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : activeCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
+  }
+
+  public List<String> getInactiveCoursesName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : inActiveCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
   }
 }

@@ -2,6 +2,8 @@ package viewcontroller;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -102,11 +104,13 @@ public class CourseMainPage implements Page {
     completeCoursePane.toBack();
   }
 
-  // TODO courseManager
+
   private void updateCourseInfo() {
     this.courseName.setText(course.getName() + " " + course.getCourseCode());
     this.yearLabel.setText("Läsår:" + " " + course.getYear());
     this.studyPeriodLabel.setText("Läsperiod: " + " " + course.getStudyPeriod());
+    this.toDos.clear();
+    this.moments.clear();
     this.toDos.addAll(course.getToDoList());
     this.moments.addAll(course.getMomentItems());
     changeStatusButton.setDisable(true);
@@ -150,7 +154,6 @@ public class CourseMainPage implements Page {
 
   // Adds a new to-do in the course-specific To-Do list
   // and puts the to-do into the ListView in the CourseMainPage
-  // TODO model.this.courseManager
   @FXML
   private void addToDo(Event e) {
     if (toDoTextArea.getText() != null) {
@@ -161,7 +164,6 @@ public class CourseMainPage implements Page {
     }
   }
 
-  // TODO model.this.courseManager
   // Removes selected To-Do item in Listview and the courses To-Do list. Moves the selection up one
   // step in the list
   @FXML
@@ -211,16 +213,12 @@ public class CourseMainPage implements Page {
   private void changeCourse(ActionEvent event) {
     if (!isEditApproved()) {
       course.setName(courseNameTextArea.getText());
-      course.setCourseCode(courseCodeTextArea.getText());
+      course.setCourseCode(courseCodeTextArea.getText().substring(0, 6));
       course.setYear((int) yearSpinner.getValue());
       course.setStudyPeriod((int) periodComboBox.getSelectionModel().getSelectedItem());
 
-      //      this.courseManager.save(course);
-
       updateCourseInfo();
       resetPanes();
-    } else {
-
     }
   }
 
@@ -229,7 +227,27 @@ public class CourseMainPage implements Page {
         || courseCodeTextArea.getText().trim().isEmpty();
   }
 
+  // Makes it so the user only can type in a certain amount of characters in a textfield
+  static void addTextLimiter(TextField courseCode, int limit) {
+    courseCode
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends String> ov,
+                  final String oldValue,
+                  final String newValue) {
+                if (courseCode.getText().length() > limit) {
+                  String s = courseCode.getText().substring(0, limit);
+                  courseCode.setText(s);
+                }
+              }
+            });
+  }
+
   // Delete Course
+
   @FXML
   private void toDeleteCourse(ActionEvent event) {
     deleteCoursePane.toFront();
@@ -276,9 +294,11 @@ public class CourseMainPage implements Page {
     } else {
       course.reactivateCourse();
     }
+
     resetPanes();
     updateCourseInfo();
     resetChangeStatusPane();
+    model.notifyCourseChangedEvent();
   }
 
   private void resetChangeStatusPane() {
@@ -288,7 +308,6 @@ public class CourseMainPage implements Page {
 
   // Moment methods
 
-  // TODO model.this.courseManager
   // Adds a Moment to the DeadlineListView as well as to the courses Moment list
   @FXML
   private void addMoment(Event event) {
@@ -296,19 +315,16 @@ public class CourseMainPage implements Page {
       Moment moment = new Moment(momentTextArea.getText(), momentDatePicker.getValue());
 
       moments.add(moment);
-      course.newMoment(moment.toString(), momentDatePicker.getValue());
+      course.newMoment(momentTextArea.getText(), momentDatePicker.getValue());
 
       momentTextArea.setText(null);
       momentDatePicker.setValue(LocalDate.now());
 
       moments.sort(moment.byDate);
       course.getMomentItems().sort(moment.byDate);
-
-      System.out.println(course.getMomentItems());
     }
   }
 
-  // TODO model.this.courseManager
   // Removes selected Moment item in Listview and the courses Moment list. Moves the selection up
   // one step in the list
   @FXML
@@ -331,10 +347,11 @@ public class CourseMainPage implements Page {
   }
 
   // Latest Activity methods
-  // TODO ask: what should latest actiivity show?
+  // TODO ask: what should latest activity show?
 
-  /* TODO: add logic so when a todo is done or a moment has passed it's
-   * deadline that it moves to the latest acticvity listview
+  /**
+   * TODO: add logic so when a todo is done or a moment has passed it's deadline that it moves to
+   * the latest acticvity listview
    */
 
   // Populates the ListViews on the page with the correct items.
@@ -356,6 +373,7 @@ public class CourseMainPage implements Page {
     mainPage.ifPresent(page -> this.parent = page);
     updateCourseInfo();
     resetPanes();
+    addTextLimiter(courseCodeTextArea, 6);
     deleteCourseText.setText(
         "Är du säker på att du vill radera kursen " + course.getCourseCode() + "?");
     populateListViews();

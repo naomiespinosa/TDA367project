@@ -15,7 +15,7 @@ public class MomentTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate dateTime = LocalDate.parse(str, formatter);
     Moment moment = new Moment("tenta", dateTime);
-    assertEquals("Den 2019-11-11: tenta", moment.toString());
+    assertEquals("Den 11 NOVEMBER 2019: tenta", moment.toString());
   }
 
   @Test
