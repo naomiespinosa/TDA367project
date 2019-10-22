@@ -4,13 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.xml.bind.DatatypeConverter;
 
-/**
- * Utility class.
- */
+/** Utility class. */
 class Util {
 
   /**
    * Hashes input as MD5.
+   *
    * @param input The input string.
    * @return The hashed string.
    */

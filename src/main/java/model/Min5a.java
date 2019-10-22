@@ -5,7 +5,6 @@ import java.util.*;
 import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
-import model.TimerManager;
 
 /** The overall (aggregate) model of our monopoly game. */
 public class Min5a {

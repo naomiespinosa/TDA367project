@@ -3,9 +3,7 @@ package model;
 import java.util.TimerTask;
 import model.Timer.Callback;
 
-/**
- * A callable task which is executed on timer events.
- */
+/** A callable task which is executed on timer events. */
 public class CallableTask extends TimerTask {
   private Callback callback;
 

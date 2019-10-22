@@ -2,14 +2,12 @@ package model;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import model.Course;
-import model.Timer;
-import model.User;
 import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
 import model.event.timer.TimerTickEvent;
 
+/** Manages timers and posts events on the event bus. */
 public class TimerManager {
   private Timer activeTimer;
   private EventBus eventBus;

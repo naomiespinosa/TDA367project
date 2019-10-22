@@ -121,15 +121,14 @@ public class Timer {
     this.onTick = callback;
   }
 
-  /**
-   * Callback interface.
-   */
+  /** Callback interface. */
   public interface Callback {
     void callback();
   }
 
   /**
    * Returns the elapsed seconds of the current timer, if any. Otherwise throws an exception.
+   *
    * @return Elapsed seconds as a long.
    */
   public Long getElapsedSeconds() {
