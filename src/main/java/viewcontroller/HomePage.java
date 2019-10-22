@@ -70,7 +70,7 @@ public class HomePage implements Page {
   }
 
   @FXML
-  void logOut(ActionEvent event) {
+  private void logOut(ActionEvent event) {
     parent.toLoginPage();
   }
 

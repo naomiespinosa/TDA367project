@@ -102,8 +102,6 @@ public class StatisticsPage implements Page {
     }
   }
 
-  // TODO Computing in this method will later on be moved to Course and accessed via a method.
-  // TODO no dependancy
 
   private void setTotalStudyTimeDisplay() {
     int totalTimeSecond = 0;

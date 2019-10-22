@@ -144,13 +144,7 @@ public class CourseMainPage implements Page {
       gradeLabel.setText(course.getGrade());
     }
   }
-  // Methods
 
-  // To-Do methods
-
-  // Adds a new to-do in the course-specific To-Do list
-  // and puts the to-do into the ListView in the CourseMainPage
-  // TODO model.this.courseManager
   @FXML
   private void addToDo(Event e) {
     if (toDoTextArea.getText() != null) {
@@ -161,9 +155,6 @@ public class CourseMainPage implements Page {
     }
   }
 
-  // TODO model.this.courseManager
-  // Removes selected To-Do item in Listview and the courses To-Do list. Moves the selection up one
-  // step in the list
   @FXML
   private void removeToDo(Event e) {
     final int selectedIdx = toDoListView.getSelectionModel().getSelectedIndex();

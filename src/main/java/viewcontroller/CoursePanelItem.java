@@ -17,8 +17,6 @@ public class CoursePanelItem implements Page {
 
   @FXML private Label courseName;
   @FXML private Label courseCode;
-
-  // TODO model.manager.CourseManager & CourseFactory?
   private Course course;
   private MainPage parentController;
 
@@ -27,7 +25,11 @@ public class CoursePanelItem implements Page {
     parentController.pressedCourseItem(course);
   }
 
-  void setCourse(Course course) {
+  /**
+   * Sets a course to the coursepanelItem
+   * @param course
+   */
+ public void setCourse(Course course) {
     this.course = course;
   }
 
