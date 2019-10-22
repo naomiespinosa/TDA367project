@@ -4,15 +4,23 @@ import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
 
+/**
+ * This is the centre of the application and decides what page to be displayed and also handles the
+ * login functions
+ *
+ * @author Hanna
+ */
 public class MainPage implements Page {
 
   @FXML private AnchorPane mainPage;
   @FXML private TextField usernameTextField;
+  @FXML private PasswordField passwordField;
   @FXML private AnchorPane main;
   @FXML private AnchorPane login;
 
@@ -70,24 +78,33 @@ public class MainPage implements Page {
     showPage(PageLoader.createCourseMainPage(course, this));
   }
 
+  // TODO CANT CHANGE USER
+
   @FXML
   private void login(ActionEvent event) {
     loginErrorText.setText("");
-    String password = "42"; // TODO should come from GUI
 
-    if (usernameIsValid()) {
+    if (usernameIsValid() && passwordIsValid()) {
       Integer personNumber = Integer.parseInt(usernameTextField.getText());
-      if (model.login(personNumber, password)) {
+      if (model.login(personNumber, passwordField.getText())) {
         toHome();
       } else {
-        loginErrorText.setText("*Denna användaren finns inte");
+        loginErrorText.setText("*Användarnamnet eller lösenordet är fel");
       }
     }
   }
 
-  private boolean usernameIsValid() {
+  private boolean passwordIsValid() {
+    if (passwordField.getText().trim().isEmpty()) {
+      loginErrorText.setText("*Ingen ruta får lämnas tom");
+      return false;
+    }
+    return true;
+  }
+
+  private boolean usernameIsValid() { // TODO user persistence
     if (usernameTextField.getText().trim().isEmpty()) {
-      loginErrorText.setText("*Denna rutan får inte lämnas tom");
+      loginErrorText.setText("*Ingen ruta får lämnas tom");
       return false;
     } else if (!usernameTextField.getText().matches("[0-9]+")) {
       loginErrorText.setText("*Endast siffror");
@@ -97,14 +114,14 @@ public class MainPage implements Page {
   }
 
   @FXML
-  private void newAccount() {
+  private void newAccount() { // TODO getting errors lel
     loginErrorText.setText("");
-    String name = usernameTextField.getText();
-    String pwd = "tda367"; // TODO from GUI
-    int personNumber = 42; // TODO should be supplied by GUI
-    if (usernameIsValid()) {
-      if (model.isUserUnique(name) && !usernameTextField.getText().trim().isEmpty()) {
-        model.addUser(personNumber, name, pwd);
+    String pwd = passwordField.getText();
+    int personNumber =
+        Integer.parseInt(usernameTextField.getText()); // TODO should be supplied by GUI
+    if (usernameIsValid() && passwordIsValid()) {
+      if (model.isUserUnique(personNumber) && !usernameTextField.getText().trim().isEmpty()) {
+        model.addUser(personNumber, "Your Name", pwd);
         model.login(personNumber, pwd);
         toHome();
       } else {
@@ -117,6 +134,14 @@ public class MainPage implements Page {
     login.toBack();
     main.toFront();
     showPage(homePage);
+  }
+
+  void toLoginPage() {
+    login.toFront();
+    main.toBack();
+    loginErrorText.setText("");
+    usernameTextField.clear();
+    passwordField.clear();
   }
 
   // Shows selected page on the right side of the screen

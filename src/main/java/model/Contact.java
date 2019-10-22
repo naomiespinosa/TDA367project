@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * The contact class defines what a contact is and what a contact can do. A contact consist of a
+ * name, an email address, a phone number, what course it’s related to and what title it has
+ * (Student, teacher…).
+ *
+ * @author Johanna
+ */
 public class Contact {
 
   private String name;
@@ -26,24 +33,8 @@ public class Contact {
     return phoneNumber;
   }
 
-  public String getTitel() {
-    return titel;
-  }
-
   public void setName(String name) {
     this.name = name;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  public void setTitel(String titel) {
-    this.titel = titel;
   }
 
   public Course getCourse() {

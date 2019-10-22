@@ -7,11 +7,11 @@ import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
-/** The overall (aggregate) model of our monopoly game. */
+/** The overall model for our student app */
 public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
-  static EventBus bus;
+  public static EventBus bus; // should be public? or use a getter?
 
   @Inject
   private Min5a() {
@@ -64,16 +64,17 @@ public class Min5a {
   public void addUser(Integer personNumber, String name, String password) {
     User user = User.createUser(personNumber, name, password);
     userMap.put(personNumber, user);
+    bus.post(new UserChangedEvent());
   }
 
   /**
    * Checks if the username is already taken
    *
-   * @param name social security number
+   * @param id social security number
    * @return if the user is unique
    */
-  public boolean isUserUnique(String name) {
-    return !userMap.containsKey(name);
+  public boolean isUserUnique(Integer id) {
+    return !userMap.containsKey(id);
   }
 
   /**
@@ -148,14 +149,11 @@ public class Min5a {
 
   public void setActiveUserName(String name) {
     activeUser.get().setName(name);
+    bus.post(new UserChangedEvent());
   }
 
   public int getActiveUserId() {
     return activeUser.get().getPersonNumber();
-  }
-
-  public void setActiveUserId(int id) {
-    activeUser.get().setPersonNumber(id);
   }
 
   /**

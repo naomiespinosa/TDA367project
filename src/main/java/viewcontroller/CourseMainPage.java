@@ -27,6 +27,14 @@ import model.Min5a;
 import model.Moment;
 import model.ToDo;
 
+/**
+ * This class represents a specific page dedicated to the specific course. It shows info about the
+ * course. It also allows the user to edit, complete and delete the course. The user can also add
+ * and delete moments and to-dos
+ *
+ * @author Hanna
+ * @author Theo
+ */
 public class CourseMainPage implements Page {
 
   private Course course;

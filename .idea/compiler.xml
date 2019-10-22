@@ -7,6 +7,8 @@
       <module name="Min5a.test" target="1.8" />
       <module name="src.main" target="1.8" />
       <module name="src.test" target="1.8" />
+      <module name="TDA367new.main" target="1.8" />
+      <module name="TDA367new.test" target="1.8" />
       <module name="TDA367project.main" target="1.8" />
       <module name="TDA367project.test" target="1.8" />
     </bytecodeTargetLevel>

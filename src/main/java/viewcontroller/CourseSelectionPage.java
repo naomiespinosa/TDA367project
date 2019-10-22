@@ -13,6 +13,13 @@ import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.event.CourseChangeEvent;
 
+/**
+ * This page shows all of the users courses. Here the user can interact with the items to get to the
+ * courseMainPage The user can also add new courses
+ *
+ * @author Hanna
+ * @author Johanna
+ */
 public class CourseSelectionPage implements Page {
 
   @FXML private FlowPane activeCoursesFlowPane;

@@ -11,6 +11,11 @@ import model.Min5a;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
+/**
+ * This is the frontpage that shows active courses and also info about the user
+ *
+ * @author Hanna
+ */
 public class HomePage implements Page {
 
   private MainPage parent;
@@ -18,9 +23,9 @@ public class HomePage implements Page {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private TextField userName;
-  @FXML private TextField securityCode;
-  @FXML private TextField password;
-  @FXML private Label changeWorked;
+  @FXML private TextField securityCode; // Deleted
+  // @FXML private Label changeWorked;
+  @FXML private Label worked;
 
   @Subscribe
   private void onUserChange(UserChangedEvent userChangedEvent) {
@@ -31,13 +36,7 @@ public class HomePage implements Page {
     PanelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
     userName.setText(model.getActiveUserName());
     securityCode.setText(String.valueOf(model.getActiveUserId()));
-    password.setText("*******");
-    changeWorked.setText("");
-  }
-
-  @Subscribe
-  public void courseChangeMade(CourseChangeEvent event) {
-    updateLists();
+    worked.setText("");
   }
 
   @Override
@@ -46,7 +45,42 @@ public class HomePage implements Page {
     mainPage.ifPresent(page -> parent = page);
   }
 
-  public void changeUser(ActionEvent event) {}
+  @FXML
+  void changeUser(ActionEvent event) {
+    worked.setText("");
+    if (isValidChangeMade()) {
+      model.setActiveUserName(userName.getText());
+      // model.setActiveUserId(Integer.parseInt(securityCode.getText())); // TODO cant change id
+      worked.setText("Ändringarna är nu uppdaterade");
+    }
+  }
 
-  public void logOut(ActionEvent event) {}
+  private boolean isValidChangeMade() {
+    return !isInputEmpty() && !isChangeMade();
+  }
+
+  private boolean isChangeMade() { // TODO checking security code doesnt work
+    return model.getActiveUserName().equals(userName.getText());
+    // || Integer.valueOf(securityCode.getText()) == model.getActiveUserId();
+  }
+
+  private boolean isInputEmpty() {
+    return userName.getText().trim().isEmpty();
+    // || securityCode.getText().trim().isEmpty();
+  }
+
+  @FXML
+  void logOut(ActionEvent event) {
+    parent.toLoginPage();
+  }
+
+  @Subscribe
+  public void userUpdated(UserChangedEvent event) {
+    updateLists(); // TODO Doenst work
+  }
+
+  @Subscribe
+  public void courseChangeMade(CourseChangeEvent event) {
+    updateLists(); // works
+  }
 }
