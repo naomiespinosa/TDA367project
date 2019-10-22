@@ -1,6 +1,5 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import java.util.Optional;
 import javafx.application.Platform;
@@ -23,7 +22,6 @@ import model.event.timer.TimerTickEvent;
  * @author Robin
  */
 public class TimerPage implements Page {
-  private EventBus eventBus;
   private Min5a model;
   private TimerManager timerManager;
 

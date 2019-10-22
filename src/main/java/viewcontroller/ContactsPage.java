@@ -15,6 +15,7 @@ import model.Contact;
 import model.Course;
 import model.Min5a;
 import model.event.CourseChangeEvent;
+import model.event.UserChangedEvent;
 
 /**
  * The contact class defines what a contact is and what a contact can do. A contact consist of a
@@ -82,10 +83,12 @@ public class ContactsPage implements Page {
   void createContact(ActionEvent event) {
     samePageErrorMgm();
     if (isContactApproved()) {
-      contactsObserverList.add(
-          new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
+      Contact c =
+          new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText());
+      contactsObserverList.add(c);
+      model.addContact(c);
     }
-
+    updateInfo();
     contactsListview.setItems(contactsObserverList);
     contactsListview.getSelectionModel().selectLast();
   }
@@ -197,6 +200,8 @@ public class ContactsPage implements Page {
     if (selectedIdx != -1) {
       contactsListview.getItems().remove(selectedIdx);
     }
+    Contact c = contactsListview.getSelectionModel().getSelectedItem();
+    model.removeContact(c);
   }
 
   private void populateContactListView() {
@@ -237,6 +242,13 @@ public class ContactsPage implements Page {
     contactCourse.getItems().clear();
     contactCourse.getItems().addAll(getCourseNames());
     contactCourse.getSelectionModel().select(0);
+
+    contactsObserverList.clear();
+    for (Contact c : model.getSavedContacts()) {
+      contactsObserverList.add(c);
+    }
+
+    contactsListview.setItems(contactsObserverList);
   }
 
   // TODO SHOW UPDATES
@@ -267,6 +279,12 @@ public class ContactsPage implements Page {
     updateInfo();
   }
 
+  @Subscribe
+  public void onUserChanged(UserChangedEvent event) {
+    updateInfo();
+    resetNewContact();
+  }
+
   /**
    * Show the contact who is selected in the listview in the seeContactAnchorPane
    *
@@ -282,9 +300,8 @@ public class ContactsPage implements Page {
 
     contactTitle.getItems().addAll(acceptedTitles);
     contactTitle.getSelectionModel().select(0);
-    samePageErrorMgm();
+    // samePageErrorMgm();
     // Todo fix so that the current courses (if there are any existing already) are in the courses
-    // Combobox
 
   }
 }

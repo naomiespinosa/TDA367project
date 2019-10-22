@@ -14,6 +14,7 @@ public class User {
   private String passwordHash;
   private int personNumber;
   private List<Course> courses = new ArrayList<>();
+  private List<Contact> contacts = new ArrayList<>();
 
   User(Integer personNumber, String name, String passwordHash) {
     this.personNumber = personNumber;
@@ -88,5 +89,17 @@ public class User {
 
   public void deleteCourse(Course course) {
     courses.remove(course);
+  }
+
+  public void addContact(Contact contact) {
+    contacts.add(contact);
+  }
+
+  public void removeContacts(Contact contact) {
+    contacts.remove(contact);
+  }
+
+  public List<Contact> getContactList() {
+    return contacts;
   }
 }

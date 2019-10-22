@@ -96,7 +96,6 @@ public class Min5a {
    */
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     Course course = new Course(name, courseCode, year, studyPeriod);
-    activeUser.get().addCourse(course);
     activeUser.ifPresent(u -> u.addCourse(course));
     eventBus.post(new CourseChangeEvent());
   }
@@ -235,5 +234,17 @@ public class Min5a {
     }
 
     return tempList;
+  }
+
+  public void addContact(Contact contact) {
+    activeUser.get().addContact(contact);
+  }
+
+  public List<Contact> getSavedContacts() {
+    return activeUser.get().getContactList();
+  }
+
+  public void removeContact(Contact c) {
+    activeUser.get().removeContacts(c);
   }
 }
