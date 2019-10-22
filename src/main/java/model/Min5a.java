@@ -139,6 +139,10 @@ public class Min5a {
     return new ArrayList<>(userMap.values()); // use defensive copying
   }
 
+  public User getActiveUser() {
+    return activeUser.get();
+  }
+
   public String getActiveUserName() {
     return activeUser.get().getName();
   }

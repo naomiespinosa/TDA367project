@@ -37,7 +37,7 @@ public class TimerPage implements Page {
     if (timerManager.isRunning()) {
       timerManager.cancel();
     } else {
-      timerManager.start(this.course);
+      timerManager.start(this.course, model.getActiveUser());
     }
   }
 
