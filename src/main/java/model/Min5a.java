@@ -12,8 +12,8 @@ public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
   public static EventBus bus; // should be public? or use a getter?
+  public static Boolean isFirstRun = true;
 
-  @Inject
   private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
