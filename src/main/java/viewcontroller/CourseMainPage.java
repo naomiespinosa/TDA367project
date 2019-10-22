@@ -237,6 +237,7 @@ public class CourseMainPage implements Page {
 
   @FXML
   private void deleteCourse(ActionEvent event) {
+    model.deleteCourse(course);
     parent.toHome();
   }
 
@@ -268,7 +269,6 @@ public class CourseMainPage implements Page {
     }
   }
 
-  // TODO model.this.courseManager
   @FXML
   private void changeStatus() {
     if (course.isActive()) {
@@ -276,9 +276,6 @@ public class CourseMainPage implements Page {
     } else {
       course.reactivateCourse();
     }
-
-    //    this.courseManager.save(course);
-
     resetPanes();
     updateCourseInfo();
     resetChangeStatusPane();
