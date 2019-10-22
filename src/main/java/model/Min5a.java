@@ -12,6 +12,7 @@ public class Min5a {
   private Optional<User> activeUser;
   private EventBus eventBus;
   private TimerManager timerManager;
+  public static Boolean isFirstRun = true;
 
   private Min5a() {
     userMap = new HashMap<>();
@@ -50,6 +51,7 @@ public class Min5a {
         eventBus.post(new UserChangedEvent());
         return true;
       }
+      //
     }
     return false; // TODO: no such user event
   }
