@@ -11,7 +11,7 @@ public class User {
   private int personNumber;
   private List<Course> courses = new ArrayList<>();
 
-  private User(Integer personNumber, String name, String passwordHash) {
+  User(Integer personNumber, String name, String passwordHash) {
     this.personNumber = personNumber;
     this.name = name;
     this.passwordHash = passwordHash;
