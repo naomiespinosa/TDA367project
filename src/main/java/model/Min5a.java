@@ -100,7 +100,28 @@ public class Min5a {
     eventBus.post(new CourseChangeEvent());
   }
 
-  public void notifyCourseChangedEvent() {
+  /**
+   * Ends the course and sets its grade, notifies the eventbus of a courseChangeEvent
+   *
+   * @param course which course is being ended
+   * @param grade what grade the course has
+   */
+  public void setCourseInactive(Course course, String grade) {
+    if (course.isActive()) {
+      course.endCourse(grade);
+    }
+    eventBus.post(new CourseChangeEvent());
+  }
+
+  /**
+   * Reactivates a course, notifies eventbus of a courseChangeEvent
+   *
+   * @param course The course being activated
+   */
+  public void setCourseActive(Course course) {
+    if (!course.isActive()) {
+      course.reactivateCourse();
+    }
     eventBus.post(new CourseChangeEvent());
   }
 
