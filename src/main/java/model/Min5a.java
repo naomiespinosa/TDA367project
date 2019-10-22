@@ -215,4 +215,16 @@ public class Min5a {
 
     return tempList;
   }
+
+  public void addContact(Contact contact) {
+    activeUser.get().addContact(contact);
+  }
+
+  public List<Contact> getSavedContacts() {
+    return activeUser.get().getContactList();
+  }
+
+  public void removeContact(Contact c) {
+    activeUser.get().removeContacts(c);
+  }
 }

@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.Min5a;
 import model.event.CourseChangeEvent;
+import model.event.UserChangedEvent;
 
 /**
  * This page shows all of the users courses. Here the user can interact with the items to get to the
@@ -156,6 +157,11 @@ public class CourseSelectionPage implements Page {
 
   @Subscribe
   public void courseChangeMade(CourseChangeEvent event) {
+    updateLists();
+  }
+
+  @Subscribe
+  public void onUserChanged(UserChangedEvent event) {
     updateLists();
   }
 
