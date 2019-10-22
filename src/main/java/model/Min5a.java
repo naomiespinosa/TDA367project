@@ -101,7 +101,7 @@ public class Min5a {
   }
 
   /**
-   * Ends the course and sets its grade, notifies the eventbus of a course change event
+   * Ends the course and sets its grade, notifies the eventbus of a courseChangeEvent
    *
    * @param course which course is being ended
    * @param grade what grade the course has
@@ -114,7 +114,7 @@ public class Min5a {
   }
 
   /**
-   * Reactivates a course, notifies eventbus of a course change event
+   * Reactivates a course, notifies eventbus of a courseChangeEvent
    *
    * @param course The course being activated
    */
