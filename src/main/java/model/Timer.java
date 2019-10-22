@@ -143,7 +143,16 @@ public class Timer {
     return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
   }
 
-  private enum State {
+  /**
+   * Returns the current timer state.
+   *
+   * @return Current timer state.
+   */
+  public State getState() {
+    return state;
+  }
+
+  public enum State {
     ACTIVE,
     INACTIVE,
     CANCELED
