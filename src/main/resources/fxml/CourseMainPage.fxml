@@ -99,7 +99,7 @@
                   </AnchorPane>
                </items>
             </SplitPane>
-            <Label prefHeight="34.0" prefWidth="169.0" styleClass="sub-header" text="ToDoList" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="129.0">
+            <Label prefHeight="34.0" prefWidth="169.0" styleClass="sub-header" text="ToDos" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="129.0">
                <font>
                   <Font name="Century Gothic" size="10.0" />
                </font>
@@ -120,8 +120,8 @@
             <Label fx:id="courseName" layoutX="69.0" prefHeight="54.0" prefWidth="1042.0" style="-fx-font-size: 35;" styleClass="text" text="Kursnamn" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="12.0" />
             <Button fx:id="toChangeStatusPageButton" mnemonicParsing="false" onAction="#toChangeStatusPage" prefHeight="35.0" prefWidth="150.0" text="Avsluta kurs" AnchorPane.leftAnchor="930.0" AnchorPane.topAnchor="15.0" />
             <Button mnemonicParsing="false" onAction="#editCourseTab" prefHeight="35.0" prefWidth="150.0" text="Redigera Kurs" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="15.0" />
-            <Label fx:id="gradeLabel" layoutX="13.0" layoutY="18.0" prefHeight="41.0" prefWidth="43.0" style="-fx-font-size: 40;" />
-            <Label layoutX="387.0" layoutY="129.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Moment">
+            <Label fx:id="gradeLabel" layoutX="13.0" layoutY="10.0" prefHeight="41.0" prefWidth="43.0" style="-fx-font-size: 40;" />
+            <Label layoutX="387.0" layoutY="129.0" prefHeight="34.0" prefWidth="159.0" styleClass="sub-header" text="Deadlines">
                <font>
                   <Font size="5.0" />
                </font>
