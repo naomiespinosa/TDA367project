@@ -18,8 +18,7 @@ import model.Min5a;
 import model.event.CourseChangeEvent;
 
 /**
- * The contact class defines what a contact is and what a contact can do. A contact consist of a
- * name, an email address, a phone number, what course it’s related to.
+ *This class represent the "address"-book that is shown when you press the "kontakter" button in the SidePanel
  *
  * @author Johanna
  */
@@ -206,7 +205,6 @@ public class ContactsPage implements Page {
 
     for (Course course : model.getCourses()) {
       courseNames.add(course.getName());
-      courseNames.add("Ingen");
     }
     return courseNames;
   }

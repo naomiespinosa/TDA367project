@@ -89,14 +89,14 @@ public class MainPage implements Page {
       if (model.login(personNumber, passwordField.getText())) {
         toHome();
       } else {
-        loginErrorText.setText("*Användarnamnet eller lösenordet är fel");
+        loginErrorText.setText("*Personnummer eller lösenord fel");
       }
     }
   }
 
   private boolean passwordIsValid() {
     if (passwordField.getText().trim().isEmpty()) {
-      loginErrorText.setText("*Ingen ruta får lämnas tom");
+      loginErrorText.setText("Fel lösenord");
       return false;
     }
     return true;
