@@ -1,7 +1,6 @@
 package model;
 
 import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
 import java.util.*;
 import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
