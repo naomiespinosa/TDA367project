@@ -135,11 +135,21 @@ public class StatisticsPage implements Page {
     return totalHour;
 
     // TODO adapt for Hour AND minutes, perhaps send back a Pair. This methods computing should also
-    // be done in Course.
+    //  be done in Course.
   }
 
   private void setListOfCourses() {
     activeCourses.clear();
+    inactiveCourses.clear();
+
+    activeCourses.addAll(model.getActiveCourseName());
+    inactiveCourses.addAll(model.getInactiveCoursesName());
+
+    activeCoursesListView.setItems(activeCourses);
+    finishedCoursesListView.setItems(inactiveCourses);
+    /*
+    activeCourses.clear();
+
     inactiveCourses.clear();
 
     Iterable<Course> courses = model.getCourses();
@@ -153,6 +163,8 @@ public class StatisticsPage implements Page {
     }
     activeCoursesListView.setItems(activeCourses);
     finishedCoursesListView.setItems(inactiveCourses);
+    */
+
   }
 
   @Subscribe
@@ -166,7 +178,7 @@ public class StatisticsPage implements Page {
   //  }
 
   private void update() {
-    setStudyTimeGradesDisplay();
+    // setStudyTimeGradesDisplay();
     // setTotalStudyTimeDisplay();
     setListOfCourses();
   }

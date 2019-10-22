@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
-/** The overall (aggregate) model of our monopoly game. */
+/** The overall model for our student app */
 public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
@@ -92,6 +92,10 @@ public class Min5a {
     eventBus.post(new CourseChangeEvent());
   }
 
+  public void notifyCourseChangedEvent() {
+    eventBus.post(new CourseChangeEvent());
+  }
+
   /**
    * Retrieve all of the active user's courses
    *
@@ -107,7 +111,8 @@ public class Min5a {
    * @param p a predicate over a course
    * @return filtered list (iterable) of courses
    */
-  public Iterable<Course> filterCourses(Predicate<Course> p) {
+  public Iterable<Course> filterCourses(
+      Predicate<Course> p) { // todo how to make activeUser present
     return activeUser.get().filterCourses(p);
   }
 
@@ -171,5 +176,25 @@ public class Min5a {
 
   public TimerManager getTimerManager() {
     return timerManager;
+  }
+
+  public List<String> getActiveCourseName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : activeCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
+  }
+
+  public List<String> getInactiveCoursesName() {
+    List<String> tempList = new ArrayList<>();
+
+    for (Course course : inActiveCourses()) {
+      tempList.add(course.getName());
+    }
+
+    return tempList;
   }
 }

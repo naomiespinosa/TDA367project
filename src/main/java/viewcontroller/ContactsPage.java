@@ -18,8 +18,7 @@ import model.event.CourseChangeEvent;
 
 /**
  * The contact class defines what a contact is and what a contact can do. A contact consist of a
- * name, an email address, a phone number, what course it’s related to and what title it has
- * (Student, teacher…).
+ * name, an email address, a phone number, what course it’s related to.
  *
  * @author Johanna
  */
@@ -68,35 +67,22 @@ public class ContactsPage implements Page {
 
   private MainPage parent;
 
-  /*  // TODO make this subscribe work
-  @Subscribe
-  private void onUserChange(final UserChangedEvent userChangedEvent) {
-      user = userChangedEvent.getNewUser();
-      updatePage();
-  }*/
-
   private void updatePage() {
     updateInfo();
     populateContactListView();
     initSamePageErrorMgm();
   }
 
-  /*void init() {
-      courseManager.attach(this);
-  }*/
-
   @FXML
   void createContact(ActionEvent event) {
     samePageErrorMgm();
-
     if (isContactApproved()) {
       contactsObserverList.add(
           new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
     }
+
     contactsListview.setItems(contactsObserverList);
-    seeContactAnchorpane.toFront();
     contactsListview.getSelectionModel().selectLast();
-    showSelectedContact();
   }
 
   @FXML
@@ -128,6 +114,7 @@ public class ContactsPage implements Page {
   void deleteContact(ActionEvent event) {
     removeContact();
     addContactAnchorPane.toFront();
+    resetInputs();
   }
 
   // Is filled areas approved
@@ -151,6 +138,7 @@ public class ContactsPage implements Page {
     resetInputs();
     addContactAnchorPane.toFront();
     contactLabel.setText("Ny kontakt");
+    samePageErrorMgm();
   }
 
   private void resetInputs() {
@@ -160,7 +148,8 @@ public class ContactsPage implements Page {
     samePageErrorMgm();
   }
 
-  private static final List acceptedTitles = Arrays.asList("Lärare", "Elev", "Handledare", "Övrig");
+  private static final List acceptedTitles =
+      Arrays.asList("Examinator", "Elev", "Handledare", "Annan");
 
   public void removeContact() {
     final int selectedIdx = contactsListview.getSelectionModel().getSelectedIndex();
@@ -193,18 +182,17 @@ public class ContactsPage implements Page {
 
   private void initSamePageErrorMgm() {
     if (isTextareaFilled()) {
-      isTextAreaFilled.setText("*Allt måste vara ifyllt");
+      isTextAreaFilled.setVisible(true);
     }
     if (!isEmailApproved()) {
-      isEmailApproved.setText("*Email-Addressen måste innehålla ett snabel a (@) och en punkt");
+      isEmailApproved.setVisible(true);
     }
     if (!isPhoneApproved()) {
-      isPhoneApproved.setText("*Telefonnummret måste innehålla 3 eller fler siffror");
+      isPhoneApproved.setVisible(true);
     }
   }
 
   private void updateInfo() {
-
     contactCourse.getItems().clear();
     contactCourse.getItems().addAll(getCourseNames());
     contactCourse.getSelectionModel().select(0);
@@ -216,6 +204,7 @@ public class ContactsPage implements Page {
 
     for (Course course : model.getCourses()) {
       courseNames.add(course.getName());
+      courseNames.add("Ingen");
     }
     return courseNames;
   }
@@ -247,6 +236,7 @@ public class ContactsPage implements Page {
 
     contactTitle.getItems().addAll(acceptedTitles);
     contactTitle.getSelectionModel().select(0);
+    samePageErrorMgm();
     // Todo fix so that the current courses (if there are any existing already) are in the courses
     // Combobox
 

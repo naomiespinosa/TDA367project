@@ -10,6 +10,8 @@ public class ContactTest {
   public void contactName() {
     Contact contact = new Contact("Johanna", "j@live.se", "0707");
     assertEquals("Johanna", contact.getName());
+    contact.setName("Hanna");
+    assertEquals("Hanna", contact.getName());
   }
 
   @Test
