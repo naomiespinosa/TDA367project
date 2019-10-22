@@ -35,5 +35,7 @@ class UserTest {
     assertFalse(model.login(TestData.number, TestData.pwd));
     TestData.insertUsers(1, model);
     assertTrue(model.login(TestData.number, TestData.pwd));
+
+    assertFalse(model.isUserUnique(TestData.number));
   }
 }
