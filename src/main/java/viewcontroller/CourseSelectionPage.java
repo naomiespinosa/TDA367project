@@ -137,6 +137,12 @@ public class CourseSelectionPage implements Page {
     return 0;
   }
 
+  /**
+   * Make that it is only possible to have a course code that is 6 characters long
+   *
+   * @param courseCodeText
+   * @param limit
+   */
   static void addTextLimiter(TextField courseCodeText, int limit) {
     courseCodeText
         .textProperty()
