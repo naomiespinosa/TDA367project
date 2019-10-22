@@ -35,6 +35,6 @@
       <TextField fx:id="userName" layoutX="298.0" layoutY="436.0" AnchorPane.leftAnchor="298.0" />
       <Button layoutX="298.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeUser" prefHeight="26.0" prefWidth="149.0" text="Spara ändringar" />
       <Button layoutX="580.0" layoutY="583.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="166.0" text="Logga ut" />
-      <Label fx:id="changeWorked" layoutX="298.0" layoutY="608.0" text="Label" />
+      <Label fx:id="worked" layoutX="312.0" layoutY="609.0" text="Label" />
    </children>
 </AnchorPane>

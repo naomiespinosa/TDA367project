@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
-/** The overall (aggregate) model of our monopoly game. */
+/** The overall model for our student app */
 public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
@@ -149,11 +149,6 @@ public class Min5a {
 
   public int getActiveUserId() {
     return activeUser.get().getPersonNumber();
-  }
-
-  public void setActiveUserId(int id) {
-    activeUser.get().setPersonNumber(id);
-    bus.post(new UserChangedEvent());
   }
 
   /**

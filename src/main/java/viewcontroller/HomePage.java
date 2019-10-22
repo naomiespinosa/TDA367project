@@ -24,7 +24,8 @@ public class HomePage implements Page {
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private TextField userName;
   @FXML private TextField securityCode; // Deleted
-  @FXML private Label changeWorked;
+  // @FXML private Label changeWorked;
+  @FXML private Label worked;
 
   @Subscribe
   private void onUserChange(UserChangedEvent userChangedEvent) {
@@ -35,7 +36,7 @@ public class HomePage implements Page {
     PanelItemManager.showCourses(activeCoursesFlowPane, parent, model.activeCourses());
     userName.setText(model.getActiveUserName());
     securityCode.setText(String.valueOf(model.getActiveUserId()));
-    changeWorked.setText("");
+    worked.setText("");
   }
 
   @Override
@@ -46,11 +47,11 @@ public class HomePage implements Page {
 
   @FXML
   void changeUser(ActionEvent event) {
-    changeWorked.setText("");
+    worked.setText("");
     if (isValidChangeMade()) {
       model.setActiveUserName(userName.getText());
       // model.setActiveUserId(Integer.parseInt(securityCode.getText())); // TODO cant change id
-      changeWorked.setText("Ändringarna är nu uppdaterade");
+      worked.setText("Ändringarna är nu uppdaterade");
     }
   }
 
