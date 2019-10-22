@@ -1,6 +1,5 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,7 +67,6 @@ public class ContactsPage implements Page {
   private Min5a model;
 
   private MainPage parent;
-  private EventBus eventBus = Min5a.bus;
 
   /*  // TODO make this subscribe work
   @Subscribe

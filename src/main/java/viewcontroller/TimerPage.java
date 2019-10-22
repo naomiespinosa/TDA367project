@@ -24,6 +24,7 @@ import model.event.timer.TimerTickEvent;
 public class TimerPage implements Page {
   private EventBus eventBus;
   private Min5a model;
+  private model.manager.TimerManager timerManager;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
   @FXML private Button startPauseFullPageTimer;
@@ -33,11 +34,11 @@ public class TimerPage implements Page {
   private Course course;
 
   public void onTimerButtonClick() {
-    //    if (timerManager.isRunning()) {
-    //      timerManager.cancel();
-    //    } else {
-    //      timerManager.start(this.course);
-    //    }
+    if (timerManager.isRunning()) {
+      timerManager.cancel();
+    } else {
+      timerManager.start(this.course);
+    }
   }
 
   @Subscribe
@@ -73,6 +74,8 @@ public class TimerPage implements Page {
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
+    model.register(this);
+    timerManager = model.getTimerManager();
     startPauseLabel.setText("Starta timer");
   }
 }

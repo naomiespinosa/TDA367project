@@ -1,23 +1,24 @@
 package model;
 
 import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
 import java.util.*;
 import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
+import model.manager.TimerManager;
 
 /** The overall (aggregate) model of our monopoly game. */
 public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
-  public static EventBus bus; // should be public? or use a getter?
+  private EventBus eventBus;
+  private model.manager.TimerManager timerManager;
 
-  @Inject
   private Min5a() {
     userMap = new HashMap<>();
     activeUser = Optional.empty();
-    bus = new EventBus();
+    eventBus = new EventBus();
+    timerManager = new TimerManager(eventBus);
   }
 
   /** Factory method for creating an instance of the Min5a model. */
@@ -26,12 +27,12 @@ public class Min5a {
   }
 
   /**
-   * Register a handler to the event bus.
+   * Register a handler to the event eventBus.
    *
    * @param handler the handler
    */
   public void register(Object handler) {
-    bus.register(handler);
+    eventBus.register(handler);
   }
 
   /**
@@ -47,7 +48,7 @@ public class Min5a {
       User user = userMap.get(personNumber);
       if (user.hasPassword(password)) {
         activeUser = Optional.of(userMap.get(personNumber));
-        bus.post(new UserChangedEvent());
+        eventBus.post(new UserChangedEvent());
         return true;
       }
     }
@@ -64,7 +65,7 @@ public class Min5a {
   public void addUser(Integer personNumber, String name, String password) {
     User user = User.createUser(personNumber, name, password);
     userMap.put(personNumber, user);
-    bus.post(new UserChangedEvent());
+    eventBus.post(new UserChangedEvent());
   }
 
   /**
@@ -88,8 +89,8 @@ public class Min5a {
   public void addCourse(String name, String courseCode, int year, int studyPeriod) {
     Course course = new Course(name, courseCode, year, studyPeriod);
     activeUser.get().addCourse(course);
-    // activeUser.ifPresent(u -> u.addCourse(course));
-    bus.post(new CourseChangeEvent());
+    activeUser.ifPresent(u -> u.addCourse(course));
+    eventBus.post(new CourseChangeEvent());
   }
 
   /**
@@ -144,7 +145,7 @@ public class Min5a {
 
   public void setActiveUserName(String name) {
     activeUser.get().setName(name);
-    bus.post(new UserChangedEvent());
+    eventBus.post(new UserChangedEvent());
   }
 
   public int getActiveUserId() {
@@ -153,7 +154,7 @@ public class Min5a {
 
   public void setActiveUserId(int id) {
     activeUser.get().setPersonNumber(id);
-    bus.post(new UserChangedEvent());
+    eventBus.post(new UserChangedEvent());
   }
 
   /**
@@ -163,5 +164,9 @@ public class Min5a {
    */
   public void setUsers(List<User> users) {
     for (User user : users) userMap.put(user.getPersonNumber(), user);
+  }
+
+  public TimerManager getTimerManager() {
+    return timerManager;
   }
 }
