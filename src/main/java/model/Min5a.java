@@ -111,9 +111,9 @@ public class Min5a {
    * @param p a predicate over a course
    * @return filtered list (iterable) of courses
    */
-  public Iterable<Course> filterCourses(Predicate<Course> p) { // todo how to make activeUser present
-      return activeUser.get().filterCourses(p);
-
+  public Iterable<Course> filterCourses(
+      Predicate<Course> p) { // todo how to make activeUser present
+    return activeUser.get().filterCourses(p);
   }
 
   /**
@@ -184,6 +184,4 @@ public class Min5a {
 
     return tempList;
   }
-
 }
-

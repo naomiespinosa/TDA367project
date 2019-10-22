@@ -2,7 +2,6 @@ package viewcontroller;
 
 import java.time.LocalDate;
 import java.util.Optional;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -104,7 +103,6 @@ public class CourseMainPage implements Page {
     deleteCoursePane.toBack();
     completeCoursePane.toBack();
   }
-
 
   private void updateCourseInfo() {
     this.courseName.setText(course.getName() + " " + course.getCourseCode());
@@ -214,7 +212,7 @@ public class CourseMainPage implements Page {
   private void changeCourse(ActionEvent event) {
     if (!isEditApproved()) {
       course.setName(courseNameTextArea.getText());
-      course.setCourseCode(courseCodeTextArea.getText().substring(0,6));
+      course.setCourseCode(courseCodeTextArea.getText().substring(0, 6));
       course.setYear((int) yearSpinner.getValue());
       course.setStudyPeriod((int) periodComboBox.getSelectionModel().getSelectedItem());
 
@@ -231,20 +229,20 @@ public class CourseMainPage implements Page {
   // Makes it so the user only can type in a certain amount of characters in a textfield
   static void addTextLimiter(TextField courseCode, int limit) {
     courseCode
-            .textProperty()
-            .addListener(
-                    new ChangeListener<String>() {
-                      @Override
-                      public void changed(
-                              final ObservableValue<? extends String> ov,
-                              final String oldValue,
-                              final String newValue) {
-                        if (courseCode.getText().length() > limit) {
-                          String s = courseCode.getText().substring(0, limit);
-                          courseCode.setText(s);
-                        }
-                      }
-                    });
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  final ObservableValue<? extends String> ov,
+                  final String oldValue,
+                  final String newValue) {
+                if (courseCode.getText().length() > limit) {
+                  String s = courseCode.getText().substring(0, limit);
+                  courseCode.setText(s);
+                }
+              }
+            });
   }
 
   // Delete Course
@@ -349,8 +347,9 @@ public class CourseMainPage implements Page {
   // Latest Activity methods
   // TODO ask: what should latest activity show?
 
-  /**    TODO: add logic so when a todo is done or a moment has passed it's
-   *          deadline that it moves to the latest acticvity listview
+  /**
+   * TODO: add logic so when a todo is done or a moment has passed it's deadline that it moves to
+   * the latest acticvity listview
    */
 
   // Populates the ListViews on the page with the correct items.

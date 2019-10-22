@@ -139,6 +139,9 @@ public class StatisticsPage implements Page {
   }
 
   private void setListOfCourses() {
+    activeCourses.clear();
+    inactiveCourses.clear();
+
     activeCourses.addAll(model.getActiveCourseName());
     inactiveCourses.addAll(model.getInactiveCoursesName());
 
@@ -174,10 +177,9 @@ public class StatisticsPage implements Page {
   //    update();
   //  }
 
-
   private void update() {
-   // setStudyTimeGradesDisplay();
-   // setTotalStudyTimeDisplay();
+    // setStudyTimeGradesDisplay();
+    // setTotalStudyTimeDisplay();
     setListOfCourses();
   }
 
@@ -185,6 +187,6 @@ public class StatisticsPage implements Page {
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
     this.mainPage = mainPage;
-    update();
+    // update();
   }
 }
