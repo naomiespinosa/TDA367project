@@ -41,9 +41,6 @@ public class Course {
     grade = null;
   }
 
-  // TODO - This method deletes the course and eventually deletes the information? or stores it
-  // somewhere
-
   // List Methods
 
   // Moment
