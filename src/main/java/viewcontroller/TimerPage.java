@@ -72,6 +72,11 @@ public class TimerPage implements Page {
     this.course = courseSelectedEvent.getCourse();
   }
 
+  @Subscribe
+  private void onTimerCompleted(final StudyTimerCompletedEvent timerCompletedEvent) {
+    Platform.runLater(() -> timeLabel.setText("Rast!"));
+  }
+
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
