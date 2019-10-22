@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
+import model.TimerManager;
 import model.event.CourseSelectedEvent;
 import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
@@ -24,6 +25,7 @@ import model.event.timer.TimerTickEvent;
 public class TimerPage implements Page {
   private EventBus eventBus;
   private Min5a model;
+  private TimerManager timerManager;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
   @FXML private Button startPauseFullPageTimer;
@@ -33,11 +35,11 @@ public class TimerPage implements Page {
   private Course course;
 
   public void onTimerButtonClick() {
-    //    if (timerManager.isRunning()) {
-    //      timerManager.cancel();
-    //    } else {
-    //      timerManager.start(this.course);
-    //    }
+    if (timerManager.isRunning()) {
+      timerManager.cancel();
+    } else {
+      timerManager.start(this.course, model.getActiveUser());
+    }
   }
 
   @Subscribe
@@ -70,9 +72,16 @@ public class TimerPage implements Page {
     this.course = courseSelectedEvent.getCourse();
   }
 
+  @Subscribe
+  private void onTimerCompleted(final StudyTimerCompletedEvent timerCompletedEvent) {
+    Platform.runLater(() -> timeLabel.setText("Rast!"));
+  }
+
   @Override
   public void initPage(Min5a model, Optional<MainPage> mainPage) {
     this.model = model;
+    model.register(this);
+    timerManager = model.getTimerManager();
     startPauseLabel.setText("Starta timer");
   }
 }
