@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
+import model.TimerManager;
 import model.event.CourseSelectedEvent;
 import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
@@ -24,7 +25,7 @@ import model.event.timer.TimerTickEvent;
 public class TimerPage implements Page {
   private EventBus eventBus;
   private Min5a model;
-  private model.manager.TimerManager timerManager;
+  private TimerManager timerManager;
 
   @FXML private AnchorPane fullPageTimerAnchorPane;
   @FXML private Button startPauseFullPageTimer;

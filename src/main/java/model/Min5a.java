@@ -5,14 +5,14 @@ import java.util.*;
 import java.util.function.Predicate;
 import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
-import model.manager.TimerManager;
+import model.TimerManager;
 
 /** The overall (aggregate) model of our monopoly game. */
 public class Min5a {
   private Map<Integer, User> userMap;
   private Optional<User> activeUser;
   private EventBus eventBus;
-  private model.manager.TimerManager timerManager;
+  private TimerManager timerManager;
 
   private Min5a() {
     userMap = new HashMap<>();

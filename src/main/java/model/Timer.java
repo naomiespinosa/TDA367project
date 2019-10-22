@@ -121,10 +121,17 @@ public class Timer {
     this.onTick = callback;
   }
 
+  /**
+   * Callback interface.
+   */
   public interface Callback {
     void callback();
   }
 
+  /**
+   * Returns the elapsed seconds of the current timer, if any. Otherwise throws an exception.
+   * @return Elapsed seconds as a long.
+   */
   public Long getElapsedSeconds() {
     if (startedAt == null) {
       throw new IllegalStateException();
@@ -137,14 +144,9 @@ public class Timer {
     return ChronoUnit.SECONDS.between(startedAt, stoppedAt);
   }
 
-  public State getState() {
-    return this.state;
-  }
-
-  public enum State {
+  private enum State {
     ACTIVE,
     INACTIVE,
-    CANCELED,
-    COMPLETED
+    CANCELED
   }
 }
