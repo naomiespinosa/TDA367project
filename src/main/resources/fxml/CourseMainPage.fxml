@@ -131,7 +131,7 @@
                   <Font size="8.0" />
                </font>
             </TextArea>
-            <Label fx:id="studyPeriodLabel" layoutX="118.0" layoutY="68.0" style="-fx-font-size: 16;" text="Läsperiod:" />
+            <Label fx:id="studyPeriodLabel" layoutX="154.0" layoutY="68.0" style="-fx-font-size: 16;" text="Läsperiod:" />
             <Label fx:id="yearLabel" layoutX="33.0" layoutY="68.0" style="-fx-font-size: 16;" text="Läsår:" />
             <ImageView fitHeight="106.0" fitWidth="1006.0" layoutX="96.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                <image>

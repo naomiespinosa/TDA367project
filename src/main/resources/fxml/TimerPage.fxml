@@ -15,7 +15,7 @@
   <children>
       <ImageView fitHeight="700.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
          <image>
-            <Image url="@../../../../../../Downloads/leone-venter-VieM9BdZKFo-unsplash.jpg" />
+            <Image url="@../images/leone-venter-VieM9BdZKFo-unsplash.jpg" />
          </image>
       </ImageView>
   <Button fx:id="startPauseFullPageTimer" layoutX="406.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#onTimerButtonClick" prefHeight="76.0" prefWidth="269.0">
