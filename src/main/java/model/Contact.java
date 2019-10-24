@@ -14,6 +14,13 @@ public class Contact {
   private String phoneNumber;
   private Course course;
 
+  /**
+   * Constructor for a contact
+   *
+   * @param name Contacts name
+   * @param email Contacts email
+   * @param phoneNumber Contacts phone number
+   */
   public Contact(String name, String email, String phoneNumber) {
     this.name = name;
     this.email = email;

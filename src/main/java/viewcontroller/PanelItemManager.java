@@ -23,8 +23,7 @@ class PanelItemManager {
     }
   }
 
-  private static void setShadow(
-      AnchorPane courseItem) { // Make the CourseListItems to have a shadow around them
+  private static void setShadow(AnchorPane courseItem) {
     DropShadow dropShadow = new DropShadow();
     dropShadow.setColor(Color.DARKGRAY);
     dropShadow.setOffsetX(3);

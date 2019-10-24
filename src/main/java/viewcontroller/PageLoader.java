@@ -42,10 +42,10 @@ public class PageLoader {
       FXMLLoader fxmlLoader = new FXMLLoader(PageLoader.class.getClassLoader().getResource(fxml));
       AnchorPane root = fxmlLoader.load();
       T ctrl = fxmlLoader.getController();
-      model.register(ctrl); // TODO Let all pages listen to bus, perhaps do per pages
+      model.register(ctrl);
       result = new Result<T>(ctrl, root);
     } catch (IOException exception) {
-      exception.printStackTrace(); // TODO: display user message!
+      exception.printStackTrace();
     }
     return result;
   }
