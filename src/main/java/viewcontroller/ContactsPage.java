@@ -18,8 +18,8 @@ import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
 /**
- * The contact class defines what a contact is and what a contact can do. A contact consist of a
- * name, an email address, a phone number, what course it’s related to.
+ * This class represent the "address"-book that is shown when you press the "kontakter" button in
+ * the SidePanel
  *
  * @author Johanna
  */
@@ -81,6 +81,8 @@ public class ContactsPage implements Page {
           new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText());
       contactsObserverList.add(c);
       model.addContact(c);
+      resetInputs();
+      seeContactAnchorpane.toFront();
     }
     updateInfo();
     contactsListview.setItems(contactsObserverList);
@@ -109,6 +111,7 @@ public class ContactsPage implements Page {
       number.setText(selectedContact.getPhoneNumber());
       removeContact();
     }
+    updateInfo();
     samePageErrorMgm();
   }
 
@@ -251,7 +254,6 @@ public class ContactsPage implements Page {
 
     for (Course course : model.getCourses()) {
       courseNames.add(course.getName());
-      courseNames.add("Ingen");
     }
     return courseNames;
   }
