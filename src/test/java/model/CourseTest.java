@@ -17,21 +17,6 @@ class CourseTest {
     model.login(TestData.number, TestData.pwd);
   }
 
-  /*
-    @Test
-    public void addCourseTest(){
-      model.addCourse("Programmering", "TDA367", 2019, 4);
-      model.addCourse("Någon annan Kurs", "TDA367", 2019, 4);
-
-      int counter = 0;
-      for (Course course : model.getCourses()) {
-        counter++;
-      }
-
-      assertSame(2, counter);
-    }
-  */
-
   @Test
   void whenCourseIsCreated() {
     Course course = new Course("Programmering", "TDA367", 2019, 4);
