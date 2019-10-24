@@ -74,6 +74,11 @@ public class Contact {
     this.course = course;
   }
 
+  /**
+   * Gets the name of the contact to display it
+   *
+   * @return name
+   */
   public String toString() {
     return name;
   }
