@@ -5,7 +5,7 @@ import model.Course;
 public abstract class TimerEvent {
   protected Course course;
 
-  public TimerEvent(final Course course) {
+  TimerEvent(final Course course) {
     this.course = course;
   }
 

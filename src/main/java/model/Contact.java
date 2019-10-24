@@ -13,7 +13,6 @@ public class Contact {
   private String email;
   private String phoneNumber;
   private Course course;
-  private String titel;
 
   public Contact(String name, String email, String phoneNumber) {
     this.name = name;
@@ -51,7 +50,7 @@ public class Contact {
   /**
    * Sets the name of the contact
    *
-   * @param name
+   * @param name name
    */
   public void setName(String name) {
     this.name = name;
@@ -69,7 +68,7 @@ public class Contact {
   /**
    * Sets the course of the contact
    *
-   * @param course
+   * @param course course
    */
   public void setCourse(Course course) {
     this.course = course;

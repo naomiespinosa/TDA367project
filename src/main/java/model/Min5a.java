@@ -211,20 +211,6 @@ public class Min5a {
   }
 
   /**
-   * Retrieves the social security code
-   *
-   * @return the social security code
-   */
-  public int getActiveUserId() {
-    return activeUser.get().getPersonNumber();
-  }
-
-  public void setActiveUserId(int id) {
-    activeUser.get().setPersonNumber(id);
-    eventBus.post(new UserChangedEvent());
-  }
-
-  /**
    * Initialise the model with a list of users.
    *
    * @param users list of users
@@ -233,10 +219,20 @@ public class Min5a {
     for (User user : users) userMap.put(user.getPersonNumber(), user);
   }
 
+  /**
+   * This is a way to reach the timerManager in the model
+   *
+   * @return the timerManager
+   */
   public TimerManager getTimerManager() {
     return timerManager;
   }
 
+  /**
+   * A method that returns all the active courses names
+   *
+   * @return all the active courses names
+   */
   public List<String> getActiveCourseName() {
     List<String> tempList = new ArrayList<>();
 
@@ -247,6 +243,11 @@ public class Min5a {
     return tempList;
   }
 
+  /**
+   * A method that returns all the inactive courses names
+   *
+   * @return all the inactive courses names
+   */
   public List<String> getInactiveCoursesName() {
     List<String> tempList = new ArrayList<>();
 
@@ -257,15 +258,43 @@ public class Min5a {
     return tempList;
   }
 
+  /**
+   * Adds a contact to the user
+   *
+   * @param contact contact
+   */
   public void addContact(Contact contact) {
     activeUser.get().addContact(contact);
   }
 
+  /**
+   * A list that returns att of the users contacts
+   *
+   * @return the users contacts
+   */
   public List<Contact> getSavedContacts() {
     return activeUser.get().getContactList();
   }
 
+  /**
+   * removes desired contact
+   *
+   * @param c contact
+   */
   public void removeContact(Contact c) {
     activeUser.get().removeContacts(c);
+  }
+
+  /**
+   * A method that can change the information regarding the course
+   *
+   * @param course course
+   * @param name name
+   * @param code code
+   * @param year year
+   * @param period period
+   */
+  public void changeCourse(Course course, String name, String code, int year, int period) {
+    course.changeInfo(name,code,year,period);
   }
 }
