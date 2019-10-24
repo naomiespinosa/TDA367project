@@ -74,12 +74,8 @@ public class Contact {
     this.course = course;
   }
 
-  /**
-   * Sets the toString to the name of the contact
-   *
-   */
-
-  public String toString(){
+  /** Sets the toString to the name of the contact */
+  public String toString() {
     return name;
   }
 }
