@@ -74,4 +74,8 @@ public class Contact {
   public void setCourse(Course course) {
     this.course = course;
   }
+
+  public String toString() {
+    return name;
+  }
 }
