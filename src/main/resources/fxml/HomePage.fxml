@@ -5,18 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1080.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.HomePage">
    <children>
-      <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktiva Kurser" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Text>
       <ScrollPane layoutX="92.0" layoutY="105.0" prefHeight="240.0" prefWidth="880.0" style="-fx-background-color: white;" vbarPolicy="NEVER" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="90.0">
          <content>
             <FlowPane fx:id="activeCoursesFlowPane" hgap="20.0" maxHeight="250.0" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="250.0" prefWidth="870.0" style="-fx-background-color: white;" vgap="20.0">
@@ -26,15 +23,30 @@
             </FlowPane>
          </content>
       </ScrollPane>
-      <Text layoutX="430.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Användare" AnchorPane.topAnchor="350.2314453125">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Text>
-      <Text layoutX="152.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Användarnamn:" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="436.41796875" />
-      <TextField fx:id="userName" layoutX="298.0" layoutY="436.0" AnchorPane.leftAnchor="298.0" />
-      <Button layoutX="298.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeUser" prefHeight="26.0" prefWidth="149.0" text="Spara ändringar" />
-      <Button layoutX="580.0" layoutY="583.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="166.0" text="Logga ut" />
-      <Label fx:id="worked" layoutX="312.0" layoutY="609.0" text="Label" />
+      <ImageView fitHeight="270.0" fitWidth="862.0" layoutX="157.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/aktivakurser.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="240.0" fitWidth="884.0" layoutX="114.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/kontouppgifter.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="193.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Användarnamn:" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="435.41796875" />
+      <Text layoutX="245.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Lösenord:" />
+      <TextField fx:id="userName" layoutX="338.0" layoutY="437.0" AnchorPane.leftAnchor="338.0" />
+      <Button layoutX="338.0" layoutY="579.0" mnemonicParsing="false" onAction="#changeUser" prefHeight="26.0" prefWidth="149.0" text="Spara ändringar" />
+      <Button layoutX="556.0" layoutY="579.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="166.0" text="Logga ut" />
+      <Label fx:id="worked" layoutX="312.0" layoutY="609.0" />
+      <TextField layoutX="338.0" layoutY="473.0" promptText="********" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/avatar-2191918_1920.png" />
+         </image>
+         <effect>
+            <DropShadow color="#00000082" />
+         </effect>
+      </ImageView>
    </children>
 </AnchorPane>

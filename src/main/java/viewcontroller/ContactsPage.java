@@ -18,7 +18,8 @@ import model.event.CourseChangeEvent;
 import model.event.UserChangedEvent;
 
 /**
- *This class represent the "address"-book that is shown when you press the "kontakter" button in the SidePanel
+ * This class represent the "address"-book that is shown when you press the "kontakter" button in
+ * the SidePanel
  *
  * @author Johanna
  */
@@ -80,6 +81,8 @@ public class ContactsPage implements Page {
           new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText());
       contactsObserverList.add(c);
       model.addContact(c);
+      resetInputs();
+      seeContactAnchorpane.toFront();
     }
     updateInfo();
     contactsListview.setItems(contactsObserverList);
@@ -108,6 +111,7 @@ public class ContactsPage implements Page {
       number.setText(selectedContact.getPhoneNumber());
       removeContact();
     }
+    updateInfo();
     samePageErrorMgm();
   }
 
