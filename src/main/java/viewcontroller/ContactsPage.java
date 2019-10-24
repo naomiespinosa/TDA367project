@@ -1,6 +1,5 @@
 package viewcontroller;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +15,7 @@ import model.Contact;
 import model.Course;
 import model.Min5a;
 import model.event.CourseChangeEvent;
+import model.event.UserChangedEvent;
 
 /**
  *This class represent the "address"-book that is shown when you press the "kontakter" button in the SidePanel
@@ -66,7 +66,6 @@ public class ContactsPage implements Page {
   private Min5a model;
 
   private MainPage parent;
-  private EventBus eventBus = Min5a.bus;
 
   private void updatePage() {
     updateInfo();
@@ -74,18 +73,30 @@ public class ContactsPage implements Page {
     initSamePageErrorMgm();
   }
 
+  /**
+   * Creates the contact if the contacts textareas is approved
+   *
+   * @param event
+   */
   @FXML
   void createContact(ActionEvent event) {
     samePageErrorMgm();
     if (isContactApproved()) {
-      contactsObserverList.add(
-          new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText()));
+      Contact c =
+          new Contact(contactName.getText(), contactEmail.getText(), contactPhone.getText());
+      contactsObserverList.add(c);
+      model.addContact(c);
     }
-
+    updateInfo();
     contactsListview.setItems(contactsObserverList);
     contactsListview.getSelectionModel().selectLast();
   }
 
+  /**
+   * "Edits" the contact by crearing a new one.
+   *
+   * @param event
+   */
   @FXML
   void editContact(ActionEvent event) {
     addContactAnchorPane.toFront();
@@ -106,11 +117,22 @@ public class ContactsPage implements Page {
     samePageErrorMgm();
   }
 
+  /**
+   * when pressing the "add new contact - button" the page resets
+   *
+   * @param event
+   */
   @FXML
   void addNewContact(ActionEvent event) {
     resetNewContact();
   }
 
+  /**
+   * when pressing the delete-button the contact is deleted, you get to the page where you can add a
+   * contact and all the inputs is reset
+   *
+   * @param event
+   */
   @FXML
   void deleteContact(ActionEvent event) {
     removeContact();
@@ -119,22 +141,42 @@ public class ContactsPage implements Page {
   }
 
   // Is filled areas approved
+
+  /**
+   * Check if the email textarea contains a "@" and a "."
+   *
+   * @return boolean
+   */
   private boolean isEmailApproved() {
     return (contactEmail.getText().contains("@") && contactEmail.getText().contains("."));
   }
 
+  /**
+   * Check if the phone number textarea contains at least 3 characters and only numbers
+   *
+   * @return boolean
+   */
   private boolean isPhoneApproved() {
     return (contactPhone.getText().matches("[0-9]+") && contactPhone.getText().length() >= 3);
   }
-
+  /**
+   * Check if the the name textarea is not empty
+   *
+   * @return boolean
+   */
   private boolean isTextareaFilled() {
     return contactName.getText().trim().isEmpty();
   }
-
+  /**
+   * Check if all the criterias for text areas if filled
+   *
+   * @return boolean
+   */
   private boolean isContactApproved() {
     return (!isTextareaFilled() && isEmailApproved() && isPhoneApproved());
   }
 
+  /** resets everything that has with the add contact AnchorPane to do with */
   private void resetNewContact() {
     resetInputs();
     addContactAnchorPane.toFront();
@@ -152,11 +194,13 @@ public class ContactsPage implements Page {
   private static final List acceptedTitles =
       Arrays.asList("Examinator", "Elev", "Handledare", "Annan");
 
-  public void removeContact() {
+  private void removeContact() {
     final int selectedIdx = contactsListview.getSelectionModel().getSelectedIndex();
     if (selectedIdx != -1) {
       contactsListview.getItems().remove(selectedIdx);
     }
+    Contact c = contactsListview.getSelectionModel().getSelectedItem();
+    model.removeContact(c);
   }
 
   private void populateContactListView() {
@@ -197,6 +241,13 @@ public class ContactsPage implements Page {
     contactCourse.getItems().clear();
     contactCourse.getItems().addAll(getCourseNames());
     contactCourse.getSelectionModel().select(0);
+
+    contactsObserverList.clear();
+    for (Contact c : model.getSavedContacts()) {
+      contactsObserverList.add(c);
+    }
+
+    contactsListview.setItems(contactsObserverList);
   }
 
   // TODO SHOW UPDATES
@@ -226,6 +277,17 @@ public class ContactsPage implements Page {
     updateInfo();
   }
 
+  @Subscribe
+  public void onUserChanged(UserChangedEvent event) {
+    updateInfo();
+    resetNewContact();
+  }
+
+  /**
+   * Show the contact who is selected in the listview in the seeContactAnchorPane
+   *
+   * @param mouseEvent
+   */
   public void showContact(javafx.scene.input.MouseEvent mouseEvent) {
     showSelectedContact();
   }
@@ -236,9 +298,8 @@ public class ContactsPage implements Page {
 
     contactTitle.getItems().addAll(acceptedTitles);
     contactTitle.getSelectionModel().select(0);
-    samePageErrorMgm();
+    // samePageErrorMgm();
     // Todo fix so that the current courses (if there are any existing already) are in the courses
-    // Combobox
 
   }
 }

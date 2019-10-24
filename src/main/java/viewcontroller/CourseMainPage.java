@@ -147,7 +147,6 @@ public class CourseMainPage implements Page {
       gradeLabel.setText(course.getGrade());
     }
   }
-  // Methods
 
   // To-Do methods
 
@@ -289,15 +288,14 @@ public class CourseMainPage implements Page {
   @FXML
   private void changeStatus() {
     if (course.isActive()) {
-      course.endCourse(gradeComboBox.getSelectionModel().getSelectedItem().toString());
+      model.setCourseInactive(
+          course, gradeComboBox.getSelectionModel().getSelectedItem().toString());
     } else {
-      course.reactivateCourse();
+      model.setCourseActive(course);
     }
-
     resetPanes();
     updateCourseInfo();
     resetChangeStatusPane();
-    model.notifyCourseChangedEvent();
   }
 
   private void resetChangeStatusPane() {
