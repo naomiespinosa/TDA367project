@@ -73,4 +73,13 @@ public class Contact {
   public void setCourse(Course course) {
     this.course = course;
   }
+
+  /**
+   * Sets the toString to the name of the contact
+   *
+   */
+
+  public String toString(){
+    return name;
+  }
 }
