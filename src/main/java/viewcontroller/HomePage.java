@@ -23,8 +23,6 @@ public class HomePage implements Page {
 
   @FXML private FlowPane activeCoursesFlowPane;
   @FXML private TextField userName;
-  @FXML private TextField securityCode; // Deleted
-  // @FXML private Label changeWorked;
   @FXML private Label worked;
 
   @Subscribe
@@ -50,7 +48,7 @@ public class HomePage implements Page {
     worked.setText("");
     if (isValidChangeMade()) {
       model.setActiveUserName(userName.getText());
-      // model.setActiveUserId(Integer.parseInt(securityCode.getText())); // TODO cant change id
+      // model.setActiveUserId(Integer.parseInt(securityCode.getText()));
       worked.setText("Ändringarna är nu uppdaterade");
     }
   }
@@ -59,7 +57,7 @@ public class HomePage implements Page {
     return !isInputEmpty() && !isChangeMade();
   }
 
-  private boolean isChangeMade() { // TODO checking security code doesnt work
+  private boolean isChangeMade() {
     return model.getActiveUserName().equals(userName.getText());
     // || Integer.valueOf(securityCode.getText()) == model.getActiveUserId();
   }
@@ -77,11 +75,11 @@ public class HomePage implements Page {
 
   @Subscribe
   public void userUpdated(UserChangedEvent event) {
-    updateLists(); // TODO Doenst work
+    updateLists();
   }
 
   @Subscribe
   public void courseChangeMade(CourseChangeEvent event) {
-    updateLists(); // works
+    updateLists();
   }
 }

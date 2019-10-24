@@ -19,8 +19,6 @@ public class JsonPersistence implements Persistence {
   public JsonPersistence(Min5a model) {
     this.model = model;
     gson = new Gson();
-    // URL file = getClass().getResource("min5a.json");
-    // jsonFile = new File(file.getFile());
   }
 
   @Override

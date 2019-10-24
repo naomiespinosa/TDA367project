@@ -16,6 +16,7 @@ import model.Course;
 import model.Min5a;
 import model.StudySession;
 import model.event.CourseChangeEvent;
+import model.event.UserChangedEvent;
 
 /**
  * This page displays all the information about study-sessions and grades.
@@ -116,8 +117,6 @@ public class StatisticsPage implements Page {
     // ---------------------------------------------------
     totalStudyHour.setText(totalHour + " Timmar");
     totalStudyMinute.setText(totalMinute + " Minuter");
-
-    // TODO Computing in this method will later on be moved to Course and accessed via a method.
   }
 
   private int getTotalStudyTimeForCourse(Course course) {
@@ -130,9 +129,6 @@ public class StatisticsPage implements Page {
 
     int totalHour = totalTimeSecond / 3600;
     return totalHour;
-
-    // TODO adapt for Hour AND minutes, perhaps send back a Pair. This methods computing should also
-    //  be done in Course.
   }
 
   private void setListOfCourses() {
@@ -144,24 +140,6 @@ public class StatisticsPage implements Page {
 
     activeCoursesListView.setItems(activeCourses);
     finishedCoursesListView.setItems(inactiveCourses);
-    /*
-    activeCourses.clear();
-
-    inactiveCourses.clear();
-
-    Iterable<Course> courses = model.getCourses();
-
-    for (Course course : courses) {
-      if (course.isActive()) {
-        activeCourses.add(course.getName());
-      } else {
-        inactiveCourses.add(course.getName());
-      }
-    }
-    activeCoursesListView.setItems(activeCourses);
-    finishedCoursesListView.setItems(inactiveCourses);
-    */
-
   }
 
   @Subscribe
@@ -169,10 +147,10 @@ public class StatisticsPage implements Page {
     update();
   }
 
-  //  @Subscribe
-  //  private void updateLists(final UserChangedEvent userChangedEvent) {
-  //    update();
-  //  }
+  @Subscribe
+  private void updateLists(final UserChangedEvent userChangedEvent) {
+    update();
+  }
 
   private void update() {
     // setStudyTimeGradesDisplay();

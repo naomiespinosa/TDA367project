@@ -10,7 +10,6 @@ import viewcontroller.PageLoader;
 
 public class Min5aApplication extends Application {
   private static Min5a model;
-  private Boolean isFirstRun = true;
 
   @Override
   public void start(Stage stage) {

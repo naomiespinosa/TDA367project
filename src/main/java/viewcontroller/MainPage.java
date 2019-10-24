@@ -78,8 +78,6 @@ public class MainPage implements Page {
     showPage(PageLoader.createCourseMainPage(course, this));
   }
 
-  // TODO CANT CHANGE USER
-
   @FXML
   private void login(ActionEvent event) {
     loginErrorText.setText("");
@@ -102,7 +100,7 @@ public class MainPage implements Page {
     return true;
   }
 
-  private boolean usernameIsValid() { // TODO user persistence
+  private boolean usernameIsValid() {
     if (usernameTextField.getText().trim().isEmpty()) {
       loginErrorText.setText("*Ingen ruta får lämnas tom");
       return false;
@@ -114,15 +112,14 @@ public class MainPage implements Page {
   }
 
   @FXML
-  private void newAccount() { // TODO getting errors lel
+  private void newAccount() {
     loginErrorText.setText("");
     String pwd = passwordField.getText();
-    int personNumber =
-        Integer.parseInt(usernameTextField.getText()); // TODO should be supplied by GUI
+    int personNumber = Integer.parseInt(usernameTextField.getText());
     if (usernameIsValid() && passwordIsValid()) {
       if (model.isUserUnique(personNumber) && !usernameTextField.getText().trim().isEmpty()) {
         model.addUser(personNumber, "Your Name", pwd);
-        model.login(personNumber, pwd); // TODO Wont work if i have logged in once
+        model.login(personNumber, pwd);
         toHome();
       } else {
         loginErrorText.setText("*Användaren finns redan");

@@ -342,14 +342,6 @@ public class CourseMainPage implements Page {
     }
   }
 
-  // Latest Activity methods
-  // TODO ask: what should latest activity show?
-
-  /**
-   * TODO: add logic so when a todo is done or a moment has passed it's deadline that it moves to
-   * the latest acticvity listview
-   */
-
   // Populates the ListViews on the page with the correct items.
   private void populateListViews() {
     toDoListView.setItems(toDos);

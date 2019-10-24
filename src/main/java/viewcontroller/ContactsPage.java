@@ -26,6 +26,7 @@ import model.event.UserChangedEvent;
 public class ContactsPage implements Page {
 
   private ObservableList<Contact> contactsObserverList = FXCollections.observableArrayList();
+
   // FXML
   @FXML private ListView<Contact> contactsListview = new ListView<>();
 
