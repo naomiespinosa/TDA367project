@@ -67,12 +67,6 @@ public class ContactsPage implements Page {
 
   private MainPage parent;
 
-  private void updatePage() {
-    updateInfo();
-    populateContactListView();
-    initSamePageErrorMgm();
-  }
-
   /**
    * Creates the contact if the contacts textareas is approved
    *
