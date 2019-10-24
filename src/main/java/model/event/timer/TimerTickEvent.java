@@ -1,8 +1,6 @@
 package model.event.timer;
 
-/**
- * Represents 1 second
- */
+/** Represents 1 second */
 public class TimerTickEvent {
   private Long elapsedSeconds;
 

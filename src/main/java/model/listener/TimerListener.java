@@ -4,9 +4,7 @@ import com.google.common.eventbus.Subscribe;
 import model.StudySession;
 import model.event.timer.StudyTimerCompletedEvent;
 
-/**
- * Creates study-session when timer is completed
- */
+/** Creates study-session when timer is completed */
 public class TimerListener {
   @Subscribe
   private void onStudyTimerCompleted(final StudyTimerCompletedEvent studyTimerCompletedEvent) {

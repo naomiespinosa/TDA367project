@@ -3,9 +3,7 @@ package model;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-/**
- * A class that represents the timer
- */
+/** A class that represents the timer */
 public class Timer {
   private java.util.Timer timer = new java.util.Timer();
   private Course course;

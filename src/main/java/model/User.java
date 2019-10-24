@@ -73,6 +73,7 @@ public class User {
   Iterable<Course> filterCourses(Predicate<Course> p) {
     return courses.stream().filter(p).collect(Collectors.toList());
   }
+
   void addCourse(Course course) {
     courses.add(course);
   }

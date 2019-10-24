@@ -207,7 +207,12 @@ public class CourseMainPage implements Page {
   @FXML
   private void changeCourse(ActionEvent event) {
     if (!isEditApproved()) {
-      model.changeCourse(course,courseNameTextArea.getText(),courseCodeTextArea.getText().substring(0, 6), (int) yearSpinner.getValue(),(int) periodComboBox.getSelectionModel().getSelectedItem());
+      model.changeCourse(
+          course,
+          courseNameTextArea.getText(),
+          courseCodeTextArea.getText().substring(0, 6),
+          (int) yearSpinner.getValue(),
+          (int) periodComboBox.getSelectionModel().getSelectedItem());
 
       updateCourseInfo();
       resetPanes();

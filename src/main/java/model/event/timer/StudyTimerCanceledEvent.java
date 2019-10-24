@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import model.Course;
 import model.User;
 
-/**
- * For when the studyTimer is cancelled
- */
+/** For when the studyTimer is cancelled */
 public class StudyTimerCanceledEvent extends TimerStoppedEvent {
   public StudyTimerCanceledEvent(
       final Course course,

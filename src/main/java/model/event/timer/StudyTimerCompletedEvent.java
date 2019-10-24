@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import model.Course;
 import model.User;
 
-/**
- * For when the studyTimer har gone 25 min
- */
+/** For when the studyTimer har gone 25 min */
 public class StudyTimerCompletedEvent extends TimerStoppedEvent {
   public StudyTimerCompletedEvent(
       final Course course,

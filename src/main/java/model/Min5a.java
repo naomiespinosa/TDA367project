@@ -295,6 +295,6 @@ public class Min5a {
    * @param period period
    */
   public void changeCourse(Course course, String name, String code, int year, int period) {
-    course.changeInfo(name,code,year,period);
+    course.changeInfo(name, code, year, period);
   }
 }
