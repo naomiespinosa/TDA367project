@@ -2,23 +2,23 @@ package model;
 
 /** This class represent a normal checklist for the user and will either be done or not */
 public class ToDo {
-  private boolean isDone;
-
+  private boolean isDone; // for future purposes
   private String description;
 
-  // Constructor, a todoItem is not done when created
+  /**
+   * Constructor for to-dos
+   *
+   * @param description what the to-do is about
+   */
   public ToDo(String description) {
     this.description = description;
     this.isDone = false;
   }
 
-  // Makes the ToDos show up as strings in the CourseMainPage ListView
   @Override
   public String toString() {
     return this.getDescription();
   }
-
-  // Getters and Setters
 
   /** @return the description of a tod'o */
   public String getDescription() {

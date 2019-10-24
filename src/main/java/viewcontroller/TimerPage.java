@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import model.Course;
 import model.Min5a;
 import model.TimerManager;
-import model.event.CourseSelectedEvent;
 import model.event.timer.StudyTimerCanceledEvent;
 import model.event.timer.StudyTimerCompletedEvent;
 import model.event.timer.StudyTimerStartedEvent;
@@ -63,11 +62,6 @@ public class TimerPage implements Page {
                 String.format(
                     "%02d:%02d",
                     (event.getElapsedSeconds() % 3600) / 60, (event.getElapsedSeconds() % 60))));
-  }
-
-  @Subscribe
-  private void onCourseSelection(final CourseSelectedEvent courseSelectedEvent) {
-    this.course = courseSelectedEvent.getCourse();
   }
 
   @Subscribe

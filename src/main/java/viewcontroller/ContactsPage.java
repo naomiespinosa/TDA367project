@@ -25,7 +25,6 @@ import model.event.UserChangedEvent;
  */
 public class ContactsPage implements Page {
 
-  private ArrayList<Contact> contacts = new ArrayList();
   private ObservableList<Contact> contactsObserverList = FXCollections.observableArrayList();
   // FXML
   @FXML private ListView<Contact> contactsListview = new ListView<>();
@@ -92,7 +91,7 @@ public class ContactsPage implements Page {
   /**
    * "Edits" the contact by crearing a new one.
    *
-   * @param event
+   * @param event event
    */
   @FXML
   void editContact(ActionEvent event) {
@@ -118,7 +117,7 @@ public class ContactsPage implements Page {
   /**
    * when pressing the "add new contact - button" the page resets
    *
-   * @param event
+   * @param event event
    */
   @FXML
   void addNewContact(ActionEvent event) {
@@ -129,7 +128,7 @@ public class ContactsPage implements Page {
    * when pressing the delete-button the contact is deleted, you get to the page where you can add a
    * contact and all the inputs is reset
    *
-   * @param event
+   * @param event event
    */
   @FXML
   void deleteContact(ActionEvent event) {
@@ -201,10 +200,6 @@ public class ContactsPage implements Page {
     model.removeContact(c);
   }
 
-  private void populateContactListView() {
-    contactsListview.setItems(contactsObserverList);
-  }
-
   private void samePageErrorMgm() {
     if (!isTextareaFilled()) {
       isTextAreaFilled.setVisible(false);
@@ -219,18 +214,6 @@ public class ContactsPage implements Page {
     if (isPhoneApproved()) {
       isPhoneApproved.setVisible(false);
     } else {
-      isPhoneApproved.setVisible(true);
-    }
-  }
-
-  private void initSamePageErrorMgm() {
-    if (isTextareaFilled()) {
-      isTextAreaFilled.setVisible(true);
-    }
-    if (!isEmailApproved()) {
-      isEmailApproved.setVisible(true);
-    }
-    if (!isPhoneApproved()) {
       isPhoneApproved.setVisible(true);
     }
   }

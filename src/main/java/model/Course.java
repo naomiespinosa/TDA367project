@@ -13,7 +13,6 @@ public class Course {
   private String name;
   private String courseCode;
   private List<Moment> momentItems = new ArrayList<>();
-  private List<StudySession> studySessions = new ArrayList<>();
   private List<ToDo> toDoList = new ArrayList<>();
   private int year;
   private int studyPeriod;
@@ -22,12 +21,35 @@ public class Course {
 
   private static final List acceptedGrades = Arrays.asList("5", "4", "3", "U");
 
+  /**
+   * Constructor for course
+   *
+   * @param name name
+   * @param courseCode courseCode
+   * @param year year
+   * @param studyPeriod studyPeriod
+   */
   public Course(String name, String courseCode, int year, int studyPeriod) {
     this.name = name;
     this.courseCode = courseCode;
     this.year = year;
     this.studyPeriod = studyPeriod;
     this.isActive = true;
+  }
+
+  /**
+   * Changes the course-info
+   *
+   * @param name name
+   * @param code code
+   * @param year year
+   * @param period period
+   */
+  void changeInfo(String name, String code, int year, int period) {
+    setName(name);
+    setCourseCode(code);
+    setYear(year);
+    setStudyPeriod(period);
   }
 
   /**
@@ -51,8 +73,8 @@ public class Course {
   /**
    * cretes a new Moment that has a name and a deadline
    *
-   * @param name
-   * @param deadline
+   * @param name name
+   * @param deadline deadline
    */
   public void newMoment(String name, LocalDate deadline) {
     momentItems.add(new Moment(name, deadline));
@@ -61,7 +83,7 @@ public class Course {
   /**
    * removing a moment
    *
-   * @param index
+   * @param index index
    */
   public void deleteMoment(int index) {
     momentItems.remove(index);
@@ -82,7 +104,7 @@ public class Course {
   /**
    * Creates new tod'o with an description
    *
-   * @param description
+   * @param description description
    */
   public void newTodo(String description) {
     toDoList.add(new ToDo(description));
@@ -109,12 +131,7 @@ public class Course {
     return name;
   }
 
-  /**
-   * sets the name of the course
-   *
-   * @param name
-   */
-  public void setName(String name) {
+  private void setName(String name) {
     this.name = name;
   }
 
@@ -123,12 +140,7 @@ public class Course {
     return courseCode;
   }
 
-  /**
-   * sets the coursecode of the course
-   *
-   * @param courseCode
-   */
-  public void setCourseCode(String courseCode) {
+  private void setCourseCode(String courseCode) {
     this.courseCode = courseCode;
   }
 
@@ -137,12 +149,7 @@ public class Course {
     return year;
   }
 
-  /**
-   * Sets the year of the course
-   *
-   * @param year
-   */
-  public void setYear(int year) {
+  private void setYear(int year) {
     this.year = year;
   }
 
@@ -151,12 +158,7 @@ public class Course {
     return studyPeriod;
   }
 
-  /**
-   * Sets the study period
-   *
-   * @param studyPeriod
-   */
-  public void setStudyPeriod(int studyPeriod) {
+  private void setStudyPeriod(int studyPeriod) {
     this.studyPeriod = studyPeriod;
   }
 
@@ -165,11 +167,6 @@ public class Course {
     return isActive;
   }
 
-  /**
-   * Set the grade of a course
-   *
-   * @param grade
-   */
   private void setGrade(String grade) {
     if (acceptedGrades.contains(grade)) {
       this.grade = grade;

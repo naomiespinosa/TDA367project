@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+/** A class that represents the timer */
 public class Timer {
   private java.util.Timer timer = new java.util.Timer();
   private Course course;
@@ -18,8 +19,8 @@ public class Timer {
    *
    * @return The date and time the timer was started at.
    */
-  public LocalDateTime getStartedAt() {
-    return this.startedAt;
+  LocalDateTime getStartedAt() {
+    return startedAt;
   }
 
   /**
@@ -27,8 +28,8 @@ public class Timer {
    *
    * @return The date and time the timer was sopped at.
    */
-  public LocalDateTime getStoppedAt() {
-    return this.stoppedAt;
+  LocalDateTime getStoppedAt() {
+    return stoppedAt;
   }
 
   private State state = State.INACTIVE;
@@ -89,7 +90,7 @@ public class Timer {
    *
    * @param callback The callback to be executed.
    */
-  public void onStart(final Callback callback) {
+  void onStart(final Callback callback) {
     this.onStart = callback;
   }
 
@@ -98,7 +99,7 @@ public class Timer {
    *
    * @param callback The callback to be executed.
    */
-  public void onCancel(final Callback callback) {
+  void onCancel(final Callback callback) {
     this.onCancel = callback;
   }
 
@@ -107,7 +108,7 @@ public class Timer {
    *
    * @param callback The callback to be executed.
    */
-  public void onCompleted(final Callback callback) {
+  void onCompleted(final Callback callback) {
     stoppedAt = LocalDateTime.now();
     this.onCompleted = callback;
   }
@@ -117,7 +118,7 @@ public class Timer {
    *
    * @param callback The callback to be executed.
    */
-  public void onTick(final Callback callback) {
+  void onTick(final Callback callback) {
     this.onTick = callback;
   }
 

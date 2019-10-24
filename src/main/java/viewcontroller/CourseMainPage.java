@@ -44,9 +44,6 @@ public class CourseMainPage implements Page {
   // Observable list for the courses Moments
   private ObservableList<Moment> moments = FXCollections.observableArrayList();
 
-  // Observable list for the courses latest activity
-  private ObservableList activities = FXCollections.observableArrayList();
-
   @FXML private Label courseName;
   @FXML private Label gradeLabel;
 
@@ -210,10 +207,12 @@ public class CourseMainPage implements Page {
   @FXML
   private void changeCourse(ActionEvent event) {
     if (!isEditApproved()) {
-      course.setName(courseNameTextArea.getText());
-      course.setCourseCode(courseCodeTextArea.getText().substring(0, 6));
-      course.setYear((int) yearSpinner.getValue());
-      course.setStudyPeriod((int) periodComboBox.getSelectionModel().getSelectedItem());
+      model.changeCourse(
+          course,
+          courseNameTextArea.getText(),
+          courseCodeTextArea.getText().substring(0, 6),
+          (int) yearSpinner.getValue(),
+          (int) periodComboBox.getSelectionModel().getSelectedItem());
 
       updateCourseInfo();
       resetPanes();
@@ -226,7 +225,7 @@ public class CourseMainPage implements Page {
   }
 
   // Makes it so the user only can type in a certain amount of characters in a textfield
-  static void addTextLimiter(TextField courseCode, int limit) {
+  private static void addTextLimiter(TextField courseCode, int limit) {
     courseCode
         .textProperty()
         .addListener(

@@ -28,7 +28,7 @@ public class StudySession {
   /**
    * sets when the study session started
    *
-   * @param start
+   * @param start start
    */
   public void setStart(final LocalDateTime start) {
     startedAt = start;
@@ -37,7 +37,7 @@ public class StudySession {
   /**
    * sets when the study session stopped
    *
-   * @param stop
+   * @param stop stop
    */
   public void setStop(final LocalDateTime stop) {
     stoppedAt = stop;

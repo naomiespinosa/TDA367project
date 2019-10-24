@@ -16,7 +16,7 @@ public class User {
   private List<Course> courses = new ArrayList<>();
   private List<Contact> contacts = new ArrayList<>();
 
-  User(Integer personNumber, String name, String passwordHash) {
+  private User(Integer personNumber, String name, String passwordHash) {
     this.personNumber = personNumber;
     this.name = name;
     this.passwordHash = passwordHash;
@@ -25,9 +25,9 @@ public class User {
   /**
    * Creates a user
    *
-   * @param personNumber
-   * @param name
-   * @param password
+   * @param personNumber personNumber
+   * @param name name
+   * @param password password
    * @return the user
    */
   static User createUser(Integer personNumber, String name, String password) {
@@ -40,7 +40,7 @@ public class User {
   /**
    * sets the name/description of the user
    *
-   * @param name
+   * @param name name
    */
   public void setName(String name) {
     this.name = name;
@@ -51,14 +51,10 @@ public class User {
     return personNumber;
   }
 
-  public void setPersonNumber(int id) {
-    this.personNumber = id;
-  }
-
   /**
    * checks if the password matches the hashpassword
    *
-   * @param password
+   * @param password password
    * @return a boolean
    */
   public boolean hasPassword(String password) {
@@ -74,32 +70,27 @@ public class User {
    *
    * @return a copy of a list with courses
    */
-  public Iterable<Course> filterCourses(Predicate<Course> p) {
+  Iterable<Course> filterCourses(Predicate<Course> p) {
     return courses.stream().filter(p).collect(Collectors.toList());
   }
 
-  /**
-   * Adss a course to a list
-   *
-   * @param course
-   */
-  public void addCourse(Course course) {
+  void addCourse(Course course) {
     courses.add(course);
   }
 
-  public void deleteCourse(Course course) {
+  void deleteCourse(Course course) {
     courses.remove(course);
   }
 
-  public void addContact(Contact contact) {
+  void addContact(Contact contact) {
     contacts.add(contact);
   }
 
-  public void removeContacts(Contact contact) {
+  void removeContacts(Contact contact) {
     contacts.remove(contact);
   }
 
-  public List<Contact> getContactList() {
+  List<Contact> getContactList() {
     return contacts;
   }
 }

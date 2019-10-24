@@ -12,7 +12,7 @@ public class CallableTask extends TimerTask {
    *
    * @param callback The callback to execute.
    */
-  public CallableTask(final Callback callback) {
+  CallableTask(final Callback callback) {
     this.callback = callback;
   }
 
@@ -21,7 +21,6 @@ public class CallableTask extends TimerTask {
     if (callback == null) {
       return;
     }
-
     callback.callback();
   }
 }

@@ -85,21 +85,4 @@ class CourseTest {
 
     assertEquals(0, course.getMomentItems().size());
   }
-
-  @Test
-  public void settersGettersTest() {
-    Course course = new Course("", "", 0, 0);
-
-    course.setName("hej");
-    assertEquals("hej", course.getName());
-
-    course.setYear(1);
-    assertEquals(1, course.getYear());
-
-    course.setCourseCode("hej123");
-    assertEquals("hej123", course.getCourseCode());
-
-    course.setStudyPeriod(3);
-    assertEquals(3, course.getStudyPeriod());
-  }
 }

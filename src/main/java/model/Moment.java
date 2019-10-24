@@ -47,7 +47,7 @@ public class Moment {
   /**
    * sets the name/description of the moment
    *
-   * @param name
+   * @param name name
    */
   public void setName(String name) {
     this.name = name;
