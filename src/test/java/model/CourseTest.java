@@ -70,4 +70,17 @@ class CourseTest {
 
     assertEquals(0, course.getMomentItems().size());
   }
+
+  @Test
+  void courseChangedTest() {
+    Course course = new Course("Matte", "TDA475", 2019, 4);
+
+    model.changeCourse(course, "Programmering", "TDA555", 2018, 3);
+
+    assertTrue(course.isActive());
+    assertSame("Programmering", course.getName());
+    assertSame("TDA555", course.getCourseCode());
+    assertSame(3, course.getStudyPeriod());
+    assertEquals(2018, course.getYear());
+  }
 }

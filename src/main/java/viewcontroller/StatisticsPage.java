@@ -50,11 +50,6 @@ public class StatisticsPage implements Page {
   private Min5a model;
   private Optional<MainPage> mainPage;
 
-  //  List<Course> activeCourseList;
-  //  List<Course> finishedCourseList;
-
-  // TODO add functionality for add studyTime dialog
-
   @FXML
   private void switchListGraphAction(ActionEvent event) {
     if (isGraphShowing) {

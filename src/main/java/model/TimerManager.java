@@ -38,7 +38,7 @@ public class TimerManager {
    * @param user The active user.
    */
   public void start(final Course course, final User user) {
-    if (isRunning() == true) {
+    if (isRunning()) {
       activeTimer.cancel();
     }
 
@@ -73,7 +73,7 @@ public class TimerManager {
 
   /** Cancels any running timer. */
   public void cancel() {
-    if (isRunning() == false) {
+    if (!isRunning()) {
       return;
     }
 
