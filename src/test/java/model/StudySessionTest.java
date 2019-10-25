@@ -29,4 +29,17 @@ public class StudySessionTest {
 
     assertSame(start, studySession.getStartedAt());
   }
+
+  @Test
+  void testStoppedDateIsSet() {
+
+    LocalDateTime start = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+    LocalDateTime stop = LocalDateTime.of(2000, 1, 1, 0, 1, 0);
+    StudySession studySession = new StudySession();
+
+    studySession.setStart(start);
+    studySession.setStop(stop);
+
+    assertSame(stop, studySession.getStoppedAt());
+  }
 }

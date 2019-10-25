@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Course define what a course is and what a course can do. A course consist of a name, a course
- * code, a study period and a year. A course have the course specific todos and moments.
+ * Course defines what a course is and what a course can do. A course consists of a name, a course
+ * code, a study period and a year. A course holds the course specific todos and moments.
  */
 public class Course {
   private String name;

@@ -51,12 +51,11 @@ public class Min5a {
         eventBus.post(new UserChangedEvent());
         return true;
       }
-      //
     }
-    return false; // TODO: no such user event
+    return false;
   }
 
-  /** Maked the user not active */
+  /** Makes the user inactive */
   public void logout() {
     if (activeUser.isPresent()) {
       activeUser = Optional.empty();
@@ -150,8 +149,7 @@ public class Min5a {
    * @param p a predicate over a course
    * @return filtered list (iterable) of courses
    */
-  public Iterable<Course> filterCourses(
-      Predicate<Course> p) { // todo how to make activeUser present
+  public Iterable<Course> filterCourses(Predicate<Course> p) {
     return activeUser.get().filterCourses(p);
   }
 
